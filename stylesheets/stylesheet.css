@@ -1,0 +1,22 @@
+p {
+  color: blue;
+  font-size: 15px;
+  border: 1px solid red;
+}
+
+h1 {
+  font-size: 50px;
+  text-align: center;
+  color:red;
+}
+
+h2 {
+  text-align: center;
+  color:green;
+}
+
+p, li {
+  font-size: 17px;
+  line-height: 2;
+  letter-spacing: 1px;
+}
