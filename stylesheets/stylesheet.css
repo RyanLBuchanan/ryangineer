@@ -1,6 +1,8 @@
 p {
   color: #2B5275 ;
   font-size: 15px;
+  margin: 5 auto;
+  padding:10px 10px 10px 10px;
   border: 1px solid gray ;
 }
 
@@ -44,6 +46,8 @@ p, li {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+
+  box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.5);
 }
 
 .center-top {
