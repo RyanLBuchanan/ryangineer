@@ -41,20 +41,20 @@ p, li {
   color: #154673;
 }
 
-.center {
+.img-ai-nodes {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:100%;
+}
+
+.img-blue-kit {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
 
   box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.5);
-}
-
-.center-top {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width:75%;
 }
 
 body {
