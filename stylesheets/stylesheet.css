@@ -3,7 +3,7 @@ p {
   font-size: 15px;
   margin: 5 auto;
   padding:10px 10px 10px 10px;
-  border: 1px solid gray ;
+  border: 1px solid gray;
 }
 
 h1 {
@@ -11,18 +11,23 @@ h1 {
   text-align: center;
   margin: 0;
   padding: 20px 0;
-  color:#154673 ;
+  color: #154673;
   text-shadow: 3px 3px 10px gray;
 }
 
 h2 {
   text-align: center;
-  color:#A5AFB9 ;
+  color: #A5AFB9;
   text-shadow: 3px 3px 15px gray;
 }
 
-h3, h4 {
-  color:black ;
+h3 {
+  color: #A5AFB9;
+  text-shadow: 3px 3px 15px gray;
+}
+
+h4 {
+  color: black;
   text-shadow: 3px 3px 15px gray;
 }
 
