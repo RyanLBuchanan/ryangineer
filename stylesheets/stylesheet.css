@@ -73,3 +73,8 @@ html {
   background-color: #F3F3F3;
   font-family: "Trebuchet MS", "Open Sans", Tahoma, Arial;
 }
+
+table, td {
+  border: 1px solid gray;
+  padding:5px;
+}
