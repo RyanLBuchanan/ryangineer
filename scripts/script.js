@@ -6,9 +6,9 @@
 // myHeading.textContent = 'Living the Dream!';
 
 // Code for image onclick event
-// document.querySelector("html").onclick = function() {
-//   alert("Ouch, Stop poking me!");
-// }
+document.querySelector("html").onclick = function() {
+  alert("Ouch, Stop poking me!");
+}
 
 // // Personalized welcome message Code
 // var nameButton = document.querySelector('button');
