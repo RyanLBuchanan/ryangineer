@@ -71,6 +71,16 @@ $(document).ready(function(){
     $("#dream").toggle("slow");
   });
 });
+
+$(document).ready(function(){
+  $("#fade-btn").click(function(){
+    $("#box1").fadeOut();
+    $("#box2").fadeOut("slow");
+    $("#box3").fadeOut(3000);
+    $("#box4").fadeOut(1000);
+  });
+});
+
 // // Personalized welcome message Code
 // var nameButton = document.querySelector('button');
 // var myHeading = document.querySelector('h1');
@@ -91,3 +101,14 @@ $(document).ready(function(){
 //   'use strict';
 //   setUserName();
 // };
+
+// $(document).ready(function(){
+//   $("button").click(function(){
+//     // $("h2").hide();
+//     // $("#vr_video").hide();
+//     // $(".para").hide();
+//     //$("*").hide();
+//     // $("p:first").hide();
+//     $(this).hide();
+//   });
+// });
