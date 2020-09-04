@@ -81,6 +81,14 @@ $(document).ready(function(){
   });
 });
 
+
+
+// $(document).ready(function() {
+//   $("a").click(function(event) {
+//     alert("Thanks for playing!!!");
+//   });
+// });
+
 // // Personalized welcome message Code
 // var nameButton = document.querySelector('button');
 // var myHeading = document.querySelector('h1');
