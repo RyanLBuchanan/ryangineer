@@ -54,12 +54,23 @@ $(document).ready(function() {
 
 
 $(document).ready(function(){
-  $("button").click(function(){
+  $("#stretch-btn").click(function(){
     $("#dream").animate({left:'200px'}, "slow");
     $("#dream").animate({fontSize:'5em'}, "slow");
   });
 });
 
+$(document).ready(function(){
+  $("#show").click(function(){
+    $("#dream").show("fast");
+  });
+  $("#hide").click(function(){
+    $("#dream").hide(1000, "swing");
+  });
+  $("#toggle").click(function(){
+    $("#dream").toggle("slow");
+  });
+});
 // // Personalized welcome message Code
 // var nameButton = document.querySelector('button');
 // var myHeading = document.querySelector('h1');
