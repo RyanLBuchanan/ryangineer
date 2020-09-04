@@ -41,16 +41,25 @@ $(document).ready(function() {
     });
 });
 
+// $(document).ready(function(){
+//   $("button").click(function(){
+//     // $("h2").hide();
+//     // $("#vr_video").hide();
+//     // $(".para").hide();
+//     //$("*").hide();
+//     // $("p:first").hide();
+//     $(this).hide();
+//   });
+// });
+
+
 $(document).ready(function(){
   $("button").click(function(){
-    // $("h2").hide();
-    // $("#vr_video").hide();
-    // $(".para").hide();
-    //$("*").hide();
-    // $("p:first").hide();
-    $(this).hide();
+    $("#dream").animate({left:'200px'}, "slow");
+    $("#dream").animate({fontSize:'5em'}, "slow");
   });
 });
+
 // // Personalized welcome message Code
 // var nameButton = document.querySelector('button');
 // var myHeading = document.querySelector('h1');

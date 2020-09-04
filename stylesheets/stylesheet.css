@@ -85,3 +85,13 @@ table, td {
   border: 1px solid gray;
   padding: 5px;
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#anim {
+  position:static;
+}
