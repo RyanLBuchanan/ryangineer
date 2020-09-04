@@ -76,8 +76,8 @@ $(document).ready(function(){
   $("#fade-btn").click(function(){
     $("#box1").fadeOut();
     $("#box2").fadeOut("slow");
-    $("#box3").fadeOut(3000);
-    $("#box4").fadeOut(1000);
+    $("#box3").fadeOut(1000);
+    $("#box4").fadeOut(3000);
   });
 });
 

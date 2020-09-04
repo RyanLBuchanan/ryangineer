@@ -50,25 +50,25 @@
 
     <h3>My VR Adventures: VR Dev Kids</h3>
     <ul>
-      <li><a target="_blank" title="Astronomy VR Dev Course" href="https://coursecraft.net/courses/z9ZSc"/>Materialize & Fly Through the Solar System | Beginner VR Dev Course</a></li>
-      <li><a target="_blank" title="Biology VR Dev Course" href="https://coursecraft.net/courses/z9ZYF"/>Animate & Divide a Cell | Beginner VR Dev Course</a></li>
-      <li><a target="_blank" title="Saturdays VR Dev Course" href="https://youtu.be/hguiUWoGUVg"/>Saturdays | Beginner VR Dev Course</a></li>
+      <li><a target="_blank" title="Astronomy VR Dev Course" href="https://coursecraft.net/courses/z9ZSc" />Materialize & Fly Through the Solar System | Beginner VR Dev Course</a></li>
+      <li><a target="_blank" title="Biology VR Dev Course" href="https://coursecraft.net/courses/z9ZYF" />Animate & Divide a Cell | Beginner VR Dev Course</a></li>
+      <li><a target="_blank" title="Saturdays VR Dev Course" href="https://youtu.be/hguiUWoGUVg" />Saturdays | Beginner VR Dev Course</a></li>
       <iframe id="vr_video" width="560" height="315" src="https://www.youtube.com/embed/hguiUWoGUVg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </ul>
 
-  <div>
-    <h3>Data Science Free Diving</h3>
-    <ul>
-      <b>Tools - </b> Investigate a property of a machine learning tool or library.<br>
+    <div>
+      <h3>Data Science Free Diving</h3>
+      <ul>
+        <b>Tools - </b> Investigate a property of a machine learning tool or library.<br>
         <ul>
           <b>Candidates</b>
-            <ul>
-              <li>TensorFlow 2.0</li>
-              <li>PyTorch</li>
-              <li>Keras</li>
-            </ul>
+          <ul>
+            <li>TensorFlow 2.0</li>
+            <li>PyTorch</li>
+            <li>Keras</li>
+          </ul>
         </ul>
-      <b>Algorithms - </b> Investigate the behavior of a machine learning algorithm.<br>
+        <b>Algorithms - </b> Investigate the behavior of a machine learning algorithm.<br>
         <ul>
           <li><b>Summarize the parameters</b> of the system & the expected influence they have on the algorithm</li>
           <li><b>Select a range of datasets</b> suited to the algorithm that are likely to elicit varied behaviors</li>
@@ -78,23 +78,23 @@
         </ul>
         <ul>
           <b>Candidates</b>
-            <ul>
-              <li>Naive Bayes</li>
-              <li>K-Means Clustering - Ooh! with a Unity animation!!!!</li>
-              <li>Decision Tree</li>
-            </ul>
+          <ul>
+            <li>Naive Bayes</li>
+            <li>K-Means Clustering - Ooh! with a Unity animation!!!!</li>
+            <li>Decision Tree</li>
+          </ul>
         </ul>
-      <b>Datasets - </b> Investigate and characterize a data set or machine learning problem.<br>
+        <b>Datasets - </b> Investigate and characterize a data set or machine learning problem.<br>
         <ul>
           <b>Candidates</b>
-            <ul>
-              <li>Zooniverse</li>
-              <li>Dyson Sphere SETI - with a Unity animation!!!!</li>
-              <li>Titanic</li>
-            </ul>
+          <ul>
+            <li>Zooniverse</li>
+            <li>Dyson Sphere SETI - with a Unity animation!!!!</li>
+            <li>Titanic</li>
+          </ul>
         </ul>
-    </ul>
-  </div>
+      </ul>
+    </div>
 
     <h4>Non-code Possibilities</h4>
     <p>
@@ -229,34 +229,37 @@
     <div class="jumbotron">
       <h2>Living the dream!</h2>
       <p>How long do you think we should wait?</p>
-        <div class="center">
-          <!-- <a href="#" class="btn btn-info btn-lg">Git Sum</a><br> -->
-          <br />
-          <br />
-          <br />
-          <button id="stretch-btn" class="btn btn-info btn-lg" type="button">Stretch!</button>
-          <br />
-          <br />
-          <br />
-        </div>
+      <div class="center">
+        <!-- <a href="#" class="btn btn-info btn-lg">Git Sum</a><br> -->
+        <br />
+        <br />
+        <br />
+        <button id="stretch-btn" class="btn btn-info btn-lg" type="button">Stretch!</button>
+        <br />
+        <br />
+        <br />
+      </div>
     </div>
   </div>
   <div class="center">
-    <button id="show" class="btn btn-info btn-lg" style="background-color:#4285F4; width:100px; margin-right:20px;">Show</button>
-    <button id="hide" class="btn btn-info btn-lg" style="background-color:#DB4437; width:100px;">Hide</button>
-    <button id="toggle" class="btn btn-info btn-lg" style="background-color:#F4B400; width:100px; margin-left:20px;">Toggle</button>
+    <button id="show" class="btn btn-info btn-lg" style="background-color:#17A2B8; width:100px; margin-right:20px;">Show</button>
+    <button id="hide" class="btn btn-info btn-lg" style="background-color:#B8286D; width:100px;">Hide</button>
+    <button id="toggle" class="btn btn-info btn-lg" style="background-color:#B8A404; width:100px; margin-left:20px;">Toggle</button>
   </div><br />
 
   <script src="scripts/script.js"></script>
 
-  <!-- Internal JavaScript -->
-  <!-- <script>
+  <div class="center">
+    <button id="fade-btn" style="background-color:#025D6B" class="btn btn-info btn-lg" >Click to Fade . . . </button>
+  </div>
+<br />
+  <div class="center">
+    <div id="box1" style="width:120px;height:70px;background-color:#17a2b8;"></div>
+    <div id="box2" style="width:120px;height:70px;background-color:#B8286D;"></div>
+    <div id="box3" style="width:120px;height:70px;background-color:#B8A404;"></div>
+    <div id="box4" style="width:120px;height:70px;background-color:#6B6007;"></div>
+  </div>
 
-      var myHeading = document.querySelector('h1')
-
-      myHeading.textContent = 'Living the Dream!';
-
-    </script> -->
   <div class="container">
     <a href="https://www.udemy.com/course/python-and-flask-full-stack-web-development-for-beginners/">Made possible by the coolest Bluelime full-stack web dev course at Udemy!<br>Thanks Bluelime!!!</a>
 
