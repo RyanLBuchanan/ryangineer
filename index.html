@@ -195,7 +195,7 @@
     <button>Change UserName</button>
   </div> -->
 
-  <div class="container">
+  <div id="dream" class="container">
     <div class="jumbotron">
       <h2>Living the dream!</h2>
       <p>How long do you think we should wait?</p>
@@ -215,6 +215,22 @@
         // $("p:first").hide();
         $(this).hide();
       });
+    });
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $('#dream').hover(
+        function () {
+          $(this).css({"background-color":"gray"});
+        },
+        function () {
+          $(this).css({"background-color":"black"})
+        });
+      $('#dream').dblclick(
+        function () {
+          $(this).css({"background-color":"white"})
+        });
     });
   </script>
 
