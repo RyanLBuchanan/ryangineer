@@ -23,7 +23,34 @@ splashImage.onclick = function() {
 
 }
 
+$(document).ready(function() {
+  $('#dream').hover(
+    function () {
+      $(this).css({"background-color":"gray"});
+    },
+    function () {
+      $(this).css({"background-color":"black"});
+    });
+  $('#dream').dblclick(
+    function () {
+      $(this).css({"background-color":"white"});
+    });
+  $('#dream').click(
+    function () {
+      $(this).css({"background-color":"purple"})
+    });
+});
 
+$(document).ready(function(){
+  $("button").click(function(){
+    // $("h2").hide();
+    // $("#vr_video").hide();
+    // $(".para").hide();
+    //$("*").hide();
+    // $("p:first").hide();
+    $(this).hide();
+  });
+});
 // // Personalized welcome message Code
 // var nameButton = document.querySelector('button');
 // var myHeading = document.querySelector('h1');
