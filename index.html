@@ -279,7 +279,24 @@
     <p><a href="https://www.udemy.com/course/python-and-flask-full-stack-web-development-for-beginners/">Made possible by the coolest Bluelime Full-Stack Web Dev Course at Udemy!<br>Thanks Bluelime!!!</a></p>
   </div>
 
-  <!-- <p id="mycode"></p> -->
+  <div id="universe">
+      <h2>The Universe is Mathematics</h2>
+    </div>
+
+    <button class="center" type="button" onclick="myDoc()">Click if you dare . . .</button>
+
+    <script>
+      function myDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (xhttp.readyState == 4 && xhttp.status == 200) {
+            document.getElementById("universe").innerHTML = xhttp.responseText;
+          }
+        };
+        xhttp.open("GET", "thanks.txt", true);
+        xhttp.send();
+      }
+    </script>
 
   <script src="scripts/script.js"></script>
 
