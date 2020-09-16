@@ -81,7 +81,15 @@ $(document).ready(function(){
   });
 });
 
-
+// JSON item at bottom of webpage
+// var text = '{"myStaff":[' +
+//   '{"firstName":"Alita","lastName":"Girl-Cyborg"},' +
+//   '{"firstName":"Major","lastName":"Lady-Cyborg"},' +
+//   '{"firstName":"Aida","lastName":"Lady-AI" }]}';
+//
+// obj = JSON.parse(text);
+// document.getElementById("mycode").innerHTML =
+//   obj.myStaff[0].firstName + " " + obj.myStaff[0].lastName;
 
 // $(document).ready(function() {
 //   $("a").click(function(event) {
