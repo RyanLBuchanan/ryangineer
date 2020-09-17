@@ -1,6 +1,29 @@
+#bio_image{
+  float: left;
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+
+}
+
+figure {
+  /* border: 1px #cccccc solid; */
+  margin: auto;
+  color: #154673;
+  text-shadow: 3px 3px 10px gray;
+}
+
+figcaption {
+  color: gray;
+  padding: 2px;
+  text-align: center;
+  font-size: 10px;
+}
+
 p {
   color: #2B5275;
-  font-size: 15px;
+  font-size: 10px;
   margin: 5 auto;
   padding: 10px 10px 10px 10px;
   border: 1px solid gray;
