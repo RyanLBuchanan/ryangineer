@@ -68,7 +68,13 @@ p, li {
 }
 
 #quotation {
+  width: 500px;
   font-style: italic;
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  box-sizing: border-box;
 }
 
 .para {
