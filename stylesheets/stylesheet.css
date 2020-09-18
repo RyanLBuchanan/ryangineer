@@ -1,4 +1,6 @@
 #bio_image{
+  width: 100%;
+  height: auto;
   float: left;
   padding-top: 15px;
   padding-right: 15px;
@@ -8,6 +10,8 @@
 }
 
 #pythagoras{
+  width: 100%;
+  height: auto;
   float: right;
   padding-top: 15px;
   padding-right: 15px;
