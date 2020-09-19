@@ -15,6 +15,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   <!-- jQuery Content Delivery Network -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   <!-- My Stylesheet -->
   <link rel="stylesheet" href="stylesheets/stylesheet.css" type="text/css">
@@ -69,19 +70,19 @@
         <li><a target="_blank" title="" href="">
             <h5>Derivation of Line of Best Fit</h5>
           </a></li>
-        <h6>Ordinary Least Squares method | SUM(y - y_hat)<sup>2</sup> -> min</h6>
+        <h6>Ordinary Least Squares method | &Sigma;(y - y&#770;)<sup>2</sup> -> min</h6>
         <li><a target="_blank" title="" href="">
             <h5>Simple Linear Regression</h5>
           </a></li>
-        <h6>y = b_sub0 + b_sub1 * b_sub1</h6>
+        <h6>y = b<sub>0</sub> + b<sub>1</sub> * x<sub>1</sub></h6>
         <li><a target="_blank" title="" href="">
             <h5>Multiple Linear Regression</h5>
           </a></li>
-        <h6>y = b_sub0 + b_sub1 * b_sub1 + b_sub2 * b_sub2 + . . . + b_subn * b_subn</h6>
+        <h6>y = b<sub>0</sub> + b<sub>1</sub> * x<sub>1</sub> + b<sub>2</sub> * x<sub>2</sub> + . . . + b<sub>n</sub> * x<sub>n</sub></h6>
         <li><a target="_blank" title="" href="">
             <h5>Polynomial Linear Regression</h5>
           </a></li>
-        <h6>y = b_sub0 + b_sub1 * b_sub1 + b_sub2 * b_sub2 + . . . + b_subn * b^n_subn</h6>
+        <h6>y = b<sub>0</sub> + b<sub>1</sub> * x<sub>1</sub> + b<sub>2</sub> * x<sub>2</sub><sup>2</sup> + . . . + b<sub>n</sub> * b<sub>n</sub><sup>n</sup></h6>
       </ul>
       <li><a target="_blank" title="" href="https://www.mathworks.com/help/stats/understanding-support-vector-machine-regression.html" />
         <h5>Support Vector Regression | Classification</h5></a>
@@ -89,9 +90,9 @@
       <h7>Use as a regression method, maintaining all the main features that characterize the algorithm (maximal margin). The Support Vector Regression (SVR) uses the same principles as the SVM for classification, with only a few minor differences.</h7>
       <ul>
         <li><a target="_blank" title="" href="">
-            <h5>Epsilon-Insensitive Tube | Slack Variables ξ_subi & ξ^*_subi </h5>
+            <h5>Epsilon-Insensitive Tube</h5>
           </a></li>
-        <h6>1/2 ||w|| + C Σ(ξ_subi + ξ^*_subi) -> min</h6>
+        <h6>$$1/2 ||w|| + C \sum_{i=1}^n(ξ_i + ξ_i^*) -> min$$</h6>
       </ul>
       <li><a target="_blank" title="" href="" />
         <h5>Logistic Regression | Classification</h5></a>
