@@ -16,10 +16,10 @@
   <!-- jQuery Content Delivery Network -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- CDN React libraries-->
-  <script src = "https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/umd/react.profiling.min.js"></script>
-  <script src = "https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/cjs/react.development.js"></script>
-  <script src = "https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/cjs/react.production.min.js"></script>
-  <script src = "https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/umd/react.profiling.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/cjs/react.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/cjs/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
   <!-- My Stylesheet -->
   <link rel="stylesheet" href="stylesheets/stylesheet.css" type="text/css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
@@ -124,7 +124,7 @@
         <li><a target="_blank" title="" href="">
             <h5>The Gaussian RBF Kernel</h5>
           </a></li>
-        <h6>K( x&#8407;, l&#8407; <sup>i</sup> ) = e - || x&#8407;, l&#8407; <sup>i</sup> ||<sup>2</sup>/2&sigma;<sup>2</sup></h6>
+        <h6>K( <i>x</i>&#8407;, <i>l</i>&#8407; <sup><i>i</i></sup> ) = e - || <i>x</i>&#8407;, <i>l</i>&#8407; <sup><i>i</i></sup> ||<sup>2</sup>/2&sigma;<sup>2</sup></h6>
       </ul>
       <li><a target="_blank" title="" href="" />
         <h5>Logistic Regression | Classification</h5></a>
@@ -135,8 +135,8 @@
             <h5>Linear Regression | Sigmoid Function | Predicting Probability (p&#770;) </h5>
           </a></li>
         <h6>y = b<sub>0</sub> + b<sub>1</sub>x<sub>1</sub><br />
-            &#8627; p = 1/(1 + e<sup>-y</sup>)<br />
-            &nbsp; &#8627; ln [p/(1 - p)] = b<sub>0</sub> + b<sub>1</sub>x</h6>
+          &#8627; p = 1/(1 + e<sup>-y</sup>)<br />
+          &nbsp; &#8627; ln [p/(1 - p)] = b<sub>0</sub> + b<sub>1</sub>x</h6>
       </ul>
       <li><a target="_blank" title="" href="" />
         <h5>Decision Tree Regression | Supervised Learning</h5></a>
@@ -156,7 +156,7 @@
         <li><a target="_blank" title="" href="https://medium.com/@ankitnitjsr13/math-behind-support-vector-machine-svm-5e7376d0ee4d">
             <h5>Maximum Margin Hyperplane | Support Vectors</h5>
           </a></li>
-        <h6>{x<sub><i>i</i></sub>, y<sub><i>i</i></sub>}  where  <i>i</i> = 1 . . . L, y<sub><i>i</i></sub> &#8712; {-1, 1}, x &#8712; &#8477;<sup>D</sup></h6>
+        <h6>{x<sub><i>i</i></sub>, y<sub><i>i</i></sub>} where <i>i</i> = 1 . . . L, y<sub><i>i</i></sub> &#8712; {-1, 1}, x &#8712; &#8477;<sup>D</sup></h6>
       </ul>
       <li><a target="_blank" title="" href="" />
         <h5>Kernel SVM | Nonlinear</h5></a>
@@ -170,8 +170,14 @@
         <li><a target="_blank" title="" href="">
             <h5>The Gaussian or Radial Basis Function (RBF) Kernel</h5>
           </a></li>
-        <h6>K( x&#8407;, l&#8407; <sup>i</sup> ) = e - || x&#8407;, l&#8407; <sup>i</sup> ||<sup>2</sup>/2&sigma;<sup>2</sup></h6>
-        <h6>&nbsp; &#8627;</h6>
+        <h6>K( <i>x</i>&#8407;, <i>l</i>&#8407; <sup><i>i</i></sup> ) = e - || <i>x</i>&#8407;, <i>l</i>&#8407; <sup><i>i</i></sup> ||<sup>2</sup>/2&sigma;<sup>2</sup></h6>
+        <h6>&#8627; where:<br />
+          <ul>
+            &#8627; K = function applied to two vectors<br />
+            &#8627; x = point in datasets<br />
+            &#8627; <i>l</i> = landmark
+          </ul>
+        </h6>
       </ul>
       <li><a target="_blank" title="" href="" />
         <h5>Naive Bayes | Bayes Theorem</h5></a>
@@ -495,7 +501,7 @@
 
   <script src="scripts/script.js"></script>
 
-<a target="_blank" title="My JSBin link" style="color:#154673; text-shadow: 3px 3px 10px gray;" href="https://jsbin.com/fagomeq/11/edit?html,js,output" /><b>&rdsh; My JSBin link</b></a>
+  <a target="_blank" title="My JSBin link" style="color:#154673; text-shadow: 3px 3px 10px gray;" href="https://jsbin.com/fagomeq/11/edit?html,js,output" /><b>&rdsh; My JSBin link</b></a>
 
 </body>
 
