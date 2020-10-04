@@ -126,11 +126,6 @@ html {
   font-family: "Trebuchet MS", "Open Sans", Tahoma, Arial;
 }
 
-table, td {
-  border: 1px solid gray;
-  padding: 5px;
-}
-
 .center {
   display: flex;
   justify-content: center;
@@ -152,7 +147,7 @@ table, th, td {
   margin-left: 10px;
   border-radius: 25px;
   border: 2px solid grey;
-  padding: 10px;
+  padding: 5px;
   width: 600px;
   height: 150px;
 }
