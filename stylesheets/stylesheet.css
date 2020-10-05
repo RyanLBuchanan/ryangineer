@@ -126,6 +126,10 @@ html {
   font-family: "Trebuchet MS", "Open Sans", Tahoma, Arial;
 }
 
+.jumbotron {
+  
+}
+
 .center {
   display: flex;
   justify-content: center;
