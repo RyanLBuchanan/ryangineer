@@ -20,6 +20,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/cjs/react.development.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/cjs/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <!-- My Stylesheet -->
   <link rel="stylesheet" href="stylesheets/stylesheet.css" type="text/css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
@@ -39,12 +40,13 @@
       </figcaption></a>
     </figure>
   </div>
-  <!-- <div id="pythagoras">
+
+  <div id="pythagoras">
     <figure>
       <img src="images/pythagoras.png">
-
     </figure></a>
-  </div> -->
+  </div>
+
   <h1><b>Ryangineer</b></h1> <!-- Heading of the webpage -->
   <h2>Machine Learning Mathematics <br />&<br /> Virtual Reality Aesthetics</h2><br />
   <div class="container">
@@ -206,7 +208,70 @@
       <li><a target="_blank" title="" href="">
           <h5>Bayes Theorem &#8658; The probability of an event given prior knowledge of related events that occurred earlier</h5>
         </a></li>
-      <h6>P(A | B) = [ P (B | A) * P(A) ] / [ P(B) ]</h6>
+
+
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+        <mi>P</mi>
+        <mo stretchy="false">(</mo>
+        <mi>y</mi>
+        <mo>&#x2223;</mo>
+        <msub>
+          <mi>x</mi>
+          <mn>1</mn>
+        </msub>
+        <mo>,</mo>
+        <mo>&#x2026;</mo>
+        <mo>,</mo>
+        <msub>
+          <mi>x</mi>
+          <mi>n</mi>
+        </msub>
+        <mo stretchy="false">)</mo>
+        <mo>=</mo>
+        <mfrac>
+          <mrow>
+            <mi>P</mi>
+            <mo stretchy="false">(</mo>
+            <mi>y</mi>
+            <mo stretchy="false">)</mo>
+            <mi>P</mi>
+            <mo stretchy="false">(</mo>
+            <msub>
+              <mi>x</mi>
+              <mn>1</mn>
+            </msub>
+            <mo>,</mo>
+            <mo>&#x2026;</mo>
+            <mo>,</mo>
+            <msub>
+              <mi>x</mi>
+              <mi>n</mi>
+            </msub>
+            <mo>&#x2223;</mo>
+            <mi>y</mi>
+            <mo stretchy="false">)</mo>
+          </mrow>
+          <mrow>
+            <mi>P</mi>
+            <mo stretchy="false">(</mo>
+            <msub>
+              <mi>x</mi>
+              <mn>1</mn>
+            </msub>
+            <mo>,</mo>
+            <mo>&#x2026;</mo>
+            <mo>,</mo>
+            <msub>
+              <mi>x</mi>
+              <mi>n</mi>
+            </msub>
+            <mo stretchy="false">)</mo>
+          </mrow>
+        </mfrac>
+      </math>
+
+
+
     </ul>
     <li><a target="_blank" title="" href="" />
       <h5>K-Nearest Neighbors</h5></a>
