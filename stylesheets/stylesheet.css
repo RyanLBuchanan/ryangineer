@@ -140,6 +140,11 @@ html {
   text-align: center;
 }
 
+.responsive {
+  max-width: 100%;
+  height: auto;
+}
+
 table, th, td {
   margin-top: 0px;
   margin-bottom: 10px;
