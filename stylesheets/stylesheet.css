@@ -1,18 +1,11 @@
+#anim {
+  position:static;
+}
+
 #bio_image{
   max-width: 100%;
   height: auto;
   float: left;
-  padding-top: 15px;
-  padding-right: 15px;
-  padding-bottom: 15px;
-  padding-left: 15px;
-
-}
-
-#pythagoras{
-  max-width: 100%;
-  height: auto;
-  float: right;
   padding-top: 15px;
   padding-right: 15px;
   padding-bottom: 15px;
@@ -79,16 +72,20 @@ h7 {
   color: gray;
 }
 
-#quotation {
-  float: center;
-  font-style: italic;
-  text-align: center;
-  font-size: 20px;
-}
-
 .para {
   font-size: 15px;
   color: #154673;
+}
+
+#pythagoras{
+  max-width: 100%;
+  height: auto;
+  float: right;
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+
 }
 
 .img-ai-nodes {
@@ -128,8 +125,11 @@ html {
   align-items: center;
 }
 
-#anim {
-  position:static;
+#quotation {
+  float: center;
+  font-style: italic;
+  text-align: center;
+  font-size: 20px;
 }
 
 #SEALs {
@@ -141,12 +141,7 @@ html {
   height: auto;
 }
 
-/* p {
-    height: 50px;
-    line-height: 50px;
-} */
-
-/* span {
+#wcss {
     position: relative;
     font-size: 2.5em;
     display: inline-block;
@@ -154,7 +149,7 @@ html {
     vertical-align: middle;
 }
 
-span:before {
+#wcss:before {
     font-size: 12px;
     display: block;
     position absolute;
@@ -165,7 +160,7 @@ span:before {
     text-align: center;
 }
 
-span:after {
+#wcss:after {
     font-size: 12px;
     display: block;
     position absolute;
@@ -174,7 +169,7 @@ span:after {
     content: "k = 1";
     width: 27px;
     text-align: center;
-} */
+}
 
 table, th, td {
   margin-top: 0px;
