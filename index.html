@@ -30,29 +30,29 @@
 
 <body>
   <div class="">
-    </div>
-    <div id="bio_image">
-      <figure>
-        <img src="images/bio_image.png" class="responsive">
-        <figcaption style="font:5px">
-          <a href="mailto:buchananryan22@gmail.com">
-            <b>buchananryan22@gmail.com</b></a><br />
-          <a href="https://goo.gl/maps/UnhTaBZieDZU5F5w6"><b>Ogden, Utah, USA</b>
-        </figcaption></a>
-      </figure>
-    </div>
+  </div>
+  <div id="bio_image">
+    <figure>
+      <img src="images/bio_image.png" class="responsive">
+      <figcaption style="font:5px">
+        <a href="mailto:buchananryan22@gmail.com">
+          <b>buchananryan22@gmail.com</b></a><br />
+        <a href="https://goo.gl/maps/UnhTaBZieDZU5F5w6"><b>Ogden, Utah, USA</b>
+      </figcaption></a>
+    </figure>
+  </div>
 
-    <div id="pythagoras">
-        <img src="images/pythagoras.png" class="responsive">
-    </div>
+  <div id="pythagoras">
+    <img src="images/pythagoras.png" class="responsive">
+  </div>
 
-    <h1><b>Ryangineer</b></h1> <!-- Heading of the webpage -->
-    <h2>Machine Learning Mathematics <br />&<br /> Virtual Reality Aesthetics</h2><br />
-    <div class="container">
-      <div class="jumbotron">
-        <p id="quotation"><b>"Mathematics requires a small dose, not of genius, but of an imaginative freedom which, in a larger dose, would be insanity."</b><br />Angus K. Rodgers</p>
-      </div>
+  <h1><b>Ryangineer</b></h1> <!-- Heading of the webpage -->
+  <h2>Machine Learning Mathematics <br />&<br /> Virtual Reality Aesthetics</h2><br />
+  <div class="container">
+    <div class="jumbotron">
+      <p id="quotation"><b>"Mathematics requires a small dose, not of genius, but of an imaginative freedom which, in a larger dose, would be insanity."</b><br />Angus K. Rodgers</p>
     </div>
+  </div>
   </div>
 
   <h3>My Machine Learning Projects</h3>
@@ -209,13 +209,52 @@
           <h5>Bayes Theorem &#8658; The probability of an event given prior knowledge of related events that occurred earlier</h5>
         </a></li>
 
-            <!-- Naive Bayes equation-->
-          <div>
-            <math xmlns="http://www.w3.org/1998/Math/MathML" display="block" style="color: orange; text-align: left;">
+      <!-- Naive Bayes equation-->
+      <div>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" display="block" style="color: orange; text-align: left;">
+          <mi>P</mi>
+          <mo stretchy="false">(</mo>
+          <mi>y</mi>
+          <mo>&#x2223;</mo>
+          <msub>
+            <mi>x</mi>
+            <mn>1</mn>
+          </msub>
+          <mo>,</mo>
+          <mo>&#x2026;</mo>
+          <mo>,</mo>
+          <msub>
+            <mi>x</mi>
+            <mi>n</mi>
+          </msub>
+          <mo stretchy="false">)</mo>
+          <mo>=</mo>
+          <mfrac>
+            <mrow>
               <mi>P</mi>
               <mo stretchy="false">(</mo>
               <mi>y</mi>
+              <mo stretchy="false">)</mo>
+              <mi>P</mi>
+              <mo stretchy="false">(</mo>
+              <msub>
+                <mi>x</mi>
+                <mn>1</mn>
+              </msub>
+              <mo>,</mo>
+              <mo>&#x2026;</mo>
+              <mo>,</mo>
+              <msub>
+                <mi>x</mi>
+                <mi>n</mi>
+              </msub>
               <mo>&#x2223;</mo>
+              <mi>y</mi>
+              <mo stretchy="false">)</mo>
+            </mrow>
+            <mrow>
+              <mi>P</mi>
+              <mo stretchy="false">(</mo>
               <msub>
                 <mi>x</mi>
                 <mn>1</mn>
@@ -228,50 +267,10 @@
                 <mi>n</mi>
               </msub>
               <mo stretchy="false">)</mo>
-              <mo>=</mo>
-              <mfrac>
-                <mrow>
-                  <mi>P</mi>
-                  <mo stretchy="false">(</mo>
-                  <mi>y</mi>
-                  <mo stretchy="false">)</mo>
-                  <mi>P</mi>
-                  <mo stretchy="false">(</mo>
-                  <msub>
-                    <mi>x</mi>
-                    <mn>1</mn>
-                  </msub>
-                  <mo>,</mo>
-                  <mo>&#x2026;</mo>
-                  <mo>,</mo>
-                  <msub>
-                    <mi>x</mi>
-                    <mi>n</mi>
-                  </msub>
-                  <mo>&#x2223;</mo>
-                  <mi>y</mi>
-                  <mo stretchy="false">)</mo>
-                </mrow>
-                <mrow>
-                  <mi>P</mi>
-                  <mo stretchy="false">(</mo>
-                  <msub>
-                    <mi>x</mi>
-                    <mn>1</mn>
-                  </msub>
-                  <mo>,</mo>
-                  <mo>&#x2026;</mo>
-                  <mo>,</mo>
-                  <msub>
-                    <mi>x</mi>
-                    <mi>n</mi>
-                  </msub>
-                  <mo stretchy="false">)</mo>
-                </mrow>
-              </mfrac>
-            </math>
-          </div>
-
+            </mrow>
+          </mfrac>
+        </math>
+      </div>
 
     </ul>
     <li><a target="_blank" title="" href="" />
@@ -288,12 +287,12 @@
       <h5>K-Means Clustering</h5></a>
     </li>
     <h7>Unsupervised algorithm which solves clustering problems; follows simple/easy way to classify a dataset through a certain number of clusters</h7>
-    <!-- <ul>
+    <ul>
         <li><a target="_blank" title="" href="">
-            <h5>Type</h5>
+            <h5>Within Cluster Sum of Squares (WCSS)| Metric to evaluate how certain number of clusters performs compared to different number of clusters</h5>
           </a></li>
         <h6>Equation</h6>
-      </ul> -->
+      </ul>
     <li><a target="_blank" title="" href="" />
       <h5>Random Forest Regression</h5></a>
     </li>
