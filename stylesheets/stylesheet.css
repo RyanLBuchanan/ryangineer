@@ -141,7 +141,7 @@ html {
   height: auto;
 }
 
-#wcss {
+#wcss1 {
     position: relative;
     font-size: 2.5em;
     display: inline-block;
@@ -149,25 +149,25 @@ html {
     vertical-align: middle;
 }
 
-#wcss:before {
+#wcss1:before {
     font-size: 12px;
     display: block;
     position absolute;
     left: 0;
     top: 0;
-    content: "N";
+    content: "";
     width: 22px;
     text-align: center;
 }
 
-#wcss:after {
+#wcss1:after {
     font-size: 12px;
     display: block;
     position absolute;
     left: 0;
     bottom: 0;
-    content: "k = 1";
-    width: 27px;
+    content: "Pi in Cluster 1";
+    width: 50px;
     text-align: center;
 }
 
