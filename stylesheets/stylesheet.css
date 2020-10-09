@@ -13,6 +13,36 @@
 
 }
 
+#epsilon {
+    position: relative;
+    font-size: 2.5em;
+    display: inline-block;
+    line-height: .7em;
+    vertical-align: middle;
+}
+
+#epsilon:before {
+    font-size: 12px;
+    display: block;
+    position absolute;
+    left: 0;
+    top: 0;
+    content: "n";
+    width: 5px;
+    text-align: center;
+}
+
+#epsilon:after {
+    font-size: 10px;
+    display: block;
+    position absolute;
+    left: 0;
+    bottom: 0;
+    content: "i = 1";
+    width: 20px;
+    text-align: center;
+}
+
 figure {
   /* border: 1px #cccccc solid; */
   margin: auto;
@@ -133,13 +163,34 @@ html {
   font-size: 20px;
 }
 
-#SEALs {
-  text-align: center;
+#SSres {
+    position: relative;
+    font-size: 2.5em;
+    display: inline-block;
+    line-height: .7em;
+    vertical-align: middle;
 }
 
-.responsive {
-  max-width: 100%;
-  height: auto;
+#SSres:before {
+    font-size: 12px;
+    display: block;
+    position absolute;
+    left: 0;
+    top: 0;
+    content: "n";
+    width: 5px;
+    text-align: center;
+}
+
+#SSres:after {
+    font-size: 10px;
+    display: block;
+    position absolute;
+    left: 0;
+    bottom: 0;
+    content: "i = 1";
+    width: 20px;
+    text-align: center;
 }
 
 #wcss1 {
