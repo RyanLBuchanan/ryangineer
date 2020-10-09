@@ -94,7 +94,7 @@ h5 {
   color: #154673;
 }
 
-h6 {
+h6, #bayes_theorem, #euclidean {
   color: #F4B400;
   font-family: "cambria", "times", "garamond";
 }
