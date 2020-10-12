@@ -358,8 +358,78 @@
         <li><a target="_blank" title="" href="">
             <h5>Support</h5>
           </a></li>
-        <h6>Movie recommendation:  support(M) = (# of user wathlists containing M)/(# of user wathclists)<br />
-          &#8627; where M = specific movie</h6>
+        <h6>Movie recommendation:  <br />
+          &nbsp; Support(M) = (# of user wathlists containing M)/(# of user wathclists)<br />
+
+
+
+
+          <div style="text-align: left;">
+            <math id="bayes_theorem" xmlns="http://www.w3.org/1998/Math/MathML">
+              <mi>P</mi>
+              <mo stretchy="false">(</mo>
+              <mi>y</mi>
+              <mo>&#x2223;</mo>
+              <msub>
+                <mi>x</mi>
+                <mn>1</mn>
+              </msub>
+              <mo>,</mo>
+              <mo>&#x2026;</mo>
+              <mo>,</mo>
+              <msub>
+                <mi>x</mi>
+                <mi>n</mi>
+              </msub>
+              <mo stretchy="false">)</mo>
+              <mo>=</mo>
+              <mfrac>
+                <mrow>
+                  <mi>P</mi>
+                  <mo stretchy="false">(</mo>
+                  <mi>y</mi>
+                  <mo stretchy="false">)</mo>
+                  <mi>P</mi>
+                  <mo stretchy="false">(</mo>
+                  <msub>
+                    <mi>x</mi>
+                    <mn>1</mn>
+                  </msub>
+                  <mo>,</mo>
+                  <mo>&#x2026;</mo>
+                  <mo>,</mo>
+                  <msub>
+                    <mi>x</mi>
+                    <mi>n</mi>
+                  </msub>
+                  <mo>&#x2223;</mo>
+                  <mi>y</mi>
+                  <mo stretchy="false">)</mo>
+                </mrow>
+                <mrow>
+                  <mi>P</mi>
+                  <mo stretchy="false">(</mo>
+                  <msub>
+                    <mi>x</mi>
+                    <mn>1</mn>
+                  </msub>
+                  <mo>,</mo>
+                  <mo>&#x2026;</mo>
+                  <mo>,</mo>
+                  <msub>
+                    <mi>x</mi>
+                    <mi>n</mi>
+                  </msub>
+                  <mo stretchy="false">)</mo>
+                </mrow>
+              </mfrac>
+            </math>
+          </div>
+        &#8627; where M = specific movie <br /></h6>
+
+
+
+
         <li><a target="_blank" title="" href="">
             <h5>Confidence</h5>
           </a></li>
