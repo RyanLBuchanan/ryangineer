@@ -355,42 +355,88 @@
     </li>
     <h7>Analyzes the association of specific preferences in customer transactions (movies watched, items purchased in convenience store - beer & pampers urban myth) to discover relationships and how items are associated with each other</h7>
     <ul>
-        <li><a target="_blank" title="" href="">
-            <h5>Support</h5>
-          </a></li>
-        <h6>Movie recommendation:  <br />
+      <li><a target="_blank" title="" href="">
+          <h5>Support</h5>
+        </a></li>
+      <div style="text-align: left;">
+        <h6>Movie recommendation example: <br />
+          &nbsp; &#8627; where M = specific <u>M</u>ovie<br />
+          <br />
+          <math id="bayes_theorem" xmlns="http://www.w3.org/1998/Math/MathML">
+            <mi>Support(M)</mi>
+            <mo>=</mo>
+            <mfrac>
+              <mrow>
+                <mi># of user watchlists containing M</mi>
+              </mrow>
+              <mrow>
+                <mi># of user watchlists</mi>
+              </mrow>
+            </mfrac>
+          </math>
+        </h6>
+      </div>
 
 
 
 
-          <div style="text-align: left;">
-            <math id="bayes_theorem" xmlns="http://www.w3.org/1998/Math/MathML">
-              <mi>Support(M) = </mi>
-              <mfrac>
-                <mrow>
-                  <mi># of user watchlists containing M</mi>
-                </mrow>
-                <mrow>
-                  <mi># of user watchlists</mi>
-                </mrow>
-              </mfrac>
-            </math><br />
-            &nbsp; &#8627; where M = specific <u>M</u>ovie</h6>
-          </div>
+
+      <li><a target="_blank" title="" href="">
+          <h5>Confidence</h5>
+        </a></li>
+      <h6>Confidence(M<sub>1</sub> &#8594; M<sub>2</sub>) = (# of user wathlists containing M<sub>1</sub> & M<sub>2</sub>)/(# of user wathclists containing M<sub>1</sub>)</h6>
 
 
+      <li><a target="_blank" title="" href="">
+          <h5>Lift &#8594; measuring the relevance of an associated rule & the improvement prediction</h5>
+        </a></li>
+      <div style="text-align: left;">
+        <h6>
+          <math id="bayes_theorem" xmlns="http://www.w3.org/1998/Math/MathML">
+            <mi>Lift</mi>
+            <mo stretchy="false">(</mo>
+            <msub>
+              <mi>M</mi>
+              <mn>1</mn>
+            </msub>
+            <mo>&#x2192;</mo>
+            <msub>
+              <mi>M</mi>
+              <mi>2</mi>
+            </msub>
+            <mo stretchy="false">)</mo>
+            <mo>=</mo>
+            <mfrac>
+              <mrow>
+                <mi>Confidence</mi>
+                <mo stretchy="false">(</mo>
+                <msub>
+                  <mi>M</mi>
+                  <mn>1</mn>
+                </msub>
+                <mo>&#x2192;</mo>
+                <msub>
+                  <mi>M</mi>
+                  <mi>2</mi>
+                </msub>
+                <mo stretchy="false">)</mo>
+              </mrow>
+              <mrow>
+                <mi>Support</mi>
+                <mo stretchy="false">(</mo>
+                <msub>
+                  <mi>M</mi>
+                  <mi>2</mi>
+                </msub>
+                <mo stretchy="false">)</mo>
+              </mrow>
+            </mfrac>
+          </math><br />
+        </h6>
+      </div>
 
 
-
-        <li><a target="_blank" title="" href="">
-            <h5>Confidence</h5>
-          </a></li>
-        <h6>Confidence(M<sub>1</sub> &#8594; M<sub>2</sub>) = (# of user wathlists containing M<sub>1</sub> & M<sub>2</sub>)/(# of user wathclists containing M<sub>1</sub>)</h6>
-        <li><a target="_blank" title="" href="">
-            <h5>Lift &#8594; measuring the relevance of an associated rule & the improvement prediction</h5>
-          </a></li>
-        <h6>Lift(M<sub>1</sub> &#8594; M<sub>2</sub>) = Confidence(M<sub>1</sub> &#8594; M<sub>2</sub>)/Support(M<sub>2</sub>)</h6>
-      </ul>
+    </ul>
     <li><a target="_blank" title="" href="" />
       <h5>Random Forest Regression</h5></a>
     </li>
