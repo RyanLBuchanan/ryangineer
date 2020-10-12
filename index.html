@@ -384,8 +384,50 @@
       <li><a target="_blank" title="" href="">
           <h5>Confidence</h5>
         </a></li>
-      <h6>Confidence(M<sub>1</sub> &#8594; M<sub>2</sub>) = (# of user wathlists containing M<sub>1</sub> & M<sub>2</sub>)/(# of user wathclists containing M<sub>1</sub>)</h6>
-
+      <div style="text-align: left;">
+        <h6>
+          <math id="bayes_theorem" xmlns="http://www.w3.org/1998/Math/MathML">
+            <mi>Confidence</mi>
+            <mo stretchy="false">(</mo>
+            <msub>
+              <mi>M</mi>
+              <mn>1</mn>
+            </msub>
+            <mo>&#x2192;</mo>
+            <msub>
+              <mi>M</mi>
+              <mi>2</mi>
+            </msub>
+            <mo stretchy="false">)</mo>
+            <mo>=</mo>
+            <mfrac>
+              <mrow>
+                <mi># of user watchlists containing</mi>
+                <mo stretchy="false">(</mo>
+                <msub>
+                  <mi>M</mi>
+                  <mn>1</mn>
+                </msub>
+                <mo>&#x2192;</mo>
+                <msub>
+                  <mi>M</mi>
+                  <mi>2</mi>
+                </msub>
+                <mo stretchy="false">)</mo>
+              </mrow>
+              <mrow>
+                <mi># of user wathclists containing</mi>
+                <mo stretchy="false">(</mo>
+                <msub>
+                  <mi>M</mi>
+                  <mi>1</mi>
+                </msub>
+                <mo stretchy="false">)</mo>
+              </mrow>
+            </mfrac>
+          </math><br />
+        </h6>
+      </div>
 
       <li><a target="_blank" title="" href="">
           <h5>Lift &#8594; measuring the relevance of an associated rule & the improvement prediction</h5>
