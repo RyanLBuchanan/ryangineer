@@ -492,7 +492,7 @@
         </ul>
         <u>Step 2</u>: From these two numbers we compute:<br />
         <ul>
-          &nbsp; &#8627; Average reward of ad <i>i</i> up to round <i>n</i>
+          &nbsp; &#8627; Average reward of ad <i>i</i> up to round <i>n</i> with:
       </h6>
       <div style="text-align: left;">
         <ul>
@@ -527,8 +527,10 @@
           </h6>
         </ul>
       </div>
-      <h6>&nbsp; &#8627; Confidence interval [<i>r&#772;<sub>i</sub></i>(<i>n</i>) - &#x25B3;<sub><i>i</i></sub>(<i>n</i>), <i>r&#772;<sub>i</sub></i>(<i>n</i>) +
-        &#x25B3; <sub><i>i</i></sub>(<i>n</i>)] at round <i>n</i> with</h6>
+      <ul>
+        <h6>&nbsp; &#8627; Confidence interval [<i>r&#772;<sub>i</sub></i>(<i>n</i>) - &#x25B3;<sub><i>i</i></sub>(<i>n</i>), <i>r&#772;<sub>i</sub></i>(<i>n</i>) +
+        &#x25B3; <sub><i>i</i></sub>(<i>n</i>)] at round <i>n</i> with:</h6>
+      </ul>
       <div>
         <ul>
           <h6>
@@ -544,26 +546,19 @@
             <msqrt>
               <mfrac>
                 <mrow>
-                  <mi>Confidence</mi>
+                  <mi>3 log</mi>
                   <mo stretchy="false">(</mo>
-                  <msub>
-                    <mi>M</mi>
-                    <mn>1</mn>
-                  </msub>
-                  <mo>&#x2192;</mo>
-                  <msub>
-                    <mi>M</mi>
-                    <mi>2</mi>
-                  </msub>
+                  <mi>n</mi>
                   <mo stretchy="false">)</mo>
                 </mrow>
                 <mrow>
-                  <mi>Support</mi>
-                  <mo stretchy="false">(</mo>
+                  <mi>2</mi>
                   <msub>
-                    <mi>M</mi>
-                    <mi>2</mi>
+                    <mi>N</mi>
+                    <mn>i</mn>
                   </msub>
+                  <mo stretchy="false">(</mo>
+                  <mi>n</mi>
                   <mo stretchy="false">)</mo>
                 </mrow>
               </mfrac>
@@ -572,9 +567,14 @@
           </h6>
         </ul>
       </div>
+
+      <h6><u>Step 3</u>: Select the ad <i>i</i> that has the maximum UCB <i>r&#772;<sub>i</sub></i>(<i>n</i>) +
+      &#x25B3; <sub><i>i</i></sub>(<i>n</i>)<br />
     </ul>
 
+
   </ul>
+
   </ul>
 
   <ul>
