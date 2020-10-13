@@ -90,7 +90,7 @@ h4 {
   text-shadow: 3px 3px 15px gray;
 }
 
-h5 {
+h5, #definition {
   color: #154673;
 }
 
