@@ -47,7 +47,7 @@
   <h1><b>Ryangineer</b></h1>
   <h2>Machine Learning Mathematics</h2>
   <h2>&</h2>
-    <h2>Virtual Reality Aesthetics</h2><br />
+  <h2>Virtual Reality Aesthetics</h2><br />
 
   <div class="container">
     <div class="jumbotron">
@@ -360,7 +360,7 @@
         <h6>Movie recommendation example: <br />
           &nbsp; &#8627; where M = specific <u>M</u>ovie<br />
           <br />
-          <math id="bayes_theorem" xmlns="http://www.w3.org/1998/Math/MathML">
+          <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
             <mi>Support(M)</mi>
             <mo>=</mo>
             <mfrac>
@@ -379,7 +379,7 @@
         </a></li>
       <div style="text-align: left;">
         <h6>
-          <math id="bayes_theorem" xmlns="http://www.w3.org/1998/Math/MathML">
+          <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
             <mi>Confidence</mi>
             <mo stretchy="false">(</mo>
             <msub>
@@ -426,7 +426,7 @@
         </a></li>
       <div style="text-align: left;">
         <h6>
-          <math id="bayes_theorem" xmlns="http://www.w3.org/1998/Math/MathML">
+          <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
             <mi>Lift</mi>
             <mo stretchy="false">(</mo>
             <msub>
@@ -475,16 +475,104 @@
     <h4>Reinforcement Learning &#8594; "concerned with how software agents ought to take actions in an environment in order to maximize the notion of cumulative reward"</h4>
   </a>
   <ul>
-    <li><a target="_blank" target="_blank" title="" href="" />
+    <li><a target="_blank" title="" href="" />
       <h5>Upper Confidence Bound</h5></a>
     </li>
-    <a href="https://en.wikipedia.org/wiki/Multi-armed_bandit"><h7>Modern application of Multi-Armed Bandit Problem (reference slot machine distributions)</h7></a>
-    <!-- <ul>
-        <li><a target="_blank" title="" href="">
-            <h5>Type</h5>
-          </a></li>
-        <h6>Equation</h6>
-      </ul> -->
+    <a target="_blank" href="https://en.wikipedia.org/wiki/Multi-armed_bandit">
+      <h7>Modern application of Multi-Armed Bandit Problem (reference slot machine distributions)</h7>
+    </a>
+    <ul>
+      <li><a target="_blank" title="" href="">
+          <h5>UCB Algorithm | Advertising Application</h5>
+        </a></li>
+      <h6><u>Step 1</u>: Each round <i>n</i> considers two numbers for each ad <i>i</i>:<br />
+        <ul>
+          &nbsp; &#8627; <i>N<sub>i</sub></i>(<i>n</i>) &#x2192; # of times the ad <i>i</i> selected up to round <i>n</i><br />
+          &nbsp; &#8627; <i>R<sub>i</sub></i>(<i>n</i>) &#x2192; &Sigma; of rewards of ad <i>i</i> up to round <i>n</i><br />
+        </ul>
+        <u>Step 2</u>: From these two numbers we compute:<br />
+        <ul>
+          &nbsp; &#8627; Average reward of ad <i>i</i> up to round <i>n</i>
+      </h6>
+      <div style="text-align: left;">
+        <ul>
+          <h6>
+            <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
+              <mi>r&#772;</mi>
+              <mo stretchy="false">(</mo>
+              <mi>n</mi>
+              <mo stretchy="false">)</mo>
+              <mo>=</mo>
+              <mfrac>
+                <mrow>
+                  <msub>
+                    <mi>R</mi>
+                    <mn>i</mn>
+                  </msub>
+                  <mo stretchy="false">(</mo>
+                  <mi>n</mi>
+                  <mo stretchy="false">)</mo>
+                </mrow>
+                <mrow>
+                  <msub>
+                    <mi>N</mi>
+                    <mn>i</mn>
+                  </msub>
+                  <mo stretchy="false">(</mo>
+                  <mi>n</mi>
+                  <mo stretchy="false">)</mo>
+                </mrow>
+              </mfrac>
+            </math><br />
+          </h6>
+        </ul>
+      </div>
+      <h6>&nbsp; &#8627; Confidence interval [<i>r&#772;<sub>i</sub></i>(<i>n</i>) - &#x25B3;<sub><i>i</i></sub>(<i>n</i>), <i>r&#772;<sub>i</sub></i>(<i>n</i>) +
+        &#x25B3; <sub><i>i</i></sub>(<i>n</i>)] at round <i>n</i> with</h6>
+      <div>
+        <ul>
+          <h6>
+            <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
+              <msub>
+                <mi>&#x25B3;</mi>
+                <mn>i</mn>
+              </msub>
+              <mo stretchy="false">(</mo>
+              <mi>n</mi>
+              <mo stretchy="false">)</mo>
+              <mo>=</mo>
+              <mfrac>
+                <mrow>
+                  <mi>Confidence</mi>
+                  <mo stretchy="false">(</mo>
+                  <msub>
+                    <mi>M</mi>
+                    <mn>1</mn>
+                  </msub>
+                  <mo>&#x2192;</mo>
+                  <msub>
+                    <mi>M</mi>
+                    <mi>2</mi>
+                  </msub>
+                  <mo stretchy="false">)</mo>
+                </mrow>
+                <mrow>
+                  <mi>Support</mi>
+                  <mo stretchy="false">(</mo>
+                  <msub>
+                    <mi>M</mi>
+                    <mi>2</mi>
+                  </msub>
+                  <mo stretchy="false">)</mo>
+                </mrow>
+              </mfrac>
+            </math><br />
+          </h6>
+        </ul>
+      </div>
+    </ul>
+
+  </ul>
   </ul>
 
   <ul>
