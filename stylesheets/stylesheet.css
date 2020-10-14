@@ -108,22 +108,17 @@ h7 {
   color: #154673;
 }
 
-#pythagoras{
-  max-width: 100%;
-  height: auto;
-  float: right;
-  padding-top: 15px;
-  padding-right: 15px;
-  padding-bottom: 15px;
-  padding-left: 15px;
-
-}
-
 body {
   margin: 5 auto;
   padding: 0 20px 20px 20px;
   width: auto;
   /* border:4px solid black; */
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 html {
@@ -160,14 +155,14 @@ html {
   width: auto;
 }
 
-.jumbotron {
-
-}
-
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#img-pythagoras{
+  max-width: 100%;
+  height: auto;
+  float: right;
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
 }
 
 #quotation {
@@ -205,6 +200,19 @@ html {
     content: "i = 1";
     width: 20px;
     text-align: center;
+}
+
+table, th, td {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-radius: 25px;
+  border: 2px solid grey;
+  padding: 3px;
+  width: 600px;
+  height: 150px;
+  color: #154673;
 }
 
 #wcss1 {
@@ -295,17 +303,4 @@ html {
     content: "Pi in Cluster 3";
     width: 50px;
     text-align: center;
-}
-
-table, th, td {
-  margin-top: 0px;
-  margin-bottom: 10px;
-  margin-right: 10px;
-  margin-left: 10px;
-  border-radius: 25px;
-  border: 2px solid grey;
-  padding: 3px;
-  width: 600px;
-  height: 150px;
-  color: #154673;
 }
