@@ -139,7 +139,7 @@ html {
 }
 
 .img-bio_image {
-  display: block;
+  display: inline;
   float: left;
   margin-left: auto;
   margin-right: auto;
@@ -155,7 +155,7 @@ html {
 }
 
 .img-pythagoras {
-  display: block;
+  display: inline;
   float: right;
   margin-left: auto;
   margin-right: auto;
