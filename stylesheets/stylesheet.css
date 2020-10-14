@@ -119,6 +119,18 @@ h7 {
 
 }
 
+body {
+  margin: 5 auto;
+  padding: 0 20px 20px 20px;
+  width: auto;
+  /* border:4px solid black; */
+}
+
+html {
+  background-color: #F3F3F3;
+  font-family: "Trebuchet MS", "Open Sans", Tahoma, Arial;
+}
+
 .img-ai-nodes {
   display: block;
   margin-left: auto;
@@ -146,18 +158,6 @@ h7 {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
-}
-
-body {
-  margin: 5 auto;
-  padding: 0 20px 20px 20px;
-  width: auto;
-  /* border:4px solid black; */
-}
-
-html {
-  background-color: #F3F3F3;
-  font-family: "Trebuchet MS", "Open Sans", Tahoma, Arial;
 }
 
 .jumbotron {
