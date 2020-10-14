@@ -126,7 +126,7 @@ h7 {
   width: 100%;
 }
 
-.bio_image {
+.img-bio_image {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -135,6 +135,14 @@ h7 {
 }
 
 .img-blue-kit {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  box-shadow: 12px 29px 81px 0px rgba(0, 0, 0, 0.5);
+}
+
+.img-pythagoras {
   display: block;
   margin-left: auto;
   margin-right: auto;
