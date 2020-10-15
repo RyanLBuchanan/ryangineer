@@ -581,6 +581,32 @@
     </ul>
   </ul>
   </ul>
+  <ul>
+    <li><a target="_blank" title="" href="" />
+      <h5>Thompson Sampling Algorithm</h5></a>
+    </li>
+    <a target="_blank" href="https://en.wikipedia.org/wiki/Multi-armed_bandit">
+      <h7>Modern application of Multi-Armed Bandit Problem (reference slot machine distributions)</h7>
+    </a>
+    <ul>
+      <li><a target="_blank" title="" href="">
+          <h5>Thompson Sampling Algorithm | Advertising Application</h5>
+        </a></li>
+      <h6><u>Step 1</u>: Each round <i>n</i> considers two numbers for each ad <i>i</i>:<br />
+        <ul>
+          &nbsp; &#8627; <i>N<sub>i</sub><sup>1</sup></i>(<i>n</i>) &#x2192; # of times the ad <i>i</i> rewarded 1 up to round <i>n</i><br />
+          &nbsp; &#8627; <i>N<sub>i</sub><sup>0</sup></i>(<i>n</i>) &#x2192; # of times the ad <i>i</i> rewarded 0 up to round <i>n</i><br />
+        </ul><br />
+        <u>Step 2</u>: For each ad <i>i</i>, we take a random draw from the distribution below:<br />
+          <ul>
+          <br />
+          <i>&theta;</i><sub>i</sub>(<i>n</i>) = <i>&beta;</i>(<i>N<sub>i</i></sub><sup>1</sup>(<i>n</i>) + 1, <i>N<sub>i</sub></i><sup>0</sup>(<i>n</i> + 1))
+          </ul>
+          <br />
+      </h6>
+      <h6><u>Step 3</u>: Select the ad <i>i</i> that has highest <i>&theta;</i><sub>i</sub>(<i>n</i>)<br />
+    </ul>
+  </ul>
 
   <ul>
     <li><a target="_blank" title="" href="" />
