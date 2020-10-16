@@ -144,7 +144,45 @@
       <li><a target="_blank" title="" href="">
           <h5>The Gaussian RBF Kernel</h5>
         </a></li>
-      <h6>K( <i>x</i>&#8407;, <i>l</i>&#8407; <sup><i>i</i></sup> ) = e - || <i>x</i>&#8407;, <i>l</i>&#8407; <sup><i>i</i></sup> ||<sup>2</sup>/2&sigma;<sup>2</sup></h6>
+        <div style="text-align: left;">
+          <h6>
+            <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
+              <mi>K</mi>
+              <mo stretchy="false">(</mo>
+              <mi>x&#8407;, &nbsp;</mi>
+              <msup>
+                <mi>l&#8407;</mi>
+                <mn>&nbsp;i</mn>
+              </msup>
+              <mo stretchy="false">)</mo>
+              <mo>=</mo>
+              <mi>exp</mi>
+              <mo stretchy="true">(</mo>
+              <mo>-</mo>
+              <mfrac>
+                <mrow>
+                  <mi>|| x&#8407;, &nbsp;</mi>
+                  <msup>
+                    <mi>l&#8407;</mi>
+                    <mn>&nbsp;i</mn>
+                  </msup>
+                  <msup>
+                    <mi>||</mi>
+                    <mn>2</mn>
+                  </msup>
+                </mrow>
+                <mrow>
+                  <mi>2</mi>
+                  <msup>
+                    <mi>&sigma;</mi>
+                    <mn>2</mn>
+                  </msup>
+                </mrow>
+              </mfrac>
+              <mo stretchy="true">)</mo>
+            </math><br />
+          </h6>
+        </div>
     </ul>
     <li><a target="_blank" title="" href="" />
       <h5>Logistic Regression | Classification</h5></a>
@@ -229,8 +267,6 @@
           </math><br />
         </h6>
       </div>
-
-
       <h6>&#8627; where:<br />
         <ul>
           &#8627; K = function applied to two vectors<br />
@@ -638,11 +674,11 @@
           &nbsp; &#8627; <i>N<sub>i</sub><sup>0</sup></i>(<i>n</i>) &#x2192; # of times the ad <i>i</i> rewarded 0 up to round <i>n</i><br />
         </ul><br />
         <u>Step 2</u>: For each ad <i>i</i>, we take a random draw from the distribution below:<br />
-          <ul>
+        <ul>
           <br />
           <i>&theta;</i><sub>i</sub>(<i>n</i>) = <i>&beta;</i>(<i>N<sub>i</i></sub><sup>1</sup>(<i>n</i>) + 1, <i>N<sub>i</sub></i><sup>0</sup>(<i>n</i> + 1))
-          </ul>
-          <br />
+        </ul>
+        <br />
       </h6>
       <h6><u>Step 3</u>: Select the ad <i>i</i> that has highest <i>&theta;</i><sub>i</sub>(<i>n</i>)<br />
     </ul>
