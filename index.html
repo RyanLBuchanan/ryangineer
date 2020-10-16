@@ -187,10 +187,50 @@
           <h5>Linearly Separable with Hyperplane in 3D</h5>
         </a></li>
       <h6>&phi;(x<sub>1</sub>, x<sub>2</sub>) &#8658; (x<sub>1</sub>, x<sub>2</sub>, z) </h6>
-      <li><a target="_blank" title="The Kernel Cookbook" href="http://www.cs.toronto.edu/~duvenaud/cookbook/index.html">
+      <li><a target="_blank" title="The Kernel Cookbook" href="https://en.wikipedia.org/wiki/Radial_basis_function_kernel">
           <h5>The Gaussian or Radial Basis Function (RBF) Kernel</h5>
         </a></li>
-      <h6>K( <i>x</i>&#8407;, <i>l</i>&#8407; <sup><i>i</i></sup> ) = e - || <i>x</i>&#8407;, <i>l</i>&#8407; <sup><i>i</i></sup> ||<sup>2</sup>/2&sigma;<sup>2</sup></h6>
+      <div style="text-align: left;">
+        <h6>
+          <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
+            <mi>K</mi>
+            <mo stretchy="false">(</mo>
+            <mi>x&#8407;, &nbsp;</mi>
+            <msup>
+              <mi>l&#8407;</mi>
+              <mn>&nbsp;i</mn>
+            </msup>
+            <mo stretchy="false">)</mo>
+            <mo>=</mo>
+            <mi>exp</mi>
+            <mo stretchy="true">(</mo>
+            <mo>-</mo>
+            <mfrac>
+              <mrow>
+                <mi>|| x&#8407;, &nbsp;</mi>
+                <msup>
+                  <mi>l&#8407;</mi>
+                  <mn>&nbsp;i</mn>
+                </msup>
+                <msup>
+                  <mi>||</mi>
+                  <mn>2</mn>
+                </msup>
+              </mrow>
+              <mrow>
+                <mi>2</mi>
+                <msup>
+                  <mi>&sigma;</mi>
+                  <mn>2</mn>
+                </msup>
+              </mrow>
+            </mfrac>
+            <mo stretchy="true">)</mo>
+          </math><br />
+        </h6>
+      </div>
+
+
       <h6>&#8627; where:<br />
         <ul>
           &#8627; K = function applied to two vectors<br />
