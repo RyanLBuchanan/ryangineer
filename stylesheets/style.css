@@ -1,0 +1,296 @@
+#anim {
+  position:static;
+}
+
+body {
+  margin: 5 auto;
+  padding: 0 20px 20px 20px;
+  width: auto;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#epsilon {
+    position: relative;
+    font-size: 2.5em;
+    display: inline-block;
+    line-height: .7em;
+    vertical-align: middle;
+}
+
+#epsilon:before {
+    font-size: 12px;
+    display: block;
+    position absolute;
+    left: 0;
+    top: 0;
+    content: "n";
+    width: 5px;
+    text-align: center;
+}
+
+#epsilon:after {
+    font-size: 10px;
+    display: block;
+    position absolute;
+    left: 0;
+    bottom: 0;
+    content: "i = 1";
+    width: 20px;
+    text-align: center;
+}
+
+figure {
+  /* border: 1px #cccccc solid; */
+  margin: auto;
+  padding: 10px;
+  text-shadow: 3px 3px 10px gray;
+}
+
+figcaption {
+  color: gray;
+  padding: 2px;
+  text-align: center;
+  font-size: 12px;
+  color: #154673;
+}
+
+h1 {
+  font-size: 70px;
+  text-align: center;
+  margin: 0;
+  padding: 20px 0;
+  color: #154673;
+  text-shadow: 3px 3px 10px gray;
+}
+
+h2 {
+  text-align: center;
+  color: #A5AFB9;
+  text-shadow: 3px 3px 15px gray;
+}
+
+h3 {
+  color: #A5AFB9;
+  text-shadow: 3px 3px 15px gray;
+}
+
+h4 {
+  color: black;
+  text-shadow: 3px 3px 15px gray;
+}
+
+h5, #definition {
+  color: #154673;
+}
+
+h6, #bayes_theorem, #euclidean {
+  color: #F4B400;
+  font-family: "cambria", "times", "garamond";
+}
+
+h7 {
+  color: gray;
+}
+
+html {
+  background-color: #F3F3F3;
+  font-family: "Trebuchet MS", "Open Sans", Tahoma, Arial;
+}
+
+.img-ai-nodes {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.img-bio_image {
+  float:left;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+}
+
+.img-blue-kit {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  box-shadow: 12px 29px 81px 0px rgba(0, 0, 0, 0.5);
+}
+
+.img-pythagoras {
+  float:right;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+}
+
+#img-pythagoras{
+  max-width: 100%;
+  height: auto;
+  float: right;
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+}
+
+p {
+  color: #2B5275;
+  font-size: 15px;
+  margin: 5 auto;
+  padding: 10px 10px 10px 10px;
+}
+
+.para {
+  font-size: 15px;
+  color: #154673;
+}
+
+#rodgers_quotation {
+  float: center;
+  font-style: italic;
+  text-align: center;
+  font-size: 20px;
+}
+
+.sigma_sum {
+    position: relative;
+    font-size: 2.5em;
+    display: inline-block;
+    line-height: .7em;
+    vertical-align: middle;
+}
+
+.sigma_sum:before {
+    font-size: 12px;
+    display: block;
+    position absolute;
+    left: 0;
+    top: 0;
+    content: "n";
+    width: 5px;
+    text-align: center;
+}
+
+.sigma_sum:after {
+    font-size: 10px;
+    display: block;
+    position absolute;
+    left: 0;
+    bottom: 0;
+    content: "i = 1";
+    width: 20px;
+    text-align: center;
+}
+
+table, th, td {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-radius: 25px;
+  border: 2px solid grey;
+  padding: 3px;
+  width: 600px;
+  height: 150px;
+  color: #154673;
+}
+
+#wcss1 {
+    position: relative;
+    font-size: 2.5em;
+    display: inline-block;
+    line-height: .7em;
+    vertical-align: middle;
+}
+
+#wcss1:before {
+    font-size: 12px;
+    display: block;
+    position absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    width: 22px;
+    text-align: center;
+}
+
+#wcss1:after {
+    font-size: 8px;
+    display: block;
+    position absolute;
+    left: 0;
+    bottom: 0;
+    content: "Pi in Cluster 1";
+    width: 50px;
+    text-align: center;
+}
+
+#wcss2 {
+    position: relative;
+    font-size: 2.5em;
+    display: inline-block;
+    line-height: .7em;
+    vertical-align: middle;
+}
+
+#wcss2:before {
+    font-size: 12px;
+    display: block;
+    position absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    width: 22px;
+    text-align: center;
+}
+
+#wcss2:after {
+    font-size: 8px;
+    display: block;
+    position absolute;
+    left: 0;
+    bottom: 0;
+    content: "Pi in Cluster 2";
+    width: 50px;
+    text-align: center;
+}
+
+#wcss3 {
+    position: relative;
+    font-size: 2.5em;
+    display: inline-block;
+    line-height: .7em;
+    vertical-align: middle;
+}
+
+#wcss3:before {
+    font-size: 12px;
+    display: block;
+    position absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    width: 22px;
+    text-align: center;
+}
+
+#wcss3:after {
+    font-size: 8px;
+    display: block;
+    position absolute;
+    left: 0;
+    bottom: 0;
+    content: "Pi in Cluster 3";
+    width: 50px;
+    text-align: center;
+}
