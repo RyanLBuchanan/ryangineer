@@ -16,9 +16,9 @@ var splashImage = document.querySelector('img');
 splashImage.onclick = function() {
   var myImages = splashImage.getAttribute('src');
   if (myImages === 'images/blue_kit.jpg') {
-    splashImage.setAttribute('src', 'images/curi_kit.jpg');
+    splashImage.setAttribute('src', 'assets/curi_kit.jpg');
   } else {
-    splashImage.setAttribute('src', 'images/blue_kit.jpg');
+    splashImage.setAttribute('src', 'assets/blue_kit.jpg');
   }
 
 }
