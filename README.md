@@ -24,8 +24,8 @@ $ . . .
 
 ### Tables created with pipes!!!
 
-| Cyberborg Name | Link |
-| -------------- | ---- |
+| Cyberborg | Link |
+| --------- | ---- |
 | Alita | https://en.wikipedia.org/wiki/Alita:_Battle_Angel |
 | Major | https://en.wikipedia.org/wiki/Ghost_in_the_Shell |
 | . . . | . . . |
