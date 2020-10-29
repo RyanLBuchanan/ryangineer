@@ -2,7 +2,9 @@
 
 Ryangineer is a porfolio website that I used to reinforce my learning of Machine Learning Algorithms and the mathematics included with each.
 
-Also included at this webite are links to my Data Dashboard & the Virtual Reality courses I conducted while creating VR Dev Kids LLC.
+ I am also very interested the tech industry, preferably with an emphasis on artificial intelligence, such as computer vision, recommender systems, chatbots and/or natural language processing.  I am eager to start out with machine learning & progress to deep learning.  I have also just been accepted to a Data Analytics Masters program.  I have a Masters in Education - Instructional Design & an MBA.  I'd like to combine all of this into a Data Scientist role, eventually.
+
+Also included at this website are links to my Data Dashboard & the Virtual Reality courses I conducted while creating VR Dev Kids LLC.
 
 ## Example of lists:
 - This thing
