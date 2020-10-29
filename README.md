@@ -1,4 +1,4 @@
-# ryangineer
+# Ryangineer
 
 Ryangineer is a porfolio website that I used to reinforce my learning of Machine Learning Algorithms and the mathematics included with each.
 
