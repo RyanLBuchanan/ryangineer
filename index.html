@@ -823,146 +823,146 @@
   <div id="Deep Learning">
     <h3>Lovely Deep Learning</h3>
     <div id="ANNs">
-    <a id="definition" target="_blank" href="https://towardsdatascience.com/understanding-neural-networks-what-how-and-why-18ec703ebd31">
-      <h4>Artificial Neural Network</h4>
-    </a>
-    <h7><b>&nbsp; &#8627; "a computing system that consist of a number of simple but highly interconnected elements or nodes, called ‘neurons’, which are organized in layers which process information using dynamic state responses to external inputs,
-        an
-        extremely usefulalgorithm for finding patterns too complex to be manually extracted"</b></h7>
-    <ul>
-      <li><a target="_blank" title="Understanding neural networks 1: The concept of neurons" href="https://becominghuman.ai/understanding-neural-networks-1-the-concept-of-neurons-287be36d40f" />
-        <h5>Neuron Definition</h5></a>
-      </li>
-      <h7>A mathematical operation that takes its input, multiplies it by its weight & then passes the sum through an activation function</h7>
+      <a id="definition" target="_blank" href="https://towardsdatascience.com/understanding-neural-networks-what-how-and-why-18ec703ebd31">
+        <h4>Artificial Neural Network</h4>
+      </a>
+      <h7><b>&nbsp; &#8627; A computing system that consist of a number of simple but highly interconnected elements or nodes, called ‘neurons’, which are organized in layers which process information using dynamic state responses to external inputs,
+          an extremely usefulalgorithm for finding patterns too complex to be manually extracted</b></h7>
       <ul>
-        <li><a target="_blank" title="Understanding neural networks 2: The math of neural networks in 3 equations" href="https://becominghuman.ai/understanding-neural-networks-2-the-math-of-neural-networks-in-3-equations-6085fd3f09df">
-            <h5>Neuron Formula</h5>
-          </a></li>
-        <h6>Y<sub>1</sub> = activation(w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + w<sub>3</sub>x<sub>3</sub> + . . . + w<sub>m</sub>x<sub>m</sub>)</h6>
-        <li><a target="_blank" title="Understanding neural networks 2: The math of neural networks in 3 equations" href="https://becominghuman.ai/understanding-neural-networks-1-the-concept-of-neurons-287be36d40f">
-            <h5>Sigmoid Activation Function</h5>
-          </a></li>
-        <h6>
-          <span id="" class="sigma_sum" style="font-size: 20px;">&Sigma;</span>w<sub><i>i</i></sub>x<sub><i>i</i></sub> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
-            <mi>&phi;</mi>
-            <mo stretchy="false">(</mo>
-            <mi>x</mi>
-            <mo stretchy="false">)</mo>
-            <mo>=</mo>
-            <mfrac>
+        <li><a target="_blank" title="Understanding neural networks 1: The concept of neurons" href="https://becominghuman.ai/understanding-neural-networks-1-the-concept-of-neurons-287be36d40f" />
+          <h5>Neuron Definition</h5></a>
+        </li>
+        <h7>A mathematical operation that takes its input, multiplies it by its weight & then passes the sum through an activation function</h7>
+        <ul>
+          <li><a target="_blank" title="Understanding neural networks 2: The math of neural networks in 3 equations" href="https://becominghuman.ai/understanding-neural-networks-2-the-math-of-neural-networks-in-3-equations-6085fd3f09df">
+              <h5>Neuron Formula</h5>
+            </a></li>
+          <h6>Y<sub>1</sub> = activation(w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + w<sub>3</sub>x<sub>3</sub> + . . . + w<sub>m</sub>x<sub>m</sub>)</h6>
+          <li><a target="_blank" title="Understanding neural networks 2: The math of neural networks in 3 equations" href="https://becominghuman.ai/understanding-neural-networks-1-the-concept-of-neurons-287be36d40f">
+              <h5>Sigmoid Activation Function</h5>
+            </a></li>
+          <h6>
+            <span id="" class="sigma_sum" style="font-size: 20px;">&Sigma;</span>w<sub><i>i</i></sub>x<sub><i>i</i></sub> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
+              <mi>&phi;</mi>
+              <mo stretchy="false">(</mo>
+              <mi>x</mi>
+              <mo stretchy="false">)</mo>
+              <mo>=</mo>
+              <mfrac>
+                <mrow>
+                  <mi>1 &nbsp;</mi>
+                </mrow>
+                <mrow>
+                  <mi>1 &nbsp; +</mi>
+                  <msup>
+                    <mi>&nbsp; e</mi>
+                    <mn>-z</mn>
+                  </msup>
+                </mrow>
+              </mfrac>
+            </math><br />
+          </h6>
+          <li><a target="_blank" title="" href="">
+              <h5>Threshold Function</h5>
+            </a></li>
+          <h6>
+            <span id="" class="sigma_sum" style="font-size: 20px;">&Sigma;</span>w<sub><i>i</i></sub>x<sub><i>i</i></sub> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
+              <mi>&phi;</mi>
+              <mo stretchy="false">(</mo>
+              <mi>x</mi>
+              <mo stretchy="false">)</mo>
+              <mo>=</mo>
+              <mo stretchy="true">{</mo>
               <mrow>
-                <mi>1 &nbsp;</mi>
+                <mi>1 if x &#x2265; 0</mi>
               </mrow>
               <mrow>
-                <mi>1 &nbsp; +</mi>
-                <msup>
-                  <mi>&nbsp; e</mi>
-                  <mn>-z</mn>
-                </msup>
+                <mi>&nbsp;,&nbsp;0 if x < 0</mi>
               </mrow>
-            </mfrac>
-          </math><br />
-        </h6>
-        <li><a target="_blank" title="" href="">
-            <h5>Threshold Function</h5>
-          </a></li>
-        <h6>
-          <span id="" class="sigma_sum" style="font-size: 20px;">&Sigma;</span>w<sub><i>i</i></sub>x<sub><i>i</i></sub> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
-            <mi>&phi;</mi>
-            <mo stretchy="false">(</mo>
-            <mi>x</mi>
-            <mo stretchy="false">)</mo>
-            <mo>=</mo>
-            <mo stretchy="true">{</mo>
-            <mrow>
-              <mi>1 if x &#x2265; 0</mi>
-            </mrow>
-            <mrow>
-              <mi>&nbsp;,&nbsp;0 if x < 0</mi>
-            </mrow>
-            <mo stretchy="true">}</mo>
-          </math><br />
-        </h6>
-        <li><a target="_blank" title="" href="">
-            <h5>Rectifier Function</h5>
-          </a></li>
-        <h6>
-          <span id="" class="sigma_sum" style="font-size: 20px;">&Sigma;</span>w<sub><i>i</i></sub>x<sub><i>i</i></sub> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
-            <mi>&phi;</mi>
-            <mo stretchy="false">(</mo>
-            <mi>x</mi>
-            <mo stretchy="false">)</mo>
-            <mo>=</mo>
-            <mo stretchy="false">(</mo>
-            <mi>x, 0</mi>
-            <mo stretchy="false">)</mo>
-          </math><br />
-        </h6>
-        <li><a target="_blank" title="" href="">
-            <h5>Hyperbolic Tangent Function (tanh)</h5>
-          </a></li>
-        <h6>
-          <span id="" class="sigma_sum" style="font-size: 20px;">&Sigma;</span>w<sub><i>i</i></sub>x<sub><i>i</i></sub> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
-            <mi>&phi;</mi>
-            <mo stretchy="false">(</mo>
-            <mi>x</mi>
-            <mo stretchy="false">)</mo>
-            <mo>=</mo>
-            <mfrac>
-              <mrow>
-                <mi>1&nbsp; - &nbsp;</mi>
-                <msup>
-                  <mi>e</mi>
-                  <mn>-2x</mn>
-                </msup>
-              </mrow>
-              <mrow>
-                <mi>1&nbsp; + &nbsp;</mi>
-                <msup>
-                  <mi>e</mi>
-                  <mn>-2x</mn>
-              </mrow>
-            </mfrac>
-          </math><br />
-        </h6>
+              <mo stretchy="true">}</mo>
+            </math><br />
+          </h6>
+          <li><a target="_blank" title="" href="">
+              <h5>Rectifier Function</h5>
+            </a></li>
+          <h6>
+            <span id="" class="sigma_sum" style="font-size: 20px;">&Sigma;</span>w<sub><i>i</i></sub>x<sub><i>i</i></sub> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
+              <mi>&phi;</mi>
+              <mo stretchy="false">(</mo>
+              <mi>x</mi>
+              <mo stretchy="false">)</mo>
+              <mo>=</mo>
+              <mo stretchy="false">(</mo>
+              <mi>x, 0</mi>
+              <mo stretchy="false">)</mo>
+            </math><br />
+          </h6>
+          <li><a target="_blank" title="" href="">
+              <h5>Hyperbolic Tangent Function (tanh)</h5>
+            </a></li>
+          <h6>
+            <span id="" class="sigma_sum" style="font-size: 20px;">&Sigma;</span>w<sub><i>i</i></sub>x<sub><i>i</i></sub> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
+              <mi>&phi;</mi>
+              <mo stretchy="false">(</mo>
+              <mi>x</mi>
+              <mo stretchy="false">)</mo>
+              <mo>=</mo>
+              <mfrac>
+                <mrow>
+                  <mi>1&nbsp; - &nbsp;</mi>
+                  <msup>
+                    <mi>e</mi>
+                    <mn>-2x</mn>
+                  </msup>
+                </mrow>
+                <mrow>
+                  <mi>1&nbsp; + &nbsp;</mi>
+                  <msup>
+                    <mi>e</mi>
+                    <mn>-2x</mn>
+                </mrow>
+              </mfrac>
+            </math><br />
+          </h6>
+        </ul>
       </ul>
-    </ul>
+    </div>
+
+    <div id="CNNs">
+      <ul>
+        <li><a target="_blank" title="" href="" />
+          <h5>Convolution | Visual Imagery Analysis</h5></a>
+        </li>
+        <h7>A special kind of mathematical linear operation to give a network a degree of translation invariance; eg, a typical image convolution is a form of blurring</h7>
+      </ul>
+    </div>
+
+    <div id="NLPs">
+      <a id="definition" target="_blank"
+        href="https://classroom.udacity.com/nanodegrees/nd009t/parts/c4bacd6f-3766-4b62-994f-23e44e4c1f68/modules/52fce89d-5551-4d94-8bdc-48089274b27b/lessons/ab4cc389-336f-401c-937a-54f8c2aea24c/concepts/f5efb207-200c-4194-9ada-1189f4d66312">
+        <h4>Natural Language Processing</h4>
+      </a>
+      <h7><b>&nbsp; &#8627; Starts with raw text in whatever format available, processes it, extracts relevant features and builds models to accomplish various NLP tasks</b></h7>
+
+      <ul>
+        <li><a target="_blank" title="" href="" />
+          <h5>Stemming | Natural Language Preprocessing</h5></a>
+        </li>
+        <h7>Takes the root of a word removing conjugation to simplify & understand gist meaning (reducing final dimension )</h7>
+      </ul>
+    </div>
   </div>
 
-  <div id="CNNs">
-    <ul>
-      <li><a target="_blank" title="" href="" />
-        <h5>Convolution | Visual Imagery Analysis</h5></a>
-      </li>
-      <h7>a special kind of mathematical linear operation to give a network a degree of translation invariance; eg, a typical image convolution is a form of blurring</h7>
-    </ul>
-  </div>
-
-<div>
-  <a id="definition" target="_blank" href="https://towardsdatascience.com/understanding-neural-networks-what-how-and-why-18ec703ebd31">
-    <h4>Natural Language Processing</h4>
-  </a>
-  <h7><b>&nbsp; &#8627; ""</b></h7>
-
-<ul>
-  <li><a target="_blank" title="" href="" />
-    <h5>Stemming | Natural Language Preprocessing</h5></a>
-  </li>
-  <h7>takes the root of a word removing conjugation to simplify & understand gist meaning (reducing final dimension )</h7>
-</ul>
-</div>
-</div>
-
-  <div>
+  <div id="Linear_Algebra">
     <h3>Intimate Linear Algebra</h3>
     <a target="_blank" title="No BS Guide to Linear Algebra" href="https://github.com/minireference/noBSLAnotebooks#chapters-overview">
       <h4>Geometrical Aspects of Linear Algebra</h4>
     </a>
-    <h7><b>&nbsp; &#8627; "see through to the dynamics of the physical universe"</b></h7>
+    <h7><b>&nbsp; &#8627; Mathematics to used see through to the geometrical dynamics of the physical universe</b></h7>
     <ul>
       <li><a target="_blank" title="Intuitive Math" href="https://intuitive-math.club/" />
         <h5>Formulae & Solutions</h5></a>
@@ -993,7 +993,7 @@
         </h6>
   </div>
 
-  <div>
+  <div id="about">
     <h4>About Ryan L Buchanan</h4>
     <p class="para">
       I am re-skilling as a Machine Learning Engineer in Business Intelligence. I am enthusiastic, highly self-motivated & enjoy presenting informative data to decision makers. I'm eager to begin at entry level & quickly understand & apply
