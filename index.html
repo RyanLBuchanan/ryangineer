@@ -973,11 +973,12 @@
                     <mi>||a||*||b||</mi>
                   </mrow>
                 </mfrac>
-              </math>
+
               <br />&nbsp; &#8627; where:
-              <br />&nbsp; &nbsp; Identical vectors &#x2192; cos(&theta;) = 1
-              <br />&nbsp; &nbsp; Orthogonal vectors &#x2192; cos(&theta;) = 0
-              <br />&nbsp; &nbsp; Exact opposite vectors &#x2192; cos(&theta;) = -1
+              <br />&nbsp; &nbsp; &nbsp; Identical vectors &#x2192; cos(&theta;) = 1
+              <br />&nbsp; &nbsp; &nbsp; Orthogonal vectors &#x2192; cos(&theta;) = 0
+              <br />&nbsp; &nbsp; &nbsp; Exact opposite vectors &#x2192; cos(&theta;) = -1
+              </math>
             </h6>
           </li>
           <li>
@@ -985,9 +986,36 @@
             <h7>Term frequency-inverse document frequency</h7>
             <br />
             <h6>
-              <math>
                 <mi>tfidf(t, d, D) = tf(t, d) * idf(t, D)</mi>
-              </math>
+                <br />&nbsp; &#8627; where:
+                <br />&nbsp; &nbsp; &nbsp;
+                <mi>tf(t, d) = </mi>
+              <math>
+              <mi></mi>
+              <mfrac>
+                <mrow>
+                  <mi>count(t, d)</mi>
+                </mrow>
+                <mrow>
+                  <mi>|d|</mi>
+                </mrow>
+              </mfrac>
+            </math>
+            <br />&nbsp; &nbsp; &nbsp;
+            <mi>idf(t, D) = </mi>
+          <math>
+          <mi>Log</mi>
+          <mo stretchy=True>(</mo>
+          <mfrac>
+            <mrow>
+              <mi>|D|</mi>
+            </mrow>
+            <mrow>
+              <mi>|{d &#8712; D : t &#8712; d}|</mi>
+            </mrow>
+          </mfrac>
+          <mo stretchy=True>)</mo>
+        </math>
             </h6>
           </li>
         </ul>
