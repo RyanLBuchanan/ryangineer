@@ -1429,7 +1429,9 @@
           </math>
           <br />
         </h6>
-        <li><h5>Solved for Sample Size (n)</h5></li>
+        <li>
+          <h5>Solved for Sample Size (n)</h5>
+        </li>
         <h6>
           <math>
             <mi>n = &nbsp;</mi>
@@ -1438,7 +1440,7 @@
               <mrow>
                 <mi>z*</mi>
                 <msqrt>
-                <mi>p&#770;(1 - p&#770;)</mi>
+                  <mi>p&#770;(1 - p&#770;)</mi>
                 </msqrt>
               </mrow>
               <mrow>
@@ -1495,112 +1497,121 @@
         </h6>
       </ul>
     </ul>
-      <h4>Hypothesis Testing</h4>
+    <h4>Hypothesis Testing</h4>
+    <ul>
+      <li>
+        <h5>Calculate Test Statistic</h5>
+      </li>
+      <h7><b>&nbsp; &#8627; Using the population mean (&mu;):</b></h7>
       <ul>
         <li>
-          <h5>Calculate Test Statistic</h5>
-          <h7><b>&nbsp; &#8627; Using the mean:</b></h7>
-        </li>
-        <ul>
-          <li>
-            <h5>When &sigma; is known</h5>
-            <h6>
-              <math>
-                <mi>z</mi>
-                <mo>=</mo>
-                <mfrac>
-                  <mrow>
-                    <mi>x&#772;</mi>
-                    <mo>&nbsp; - &nbsp;</mo>
-                    <msub>
-                      <mi>&mu;</mi>
-                      <mn>o</mn>
-                    </msub>
-                  </mrow>
-                  <mrow>
-                    <msub>
+          <h5>When &sigma; is known</h5>
+          <h6>
+            <math>
+              <mi>z</mi>
+              <mo>=</mo>
+              <mfrac>
+                <mrow>
+                  <mi>x&#772;</mi>
+                  <mo>&nbsp; - &nbsp;</mo>
+                  <msub>
+                    <mi>&mu;</mi>
+                    <mn>o</mn>
+                  </msub>
+                </mrow>
+                <mrow>
+                  <msub>
+                    <mi>&sigma;</mi>
+                    <mn>x&#772;</mn>
+                  </msub>
+                </mrow>
+              </mfrac>
+              <mo>=</mo>
+              <mfrac>
+                <mrow>
+                  <mi>x&#772;</mi>
+                  <mo>&nbsp; - &nbsp;</mo>
+                  <msub>
+                    <mi>&mu;</mi>
+                    <mn>o</mn>
+                  </msub>
+                </mrow>
+                <mrow>
+                  <mfrac>
+                    <mrow>
                       <mi>&sigma;</mi>
-                      <mn>x&#772;</mn>
-                    </msub>
-                  </mrow>
-                </mfrac>
-                <mo>=</mo>
-                <mfrac>
-                  <mrow>
-                    <mi>x&#772;</mi>
-                    <mo>&nbsp; - &nbsp;</mo>
-                    <msub>
-                      <mi>&mu;</mi>
-                      <mn>o</mn>
-                    </msub>
-                  </mrow>
-                  <mrow>
-                    <mfrac>
-                      <mrow>
-                        <mi>&sigma;</mi>
-                      </mrow>
-                      <mrow>
-                        <msqrt>
-                          <mi>n</mi>
-                        </msqrt>
-                      </mrow>
-                    </mfrac>
-                  </mrow>
-                </mfrac>
-              </math>
-            </h6>
-          </li>
-
-          <li>
-            <h5>When &sigma; is unknown | large sample > 30</h5>
-            <h6>
-              <math>
-                <mi>t</mi>
-                <mo>=</mo>
-                <mfrac>
-                  <mrow>
-                    <mi>x&#772;</mi>
-                    <mo>&nbsp; - &nbsp;</mo>
-                    <msub>
-                      <mi>&mu;</mi>
-                      <mn>o</mn>
-                    </msub>
-                  </mrow>
-                  <mrow>
-                    <msub>
+                    </mrow>
+                    <mrow>
+                      <msqrt>
+                        <mi>n</mi>
+                      </msqrt>
+                    </mrow>
+                  </mfrac>
+                </mrow>
+              </mfrac>
+            </math>
+          </h6>
+        </li>
+        <li>
+          <h5>When &sigma; is unknown | large sample > 30</h5>
+          <h6>
+            <math>
+              <mi>t</mi>
+              <mo>=</mo>
+              <mfrac>
+                <mrow>
+                  <mi>x&#772;</mi>
+                  <mo>&nbsp; - &nbsp;</mo>
+                  <msub>
+                    <mi>&mu;</mi>
+                    <mn>o</mn>
+                  </msub>
+                </mrow>
+                <mrow>
+                  <msub>
+                    <mi>s</mi>
+                    <mn>x&#772;</mn>
+                  </msub>
+                </mrow>
+              </mfrac>
+              <mo>=</mo>
+              <mfrac>
+                <mrow>
+                  <mi>x&#772;</mi>
+                  <mo>&nbsp; - &nbsp;</mo>
+                  <msub>
+                    <mi>&mu;</mi>
+                    <mn>o</mn>
+                  </msub>
+                </mrow>
+                <mrow>
+                  <mfrac>
+                    <mrow>
                       <mi>s</mi>
-                      <mn>x&#772;</mn>
-                    </msub>
-                  </mrow>
-                </mfrac>
-                <mo>=</mo>
-                <mfrac>
-                  <mrow>
-                    <mi>x&#772;</mi>
-                    <mo>&nbsp; - &nbsp;</mo>
-                    <msub>
-                      <mi>&mu;</mi>
-                      <mn>o</mn>
-                    </msub>
-                  </mrow>
-                  <mrow>
-                    <mfrac>
-                      <mrow>
-                        <mi>s</mi>
-                      </mrow>
-                      <mrow>
-                        <msqrt>
-                          <mi>n</mi>
-                        </msqrt>
-                      </mrow>
-                    </mfrac>
-                  </mrow>
-                </mfrac>
-              </math>
-            </h6>
-          </li>
-        </ul>
+                    </mrow>
+                    <mrow>
+                      <msqrt>
+                        <mi>n</mi>
+                      </msqrt>
+                    </mrow>
+                  </mfrac>
+                </mrow>
+              </mfrac>
+            </math>
+          </h6>
+        </li>
       </ul>
+      <h7><b>&nbsp; &#8627; Using the population proportion (p):</b></h7>
+      <ul>
+        <li>
+          <h5>afg</h5>
+          <ul>
+
+          </ul>
+        </li>
+      </ul>
+
+    </ul>
   </div>
 
   <br /><br />
