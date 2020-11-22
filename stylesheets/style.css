@@ -152,7 +152,7 @@ html {
     vertical-align: middle;
 }
 
-.lim:before {
+/* .lim:before {
     font-size: 12px;
     display: block;
     position absolute;
@@ -161,7 +161,7 @@ html {
     content: "n";
     width: 5px;
     text-align: center;
-}
+} */
 
 .lim:after {
     font-size: 10px;
@@ -169,8 +169,8 @@ html {
     position absolute;
     left: 0;
     bottom: 0;
-    content: "h &#8594; 0";
-    width: 20px;
+    content: "h \2192 0";
+    width: 25px;
     text-align: center;
 }
 
