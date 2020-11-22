@@ -143,6 +143,38 @@ html {
   padding-left: 15px;
 }
 
+
+.lim {
+    position: relative;
+    font-size: 2.5em;
+    display: inline-block;
+    line-height: .7em;
+    vertical-align: middle;
+}
+
+.lim:before {
+    font-size: 12px;
+    display: block;
+    position absolute;
+    left: 0;
+    top: 0;
+    content: "n";
+    width: 5px;
+    text-align: center;
+}
+
+.lim:after {
+    font-size: 10px;
+    display: block;
+    position absolute;
+    left: 0;
+    bottom: 0;
+    content: "h &#8594; 0";
+    width: 20px;
+    text-align: center;
+}
+
+
 p {
   color: #2B5275;
   font-size: 15px;
