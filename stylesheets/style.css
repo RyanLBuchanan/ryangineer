@@ -194,6 +194,38 @@ p {
   font-size: 20px;
 }
 
+
+.riemann_sums {
+    position: relative;
+    font-size: 2.5em;
+    display: inline-block;
+    line-height: .7em;
+    vertical-align: middle;
+}
+
+.riemann_sums:before {
+    font-size: 12px;
+    display: block;
+    position absolute;
+    left: 0;
+    top: 0;
+    content: "5";
+    width: 5px;
+    text-align: center;
+}
+
+.riemann_sums:after {
+    font-size: 10px;
+    display: block;
+    position absolute;
+    left: 0;
+    bottom: 0;
+    content: "n = 1";
+    width: 22px;
+    text-align: center;
+}
+
+
 .sigma_sum {
     position: relative;
     font-size: 2.5em;
