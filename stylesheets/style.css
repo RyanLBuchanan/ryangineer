@@ -169,7 +169,7 @@ html {
     position absolute;
     left: 0;
     bottom: 0;
-    content: "h \2192 0";
+    content: "h \2192 \221E";
     width: 25px;
     text-align: center;
 }
