@@ -144,7 +144,7 @@ html {
 }
 
 
-.lim {
+.lim_zero {
     position: relative;
     font-size: 2.5em;
     display: inline-block;
@@ -152,18 +152,18 @@ html {
     vertical-align: middle;
 }
 
-/* .lim:before {
+.lim_zero:before {
     font-size: 12px;
     display: block;
     position absolute;
     left: 0;
     top: 0;
-    content: "n";
+    content: " ";
     width: 5px;
     text-align: center;
-} */
+}
 
-.lim:after {
+.lim_zero:after {
     font-size: 10px;
     display: block;
     position absolute;
