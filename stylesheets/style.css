@@ -144,6 +144,37 @@ html {
 }
 
 
+.lim_infinity {
+    position: relative;
+    font-size: 2.5em;
+    display: inline-block;
+    line-height: .7em;
+    vertical-align: middle;
+}
+
+.lim_infinity:before {
+    font-size: 12px;
+    display: block;
+    position absolute;
+    left: 0;
+    top: 0;
+    content: " ";
+    width: 5px;
+    text-align: center;
+}
+
+.lim_infinity:after {
+    font-size: 10px;
+    display: block;
+    position absolute;
+    left: 0;
+    bottom: 0;
+    content: "h \2192 0";
+    width: 25px;
+    text-align: center;
+}
+
+
 .lim_zero {
     position: relative;
     font-size: 2.5em;
