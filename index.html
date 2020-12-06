@@ -176,14 +176,12 @@
         <h7>Use as a regression method, maintaining all the main features that characterize the algorithm (maximal margin). The Support Vector Regression (SVR) uses the same principles as the SVM for classification, with only a few minor differences.
         </h7>
         <ul>
-          <li><a target="_blank" title="" href="">
-              <h5>Epsilon-Insensitive Tube</h5>
-            </a>
+          <li>
+            <h5>Epsilon-Insensitive Tube</h5>
             <h6>1/2 &#8741;w &#8741; + C<span id="epsilon" style="font-size: 20px;">&Sigma;</span>(ξ<sub>i</sub> + ξ<sub>i</sub><sup>*</sup>) &#8594; min</h6>
           </li>
-          <li><a target="_blank" title="" href="">
-              <h5>The Gaussian RBF Kernel</h5>
-            </a>
+          <li>
+            <h5>The Gaussian RBF Kernel</h5>
             <h6>
               <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
                 <mi>K</mi>
@@ -363,59 +361,18 @@
           </a></li>
         <h6><i>K(X, Y)</i> = tanh(<i>&gamma; <b>&dot;</b> X<sup>T</sup>Y + r</i>)<sup><i>d</i></sup>, <i>&gamma;</i> &#62; 0</h6>
       </ul>
-      <li><a target="_blank" title="" href="" />
-        <h5>Naive Bayes Classification</h5></a>
-      </li>
-      <h7>Probabilistic classifier based on Bayes Theorem with an assumption of independence between predictors (aka, features or independent variables)</h7>
-      <ul>
-        <li><a target="_blank" title="" href="">
+      <li>
+        <h5>Naive Bayes Classification</h5>
+        <h7>Probabilistic classifier based on Bayes Theorem with an assumption of independence between predictors (aka, features or independent variables)</h7>
+        <ul>
+          <li>
             <h5>Bayes Theorem &#8658; The probability of an event given prior knowledge of related events that occurred earlier</h5>
-          </a></li>
-        <div style="text-align: left;">
-          <math id="bayes_theorem" xmlns="http://www.w3.org/1998/Math/MathML">
-            <mi>P</mi>
-            <mo stretchy="false">(</mo>
-            <mi>y</mi>
-            <mo>&#x2223;</mo>
-            <msub>
-              <mi>x</mi>
-              <mn>1</mn>
-            </msub>
-            <mo>,</mo>
-            <mo>&#x2026;</mo>
-            <mo>,</mo>
-            <msub>
-              <mi>x</mi>
-              <mi>n</mi>
-            </msub>
-            <mo stretchy="false">)</mo>
-            <mo>=</mo>
-            <mfrac>
-              <mrow>
+            <div style="text-align: left;">
+              <math id="bayes_theorem" xmlns="http://www.w3.org/1998/Math/MathML">
                 <mi>P</mi>
                 <mo stretchy="false">(</mo>
                 <mi>y</mi>
-                <mo stretchy="false">)</mo>
-                <mi>P</mi>
-                <mo stretchy="false">(</mo>
-                <msub>
-                  <mi>x</mi>
-                  <mn>1</mn>
-                </msub>
-                <mo>,</mo>
-                <mo>&#x2026;</mo>
-                <mo>,</mo>
-                <msub>
-                  <mi>x</mi>
-                  <mi>n</mi>
-                </msub>
                 <mo>&#x2223;</mo>
-                <mi>y</mi>
-                <mo stretchy="false">)</mo>
-              </mrow>
-              <mrow>
-                <mi>P</mi>
-                <mo stretchy="false">(</mo>
                 <msub>
                   <mi>x</mi>
                   <mn>1</mn>
@@ -428,67 +385,109 @@
                   <mi>n</mi>
                 </msub>
                 <mo stretchy="false">)</mo>
-              </mrow>
-            </mfrac>
-          </math>
-        </div>
-      </ul>
-      <li><a target="_blank" title="" href="" />
-        <h5>K-Nearest Neighbors</h5></a>
+                <mo>=</mo>
+                <mfrac>
+                  <mrow>
+                    <mi>P</mi>
+                    <mo stretchy="false">(</mo>
+                    <mi>y</mi>
+                    <mo stretchy="false">)</mo>
+                    <mi>P</mi>
+                    <mo stretchy="false">(</mo>
+                    <msub>
+                      <mi>x</mi>
+                      <mn>1</mn>
+                    </msub>
+                    <mo>,</mo>
+                    <mo>&#x2026;</mo>
+                    <mo>,</mo>
+                    <msub>
+                      <mi>x</mi>
+                      <mi>n</mi>
+                    </msub>
+                    <mo>&#x2223;</mo>
+                    <mi>y</mi>
+                    <mo stretchy="false">)</mo>
+                  </mrow>
+                  <mrow>
+                    <mi>P</mi>
+                    <mo stretchy="false">(</mo>
+                    <msub>
+                      <mi>x</mi>
+                      <mn>1</mn>
+                    </msub>
+                    <mo>,</mo>
+                    <mo>&#x2026;</mo>
+                    <mo>,</mo>
+                    <msub>
+                      <mi>x</mi>
+                      <mi>n</mi>
+                    </msub>
+                    <mo stretchy="false">)</mo>
+                  </mrow>
+                </mfrac>
+              </math>
+            </div>
+          </li>
+        </ul>
       </li>
-      <h7>Used for classification & regression; a simple algorithm that stores all available cases & classifies new cases by a "majority vote" of its K-nearest neighbors</h7>
-      <ul>
-        <li><a target="_blank" title="" href="">
+      <li>
+        <h5>K-Nearest Neighbors</h5>
+        <h7>Used for classification & regression; a simple algorithm that stores all available cases & classifies new cases by a "majority vote" of its K-nearest neighbors</h7>
+        <ul>
+          <li>
             <h5>Euclidean Distance</h5>
-          </a></li>
-        <div style="text-align: left;">
-          <math id="euclidean" xmlns="http://www.w3.org/1998/Math/MathML">
-            <mi>Between</mi>
-            <msub>
-              <mi>P</mi>
-              <mn>1</mn>
-            </msub>
-            <mo stretchy="false"> & </mo>
-            <msub>
-              <mi>P</mi>
-              <mn>2</mn>
-            </msub>
-            <mo>=</mo>
-            <msqrt>
-              <mo stretchy="false">(</mo>
-              <msub>
-                <mi>x</mi>
-                <mn>2</mn>
-              </msub>
-              <mo>-</mo>
-              <msub>
-                <mi>x</mi>
-                <mi>1</mi>
-              </msub>
-              <mo stretchy="false">)</mo>
-              <msup>
-                <mi>2</mi>
-              </msup>
-              <mo stretchy="false">+</mo>
-              <mo stretchy="false">(</mo>
-              <msub>
-                <mi>y</mi>
-                <mn>2</mn>
-              </msub>
-              <mo>-</mo>
-              <msub>
-                <mi>y</mi>
-                <mi>1</mi>
-              </msub>
-              <mo stretchy="false">)</mo>
-              <msup>
-                <mi>2</mi>
-              </msup>
-            </msqrt>
-          </math>
-        </div>
-      </ul>
+            <div style="text-align: left;">
+              <math id="euclidean" xmlns="http://www.w3.org/1998/Math/MathML">
+                <mi>Between</mi>
+                <msub>
+                  <mi>P</mi>
+                  <mn>1</mn>
+                </msub>
+                <mo stretchy="false"> & </mo>
+                <msub>
+                  <mi>P</mi>
+                  <mn>2</mn>
+                </msub>
+                <mo>=</mo>
+                <msqrt>
+                  <mo stretchy="false">(</mo>
+                  <msub>
+                    <mi>x</mi>
+                    <mn>2</mn>
+                  </msub>
+                  <mo>-</mo>
+                  <msub>
+                    <mi>x</mi>
+                    <mi>1</mi>
+                  </msub>
+                  <mo stretchy="false">)</mo>
+                  <msup>
+                    <mi>2</mi>
+                  </msup>
+                  <mo stretchy="false">+</mo>
+                  <mo stretchy="false">(</mo>
+                  <msub>
+                    <mi>y</mi>
+                    <mn>2</mn>
+                  </msub>
+                  <mo>-</mo>
+                  <msub>
+                    <mi>y</mi>
+                    <mi>1</mi>
+                  </msub>
+                  <mo stretchy="false">)</mo>
+                  <msup>
+                    <mi>2</mi>
+                  </msup>
+                </msqrt>
+              </math>
+            </div>
+          </li>
+        </ul>
+      </li>
     </ul>
+
     <br />
     <a target="_blank" title="" href="https://en.wikipedia.org/wiki/Unsupervised_learning#:~:text=Unsupervised%20learning%20is%20a%20type,a%20minimum%20of%20human%20supervision" />
     <h4>Unsupervised Learning</h4></a>
