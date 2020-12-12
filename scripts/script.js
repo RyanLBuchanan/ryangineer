@@ -24,6 +24,9 @@ const options = {
   autoMatchOsTheme: true // default: true
 }
 
+const darkmode = new Darkmode(options);
+darkmode.showWidget();
+
 // Code for image switcher
 var splashImage = document.querySelector('img');
 
