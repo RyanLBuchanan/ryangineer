@@ -57,6 +57,7 @@ figcaption {
   text-align: center;
   font-size: 12px;
   color: #154673;
+  isolation: isolate;
 }
 
 h1 {
@@ -66,22 +67,26 @@ h1 {
   padding: 20px 0;
   color: #154673;
   text-shadow: 3px 3px 10px gray;
+  isolation: isolate;
 }
 
 h2 {
   text-align: center;
   color: #A5AFB9;
   text-shadow: 3px 3px 15px gray;
+  isolation: isolate;
 }
 
 h3 {
   color: #A5AFB9;
   text-shadow: 3px 3px 15px gray;
+  isolation: isolate;
 }
 
 h4 {
   color: black;
   text-shadow: 3px 3px 15px gray;
+  isolation: isolate;
 }
 
 h5, #definition {
