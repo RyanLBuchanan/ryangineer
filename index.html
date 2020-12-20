@@ -3406,7 +3406,7 @@
       </li>
     </ul>
     <li>
-      <h5>Other Approximation Methods</h5>
+      <h5>Approximation Methods</h5>
       <ul>
         <li>
           <h5>Limit Process to Find Area</h5>
@@ -3548,6 +3548,16 @@
           </h6>
         </li>
         <li>
+          <h5>Midpoint Rule</h5>
+          <h6>
+            <div id="midpoint-rule">
+              <math>
+
+              </math>
+            </div>
+          </h6>
+        </li>
+        <li>
           <h5>Trapezoidal Rule</h5>
           <h7>Approximating area under curve may be more accurate because
             trapezoids get closer to the actual curve than rectangles</h7>
@@ -3640,7 +3650,6 @@
                 <mi>S</mi>
                 <mi>n</mi>
               </msub>
-
               <mo>&nbsp; = &nbsp;</mo>
               <mfrac>
                 <mrow>
@@ -3718,42 +3727,58 @@
             </math>
           </h6>
         </li>
+      </ul>
+    </li>
+    <li>
+      <h5>Error Bounds</h5>
+      <ul>
         <li>
-          <h5>Midpoint Rule with Error Bound (E<sub>M</sub>)</h5>
-          <h6>
-            <div id="midpoint-rule">
-              <math>
-                <mo>|</mo>
-                <msub>
-                  <mi>E</mi>
-                  <mi>M</mi>
-                </msub>
-                <mo>|</mo>
-                <mo>&nbsp; &#8804; &nbsp;</mo>
-                <mfrac>
-                  <mrow>
-                    <mi>K</mi>
-                    <mo>(</mo>
-                      <mi>b &nbsp;</mi>
-                      <mo>-</mo>
-                      <mi>&nbsp; a</mi>
-                    <mo>)</mo>
-                    <msup>
-                      <mn></mn>
-                      <mn>3</mn>
-                    </msup>
-                  </mrow>
-                  <mrow>
-                    <mn>24</mn>
-                    <msup>
-                      <mi>n</mi>
-                      <mn>2</mn>
-                    </msup>
-                  </mrow>
-                </mfrac>
-              </math>
-            </div>
+          <h5>Midpoint Rule (E<sub>M</sub>)</h5>
+          <div id="error-bound-midpoint-rule">
+            <h6>
+            <math>
+              <mo>|</mo>
+              <msub>
+                <mi>E</mi>
+                <mi>M</mi>
+              </msub>
+              <mo>|</mo>
+              <mo>&nbsp; &#8804; &nbsp;</mo>
+              <mfrac>
+                <mrow>
+                  <mi>K</mi>
+                  <mo>(</mo>
+                    <mi>b &nbsp;</mi>
+                    <mo>-</mo>
+                    <mi>&nbsp; a</mi>
+                  <mo>)</mo>
+                  <msup>
+                    <mn></mn>
+                    <mn>3</mn>
+                  </msup>
+                </mrow>
+                <mrow>
+                  <mn>24</mn>
+                  <msup>
+                    <mi>n</mi>
+                    <mn>2</mn>
+                  </msup>
+                </mrow>
+              </mfrac>
+              <mo stretchy=False>&emsp; |</mo>
+                <msup>
+                  <mi>f</mi>
+                  <mi>&#x2033;</mi>
+                </msup>
+                <mo stretchy=False>(</mo>
+                  <mi>x</mi>
+                <mo stretchy=False>)</mo>
+              <mo stretchy=False>|</mo>
+              <mo>&nbsp; &#8804; &nbsp;</mo>
+              <mi>K</mi>
+            </math>
           </h6>
+          </div>
         </li>
       </ul>
     </li>
