@@ -1,5 +1,5 @@
 #anim {
-  position:static;
+  position: static;
 }
 
 body {
@@ -22,33 +22,33 @@ body {
 }
 
 #epsilon {
-    position: relative;
-    font-size: 2.5em;
-    display: inline-block;
-    line-height: .7em;
-    vertical-align: middle;
+  position: relative;
+  font-size: 2.5em;
+  display: inline-block;
+  line-height: .7em;
+  vertical-align: middle;
 }
 
 #epsilon:before {
-    font-size: 12px;
-    display: block;
-    position absolute;
-    left: 0;
-    top: 0;
-    content: "n";
-    width: 5px;
-    text-align: center;
+  font-size: 12px;
+  display: block;
+  position absolute;
+  left: 0;
+  top: 0;
+  content: "n";
+  width: 5px;
+  text-align: center;
 }
 
 #epsilon:after {
-    font-size: 10px;
-    display: block;
-    position absolute;
-    left: 0;
-    bottom: 0;
-    content: "i = 1";
-    width: 20px;
-    text-align: center;
+  font-size: 10px;
+  display: block;
+  position absolute;
+  left: 0;
+  bottom: 0;
+  content: "i = 1";
+  width: 20px;
+  text-align: center;
 }
 
 figure {
@@ -123,7 +123,7 @@ html {
 }
 
 .img-bio_image {
-  float:left;
+  float: left;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -139,14 +139,14 @@ html {
 }
 
 .img-pythagoras {
-  float:right;
+  float: right;
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: auto;
 }
 
-#img_pythagoras{
+#img_pythagoras {
   max-width: 100%;
   height: auto;
   float: right;
@@ -156,68 +156,65 @@ html {
   padding-left: 15px;
 }
 
-
 .lim_infinity {
-    position: relative;
-    font-size: 2.5em;
-    display: inline-block;
-    line-height: .7em;
-    vertical-align: middle;
+  position: relative;
+  font-size: 2.5em;
+  display: inline-block;
+  line-height: .7em;
+  vertical-align: middle;
 }
 
 .lim_infinity:before {
-    font-size: 12px;
-    display: block;
-    position absolute;
-    left: 0;
-    top: 0;
-    content: " ";
-    width: 5px;
-    text-align: center;
+  font-size: 12px;
+  display: block;
+  position absolute;
+  left: 0;
+  top: 0;
+  content: " ";
+  width: 5px;
+  text-align: center;
 }
 
 .lim_infinity:after {
-    font-size: 10px;
-    display: block;
-    position absolute;
-    left: 0;
-    bottom: 0;
-    content: "n \2192 \221E";
-    width: 25px;
-    text-align: center;
+  font-size: 10px;
+  display: block;
+  position absolute;
+  left: 0;
+  bottom: 0;
+  content: "n \2192 \221E";
+  width: 25px;
+  text-align: center;
 }
 
-
 .lim_zero {
-    position: relative;
-    font-size: 2.5em;
-    display: inline-block;
-    line-height: .7em;
-    vertical-align: middle;
+  position: relative;
+  font-size: 2.5em;
+  display: inline-block;
+  line-height: .7em;
+  vertical-align: middle;
 }
 
 .lim_zero:before {
-    font-size: 12px;
-    display: block;
-    position absolute;
-    left: 0;
-    top: 0;
-    content: " ";
-    width: 5px;
-    text-align: center;
+  font-size: 12px;
+  display: block;
+  position absolute;
+  left: 0;
+  top: 0;
+  content: " ";
+  width: 5px;
+  text-align: center;
 }
 
 .lim_zero:after {
-    font-size: 10px;
-    display: block;
-    position absolute;
-    left: 0;
-    bottom: 0;
-    content: "n \2192 0";
-    width: 25px;
-    text-align: center;
+  font-size: 10px;
+  display: block;
+  position absolute;
+  left: 0;
+  bottom: 0;
+  content: "n \2192 0";
+  width: 25px;
+  text-align: center;
 }
-
 
 p {
   color: #2B5275;
@@ -240,64 +237,63 @@ p {
 }
 
 .riemann_sums {
-    position: relative;
-    font-size: 2.5em;
-    display: inline-block;
-    line-height: .7em;
-    vertical-align: middle;
+  position: relative;
+  font-size: 2.5em;
+  display: inline-block;
+  line-height: .7em;
+  vertical-align: middle;
 }
 
 .riemann_sums:before {
-    font-size: 12px;
-    display: block;
-    position absolute;
-    left: 0;
-    top: 0;
-    content: "5";
-    width: 5px;
-    text-align: center;
+  font-size: 12px;
+  display: block;
+  position absolute;
+  left: 0;
+  top: 0;
+  content: "5";
+  width: 5px;
+  text-align: center;
 }
 
 .riemann_sums:after {
-    font-size: 10px;
-    display: block;
-    position absolute;
-    left: 0;
-    bottom: 0;
-    content: "n=1";
-    width: 20px;
-    text-align: center;
+  font-size: 10px;
+  display: block;
+  position absolute;
+  left: 0;
+  bottom: 0;
+  content: "n=1";
+  width: 20px;
+  text-align: center;
 }
 
-
 .sigma_sum {
-    position: relative;
-    font-size: 2.5em;
-    display: inline-block;
-    line-height: .7em;
-    vertical-align: middle;
+  position: relative;
+  font-size: 2.5em;
+  display: inline-block;
+  line-height: .7em;
+  vertical-align: middle;
 }
 
 .sigma_sum:before {
-    font-size: 12px;
-    display: block;
-    position absolute;
-    left: 0;
-    top: 0;
-    content: "n";
-    width: 5px;
-    text-align: center;
+  font-size: 12px;
+  display: block;
+  position absolute;
+  left: 0;
+  top: 0;
+  content: "n";
+  width: 5px;
+  text-align: center;
 }
 
 .sigma_sum:after {
-    font-size: 10px;
-    display: block;
-    position absolute;
-    left: 0;
-    bottom: 0;
-    content: "i = 1";
-    width: 20px;
-    text-align: center;
+  font-size: 10px;
+  display: block;
+  position absolute;
+  left: 0;
+  bottom: 0;
+  content: "i = 1";
+  width: 20px;
+  text-align: center;
 }
 
 table, th, td {
@@ -313,92 +309,107 @@ table, th, td {
   color: #F4B400;
 }
 
+#truth_table {
+  height: 10%;
+  width: 10%;
+  margin: 4px;
+  padding: 4px;
+  border-collapse: collapse;
+}
+
+#truth_table td {
+  height: 10%;
+  width: 10%;
+  padding: 4px;
+  margin: 4px;
+}
+
 #wcss1 {
-    position: relative;
-    font-size: 2.5em;
-    display: inline-block;
-    line-height: .7em;
-    vertical-align: middle;
+  position: relative;
+  font-size: 2.5em;
+  display: inline-block;
+  line-height: .7em;
+  vertical-align: middle;
 }
 
 #wcss1:before {
-    font-size: 12px;
-    display: block;
-    position absolute;
-    left: 0;
-    top: 0;
-    content: "";
-    width: 22px;
-    text-align: center;
+  font-size: 12px;
+  display: block;
+  position absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  width: 22px;
+  text-align: center;
 }
 
 #wcss1:after {
-    font-size: 8px;
-    display: block;
-    position absolute;
-    left: 0;
-    bottom: 0;
-    content: "Pi in Cluster 1";
-    width: 50px;
-    text-align: center;
+  font-size: 8px;
+  display: block;
+  position absolute;
+  left: 0;
+  bottom: 0;
+  content: "Pi in Cluster 1";
+  width: 50px;
+  text-align: center;
 }
 
 #wcss2 {
-    position: relative;
-    font-size: 2.5em;
-    display: inline-block;
-    line-height: .7em;
-    vertical-align: middle;
+  position: relative;
+  font-size: 2.5em;
+  display: inline-block;
+  line-height: .7em;
+  vertical-align: middle;
 }
 
 #wcss2:before {
-    font-size: 12px;
-    display: block;
-    position absolute;
-    left: 0;
-    top: 0;
-    content: "";
-    width: 22px;
-    text-align: center;
+  font-size: 12px;
+  display: block;
+  position absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  width: 22px;
+  text-align: center;
 }
 
 #wcss2:after {
-    font-size: 8px;
-    display: block;
-    position absolute;
-    left: 0;
-    bottom: 0;
-    content: "Pi in Cluster 2";
-    width: 50px;
-    text-align: center;
+  font-size: 8px;
+  display: block;
+  position absolute;
+  left: 0;
+  bottom: 0;
+  content: "Pi in Cluster 2";
+  width: 50px;
+  text-align: center;
 }
 
 #wcss3 {
-    position: relative;
-    font-size: 2.5em;
-    display: inline-block;
-    line-height: .7em;
-    vertical-align: middle;
+  position: relative;
+  font-size: 2.5em;
+  display: inline-block;
+  line-height: .7em;
+  vertical-align: middle;
 }
 
 #wcss3:before {
-    font-size: 12px;
-    display: block;
-    position absolute;
-    left: 0;
-    top: 0;
-    content: "";
-    width: 22px;
-    text-align: center;
+  font-size: 12px;
+  display: block;
+  position absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  width: 22px;
+  text-align: center;
 }
 
 #wcss3:after {
-    font-size: 8px;
-    display: block;
-    position absolute;
-    left: 0;
-    bottom: 0;
-    content: "Pi in Cluster 3";
-    width: 50px;
-    text-align: center;
+  font-size: 8px;
+  display: block;
+  position absolute;
+  left: 0;
+  bottom: 0;
+  content: "Pi in Cluster 3";
+  width: 50px;
+  text-align: center;
 }
