@@ -317,6 +317,14 @@ table, th, td {
   border-collapse: collapse;
 }
 
+#truth_table th {
+  height: 10%;
+  width: 10%;
+  padding: 4px;
+  margin: 4px;
+  color: #154673;
+}
+
 #truth_table td {
   height: 10%;
   width: 10%;
