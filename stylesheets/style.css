@@ -313,14 +313,13 @@ table, th, td {
   height: 10%;
   width: 10%;
   margin: 4px;
-  padding: 4px;
-  border-collapse: collapse;
+  padding: 10px;
 }
 
 #truth_table th {
   height: 10%;
   width: 10%;
-  padding: 4px;
+  padding: 10px;
   margin: 4px;
   color: turquoise;
 }
@@ -328,7 +327,7 @@ table, th, td {
 #truth_table td {
   height: 10%;
   width: 10%;
-  padding: 4px;
+  padding: 10px;
   margin: 4px;
 }
 
