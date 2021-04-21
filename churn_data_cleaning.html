@@ -16385,7 +16385,7 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="B.-Required-Variables:"><span style="color:green"><b>B. Required Variables</b>:</span><a class="anchor-link" href="#B.-Required-Variables:">&#182;</a></h3><p>The data set is 10,000 customer records of a popular telecommunications company. The dependent variable (target) in question is whether or not each customer has continued or discontinued service within the last month.  This column is titled "Churn."<br>
-Independent variables or predictors that may lead to identifying a relationship with the dependent variable of "Churn" within the data set include:</p>
+Independent variables or predictors that may lead to identifying a relationship with the dependent variable of "Churn" within the dataset include:</p>
 <ol>
 <li>Services that each customer signed up for (for example, multiple phone lines, technical support add-ons or streaming media) </li>
 <li>Customer account information (customers' tenure with the company, payment methods, bandwidth usage, etc.)</li>
@@ -16407,31 +16407,15 @@ Independent variables or predictors that may lead to identifying a relationship 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="C.-Explanation-of-data-cleaning-plan">C. Explanation of data cleaning plan<a class="anchor-link" href="#C.-Explanation-of-data-cleaning-plan">&#182;</a></h3><ol>
-<li>Plan proposal to identify anomalies, <i>including relevant techniques & specific steps</i> </li>
-<li><p>Justify your approach for assessing the quality of the data, include:
-<br>&ensp; •  characteristics of the data being assessed,
-<br>&ensp; •  the approach used to assess the quality.</p>
-</li>
-<li><p>Justify your selected programming language and any libraries and packages that will support the data-cleaning process.</p>
-</li>
-<li><p>Provide the code you will use to identify the anomalies in the data.</p>
-</li>
-</ol>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="C1.-Plan-to-Find-Anomalies:"><span style="color:green"><b>C1. Plan to Find Anomalies</b>:</span><a class="anchor-link" href="#C1.-Plan-to-Find-Anomalies:">&#182;</a></h3><p>My approach will include:
-<br>&ensp; 1. Backing up my data and the process I am following as a copy to my machine and, since this is a manageable data set, to GitHub using command line and gitbash;
-<br>&ensp; 2. Reading the data set into Python using Pandas read_csv command;
-<br>&ensp; 3. Naming the data set as a the variable "churn_df" and subsequent useful slices of the dataframe as "data"; 
-<br>&ensp; 4. Examine coding errors, including data missing, in the collection of the data set;
-<br>&ensp; 5. Find outliers that may create or hide statistical significance using histograms;
-<br>&ensp; 6. Imputing records missing data with meaningful measures of central tendency (mean, median or mode) or simply remove outliers that are several standard deviations above the mean</p>
+<br>&ensp; 1. Back up my data and the process I am following as a copy to my machine and, since this is a manageable dataset, to GitHub using command line and gitbash.
+<br>&ensp; 2. Read the data set into Python using Pandas read_csv command.
+<br>&ensp; 3. Evaluate the data struture to better understand input data.
+<br>&ensp; 4. Naming the dataset as a the variable "churn_df" and subsequent useful slices of the dataframe as "data".
+<br>&ensp; 5. Examine misspellings &amp; missing data.
+<br>&ensp; 6. Find outliers that may create or hide statistical significance using histograms.
+<br>&ensp; 7. Imputing records missing data with meaningful measures of central tendency (mean, median or mode) or simply remove outliers that are several standard deviations above the mean.</p>
+<p><br>&ensp; ?. <span style="color:red">Drop records with missing information???<span></p>
 
 </div>
 </div>
@@ -16439,7 +16423,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="C2.-Justification-of-Approach:"><span style="color:green"><b>C2. Justification of Approach</b>:</span><a class="anchor-link" href="#C2.-Justification-of-Approach:">&#182;</a></h3><p>Though the data seems to be inexplicably missing quite a bit of data (such as the many NAs in customer tenure with the company) from apparently random columns, this approach seems like a good first approach in order to put the data in better working order without needing to involve methods of initial data collection or querying the data-gatherers on reasons for missing information.</p>
+<h3 id="C2.-Justification-of-Approach:"><span style="color:green"><b>C2. Justification of Approach</b>:</span><a class="anchor-link" href="#C2.-Justification-of-Approach:">&#182;</a></h3><p>Though the data seems to be inexplicably missing quite a bit of data (such as the many NAs in customer tenure with the company) from apparently random columns, this approach seems like a good first approach in order to put the data in better working order without needing to involve methods of initial data collection or querying the data-gatherers on reasons for missing information. Also, this the first dataset that I've clean, so I followed the procedures practice in the performance lab as well as tips from StackOverflow and other tutorial resources.</p>
 
 </div>
 </div>
@@ -16449,12 +16433,12 @@ Independent variables or predictors that may lead to identifying a relationship 
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="C3.-Justification-of-Tools:"><span style="color:green"><b>C3. Justification of Tools</b>:</span><a class="anchor-link" href="#C3.-Justification-of-Tools:">&#182;</a></h3><p>I will use the Python programming language as I have a bit of a background in Python having studied machine learning independently over the last year before beginning this masters program and its ability to perform many things right "out of the box."  Python provides clean, intuitive and readable syntax that has become ubiquitous across in the data science industry.  Also, I find the Jupyter notebooks a convenient way to run code visually, in its attractive single document markdown format, the ability to display results of code and graphic visualizations and provide crystal-clear running documentation for future reference.   A thorough installation and importation of Python packages and libraries will provide specially designed code to perfom complex data science tasks rather than personally building them from scratch.  This will include: 
 <br>&ensp; • NumPy - to work with arrays
-<br>&ensp; • Pandas - to load data sets
+<br>&ensp; • Pandas - to load datasets
 <br>&ensp; • Matplotlib - to plot charts
 <br>&ensp; • Scikit-learn - for machine learning model classes
 <br>&ensp; • SciPy - for mathematical problems, specifically linear algebra transformations
 <br>&ensp; • Seaborn - for high-level interface and atttractive visualizations</p>
-<p>A quick, precise example of loading a data set and creating a variable efficiently is using to call the Pandas library and its subsequent "read_csv" function in order to manipulate our data as a dataframe:
+<p>A quick, precise example of loading a dataset and creating a variable efficiently is using to call the Pandas library and its subsequent "read_csv" function in order to manipulate our data as a dataframe:
 <span style="color:coral">
 <br>&ensp; import pandas as pd
 <br>&ensp; df = pd.read_csv('Data.csv')
@@ -16473,19 +16457,16 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Standard imports</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-
-<span class="kn">import</span> <span class="nn">scipy.stats</span>
-<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">skew</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 </pre></div>
 
     </div>
@@ -16495,7 +16476,72 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Scikit-learn modules for data cleaning</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Standard libraries for data visualization</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sn</span>
+<span class="n">color</span> <span class="o">=</span> <span class="n">sn</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">pylab</span>
+<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">mtick</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_columns</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="kn">from</span> <span class="nn">pandas.plotting</span> <span class="kn">import</span> <span class="n">scatter_matrix</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Utility libraries imports</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">timeit</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="nn">dateutil.parser</span> <span class="kn">import</span> <span class="n">parse</span>
+<span class="kn">import</span> <span class="nn">joblib</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Increase Jupyter display cell-width</span>
@@ -16529,7 +16575,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load data set into Pandas dataframe</span>
@@ -16543,7 +16589,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display Churn dataframe</span>
@@ -16560,7 +16606,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[29]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -16593,7 +16639,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <th>Zip</th>
       <th>Lat</th>
       <th>Lng</th>
-      <th>...</th>
+      <th>Population</th>
+      <th>Area</th>
+      <th>Timezone</th>
+      <th>Job</th>
+      <th>Children</th>
+      <th>Age</th>
+      <th>Education</th>
+      <th>Employment</th>
+      <th>Income</th>
+      <th>Marital</th>
+      <th>Gender</th>
+      <th>Churn</th>
+      <th>Outage_sec_perweek</th>
+      <th>Email</th>
+      <th>Contacts</th>
+      <th>Yearly_equip_failure</th>
+      <th>Techie</th>
+      <th>Contract</th>
+      <th>Port_modem</th>
+      <th>Tablet</th>
+      <th>InternetService</th>
+      <th>Phone</th>
+      <th>Multiple</th>
+      <th>OnlineSecurity</th>
+      <th>OnlineBackup</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>Tenure</th>
       <th>MonthlyCharge</th>
       <th>Bandwidth_GB_Year</th>
       <th>item1</th>
@@ -16619,7 +16696,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>99927</td>
       <td>56.25100</td>
       <td>-133.37571</td>
-      <td>...</td>
+      <td>38</td>
+      <td>Urban</td>
+      <td>America/Sitka</td>
+      <td>Environmental health practitioner</td>
+      <td>NaN</td>
+      <td>68.0</td>
+      <td>Master's Degree</td>
+      <td>Part Time</td>
+      <td>28561.99</td>
+      <td>Widowed</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>6.972566</td>
+      <td>10</td>
+      <td>0</td>
+      <td>1</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Fiber Optic</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Credit Card (automatic)</td>
+      <td>6.795513</td>
       <td>171.449762</td>
       <td>904.536110</td>
       <td>5</td>
@@ -16643,7 +16751,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>48661</td>
       <td>44.32893</td>
       <td>-84.24080</td>
-      <td>...</td>
+      <td>10446</td>
+      <td>Urban</td>
+      <td>America/Detroit</td>
+      <td>Programmer, multimedia</td>
+      <td>1.0</td>
+      <td>27.0</td>
+      <td>Regular High School Diploma</td>
+      <td>Retired</td>
+      <td>21704.77</td>
+      <td>Married</td>
+      <td>Female</td>
+      <td>Yes</td>
+      <td>12.014541</td>
+      <td>12</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Yes</td>
+      <td>Month-to-month</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Fiber Optic</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Bank Transfer(automatic)</td>
+      <td>1.156681</td>
       <td>242.948015</td>
       <td>800.982766</td>
       <td>3</td>
@@ -16667,7 +16806,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>97148</td>
       <td>45.35589</td>
       <td>-123.24657</td>
-      <td>...</td>
+      <td>3735</td>
+      <td>Urban</td>
+      <td>America/Los_Angeles</td>
+      <td>Chief Financial Officer</td>
+      <td>4.0</td>
+      <td>50.0</td>
+      <td>Regular High School Diploma</td>
+      <td>Student</td>
+      <td>NaN</td>
+      <td>Widowed</td>
+      <td>Female</td>
+      <td>No</td>
+      <td>10.245616</td>
+      <td>9</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Yes</td>
+      <td>Two Year</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Credit Card (automatic)</td>
+      <td>15.754144</td>
       <td>159.440398</td>
       <td>2054.706961</td>
       <td>4</td>
@@ -16691,7 +16861,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>92014</td>
       <td>32.96687</td>
       <td>-117.24798</td>
-      <td>...</td>
+      <td>13863</td>
+      <td>Suburban</td>
+      <td>America/Los_Angeles</td>
+      <td>Solicitor</td>
+      <td>1.0</td>
+      <td>48.0</td>
+      <td>Doctorate Degree</td>
+      <td>Retired</td>
+      <td>18925.23</td>
+      <td>Married</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>15.206193</td>
+      <td>15</td>
+      <td>2</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Two Year</td>
+      <td>No</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Mailed Check</td>
+      <td>17.087227</td>
       <td>120.249493</td>
       <td>2164.579412</td>
       <td>4</td>
@@ -16715,7 +16916,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>77461</td>
       <td>29.38012</td>
       <td>-95.80673</td>
-      <td>...</td>
+      <td>11352</td>
+      <td>Suburban</td>
+      <td>America/Chicago</td>
+      <td>Medical illustrator</td>
+      <td>0.0</td>
+      <td>83.0</td>
+      <td>Master's Degree</td>
+      <td>Student</td>
+      <td>40074.19</td>
+      <td>Separated</td>
+      <td>Male</td>
+      <td>Yes</td>
+      <td>8.960316</td>
+      <td>16</td>
+      <td>2</td>
+      <td>1</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Fiber Optic</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Mailed Check</td>
+      <td>1.670972</td>
       <td>150.761216</td>
       <td>271.493436</td>
       <td>4</td>
@@ -16729,6 +16961,37 @@ Independent variables or predictors that may lead to identifying a relationship 
     </tr>
     <tr>
       <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -16763,7 +17026,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>5758</td>
       <td>43.43391</td>
       <td>-72.78734</td>
-      <td>...</td>
+      <td>640</td>
+      <td>Rural</td>
+      <td>America/New_York</td>
+      <td>Sport and exercise psychologist</td>
+      <td>3.0</td>
+      <td>NaN</td>
+      <td>Some College, Less than 1 Year</td>
+      <td>Retired</td>
+      <td>55723.74</td>
+      <td>Married</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>9.265392</td>
+      <td>12</td>
+      <td>2</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>DSL</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Electronic Check</td>
+      <td>68.197130</td>
       <td>159.828800</td>
       <td>6511.253000</td>
       <td>3</td>
@@ -16787,7 +17081,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>37042</td>
       <td>36.56907</td>
       <td>-87.41694</td>
-      <td>...</td>
+      <td>77168</td>
+      <td>Rural</td>
+      <td>America/Chicago</td>
+      <td>Consulting civil engineer</td>
+      <td>4.0</td>
+      <td>48.0</td>
+      <td>Regular High School Diploma</td>
+      <td>Part Time</td>
+      <td>NaN</td>
+      <td>Divorced</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>8.115849</td>
+      <td>15</td>
+      <td>2</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>Two Year</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Fiber Optic</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Electronic Check</td>
+      <td>61.040370</td>
       <td>208.856400</td>
       <td>5695.952000</td>
       <td>4</td>
@@ -16811,7 +17136,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>79061</td>
       <td>35.52039</td>
       <td>-100.44180</td>
-      <td>...</td>
+      <td>406</td>
+      <td>Rural</td>
+      <td>America/Chicago</td>
+      <td>IT technical support officer</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Nursery School to 8th Grade</td>
+      <td>Full Time</td>
+      <td>NaN</td>
+      <td>Never Married</td>
+      <td>Female</td>
+      <td>No</td>
+      <td>4.837696</td>
+      <td>10</td>
+      <td>0</td>
+      <td>0</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Fiber Optic</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Bank Transfer(automatic)</td>
+      <td>NaN</td>
       <td>168.220900</td>
       <td>4159.306000</td>
       <td>4</td>
@@ -16835,7 +17191,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>30117</td>
       <td>33.58016</td>
       <td>-85.13241</td>
-      <td>...</td>
+      <td>35575</td>
+      <td>Urban</td>
+      <td>America/New_York</td>
+      <td>Water engineer</td>
+      <td>1.0</td>
+      <td>39.0</td>
+      <td>Bachelor's Degree</td>
+      <td>Full Time</td>
+      <td>16667.58</td>
+      <td>Separated</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>12.076460</td>
+      <td>14</td>
+      <td>1</td>
+      <td>0</td>
+      <td>No</td>
+      <td>Two Year</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Fiber Optic</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Credit Card (automatic)</td>
+      <td>71.095600</td>
       <td>252.628600</td>
       <td>6468.457000</td>
       <td>4</td>
@@ -16859,7 +17246,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>30523</td>
       <td>34.70783</td>
       <td>-83.53648</td>
-      <td>...</td>
+      <td>12230</td>
+      <td>Urban</td>
+      <td>America/New_York</td>
+      <td>Personal assistant</td>
+      <td>1.0</td>
+      <td>28.0</td>
+      <td>GED or Alternative Credential</td>
+      <td>Full Time</td>
+      <td>NaN</td>
+      <td>Never Married</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>12.641760</td>
+      <td>17</td>
+      <td>1</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Fiber Optic</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Electronic Check</td>
+      <td>63.350860</td>
       <td>218.371000</td>
       <td>5857.586000</td>
       <td>2</td>
@@ -16885,11 +17303,12 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Now just the head of the dataframe</span>
-<span class="n">churn_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># List of Dataframe Columns</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">churn_df</span><span class="o">.</span><span class="n">columns</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -16902,7 +17321,50 @@ Independent variables or predictors that may lead to identifying a relationship 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[30]:</div>
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Index([&#39;Unnamed: 0&#39;, &#39;CaseOrder&#39;, &#39;Customer_id&#39;, &#39;Interaction&#39;, &#39;City&#39;,
+       &#39;State&#39;, &#39;County&#39;, &#39;Zip&#39;, &#39;Lat&#39;, &#39;Lng&#39;, &#39;Population&#39;, &#39;Area&#39;,
+       &#39;Timezone&#39;, &#39;Job&#39;, &#39;Children&#39;, &#39;Age&#39;, &#39;Education&#39;, &#39;Employment&#39;,
+       &#39;Income&#39;, &#39;Marital&#39;, &#39;Gender&#39;, &#39;Churn&#39;, &#39;Outage_sec_perweek&#39;, &#39;Email&#39;,
+       &#39;Contacts&#39;, &#39;Yearly_equip_failure&#39;, &#39;Techie&#39;, &#39;Contract&#39;, &#39;Port_modem&#39;,
+       &#39;Tablet&#39;, &#39;InternetService&#39;, &#39;Phone&#39;, &#39;Multiple&#39;, &#39;OnlineSecurity&#39;,
+       &#39;OnlineBackup&#39;, &#39;DeviceProtection&#39;, &#39;TechSupport&#39;, &#39;StreamingTV&#39;,
+       &#39;StreamingMovies&#39;, &#39;PaperlessBilling&#39;, &#39;PaymentMethod&#39;, &#39;Tenure&#39;,
+       &#39;MonthlyCharge&#39;, &#39;Bandwidth_GB_Year&#39;, &#39;item1&#39;, &#39;item2&#39;, &#39;item3&#39;,
+       &#39;item4&#39;, &#39;item5&#39;, &#39;item6&#39;, &#39;item7&#39;, &#39;item8&#39;],
+      dtype=&#39;object&#39;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Remove redundant &quot;Unnamed&quot; column at beginning &amp; display first five records</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">churn_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">churn_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -16925,7 +17387,6 @@ Independent variables or predictors that may lead to identifying a relationship 
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Unnamed: 0</th>
       <th>CaseOrder</th>
       <th>Customer_id</th>
       <th>Interaction</th>
@@ -16935,7 +17396,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <th>Zip</th>
       <th>Lat</th>
       <th>Lng</th>
-      <th>...</th>
+      <th>Population</th>
+      <th>Area</th>
+      <th>Timezone</th>
+      <th>Job</th>
+      <th>Children</th>
+      <th>Age</th>
+      <th>Education</th>
+      <th>Employment</th>
+      <th>Income</th>
+      <th>Marital</th>
+      <th>Gender</th>
+      <th>Churn</th>
+      <th>Outage_sec_perweek</th>
+      <th>Email</th>
+      <th>Contacts</th>
+      <th>Yearly_equip_failure</th>
+      <th>Techie</th>
+      <th>Contract</th>
+      <th>Port_modem</th>
+      <th>Tablet</th>
+      <th>InternetService</th>
+      <th>Phone</th>
+      <th>Multiple</th>
+      <th>OnlineSecurity</th>
+      <th>OnlineBackup</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>Tenure</th>
       <th>MonthlyCharge</th>
       <th>Bandwidth_GB_Year</th>
       <th>item1</th>
@@ -16952,7 +17444,6 @@ Independent variables or predictors that may lead to identifying a relationship 
     <tr>
       <th>0</th>
       <td>1</td>
-      <td>1</td>
       <td>K409198</td>
       <td>aa90260b-4141-4a24-8e36-b04ce1f4f77b</td>
       <td>Point Baker</td>
@@ -16961,7 +17452,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>99927</td>
       <td>56.25100</td>
       <td>-133.37571</td>
-      <td>...</td>
+      <td>38</td>
+      <td>Urban</td>
+      <td>America/Sitka</td>
+      <td>Environmental health practitioner</td>
+      <td>NaN</td>
+      <td>68.0</td>
+      <td>Master's Degree</td>
+      <td>Part Time</td>
+      <td>28561.99</td>
+      <td>Widowed</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>6.972566</td>
+      <td>10</td>
+      <td>0</td>
+      <td>1</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Fiber Optic</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Credit Card (automatic)</td>
+      <td>6.795513</td>
       <td>171.449762</td>
       <td>904.536110</td>
       <td>5</td>
@@ -16976,7 +17498,6 @@ Independent variables or predictors that may lead to identifying a relationship 
     <tr>
       <th>1</th>
       <td>2</td>
-      <td>2</td>
       <td>S120509</td>
       <td>fb76459f-c047-4a9d-8af9-e0f7d4ac2524</td>
       <td>West Branch</td>
@@ -16985,7 +17506,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>48661</td>
       <td>44.32893</td>
       <td>-84.24080</td>
-      <td>...</td>
+      <td>10446</td>
+      <td>Urban</td>
+      <td>America/Detroit</td>
+      <td>Programmer, multimedia</td>
+      <td>1.0</td>
+      <td>27.0</td>
+      <td>Regular High School Diploma</td>
+      <td>Retired</td>
+      <td>21704.77</td>
+      <td>Married</td>
+      <td>Female</td>
+      <td>Yes</td>
+      <td>12.014541</td>
+      <td>12</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Yes</td>
+      <td>Month-to-month</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Fiber Optic</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Bank Transfer(automatic)</td>
+      <td>1.156681</td>
       <td>242.948015</td>
       <td>800.982766</td>
       <td>3</td>
@@ -17000,7 +17552,6 @@ Independent variables or predictors that may lead to identifying a relationship 
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>3</td>
       <td>K191035</td>
       <td>344d114c-3736-4be5-98f7-c72c281e2d35</td>
       <td>Yamhill</td>
@@ -17009,7 +17560,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>97148</td>
       <td>45.35589</td>
       <td>-123.24657</td>
-      <td>...</td>
+      <td>3735</td>
+      <td>Urban</td>
+      <td>America/Los_Angeles</td>
+      <td>Chief Financial Officer</td>
+      <td>4.0</td>
+      <td>50.0</td>
+      <td>Regular High School Diploma</td>
+      <td>Student</td>
+      <td>NaN</td>
+      <td>Widowed</td>
+      <td>Female</td>
+      <td>No</td>
+      <td>10.245616</td>
+      <td>9</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Yes</td>
+      <td>Two Year</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Credit Card (automatic)</td>
+      <td>15.754144</td>
       <td>159.440398</td>
       <td>2054.706961</td>
       <td>4</td>
@@ -17024,7 +17606,6 @@ Independent variables or predictors that may lead to identifying a relationship 
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>4</td>
       <td>D90850</td>
       <td>abfa2b40-2d43-4994-b15a-989b8c79e311</td>
       <td>Del Mar</td>
@@ -17033,7 +17614,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>92014</td>
       <td>32.96687</td>
       <td>-117.24798</td>
-      <td>...</td>
+      <td>13863</td>
+      <td>Suburban</td>
+      <td>America/Los_Angeles</td>
+      <td>Solicitor</td>
+      <td>1.0</td>
+      <td>48.0</td>
+      <td>Doctorate Degree</td>
+      <td>Retired</td>
+      <td>18925.23</td>
+      <td>Married</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>15.206193</td>
+      <td>15</td>
+      <td>2</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Two Year</td>
+      <td>No</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Mailed Check</td>
+      <td>17.087227</td>
       <td>120.249493</td>
       <td>2164.579412</td>
       <td>4</td>
@@ -17048,7 +17660,6 @@ Independent variables or predictors that may lead to identifying a relationship 
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>5</td>
       <td>K662701</td>
       <td>68a861fd-0d20-4e51-a587-8a90407ee574</td>
       <td>Needville</td>
@@ -17057,7 +17668,38 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>77461</td>
       <td>29.38012</td>
       <td>-95.80673</td>
-      <td>...</td>
+      <td>11352</td>
+      <td>Suburban</td>
+      <td>America/Chicago</td>
+      <td>Medical illustrator</td>
+      <td>0.0</td>
+      <td>83.0</td>
+      <td>Master's Degree</td>
+      <td>Student</td>
+      <td>40074.19</td>
+      <td>Separated</td>
+      <td>Male</td>
+      <td>Yes</td>
+      <td>8.960316</td>
+      <td>16</td>
+      <td>2</td>
+      <td>1</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Fiber Optic</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Mailed Check</td>
+      <td>1.670972</td>
       <td>150.761216</td>
       <td>271.493436</td>
       <td>4</td>
@@ -17071,7 +17713,6 @@ Independent variables or predictors that may lead to identifying a relationship 
     </tr>
   </tbody>
 </table>
-<p>5 rows × 52 columns</p>
 </div>
 </div>
 
@@ -17083,11 +17724,32 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Describe Churn statistics</span>
-<span class="n">churn_df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Rename last 8 survey columns for better description of variables</span>
+<span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;item1&#39;</span><span class="p">:</span><span class="s1">&#39;Responses&#39;</span><span class="p">,</span> 
+                    <span class="s1">&#39;item2&#39;</span><span class="p">:</span><span class="s1">&#39;Fixes&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;item3&#39;</span><span class="p">:</span><span class="s1">&#39;Replacements&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;item4&#39;</span><span class="p">:</span><span class="s1">&#39;Reliability&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;item5&#39;</span><span class="p">:</span><span class="s1">&#39;Options&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;item6&#39;</span><span class="p">:</span><span class="s1">&#39;Respectful&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;item7&#39;</span><span class="p">:</span><span class="s1">&#39;Courteous&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;item8&#39;</span><span class="p">:</span><span class="s1">&#39;Listening&#39;</span><span class="p">},</span> 
+          <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
 </pre></div>
 
     </div>
@@ -17100,7 +17762,51 @@ Independent variables or predictors that may lead to identifying a relationship 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[31]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;CaseOrder&#39;, &#39;Customer_id&#39;, &#39;Interaction&#39;, &#39;City&#39;, &#39;State&#39;, &#39;County&#39;,
+       &#39;Zip&#39;, &#39;Lat&#39;, &#39;Lng&#39;, &#39;Population&#39;, &#39;Area&#39;, &#39;Timezone&#39;, &#39;Job&#39;,
+       &#39;Children&#39;, &#39;Age&#39;, &#39;Education&#39;, &#39;Employment&#39;, &#39;Income&#39;, &#39;Marital&#39;,
+       &#39;Gender&#39;, &#39;Churn&#39;, &#39;Outage_sec_perweek&#39;, &#39;Email&#39;, &#39;Contacts&#39;,
+       &#39;Yearly_equip_failure&#39;, &#39;Techie&#39;, &#39;Contract&#39;, &#39;Port_modem&#39;, &#39;Tablet&#39;,
+       &#39;InternetService&#39;, &#39;Phone&#39;, &#39;Multiple&#39;, &#39;OnlineSecurity&#39;,
+       &#39;OnlineBackup&#39;, &#39;DeviceProtection&#39;, &#39;TechSupport&#39;, &#39;StreamingTV&#39;,
+       &#39;StreamingMovies&#39;, &#39;PaperlessBilling&#39;, &#39;PaymentMethod&#39;, &#39;Tenure&#39;,
+       &#39;MonthlyCharge&#39;, &#39;Bandwidth_GB_Year&#39;, &#39;Responses&#39;, &#39;Fixes&#39;,
+       &#39;Replacements&#39;, &#39;Reliability&#39;, &#39;Options&#39;, &#39;Respectful&#39;, &#39;Courteous&#39;,
+       &#39;Listening&#39;],
+      dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
 
 
 
@@ -17123,7 +17829,451 @@ Independent variables or predictors that may lead to identifying a relationship 
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Unnamed: 0</th>
+      <th>CaseOrder</th>
+      <th>Customer_id</th>
+      <th>Interaction</th>
+      <th>City</th>
+      <th>State</th>
+      <th>County</th>
+      <th>Zip</th>
+      <th>Lat</th>
+      <th>Lng</th>
+      <th>Population</th>
+      <th>Area</th>
+      <th>Timezone</th>
+      <th>Job</th>
+      <th>Children</th>
+      <th>Age</th>
+      <th>Education</th>
+      <th>Employment</th>
+      <th>Income</th>
+      <th>Marital</th>
+      <th>Gender</th>
+      <th>Churn</th>
+      <th>Outage_sec_perweek</th>
+      <th>Email</th>
+      <th>Contacts</th>
+      <th>Yearly_equip_failure</th>
+      <th>Techie</th>
+      <th>Contract</th>
+      <th>Port_modem</th>
+      <th>Tablet</th>
+      <th>InternetService</th>
+      <th>Phone</th>
+      <th>Multiple</th>
+      <th>OnlineSecurity</th>
+      <th>OnlineBackup</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>Tenure</th>
+      <th>MonthlyCharge</th>
+      <th>Bandwidth_GB_Year</th>
+      <th>Responses</th>
+      <th>Fixes</th>
+      <th>Replacements</th>
+      <th>Reliability</th>
+      <th>Options</th>
+      <th>Respectful</th>
+      <th>Courteous</th>
+      <th>Listening</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>K409198</td>
+      <td>aa90260b-4141-4a24-8e36-b04ce1f4f77b</td>
+      <td>Point Baker</td>
+      <td>AK</td>
+      <td>Prince of Wales-Hyder</td>
+      <td>99927</td>
+      <td>56.25100</td>
+      <td>-133.37571</td>
+      <td>38</td>
+      <td>Urban</td>
+      <td>America/Sitka</td>
+      <td>Environmental health practitioner</td>
+      <td>NaN</td>
+      <td>68.0</td>
+      <td>Master's Degree</td>
+      <td>Part Time</td>
+      <td>28561.99</td>
+      <td>Widowed</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>6.972566</td>
+      <td>10</td>
+      <td>0</td>
+      <td>1</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Fiber Optic</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Credit Card (automatic)</td>
+      <td>6.795513</td>
+      <td>171.449762</td>
+      <td>904.536110</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>3</td>
+      <td>4</td>
+      <td>4</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>S120509</td>
+      <td>fb76459f-c047-4a9d-8af9-e0f7d4ac2524</td>
+      <td>West Branch</td>
+      <td>MI</td>
+      <td>Ogemaw</td>
+      <td>48661</td>
+      <td>44.32893</td>
+      <td>-84.24080</td>
+      <td>10446</td>
+      <td>Urban</td>
+      <td>America/Detroit</td>
+      <td>Programmer, multimedia</td>
+      <td>1.0</td>
+      <td>27.0</td>
+      <td>Regular High School Diploma</td>
+      <td>Retired</td>
+      <td>21704.77</td>
+      <td>Married</td>
+      <td>Female</td>
+      <td>Yes</td>
+      <td>12.014541</td>
+      <td>12</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Yes</td>
+      <td>Month-to-month</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Fiber Optic</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Bank Transfer(automatic)</td>
+      <td>1.156681</td>
+      <td>242.948015</td>
+      <td>800.982766</td>
+      <td>3</td>
+      <td>4</td>
+      <td>3</td>
+      <td>3</td>
+      <td>4</td>
+      <td>3</td>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>K191035</td>
+      <td>344d114c-3736-4be5-98f7-c72c281e2d35</td>
+      <td>Yamhill</td>
+      <td>OR</td>
+      <td>Yamhill</td>
+      <td>97148</td>
+      <td>45.35589</td>
+      <td>-123.24657</td>
+      <td>3735</td>
+      <td>Urban</td>
+      <td>America/Los_Angeles</td>
+      <td>Chief Financial Officer</td>
+      <td>4.0</td>
+      <td>50.0</td>
+      <td>Regular High School Diploma</td>
+      <td>Student</td>
+      <td>NaN</td>
+      <td>Widowed</td>
+      <td>Female</td>
+      <td>No</td>
+      <td>10.245616</td>
+      <td>9</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Yes</td>
+      <td>Two Year</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Credit Card (automatic)</td>
+      <td>15.754144</td>
+      <td>159.440398</td>
+      <td>2054.706961</td>
+      <td>4</td>
+      <td>4</td>
+      <td>2</td>
+      <td>4</td>
+      <td>4</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>D90850</td>
+      <td>abfa2b40-2d43-4994-b15a-989b8c79e311</td>
+      <td>Del Mar</td>
+      <td>CA</td>
+      <td>San Diego</td>
+      <td>92014</td>
+      <td>32.96687</td>
+      <td>-117.24798</td>
+      <td>13863</td>
+      <td>Suburban</td>
+      <td>America/Los_Angeles</td>
+      <td>Solicitor</td>
+      <td>1.0</td>
+      <td>48.0</td>
+      <td>Doctorate Degree</td>
+      <td>Retired</td>
+      <td>18925.23</td>
+      <td>Married</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>15.206193</td>
+      <td>15</td>
+      <td>2</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Two Year</td>
+      <td>No</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Mailed Check</td>
+      <td>17.087227</td>
+      <td>120.249493</td>
+      <td>2164.579412</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>2</td>
+      <td>5</td>
+      <td>4</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>K662701</td>
+      <td>68a861fd-0d20-4e51-a587-8a90407ee574</td>
+      <td>Needville</td>
+      <td>TX</td>
+      <td>Fort Bend</td>
+      <td>77461</td>
+      <td>29.38012</td>
+      <td>-95.80673</td>
+      <td>11352</td>
+      <td>Suburban</td>
+      <td>America/Chicago</td>
+      <td>Medical illustrator</td>
+      <td>0.0</td>
+      <td>83.0</td>
+      <td>Master's Degree</td>
+      <td>Student</td>
+      <td>40074.19</td>
+      <td>Separated</td>
+      <td>Male</td>
+      <td>Yes</td>
+      <td>8.960316</td>
+      <td>16</td>
+      <td>2</td>
+      <td>1</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Fiber Optic</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Mailed Check</td>
+      <td>1.670972</td>
+      <td>150.761216</td>
+      <td>271.493436</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>3</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display number of records in dataset</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>10000</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Find number of records and columns of dataset</span>
+<span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(10000, 51)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Describe Churn dataset statistics</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
       <th>CaseOrder</th>
       <th>Zip</th>
       <th>Lat</th>
@@ -17133,23 +18283,25 @@ Independent variables or predictors that may lead to identifying a relationship 
       <th>Age</th>
       <th>Income</th>
       <th>Outage_sec_perweek</th>
-      <th>...</th>
+      <th>Email</th>
+      <th>Contacts</th>
+      <th>Yearly_equip_failure</th>
+      <th>Tenure</th>
       <th>MonthlyCharge</th>
       <th>Bandwidth_GB_Year</th>
-      <th>item1</th>
-      <th>item2</th>
-      <th>item3</th>
-      <th>item4</th>
-      <th>item5</th>
-      <th>item6</th>
-      <th>item7</th>
-      <th>item8</th>
+      <th>Responses</th>
+      <th>Fixes</th>
+      <th>Replacements</th>
+      <th>Reliability</th>
+      <th>Options</th>
+      <th>Respectful</th>
+      <th>Courteous</th>
+      <th>Listening</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>count</th>
-      <td>10000.00000</td>
       <td>10000.00000</td>
       <td>10000.000000</td>
       <td>10000.000000</td>
@@ -17159,7 +18311,10 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>7525.000000</td>
       <td>7510.000000</td>
       <td>10000.000000</td>
-      <td>...</td>
+      <td>10000.000000</td>
+      <td>10000.000000</td>
+      <td>10000.000000</td>
+      <td>9069.000000</td>
       <td>10000.000000</td>
       <td>8979.000000</td>
       <td>10000.000000</td>
@@ -17174,7 +18329,6 @@ Independent variables or predictors that may lead to identifying a relationship 
     <tr>
       <th>mean</th>
       <td>5000.50000</td>
-      <td>5000.50000</td>
       <td>49153.319600</td>
       <td>38.757567</td>
       <td>-90.782536</td>
@@ -17183,7 +18337,10 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>53.275748</td>
       <td>39936.762226</td>
       <td>11.452955</td>
-      <td>...</td>
+      <td>12.016000</td>
+      <td>0.994200</td>
+      <td>0.398000</td>
+      <td>34.498858</td>
       <td>174.076305</td>
       <td>3398.842752</td>
       <td>3.490800</td>
@@ -17198,7 +18355,6 @@ Independent variables or predictors that may lead to identifying a relationship 
     <tr>
       <th>std</th>
       <td>2886.89568</td>
-      <td>2886.89568</td>
       <td>27532.196108</td>
       <td>5.437389</td>
       <td>15.156142</td>
@@ -17207,7 +18363,10 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>20.753928</td>
       <td>28358.469482</td>
       <td>7.025921</td>
-      <td>...</td>
+      <td>3.025898</td>
+      <td>0.988466</td>
+      <td>0.635953</td>
+      <td>26.438904</td>
       <td>43.335473</td>
       <td>2187.396807</td>
       <td>1.037797</td>
@@ -17222,7 +18381,6 @@ Independent variables or predictors that may lead to identifying a relationship 
     <tr>
       <th>min</th>
       <td>1.00000</td>
-      <td>1.00000</td>
       <td>601.000000</td>
       <td>17.966120</td>
       <td>-171.688150</td>
@@ -17231,7 +18389,10 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>18.000000</td>
       <td>740.660000</td>
       <td>-1.348571</td>
-      <td>...</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000259</td>
       <td>77.505230</td>
       <td>155.506715</td>
       <td>1.000000</td>
@@ -17246,7 +18407,6 @@ Independent variables or predictors that may lead to identifying a relationship 
     <tr>
       <th>25%</th>
       <td>2500.75000</td>
-      <td>2500.75000</td>
       <td>26292.500000</td>
       <td>35.341828</td>
       <td>-97.082813</td>
@@ -17255,7 +18415,10 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>35.000000</td>
       <td>19285.522500</td>
       <td>8.054362</td>
-      <td>...</td>
+      <td>10.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>7.890442</td>
       <td>141.071078</td>
       <td>1234.110529</td>
       <td>3.000000</td>
@@ -17270,7 +18433,6 @@ Independent variables or predictors that may lead to identifying a relationship 
     <tr>
       <th>50%</th>
       <td>5000.50000</td>
-      <td>5000.50000</td>
       <td>48869.500000</td>
       <td>39.395800</td>
       <td>-87.918800</td>
@@ -17279,7 +18441,10 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>53.000000</td>
       <td>33186.785000</td>
       <td>10.202896</td>
-      <td>...</td>
+      <td>12.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>36.196030</td>
       <td>169.915400</td>
       <td>3382.424000</td>
       <td>3.000000</td>
@@ -17294,7 +18459,6 @@ Independent variables or predictors that may lead to identifying a relationship 
     <tr>
       <th>75%</th>
       <td>7500.25000</td>
-      <td>7500.25000</td>
       <td>71866.500000</td>
       <td>42.106908</td>
       <td>-80.088745</td>
@@ -17303,7 +18467,10 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>71.000000</td>
       <td>53472.395000</td>
       <td>12.487644</td>
-      <td>...</td>
+      <td>14.000000</td>
+      <td>2.000000</td>
+      <td>1.000000</td>
+      <td>61.426670</td>
       <td>203.777441</td>
       <td>5587.096500</td>
       <td>4.000000</td>
@@ -17318,7 +18485,6 @@ Independent variables or predictors that may lead to identifying a relationship 
     <tr>
       <th>max</th>
       <td>10000.00000</td>
-      <td>10000.00000</td>
       <td>99929.000000</td>
       <td>70.640660</td>
       <td>-65.667850</td>
@@ -17327,7 +18493,10 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>89.000000</td>
       <td>258900.700000</td>
       <td>47.049280</td>
-      <td>...</td>
+      <td>23.000000</td>
+      <td>7.000000</td>
+      <td>6.000000</td>
+      <td>71.999280</td>
       <td>315.878600</td>
       <td>7158.982000</td>
       <td>7.000000</td>
@@ -17341,7 +18510,6 @@ Independent variables or predictors that may lead to identifying a relationship 
     </tr>
   </tbody>
 </table>
-<p>8 rows × 24 columns</p>
 </div>
 </div>
 
@@ -17353,11 +18521,12 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># List of Dataframe Columns</span>
-<span class="n">churn_df</span><span class="o">.</span><span class="n">columns</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Remove less meaningful variables from statistics description</span>
+<span class="n">df_stats</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;CaseOrder&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">,</span> <span class="s1">&#39;Lat&#39;</span><span class="p">,</span> <span class="s1">&#39;Lng&#39;</span><span class="p">])</span>
+<span class="n">df_stats</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -17370,23 +18539,230 @@ Independent variables or predictors that may lead to identifying a relationship 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[32]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<div class="output_text output_subarea output_execute_result">
-<pre>Index([&#39;Unnamed: 0&#39;, &#39;CaseOrder&#39;, &#39;Customer_id&#39;, &#39;Interaction&#39;, &#39;City&#39;,
-       &#39;State&#39;, &#39;County&#39;, &#39;Zip&#39;, &#39;Lat&#39;, &#39;Lng&#39;, &#39;Population&#39;, &#39;Area&#39;,
-       &#39;Timezone&#39;, &#39;Job&#39;, &#39;Children&#39;, &#39;Age&#39;, &#39;Education&#39;, &#39;Employment&#39;,
-       &#39;Income&#39;, &#39;Marital&#39;, &#39;Gender&#39;, &#39;Churn&#39;, &#39;Outage_sec_perweek&#39;, &#39;Email&#39;,
-       &#39;Contacts&#39;, &#39;Yearly_equip_failure&#39;, &#39;Techie&#39;, &#39;Contract&#39;, &#39;Port_modem&#39;,
-       &#39;Tablet&#39;, &#39;InternetService&#39;, &#39;Phone&#39;, &#39;Multiple&#39;, &#39;OnlineSecurity&#39;,
-       &#39;OnlineBackup&#39;, &#39;DeviceProtection&#39;, &#39;TechSupport&#39;, &#39;StreamingTV&#39;,
-       &#39;StreamingMovies&#39;, &#39;PaperlessBilling&#39;, &#39;PaymentMethod&#39;, &#39;Tenure&#39;,
-       &#39;MonthlyCharge&#39;, &#39;Bandwidth_GB_Year&#39;, &#39;item1&#39;, &#39;item2&#39;, &#39;item3&#39;,
-       &#39;item4&#39;, &#39;item5&#39;, &#39;item6&#39;, &#39;item7&#39;, &#39;item8&#39;],
-      dtype=&#39;object&#39;)</pre>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>Children</th>
+      <th>Age</th>
+      <th>Income</th>
+      <th>Outage_sec_perweek</th>
+      <th>Email</th>
+      <th>Contacts</th>
+      <th>Yearly_equip_failure</th>
+      <th>Tenure</th>
+      <th>MonthlyCharge</th>
+      <th>Bandwidth_GB_Year</th>
+      <th>Responses</th>
+      <th>Fixes</th>
+      <th>Replacements</th>
+      <th>Reliability</th>
+      <th>Options</th>
+      <th>Respectful</th>
+      <th>Courteous</th>
+      <th>Listening</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>10000.000000</td>
+      <td>7505.000000</td>
+      <td>7525.000000</td>
+      <td>7510.000000</td>
+      <td>10000.000000</td>
+      <td>10000.000000</td>
+      <td>10000.000000</td>
+      <td>10000.000000</td>
+      <td>9069.000000</td>
+      <td>10000.000000</td>
+      <td>8979.000000</td>
+      <td>10000.000000</td>
+      <td>10000.000000</td>
+      <td>10000.000000</td>
+      <td>10000.000000</td>
+      <td>10000.000000</td>
+      <td>10000.000000</td>
+      <td>10000.000000</td>
+      <td>10000.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>9756.562400</td>
+      <td>2.095936</td>
+      <td>53.275748</td>
+      <td>39936.762226</td>
+      <td>11.452955</td>
+      <td>12.016000</td>
+      <td>0.994200</td>
+      <td>0.398000</td>
+      <td>34.498858</td>
+      <td>174.076305</td>
+      <td>3398.842752</td>
+      <td>3.490800</td>
+      <td>3.505100</td>
+      <td>3.487000</td>
+      <td>3.497500</td>
+      <td>3.492900</td>
+      <td>3.497300</td>
+      <td>3.509500</td>
+      <td>3.495600</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>14432.698671</td>
+      <td>2.154758</td>
+      <td>20.753928</td>
+      <td>28358.469482</td>
+      <td>7.025921</td>
+      <td>3.025898</td>
+      <td>0.988466</td>
+      <td>0.635953</td>
+      <td>26.438904</td>
+      <td>43.335473</td>
+      <td>2187.396807</td>
+      <td>1.037797</td>
+      <td>1.034641</td>
+      <td>1.027977</td>
+      <td>1.025816</td>
+      <td>1.024819</td>
+      <td>1.033586</td>
+      <td>1.028502</td>
+      <td>1.028633</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>18.000000</td>
+      <td>740.660000</td>
+      <td>-1.348571</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000259</td>
+      <td>77.505230</td>
+      <td>155.506715</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>738.000000</td>
+      <td>0.000000</td>
+      <td>35.000000</td>
+      <td>19285.522500</td>
+      <td>8.054362</td>
+      <td>10.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>7.890442</td>
+      <td>141.071078</td>
+      <td>1234.110529</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>2910.500000</td>
+      <td>1.000000</td>
+      <td>53.000000</td>
+      <td>33186.785000</td>
+      <td>10.202896</td>
+      <td>12.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>36.196030</td>
+      <td>169.915400</td>
+      <td>3382.424000</td>
+      <td>3.000000</td>
+      <td>4.000000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+      <td>4.000000</td>
+      <td>3.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>13168.000000</td>
+      <td>3.000000</td>
+      <td>71.000000</td>
+      <td>53472.395000</td>
+      <td>12.487644</td>
+      <td>14.000000</td>
+      <td>2.000000</td>
+      <td>1.000000</td>
+      <td>61.426670</td>
+      <td>203.777441</td>
+      <td>5587.096500</td>
+      <td>4.000000</td>
+      <td>4.000000</td>
+      <td>4.000000</td>
+      <td>4.000000</td>
+      <td>4.000000</td>
+      <td>4.000000</td>
+      <td>4.000000</td>
+      <td>4.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>111850.000000</td>
+      <td>10.000000</td>
+      <td>89.000000</td>
+      <td>258900.700000</td>
+      <td>47.049280</td>
+      <td>23.000000</td>
+      <td>7.000000</td>
+      <td>6.000000</td>
+      <td>71.999280</td>
+      <td>315.878600</td>
+      <td>7158.982000</td>
+      <td>7.000000</td>
+      <td>7.000000</td>
+      <td>8.000000</td>
+      <td>7.000000</td>
+      <td>7.000000</td>
+      <td>8.000000</td>
+      <td>7.000000</td>
+      <td>8.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>
 
 </div>
@@ -17397,10 +18773,11 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">churn_df</span><span class="o">.</span><span class="n">index</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate Churn Rate</span>
+<span class="n">df</span><span class="o">.</span><span class="n">Churn</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -17413,13 +18790,15 @@ Independent variables or predictors that may lead to identifying a relationship 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[33]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>RangeIndex(start=0, stop=10000, step=1)</pre>
+<pre>No     0.735
+Yes    0.265
+Name: Churn, dtype: float64</pre>
 </div>
 
 </div>
@@ -17430,10 +18809,11 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">churn_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Review data types (numerical =&gt; &quot;int64&quot; &amp; &quot;float64&quot;; &amp; categorical =&gt; &quot;object&quot;) in data set</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
 </pre></div>
 
     </div>
@@ -17446,65 +18826,64 @@ Independent variables or predictors that may lead to identifying a relationship 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[34]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>Unnamed: 0                                                 1
-CaseOrder                                                  1
-Customer_id                                          K409198
-Interaction             aa90260b-4141-4a24-8e36-b04ce1f4f77b
-City                                             Point Baker
-State                                                     AK
-County                                 Prince of Wales-Hyder
-Zip                                                    99927
-Lat                                                   56.251
-Lng                                                 -133.376
-Population                                                38
-Area                                                   Urban
-Timezone                                       America/Sitka
-Job                        Environmental health practitioner
-Children                                                 NaN
-Age                                                       68
-Education                                    Master&#39;s Degree
-Employment                                         Part Time
-Income                                                 28562
-Marital                                              Widowed
-Gender                                                  Male
-Churn                                                     No
-Outage_sec_perweek                                   6.97257
-Email                                                     10
-Contacts                                                   0
-Yearly_equip_failure                                       1
-Techie                                                    No
-Contract                                            One year
-Port_modem                                               Yes
-Tablet                                                   Yes
-InternetService                                  Fiber Optic
-Phone                                                    Yes
-Multiple                                                  No
-OnlineSecurity                                           Yes
-OnlineBackup                                             Yes
-DeviceProtection                                          No
-TechSupport                                               No
-StreamingTV                                               No
-StreamingMovies                                          Yes
-PaperlessBilling                                         Yes
-PaymentMethod                        Credit Card (automatic)
-Tenure                                               6.79551
-MonthlyCharge                                         171.45
-Bandwidth_GB_Year                                    904.536
-item1                                                      5
-item2                                                      5
-item3                                                      5
-item4                                                      3
-item5                                                      4
-item6                                                      4
-item7                                                      3
-item8                                                      4
-Name: 0, dtype: object</pre>
+<pre>CaseOrder                 int64
+Customer_id              object
+Interaction              object
+City                     object
+State                    object
+County                   object
+Zip                       int64
+Lat                     float64
+Lng                     float64
+Population                int64
+Area                     object
+Timezone                 object
+Job                      object
+Children                float64
+Age                     float64
+Education                object
+Employment               object
+Income                  float64
+Marital                  object
+Gender                   object
+Churn                    object
+Outage_sec_perweek      float64
+Email                     int64
+Contacts                  int64
+Yearly_equip_failure      int64
+Techie                   object
+Contract                 object
+Port_modem               object
+Tablet                   object
+InternetService          object
+Phone                    object
+Multiple                 object
+OnlineSecurity           object
+OnlineBackup             object
+DeviceProtection         object
+TechSupport              object
+StreamingTV              object
+StreamingMovies          object
+PaperlessBilling         object
+PaymentMethod            object
+Tenure                  float64
+MonthlyCharge           float64
+Bandwidth_GB_Year       float64
+Responses                 int64
+Fixes                     int64
+Replacements              int64
+Reliability               int64
+Options                   int64
+Respectful                int64
+Courteous                 int64
+Listening                 int64
+dtype: object</pre>
 </div>
 
 </div>
@@ -17515,10 +18894,58 @@ Name: 0, dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">churn_df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Re-validate column data types and missing values</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_series</span><span class="p">()</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span><span class="o">.</span><span class="n">groups</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[19]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{dtype(&#39;int64&#39;): Index([&#39;CaseOrder&#39;, &#39;Zip&#39;, &#39;Population&#39;, &#39;Email&#39;, &#39;Contacts&#39;,
+        &#39;Yearly_equip_failure&#39;, &#39;Responses&#39;, &#39;Fixes&#39;, &#39;Replacements&#39;,
+        &#39;Reliability&#39;, &#39;Options&#39;, &#39;Respectful&#39;, &#39;Courteous&#39;, &#39;Listening&#39;],
+       dtype=&#39;object&#39;),
+ dtype(&#39;float64&#39;): Index([&#39;Lat&#39;, &#39;Lng&#39;, &#39;Children&#39;, &#39;Age&#39;, &#39;Income&#39;, &#39;Outage_sec_perweek&#39;,
+        &#39;Tenure&#39;, &#39;MonthlyCharge&#39;, &#39;Bandwidth_GB_Year&#39;],
+       dtype=&#39;object&#39;),
+ dtype(&#39;O&#39;): Index([&#39;Customer_id&#39;, &#39;Interaction&#39;, &#39;City&#39;, &#39;State&#39;, &#39;County&#39;, &#39;Area&#39;,
+        &#39;Timezone&#39;, &#39;Job&#39;, &#39;Education&#39;, &#39;Employment&#39;, &#39;Marital&#39;, &#39;Gender&#39;,
+        &#39;Churn&#39;, &#39;Techie&#39;, &#39;Contract&#39;, &#39;Port_modem&#39;, &#39;Tablet&#39;,
+        &#39;InternetService&#39;, &#39;Phone&#39;, &#39;Multiple&#39;, &#39;OnlineSecurity&#39;,
+        &#39;OnlineBackup&#39;, &#39;DeviceProtection&#39;, &#39;TechSupport&#39;, &#39;StreamingTV&#39;,
+        &#39;StreamingMovies&#39;, &#39;PaperlessBilling&#39;, &#39;PaymentMethod&#39;],
+       dtype=&#39;object&#39;)}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display non-null fields within each columns</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -17537,63 +18964,62 @@ Name: 0, dtype: object</pre>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 10000 entries, 0 to 9999
-Data columns (total 52 columns):
+Data columns (total 51 columns):
  #   Column                Non-Null Count  Dtype  
 ---  ------                --------------  -----  
- 0   Unnamed: 0            10000 non-null  int64  
- 1   CaseOrder             10000 non-null  int64  
- 2   Customer_id           10000 non-null  object 
- 3   Interaction           10000 non-null  object 
- 4   City                  10000 non-null  object 
- 5   State                 10000 non-null  object 
- 6   County                10000 non-null  object 
- 7   Zip                   10000 non-null  int64  
- 8   Lat                   10000 non-null  float64
- 9   Lng                   10000 non-null  float64
- 10  Population            10000 non-null  int64  
- 11  Area                  10000 non-null  object 
- 12  Timezone              10000 non-null  object 
- 13  Job                   10000 non-null  object 
- 14  Children              7505 non-null   float64
- 15  Age                   7525 non-null   float64
- 16  Education             10000 non-null  object 
- 17  Employment            10000 non-null  object 
- 18  Income                7510 non-null   float64
- 19  Marital               10000 non-null  object 
- 20  Gender                10000 non-null  object 
- 21  Churn                 10000 non-null  object 
- 22  Outage_sec_perweek    10000 non-null  float64
- 23  Email                 10000 non-null  int64  
- 24  Contacts              10000 non-null  int64  
- 25  Yearly_equip_failure  10000 non-null  int64  
- 26  Techie                7523 non-null   object 
- 27  Contract              10000 non-null  object 
- 28  Port_modem            10000 non-null  object 
- 29  Tablet                10000 non-null  object 
- 30  InternetService       10000 non-null  object 
- 31  Phone                 8974 non-null   object 
- 32  Multiple              10000 non-null  object 
- 33  OnlineSecurity        10000 non-null  object 
- 34  OnlineBackup          10000 non-null  object 
- 35  DeviceProtection      10000 non-null  object 
- 36  TechSupport           9009 non-null   object 
- 37  StreamingTV           10000 non-null  object 
- 38  StreamingMovies       10000 non-null  object 
- 39  PaperlessBilling      10000 non-null  object 
- 40  PaymentMethod         10000 non-null  object 
- 41  Tenure                9069 non-null   float64
- 42  MonthlyCharge         10000 non-null  float64
- 43  Bandwidth_GB_Year     8979 non-null   float64
- 44  item1                 10000 non-null  int64  
- 45  item2                 10000 non-null  int64  
- 46  item3                 10000 non-null  int64  
- 47  item4                 10000 non-null  int64  
- 48  item5                 10000 non-null  int64  
- 49  item6                 10000 non-null  int64  
- 50  item7                 10000 non-null  int64  
- 51  item8                 10000 non-null  int64  
-dtypes: float64(9), int64(15), object(28)
-memory usage: 4.0+ MB
+ 0   CaseOrder             10000 non-null  int64  
+ 1   Customer_id           10000 non-null  object 
+ 2   Interaction           10000 non-null  object 
+ 3   City                  10000 non-null  object 
+ 4   State                 10000 non-null  object 
+ 5   County                10000 non-null  object 
+ 6   Zip                   10000 non-null  int64  
+ 7   Lat                   10000 non-null  float64
+ 8   Lng                   10000 non-null  float64
+ 9   Population            10000 non-null  int64  
+ 10  Area                  10000 non-null  object 
+ 11  Timezone              10000 non-null  object 
+ 12  Job                   10000 non-null  object 
+ 13  Children              7505 non-null   float64
+ 14  Age                   7525 non-null   float64
+ 15  Education             10000 non-null  object 
+ 16  Employment            10000 non-null  object 
+ 17  Income                7510 non-null   float64
+ 18  Marital               10000 non-null  object 
+ 19  Gender                10000 non-null  object 
+ 20  Churn                 10000 non-null  object 
+ 21  Outage_sec_perweek    10000 non-null  float64
+ 22  Email                 10000 non-null  int64  
+ 23  Contacts              10000 non-null  int64  
+ 24  Yearly_equip_failure  10000 non-null  int64  
+ 25  Techie                7523 non-null   object 
+ 26  Contract              10000 non-null  object 
+ 27  Port_modem            10000 non-null  object 
+ 28  Tablet                10000 non-null  object 
+ 29  InternetService       10000 non-null  object 
+ 30  Phone                 8974 non-null   object 
+ 31  Multiple              10000 non-null  object 
+ 32  OnlineSecurity        10000 non-null  object 
+ 33  OnlineBackup          10000 non-null  object 
+ 34  DeviceProtection      10000 non-null  object 
+ 35  TechSupport           9009 non-null   object 
+ 36  StreamingTV           10000 non-null  object 
+ 37  StreamingMovies       10000 non-null  object 
+ 38  PaperlessBilling      10000 non-null  object 
+ 39  PaymentMethod         10000 non-null  object 
+ 40  Tenure                9069 non-null   float64
+ 41  MonthlyCharge         10000 non-null  float64
+ 42  Bandwidth_GB_Year     8979 non-null   float64
+ 43  Responses             10000 non-null  int64  
+ 44  Fixes                 10000 non-null  int64  
+ 45  Replacements          10000 non-null  int64  
+ 46  Reliability           10000 non-null  int64  
+ 47  Options               10000 non-null  int64  
+ 48  Respectful            10000 non-null  int64  
+ 49  Courteous             10000 non-null  int64  
+ 50  Listening             10000 non-null  int64  
+dtypes: float64(9), int64(14), object(28)
+memory usage: 3.9+ MB
 </pre>
 </div>
 </div>
@@ -17604,10 +19030,11 @@ memory usage: 4.0+ MB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">churn_df</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Find missing values </span>
+<span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -17620,88 +19047,7 @@ memory usage: 4.0+ MB
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[36]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>10000</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Find number of records and columns of data set</span>
-<span class="n">churn_df</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[37]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(10000, 52)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Add an index field</span>
-<span class="n">churn_df</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10000</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">churn_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[39]:</div>
+    <div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -17724,7 +19070,6 @@ memory usage: 4.0+ MB
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Unnamed: 0</th>
       <th>CaseOrder</th>
       <th>Customer_id</th>
       <th>Interaction</th>
@@ -17734,23 +19079,971 @@ memory usage: 4.0+ MB
       <th>Zip</th>
       <th>Lat</th>
       <th>Lng</th>
-      <th>...</th>
+      <th>Population</th>
+      <th>Area</th>
+      <th>Timezone</th>
+      <th>Job</th>
+      <th>Children</th>
+      <th>Age</th>
+      <th>Education</th>
+      <th>Employment</th>
+      <th>Income</th>
+      <th>Marital</th>
+      <th>Gender</th>
+      <th>Churn</th>
+      <th>Outage_sec_perweek</th>
+      <th>Email</th>
+      <th>Contacts</th>
+      <th>Yearly_equip_failure</th>
+      <th>Techie</th>
+      <th>Contract</th>
+      <th>Port_modem</th>
+      <th>Tablet</th>
+      <th>InternetService</th>
+      <th>Phone</th>
+      <th>Multiple</th>
+      <th>OnlineSecurity</th>
+      <th>OnlineBackup</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>Tenure</th>
+      <th>MonthlyCharge</th>
       <th>Bandwidth_GB_Year</th>
-      <th>item1</th>
-      <th>item2</th>
-      <th>item3</th>
-      <th>item4</th>
-      <th>item5</th>
-      <th>item6</th>
-      <th>item7</th>
-      <th>item8</th>
-      <th>index</th>
+      <th>Responses</th>
+      <th>Fixes</th>
+      <th>Replacements</th>
+      <th>Reliability</th>
+      <th>Options</th>
+      <th>Respectful</th>
+      <th>Courteous</th>
+      <th>Listening</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9995</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>9996</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>9997</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>9998</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>9999</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+<p>10000 rows × 51 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Access only rows from dataframe containing missing values</span>
+<span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[22]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0        True
+1       False
+2        True
+3       False
+4       False
+        ...  
+9995     True
+9996     True
+9997     True
+9998    False
+9999     True
+Length: 10000, dtype: bool</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Woah, lots of empty fields!  Immediately noticeable as &quot;True&quot; in columns of &quot;Children&quot;, &quot;Age&quot;, &quot;Income&quot;, &quot;Techie&quot;, &quot;Phone&quot;, &quot;Tenure&quot;</span>
+<span class="c1"># Display the specific columns with NAs</span>
+<span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[23]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>CaseOrder               False
+Customer_id             False
+Interaction             False
+City                    False
+State                   False
+County                  False
+Zip                     False
+Lat                     False
+Lng                     False
+Population              False
+Area                    False
+Timezone                False
+Job                     False
+Children                 True
+Age                      True
+Education               False
+Employment              False
+Income                   True
+Marital                 False
+Gender                  False
+Churn                   False
+Outage_sec_perweek      False
+Email                   False
+Contacts                False
+Yearly_equip_failure    False
+Techie                   True
+Contract                False
+Port_modem              False
+Tablet                  False
+InternetService         False
+Phone                    True
+Multiple                False
+OnlineSecurity          False
+OnlineBackup            False
+DeviceProtection        False
+TechSupport              True
+StreamingTV             False
+StreamingMovies         False
+PaperlessBilling        False
+PaymentMethod           False
+Tenure                   True
+MonthlyCharge           False
+Bandwidth_GB_Year        True
+Responses               False
+Fixes                   False
+Replacements            False
+Reliability             False
+Options                 False
+Respectful              False
+Courteous               False
+Listening               False
+dtype: bool</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Confirm missing observations numbers</span>
+<span class="n">data_nulls</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data_nulls</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CaseOrder                  0
+Customer_id                0
+Interaction                0
+City                       0
+State                      0
+County                     0
+Zip                        0
+Lat                        0
+Lng                        0
+Population                 0
+Area                       0
+Timezone                   0
+Job                        0
+Children                2495
+Age                     2475
+Education                  0
+Employment                 0
+Income                  2490
+Marital                    0
+Gender                     0
+Churn                      0
+Outage_sec_perweek         0
+Email                      0
+Contacts                   0
+Yearly_equip_failure       0
+Techie                  2477
+Contract                   0
+Port_modem                 0
+Tablet                     0
+InternetService            0
+Phone                   1026
+Multiple                   0
+OnlineSecurity             0
+OnlineBackup               0
+DeviceProtection           0
+TechSupport              991
+StreamingTV                0
+StreamingMovies            0
+PaperlessBilling           0
+PaymentMethod              0
+Tenure                   931
+MonthlyCharge              0
+Bandwidth_GB_Year       1021
+Responses                  0
+Fixes                      0
+Replacements               0
+Reliability                0
+Options                    0
+Respectful                 0
+Courteous                  0
+Listening                  0
+dtype: int64
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Store rows with missing values in a new variable</span>
+<span class="n">rows_with_missing_values</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="n">rows_with_missing_values</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[25]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CaseOrder</th>
+      <th>Customer_id</th>
+      <th>Interaction</th>
+      <th>City</th>
+      <th>State</th>
+      <th>County</th>
+      <th>Zip</th>
+      <th>Lat</th>
+      <th>Lng</th>
+      <th>Population</th>
+      <th>Area</th>
+      <th>Timezone</th>
+      <th>Job</th>
+      <th>Children</th>
+      <th>Age</th>
+      <th>Education</th>
+      <th>Employment</th>
+      <th>Income</th>
+      <th>Marital</th>
+      <th>Gender</th>
+      <th>Churn</th>
+      <th>Outage_sec_perweek</th>
+      <th>Email</th>
+      <th>Contacts</th>
+      <th>Yearly_equip_failure</th>
+      <th>Techie</th>
+      <th>Contract</th>
+      <th>Port_modem</th>
+      <th>Tablet</th>
+      <th>InternetService</th>
+      <th>Phone</th>
+      <th>Multiple</th>
+      <th>OnlineSecurity</th>
+      <th>OnlineBackup</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>Tenure</th>
+      <th>MonthlyCharge</th>
+      <th>Bandwidth_GB_Year</th>
+      <th>Responses</th>
+      <th>Fixes</th>
+      <th>Replacements</th>
+      <th>Reliability</th>
+      <th>Options</th>
+      <th>Respectful</th>
+      <th>Courteous</th>
+      <th>Listening</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
       <td>1</td>
       <td>K409198</td>
       <td>aa90260b-4141-4a24-8e36-b04ce1f4f77b</td>
@@ -17760,7 +20053,39 @@ memory usage: 4.0+ MB
       <td>99927</td>
       <td>56.25100</td>
       <td>-133.37571</td>
-      <td>...</td>
+      <td>38</td>
+      <td>Urban</td>
+      <td>America/Sitka</td>
+      <td>Environmental health practitioner</td>
+      <td>NaN</td>
+      <td>68.0</td>
+      <td>Master's Degree</td>
+      <td>Part Time</td>
+      <td>28561.99</td>
+      <td>Widowed</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>6.972566</td>
+      <td>10</td>
+      <td>0</td>
+      <td>1</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Fiber Optic</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Credit Card (automatic)</td>
+      <td>6.795513</td>
+      <td>171.449762</td>
       <td>904.536110</td>
       <td>5</td>
       <td>5</td>
@@ -17770,35 +20095,9 @@ memory usage: 4.0+ MB
       <td>4</td>
       <td>3</td>
       <td>4</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>2</td>
-      <td>S120509</td>
-      <td>fb76459f-c047-4a9d-8af9-e0f7d4ac2524</td>
-      <td>West Branch</td>
-      <td>MI</td>
-      <td>Ogemaw</td>
-      <td>48661</td>
-      <td>44.32893</td>
-      <td>-84.24080</td>
-      <td>...</td>
-      <td>800.982766</td>
-      <td>3</td>
-      <td>4</td>
-      <td>3</td>
-      <td>3</td>
-      <td>4</td>
-      <td>3</td>
-      <td>4</td>
-      <td>4</td>
-      <td>1</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>3</td>
       <td>3</td>
       <td>K191035</td>
       <td>344d114c-3736-4be5-98f7-c72c281e2d35</td>
@@ -17808,7 +20107,39 @@ memory usage: 4.0+ MB
       <td>97148</td>
       <td>45.35589</td>
       <td>-123.24657</td>
-      <td>...</td>
+      <td>3735</td>
+      <td>Urban</td>
+      <td>America/Los_Angeles</td>
+      <td>Chief Financial Officer</td>
+      <td>4.0</td>
+      <td>50.0</td>
+      <td>Regular High School Diploma</td>
+      <td>Student</td>
+      <td>NaN</td>
+      <td>Widowed</td>
+      <td>Female</td>
+      <td>No</td>
+      <td>10.245616</td>
+      <td>9</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Yes</td>
+      <td>Two Year</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Credit Card (automatic)</td>
+      <td>15.754144</td>
+      <td>159.440398</td>
       <td>2054.706961</td>
       <td>4</td>
       <td>4</td>
@@ -17818,60 +20149,1255 @@ memory usage: 4.0+ MB
       <td>3</td>
       <td>3</td>
       <td>3</td>
-      <td>2</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>5</th>
+      <td>6</td>
+      <td>W303516</td>
+      <td>2b451d12-6c2b-4cea-a295-ba1d6bced078</td>
+      <td>Fort Valley</td>
+      <td>GA</td>
+      <td>Peach</td>
+      <td>31030</td>
+      <td>32.57032</td>
+      <td>-83.89040</td>
+      <td>17701</td>
+      <td>Urban</td>
+      <td>America/New_York</td>
+      <td>Chief Technology Officer</td>
+      <td>3.0</td>
+      <td>83.0</td>
+      <td>No Schooling Completed</td>
+      <td>Full Time</td>
+      <td>NaN</td>
+      <td>Never Married</td>
+      <td>Female</td>
+      <td>No</td>
+      <td>7.814859</td>
+      <td>15</td>
+      <td>3</td>
+      <td>1</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>None</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Electronic Check</td>
+      <td>7.000994</td>
+      <td>184.401558</td>
+      <td>1039.357983</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>2</td>
       <td>4</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>U335188</td>
+      <td>6630d501-838c-4be4-a59c-6f58c814ed6a</td>
+      <td>Pioneer</td>
+      <td>TN</td>
+      <td>Scott</td>
+      <td>37847</td>
+      <td>36.43420</td>
+      <td>-84.27892</td>
+      <td>2535</td>
+      <td>Suburban</td>
+      <td>America/New_York</td>
+      <td>Surveyor, hydrographic</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>Associate's Degree</td>
+      <td>Full Time</td>
+      <td>11467.50</td>
+      <td>Widowed</td>
+      <td>Male</td>
+      <td>Yes</td>
+      <td>11.129094</td>
+      <td>10</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Yes</td>
+      <td>Month-to-month</td>
+      <td>No</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Electronic Check</td>
+      <td>13.236774</td>
+      <td>200.064886</td>
+      <td>1907.242972</td>
+      <td>6</td>
+      <td>5</td>
+      <td>6</td>
       <td>4</td>
-      <td>D90850</td>
-      <td>abfa2b40-2d43-4994-b15a-989b8c79e311</td>
-      <td>Del Mar</td>
-      <td>CA</td>
-      <td>San Diego</td>
-      <td>92014</td>
-      <td>32.96687</td>
-      <td>-117.24798</td>
+      <td>1</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>V538685</td>
+      <td>70ddaa89-b726-49dc-9022-2d655e4c7936</td>
+      <td>Oklahoma City</td>
+      <td>OK</td>
+      <td>Oklahoma</td>
+      <td>73109</td>
+      <td>35.43313</td>
+      <td>-97.52463</td>
+      <td>23144</td>
+      <td>Suburban</td>
+      <td>America/Chicago</td>
+      <td>Sales promotion account executive</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>Bachelor's Degree</td>
+      <td>Full Time</td>
+      <td>26759.64</td>
+      <td>Married</td>
+      <td>Female</td>
+      <td>Yes</td>
+      <td>7.594838</td>
+      <td>16</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Month-to-month</td>
+      <td>No</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Mailed Check</td>
+      <td>NaN</td>
+      <td>114.754111</td>
+      <td>979.612708</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>5</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>...</th>
       <td>...</td>
-      <td>2164.579412</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9994</th>
+      <td>9995</td>
+      <td>P175475</td>
+      <td>c60df12b-a50b-4397-ae57-98381a0d3960</td>
+      <td>West Kill</td>
+      <td>NY</td>
+      <td>Greene</td>
+      <td>12492</td>
+      <td>42.18491</td>
+      <td>-74.33574</td>
+      <td>210</td>
+      <td>Urban</td>
+      <td>America/New_York</td>
+      <td>Youth worker</td>
+      <td>NaN</td>
+      <td>46.0</td>
+      <td>Professional School Degree</td>
+      <td>Full Time</td>
+      <td>56384.35</td>
+      <td>Separated</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>7.110666</td>
+      <td>14</td>
+      <td>1</td>
+      <td>0</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>No</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Credit Card (automatic)</td>
+      <td>NaN</td>
+      <td>143.687900</td>
+      <td>4945.756000</td>
+      <td>4</td>
+      <td>3</td>
       <td>4</td>
       <td>4</td>
+      <td>3</td>
+      <td>3</td>
       <td>4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>9995</th>
+      <td>9996</td>
+      <td>M324793</td>
+      <td>45deb5a2-ae04-4518-bf0b-c82db8dbe4a4</td>
+      <td>Mount Holly</td>
+      <td>VT</td>
+      <td>Rutland</td>
+      <td>5758</td>
+      <td>43.43391</td>
+      <td>-72.78734</td>
+      <td>640</td>
+      <td>Rural</td>
+      <td>America/New_York</td>
+      <td>Sport and exercise psychologist</td>
+      <td>3.0</td>
+      <td>NaN</td>
+      <td>Some College, Less than 1 Year</td>
+      <td>Retired</td>
+      <td>55723.74</td>
+      <td>Married</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>9.265392</td>
+      <td>12</td>
       <td>2</td>
-      <td>5</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>DSL</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Electronic Check</td>
+      <td>68.197130</td>
+      <td>159.828800</td>
+      <td>6511.253000</td>
+      <td>3</td>
+      <td>2</td>
+      <td>3</td>
+      <td>3</td>
       <td>4</td>
       <td>3</td>
-      <td>3</td>
+      <td>2</td>
       <td>3</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>9996</th>
+      <td>9997</td>
+      <td>D861732</td>
+      <td>6e96b921-0c09-4993-bbda-a1ac6411061a</td>
+      <td>Clarksville</td>
+      <td>TN</td>
+      <td>Montgomery</td>
+      <td>37042</td>
+      <td>36.56907</td>
+      <td>-87.41694</td>
+      <td>77168</td>
+      <td>Rural</td>
+      <td>America/Chicago</td>
+      <td>Consulting civil engineer</td>
+      <td>4.0</td>
+      <td>48.0</td>
+      <td>Regular High School Diploma</td>
+      <td>Part Time</td>
+      <td>NaN</td>
+      <td>Divorced</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>8.115849</td>
+      <td>15</td>
+      <td>2</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>Two Year</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Fiber Optic</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Electronic Check</td>
+      <td>61.040370</td>
+      <td>208.856400</td>
+      <td>5695.952000</td>
+      <td>4</td>
       <td>5</td>
       <td>5</td>
-      <td>K662701</td>
-      <td>68a861fd-0d20-4e51-a587-8a90407ee574</td>
-      <td>Needville</td>
+      <td>4</td>
+      <td>4</td>
+      <td>5</td>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>9997</th>
+      <td>9998</td>
+      <td>I243405</td>
+      <td>e8307ddf-9a01-4fff-bc59-4742e03fd24f</td>
+      <td>Mobeetie</td>
       <td>TX</td>
-      <td>Fort Bend</td>
-      <td>77461</td>
-      <td>29.38012</td>
-      <td>-95.80673</td>
-      <td>...</td>
-      <td>271.493436</td>
+      <td>Wheeler</td>
+      <td>79061</td>
+      <td>35.52039</td>
+      <td>-100.44180</td>
+      <td>406</td>
+      <td>Rural</td>
+      <td>America/Chicago</td>
+      <td>IT technical support officer</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Nursery School to 8th Grade</td>
+      <td>Full Time</td>
+      <td>NaN</td>
+      <td>Never Married</td>
+      <td>Female</td>
+      <td>No</td>
+      <td>4.837696</td>
+      <td>10</td>
+      <td>0</td>
+      <td>0</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Fiber Optic</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Bank Transfer(automatic)</td>
+      <td>NaN</td>
+      <td>168.220900</td>
+      <td>4159.306000</td>
       <td>4</td>
       <td>4</td>
       <td>4</td>
-      <td>3</td>
+      <td>4</td>
       <td>4</td>
       <td>4</td>
       <td>4</td>
       <td>5</td>
+    </tr>
+    <tr>
+      <th>9999</th>
+      <td>10000</td>
+      <td>T38070</td>
+      <td>9de5fb6e-bd33-4995-aec8-f01d0172a499</td>
+      <td>Clarkesville</td>
+      <td>GA</td>
+      <td>Habersham</td>
+      <td>30523</td>
+      <td>34.70783</td>
+      <td>-83.53648</td>
+      <td>12230</td>
+      <td>Urban</td>
+      <td>America/New_York</td>
+      <td>Personal assistant</td>
+      <td>1.0</td>
+      <td>28.0</td>
+      <td>GED or Alternative Credential</td>
+      <td>Full Time</td>
+      <td>NaN</td>
+      <td>Never Married</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>12.641760</td>
+      <td>17</td>
+      <td>1</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Fiber Optic</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Electronic Check</td>
+      <td>63.350860</td>
+      <td>218.371000</td>
+      <td>5857.586000</td>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
       <td>4</td>
+      <td>1</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 53 columns</p>
+<p>7867 rows × 51 columns</p>
 </div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Drop less meaningful columns </span>
+<span class="c1"># df_cleaned = df.drop(columns=[&#39;Customer_id&#39;, &#39;Interaction&#39;])</span>
+<span class="c1"># df_cleaned</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Examine columns for misspellings in categorical variables using unique() method</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Employment&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[27]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;Part Time&#39;, &#39;Retired&#39;, &#39;Student&#39;, &#39;Full Time&#39;, &#39;Unemployed&#39;],
+      dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[28]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;Urban&#39;, &#39;Suburban&#39;, &#39;Rural&#39;], dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Timezone&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[29]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;America/Sitka&#39;, &#39;America/Detroit&#39;, &#39;America/Los_Angeles&#39;,
+       &#39;America/Chicago&#39;, &#39;America/New_York&#39;, &#39;America/Puerto_Rico&#39;,
+       &#39;America/Denver&#39;, &#39;America/Menominee&#39;, &#39;America/Phoenix&#39;,
+       &#39;America/Indiana/Indianapolis&#39;, &#39;America/Boise&#39;,
+       &#39;America/Kentucky/Louisville&#39;, &#39;Pacific/Honolulu&#39;,
+       &#39;America/Indiana/Petersburg&#39;, &#39;America/Nome&#39;, &#39;America/Anchorage&#39;,
+       &#39;America/Indiana/Knox&#39;, &#39;America/Juneau&#39;, &#39;America/Toronto&#39;,
+       &#39;America/Indiana/Winamac&#39;, &#39;America/Indiana/Vincennes&#39;,
+       &#39;America/North_Dakota/New_Salem&#39;, &#39;America/Indiana/Tell_City&#39;,
+       &#39;America/Indiana/Marengo&#39;, &#39;America/Ojinaga&#39;], dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Job&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[30]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;Environmental health practitioner&#39;, &#39;Programmer, multimedia&#39;,
+       &#39;Chief Financial Officer&#39;, &#39;Solicitor&#39;, &#39;Medical illustrator&#39;,
+       &#39;Chief Technology Officer&#39;, &#39;Surveyor, hydrographic&#39;,
+       &#39;Sales promotion account executive&#39;,
+       &#39;Teaching laboratory technician&#39;, &#39;Museum education officer&#39;,
+       &#39;Teacher, special educational needs&#39;, &#39;Maintenance engineer&#39;,
+       &#39;Engineer, broadcasting (operations)&#39;, &#39;Learning disability nurse&#39;,
+       &#39;Automotive engineer&#39;, &#39;Amenity horticulturist&#39;,
+       &#39;Applications developer&#39;, &#39;Immunologist&#39;, &#39;Engineer, electrical&#39;,
+       &#39;Broadcast presenter&#39;, &#39;Counsellor&#39;, &#39;Geophysical data processor&#39;,
+       &#39;Designer, multimedia&#39;, &#39;Event organiser&#39;,
+       &#39;Equality and diversity officer&#39;, &#39;Psychiatrist&#39;,
+       &#39;Surveyor, commercial/residential&#39;, &#39;Civil Service administrator&#39;,
+       &#39;Radiographer, diagnostic&#39;, &#39;Air traffic controller&#39;, &#39;Dietitian&#39;,
+       &#39;Therapist, occupational&#39;, &#39;Building services engineer&#39;,
+       &#39;Information officer&#39;, &#39;Outdoor activities/education manager&#39;,
+       &#39;Market researcher&#39;, &#39;Surveyor, insurance&#39;, &#39;Office manager&#39;,
+       &#39;Editorial assistant&#39;, &#39;Customer service manager&#39;,
+       &#39;Production designer, theatre/television/film&#39;,
+       &#39;Analytical chemist&#39;, &#39;Print production planner&#39;,
+       &#39;Conservation officer, nature&#39;, &#39;Librarian, public&#39;,
+       &#39;Financial adviser&#39;, &#39;Surveyor, building&#39;,
+       &#39;Horticulturist, amenity&#39;, &#39;Diagnostic radiographer&#39;,
+       &#39;Doctor, general practice&#39;, &#39;Insurance risk surveyor&#39;,
+       &#39;Heritage manager&#39;, &#39;Legal executive&#39;, &#39;Professor Emeritus&#39;,
+       &#39;Radio producer&#39;, &#34;Barrister&#39;s clerk&#34;, &#39;Engineer, automotive&#39;,
+       &#39;Recruitment consultant&#39;, &#39;Commercial horticulturist&#39;,
+       &#39;Pharmacist, community&#39;, &#39;Forest/woodland manager&#39;,
+       &#39;Designer, graphic&#39;, &#39;Civil engineer, consulting&#39;,
+       &#39;Science writer&#39;, &#39;Health and safety inspector&#39;,
+       &#39;Administrator, Civil Service&#39;, &#39;Technical sales engineer&#39;,
+       &#39;Special educational needs teacher&#39;, &#39;Sports therapist&#39;,
+       &#39;Engineer, communications&#39;, &#39;Oceanographer&#39;, &#39;Archaeologist&#39;,
+       &#39;Personal assistant&#39;, &#39;Animal nutritionist&#39;, &#39;Hydrologist&#39;,
+       &#39;Arts development officer&#39;, &#39;Herpetologist&#39;,
+       &#39;Medical sales representative&#39;,
+       &#39;Scientist, research (physical sciences)&#39;,
+       &#39;Higher education lecturer&#39;, &#39;Nurse, adult&#39;, &#39;Chiropodist&#39;,
+       &#39;Therapeutic radiographer&#39;, &#39;Designer, television/film set&#39;,
+       &#39;Education officer, environmental&#39;, &#39;Colour technologist&#39;,
+       &#39;Academic librarian&#39;, &#39;Mudlogger&#39;, &#39;Designer, textile&#39;,
+       &#39;Chief Strategy Officer&#39;, &#39;Loss adjuster, chartered&#39;,
+       &#39;Pharmacologist&#39;, &#39;Hydrographic surveyor&#39;,
+       &#39;Engineer, manufacturing&#39;, &#39;Research scientist (medical)&#39;,
+       &#39;Wellsite geologist&#39;, &#39;Embryologist, clinical&#39;,
+       &#39;Occupational psychologist&#39;, &#39;Sales professional, IT&#39;,
+       &#39;Advertising copywriter&#39;, &#39;Radiographer, therapeutic&#39;,
+       &#39;English as a second language teacher&#39;, &#39;Occupational therapist&#39;,
+       &#39;Armed forces logistics/support/administrative officer&#39;,
+       &#39;Technical author&#39;, &#39;Regulatory affairs officer&#39;,
+       &#39;Optician, dispensing&#39;, &#39;Theme park manager&#39;, &#39;IT trainer&#39;,
+       &#39;Contracting civil engineer&#39;, &#39;Psychologist, sport and exercise&#39;,
+       &#39;Manufacturing engineer&#39;, &#39;Musician&#39;,
+       &#39;Senior tax professional/tax inspector&#39;, &#39;Engineer, biomedical&#39;,
+       &#39;Facilities manager&#39;, &#39;Osteopath&#39;, &#39;Corporate investment banker&#39;,
+       &#39;Psychotherapist&#39;, &#39;Copywriter, advertising&#39;,
+       &#39;Horticultural consultant&#39;, &#39;Microbiologist&#39;,
+       &#39;Educational psychologist&#39;, &#39;Sport and exercise psychologist&#39;,
+       &#39;Risk manager&#39;, &#39;Health visitor&#39;, &#39;Visual merchandiser&#39;,
+       &#39;Clinical biochemist&#39;, &#39;Water quality scientist&#39;, &#39;Optometrist&#39;,
+       &#39;Petroleum engineer&#39;, &#39;Building control surveyor&#39;,
+       &#39;Financial planner&#39;, &#39;Theatre director&#39;, &#39;Secretary, company&#39;,
+       &#39;Materials engineer&#39;, &#39;Civil Service fast streamer&#39;,
+       &#39;Health service manager&#39;, &#39;Scientist, forensic&#39;,
+       &#39;Immigration officer&#39;, &#39;Dealer&#39;,
+       &#39;Planning and development surveyor&#39;, &#39;Broadcast engineer&#39;,
+       &#39;Local government officer&#39;, &#39;Nature conservation officer&#39;,
+       &#39;Private music teacher&#39;, &#39;Geologist, wellsite&#39;, &#39;Gaffer&#39;,
+       &#39;Curator&#39;, &#39;Editor, commissioning&#39;, &#39;Barrister&#39;, &#39;TEFL teacher&#39;,
+       &#39;Public relations account executive&#39;, &#39;Audiological scientist&#39;,
+       &#39;Travel agency manager&#39;, &#39;Land&#39;, &#39;Music therapist&#39;,
+       &#39;Librarian, academic&#39;, &#39;Film/video editor&#39;,
+       &#39;Journalist, broadcasting&#39;, &#39;Waste management officer&#39;,
+       &#39;Scientist, water quality&#39;, &#39;Sub&#39;, &#39;Neurosurgeon&#39;,
+       &#39;Scientist, research (maths)&#39;, &#39;Public house manager&#39;,
+       &#39;Building surveyor&#39;, &#39;Animator&#39;,
+       &#39;Production assistant, television&#39;, &#39;Transport planner&#39;,
+       &#39;Geneticist, molecular&#39;, &#39;Merchant navy officer&#39;,
+       &#39;Research scientist (life sciences)&#39;,
+       &#39;Engineer, building services&#39;, &#39;Solicitor, Scotland&#39;,
+       &#39;Hospital pharmacist&#39;, &#39;Engineer, petroleum&#39;, &#39;Oncologist&#39;,
+       &#39;IT technical support officer&#39;, &#39;Site engineer&#39;,
+       &#39;Early years teacher&#39;, &#39;Plant breeder/geneticist&#39;,
+       &#39;Chartered management accountant&#39;,
+       &#39;Runner, broadcasting/film/video&#39;, &#39;Newspaper journalist&#39;,
+       &#39;Naval architect&#39;, &#39;Agricultural engineer&#39;, &#39;Meteorologist&#39;,
+       &#39;Designer, ceramics/pottery&#39;, &#39;Environmental education officer&#39;,
+       &#39;Textile designer&#39;, &#39;Engineer, materials&#39;, &#39;Magazine journalist&#39;,
+       &#39;Conference centre manager&#39;, &#39;Dance movement psychotherapist&#39;,
+       &#39;Warden/ranger&#39;, &#39;Teacher, English as a foreign language&#39;,
+       &#39;Producer, television/film/video&#39;, &#39;Make&#39;, &#39;Pharmacist, hospital&#39;,
+       &#39;Therapist, horticultural&#39;, &#39;Journalist, newspaper&#39;,
+       &#39;Retail merchandiser&#39;, &#39;Nurse, mental health&#39;, &#39;Chief of Staff&#39;,
+       &#39;Systems analyst&#39;, &#39;Electronics engineer&#39;, &#39;Quantity surveyor&#39;,
+       &#39;Minerals surveyor&#39;, &#39;Scientist, research (life sciences)&#39;,
+       &#39;Archivist&#39;, &#39;Brewing technologist&#39;,
+       &#39;Investment banker, operational&#39;,
+       &#39;Accountant, chartered certified&#39;, &#39;Surveyor, minerals&#39;,
+       &#39;Hospital doctor&#39;, &#39;Theatre stage manager&#39;,
+       &#39;Operational researcher&#39;, &#39;Tax inspector&#39;,
+       &#39;Television camera operator&#39;, &#39;Arts administrator&#39;,
+       &#39;Patent attorney&#39;, &#39;Bonds trader&#39;, &#39;Ship broker&#39;,
+       &#39;Furniture conservator/restorer&#39;, &#39;Media planner&#39;,
+       &#39;Radio broadcast assistant&#39;, &#39;Mental health nurse&#39;,
+       &#39;Purchasing manager&#39;, &#39;Scientist, biomedical&#39;, &#39;Photographer&#39;,
+       &#39;Sports coach&#39;, &#39;Environmental manager&#39;, &#39;Estate agent&#39;,
+       &#39;Public librarian&#39;, &#39;Designer, blown glass/stained glass&#39;,
+       &#39;Occupational hygienist&#39;, &#39;Surgeon&#39;, &#39;Youth worker&#39;,
+       &#39;Hotel manager&#39;, &#39;Programmer, systems&#39;, &#34;Politician&#39;s assistant&#34;,
+       &#39;Social researcher&#39;, &#39;Publishing copy&#39;, &#39;Tax adviser&#39;,
+       &#39;Quarry manager&#39;, &#39;Buyer, industrial&#39;, &#39;Production manager&#39;,
+       &#39;Police officer&#39;, &#39;Theatre manager&#39;, &#39;Sports administrator&#39;,
+       &#39;Research scientist (maths)&#39;, &#39;Therapist, music&#39;, &#39;Soil scientist&#39;,
+       &#39;Holiday representative&#39;, &#39;Producer, radio&#39;,
+       &#39;Intelligence analyst&#39;, &#39;Geochemist&#39;, &#39;Probation officer&#39;,
+       &#39;Fish farm manager&#39;, &#39;Chartered accountant&#39;, &#39;Architect&#39;,
+       &#39;Psychiatric nurse&#39;, &#39;Farm manager&#39;, &#39;Geoscientist&#39;,
+       &#39;Lecturer, further education&#39;, &#39;Horticulturist, commercial&#39;,
+       &#39;Surveyor, quantity&#39;, &#39;Clothing/textile technologist&#39;,
+       &#39;Technical brewer&#39;, &#39;Landscape architect&#39;,
+       &#39;Information systems manager&#39;, &#39;Sales executive&#39;,
+       &#39;Exercise physiologist&#39;, &#39;Administrator, arts&#39;, &#39;Careers adviser&#39;,
+       &#39;Lobbyist&#39;, &#39;Claims inspector/assessor&#39;, &#39;Recycling officer&#39;,
+       &#39;Product/process development scientist&#39;, &#39;Paramedic&#39;,
+       &#39;Fine artist&#39;, &#39;Teacher, secondary school&#39;,
+       &#39;Data processing manager&#39;, &#39;Government social research officer&#39;,
+       &#39;Product manager&#39;, &#39;Accounting technician&#39;, &#39;Engineer, land&#39;,
+       &#39;Lawyer&#39;, &#39;Restaurant manager&#39;, &#39;Catering manager&#39;, &#39;Contractor&#39;,
+       &#39;Research officer, government&#39;, &#39;Medical secretary&#39;, &#39;Podiatrist&#39;,
+       &#39;Phytotherapist&#39;, &#39;Surveyor, building control&#39;, &#39;Comptroller&#39;,
+       &#39;Lighting technician, broadcasting/film/video&#39;, &#39;Paediatric nurse&#39;,
+       &#39;Designer, furniture&#39;, &#39;Adult guidance worker&#39;,
+       &#39;Clinical molecular geneticist&#39;, &#39;Games developer&#39;, &#39;Metallurgist&#39;,
+       &#39;Armed forces technical officer&#39;, &#39;Risk analyst&#39;,
+       &#39;Careers information officer&#39;, &#39;Garment/textile technologist&#39;,
+       &#39;Multimedia specialist&#39;, &#39;Trade union research officer&#39;,
+       &#39;Museum/gallery exhibitions officer&#39;,
+       &#39;Armed forces operational officer&#39;, &#39;Air broker&#39;,
+       &#39;Mechanical engineer&#39;, &#39;Ceramics designer&#39;, &#39;Airline pilot&#39;,
+       &#39;Trading standards officer&#39;, &#39;Advice worker&#39;, &#39;Music tutor&#39;,
+       &#39;Leisure centre manager&#39;, &#39;Surveyor, rural practice&#39;,
+       &#39;Scientist, physiological&#39;, &#39;Fisheries officer&#39;,
+       &#39;Research officer, trade union&#39;, &#39;Licensed conveyancer&#39;,
+       &#34;Nurse, children&#39;s&#34;, &#39;Museum/gallery curator&#39;,
+       &#39;Psychologist, occupational&#39;, &#39;Astronomer&#39;, &#39;Therapist, drama&#39;,
+       &#39;Therapist, speech and language&#39;, &#39;Surveyor, land/geomatics&#39;,
+       &#39;Production assistant, radio&#39;, &#39;Human resources officer&#39;,
+       &#39;Fast food restaurant manager&#39;, &#39;Orthoptist&#39;,
+       &#39;Public relations officer&#39;, &#39;Bookseller&#39;,
+       &#39;Health and safety adviser&#39;, &#39;Clinical cytogeneticist&#39;,
+       &#39;Ergonomist&#39;, &#39;Psychologist, prison and probation services&#39;,
+       &#39;Actuary&#39;,
+       &#39;Scientist, clinical (histocompatibility and immunogenetics)&#39;,
+       &#39;Community development worker&#39;, &#39;Consulting civil engineer&#39;,
+       &#39;Television production assistant&#39;, &#39;Veterinary surgeon&#39;,
+       &#39;Teacher, adult education&#39;, &#39;Civil engineer, contracting&#39;,
+       &#39;Architectural technologist&#39;, &#39;Volunteer coordinator&#39;,
+       &#39;Primary school teacher&#39;, &#39;Insurance underwriter&#39;,
+       &#39;Research officer, political party&#39;,
+       &#39;Radiation protection practitioner&#39;, &#39;Psychotherapist, child&#39;,
+       &#39;Interior and spatial designer&#39;, &#39;Therapist, nutritional&#39;,
+       &#39;Jewellery designer&#39;, &#39;Press sub&#39;,
+       &#39;Clinical scientist, histocompatibility and immunogenetics&#39;,
+       &#39;Administrator, sports&#39;, &#39;Insurance account manager&#39;,
+       &#39;Museum/gallery conservator&#39;, &#39;Furniture designer&#39;,
+       &#39;Haematologist&#39;, &#39;Associate Professor&#39;, &#39;Physicist, medical&#39;,
+       &#39;Pathologist&#39;, &#39;Chartered public finance accountant&#39;, &#39;Printmaker&#39;,
+       &#39;Surveyor, mining&#39;, &#39;Chief Marketing Officer&#39;,
+       &#39;General practice doctor&#39;, &#39;Chemical engineer&#39;,
+       &#39;Forensic scientist&#39;, &#39;Marketing executive&#39;, &#39;Art gallery manager&#39;,
+       &#39;Therapist, sports&#39;, &#39;Insurance claims handler&#39;,
+       &#39;Secondary school teacher&#39;,
+       &#39;Development worker, international aid&#39;, &#39;Quality manager&#39;,
+       &#39;Conservator, furniture&#39;, &#39;Tour manager&#39;,
+       &#39;Control and instrumentation engineer&#39;, &#39;Adult nurse&#39;,
+       &#39;Diplomatic Services operational officer&#39;, &#39;Cartographer&#39;,
+       &#39;Chiropractor&#39;, &#39;Land/geomatics surveyor&#39;, &#39;Statistician&#39;,
+       &#39;Financial trader&#39;, &#39;Special effects artist&#39;,
+       &#39;Clinical psychologist&#39;, &#39;Further education lecturer&#39;,
+       &#39;Engineer, water&#39;, &#39;Energy manager&#39;, &#39;Education administrator&#39;,
+       &#39;Art therapist&#39;, &#39;Television floor manager&#39;, &#39;Legal secretary&#39;,
+       &#39;Merchandiser, retail&#39;, &#39;Web designer&#39;,
+       &#39;Nurse, learning disability&#39;,
+       &#39;International aid/development worker&#39;, &#39;Warehouse manager&#39;,
+       &#39;Engineer, mining&#39;, &#39;Exhibition designer&#39;,
+       &#39;Administrator, local government&#39;, &#39;Water engineer&#39;,
+       &#39;Physiotherapist&#39;, &#39;Engineer, electronics&#39;, &#39;Equities trader&#39;,
+       &#39;Telecommunications researcher&#39;, &#39;Hydrogeologist&#39;,
+       &#39;Community education officer&#39;, &#39;Engineer, energy&#39;,
+       &#39;Scientist, audiological&#39;, &#39;Patent examiner&#39;, &#39;Retail manager&#39;,
+       &#39;Engineer, aeronautical&#39;, &#39;Engineer, site&#39;,
+       &#39;Engineer, civil (contracting)&#39;, &#39;Proofreader&#39;,
+       &#39;Scientist, marine&#39;, &#39;Speech and language therapist&#39;,
+       &#39;IT sales professional&#39;, &#39;Buyer, retail&#39;, &#39;Network engineer&#39;,
+       &#39;Commercial art gallery manager&#39;,
+       &#39;Chartered legal executive (England and Wales)&#39;,
+       &#39;Presenter, broadcasting&#39;, &#39;Surveyor, planning and development&#39;,
+       &#39;Research scientist (physical sciences)&#39;, &#39;Commissioning editor&#39;,
+       &#39;Operational investment banker&#39;, &#39;Seismic interpreter&#39;,
+       &#39;Charity officer&#39;, &#39;English as a foreign language teacher&#39;,
+       &#39;Scientist, research (medical)&#39;, &#39;Designer, interior/spatial&#39;,
+       &#39;Lexicographer&#39;, &#39;Therapist, art&#39;, &#39;Clinical embryologist&#39;,
+       &#39;Child psychotherapist&#39;, &#39;Midwife&#39;, &#39;Pensions consultant&#39;,
+       &#39;Tree surgeon&#39;, &#39;Health physicist&#39;, &#39;Artist&#39;, &#39;Company secretary&#39;,
+       &#39;Fashion designer&#39;, &#39;IT consultant&#39;, &#39;Teacher, early years/pre&#39;,
+       &#39;Geographical information systems officer&#39;,
+       &#39;Tourist information centre manager&#39;, &#39;Biomedical engineer&#39;,
+       &#39;Biomedical scientist&#39;, &#39;Financial risk analyst&#39;,
+       &#39;Multimedia programmer&#39;, &#39;Engineer, control and instrumentation&#39;,
+       &#39;Insurance broker&#39;, &#39;Drilling engineer&#39;,
+       &#39;Development worker, community&#39;, &#39;Designer, industrial/product&#39;,
+       &#39;Medical technical officer&#39;, &#39;Advertising account executive&#39;,
+       &#39;Counselling psychologist&#39;, &#39;Tourism officer&#39;, &#39;Dancer&#39;,
+       &#39;Social research officer, government&#39;, &#39;Teacher, music&#39;,
+       &#39;Translator&#39;, &#39;Race relations officer&#39;,
+       &#39;Engineer, civil (consulting)&#39;,
+       &#39;Historic buildings inspector/conservation officer&#39;,
+       &#39;Financial manager&#39;, &#39;Financial controller&#39;, &#39;Designer, jewellery&#39;,
+       &#39;Retail banker&#39;,
+       &#39;Administrator, charities/voluntary organisations&#39;,
+       &#39;Magazine features editor&#39;, &#39;Psychotherapist, dance movement&#39;,
+       &#39;Barista&#39;, &#39;Passenger transport manager&#39;, &#39;Mining engineer&#39;,
+       &#39;Administrator, education&#39;,
+       &#39;Programme researcher, broadcasting/film/video&#39;, &#39;Ranger/warden&#39;,
+       &#39;Actor&#39;, &#39;Pension scheme manager&#39;, &#39;Investment analyst&#39;,
+       &#39;Physiological scientist&#39;, &#39;Advertising art director&#39;,
+       &#39;Sports development officer&#39;, &#39;Manufacturing systems engineer&#39;,
+       &#39;Accommodation manager&#39;, &#39;Television/film/video producer&#39;,
+       &#39;Accountant, chartered&#39;, &#39;Engineer, agricultural&#39;,
+       &#39;Horticultural therapist&#39;, &#39;Economist&#39;,
+       &#39;Training and development officer&#39;, &#39;Engineer, maintenance&#39;,
+       &#39;Logistics and distribution manager&#39;, &#39;Psychologist, clinical&#39;,
+       &#39;Accountant, chartered management&#39;, &#39;Rural practice surveyor&#39;,
+       &#39;Biochemist, clinical&#39;, &#39;Set designer&#39;, &#39;Nutritional therapist&#39;,
+       &#39;Illustrator&#39;, &#39;Designer, exhibition/display&#39;,
+       &#39;Armed forces training and education officer&#39;, &#39;Location manager&#39;,
+       &#39;Charity fundraiser&#39;, &#39;Community pharmacist&#39;,
+       &#39;Geophysicist/field seismologist&#39;, &#39;Designer, fashion/clothing&#39;,
+       &#39;Computer games developer&#39;, &#39;Acupuncturist&#39;,
+       &#39;Database administrator&#39;, &#39;Stage manager&#39;, &#39;Operations geologist&#39;,
+       &#39;Marine scientist&#39;, &#39;Glass blower/designer&#39;, &#39;Corporate treasurer&#39;,
+       &#39;Ecologist&#39;, &#39;Structural engineer&#39;, &#39;Housing manager/officer&#39;,
+       &#39;Chief Operating Officer&#39;, &#39;Engineer, manufacturing systems&#39;,
+       &#39;Herbalist&#39;, &#39;Editor, film/video&#39;, &#39;Retail buyer&#39;,
+       &#39;Doctor, hospital&#39;, &#39;Prison officer&#39;, &#39;Ophthalmologist&#39;,
+       &#39;Chemist, analytical&#39;, &#39;Chartered certified accountant&#39;,
+       &#39;Industrial buyer&#39;, &#39;Video editor&#39;, &#39;Publishing rights manager&#39;,
+       &#39;Engineer, drilling&#39;, &#39;Food technologist&#39;, &#39;Arboriculturist&#39;,
+       &#39;Engineer, technical sales&#39;, &#39;Systems developer&#39;, &#39;Firefighter&#39;,
+       &#39;Education officer, museum&#39;, &#39;Media buyer&#39;, &#39;Records manager&#39;,
+       &#39;Aid worker&#39;, &#39;Pilot, airline&#39;, &#39;Advertising account planner&#39;,
+       &#39;Psychologist, counselling&#39;, &#39;Environmental consultant&#39;, &#39;Copy&#39;,
+       &#39;Trade mark attorney&#39;, &#39;Psychologist, forensic&#39;, &#39;Social worker&#39;,
+       &#39;Administrator&#39;, &#39;Agricultural consultant&#39;,
+       &#39;Education officer, community&#39;, &#39;Management consultant&#39;,
+       &#39;Field trials officer&#39;, &#39;Graphic designer&#39;,
+       &#39;Teacher, primary school&#39;, &#39;Homeopath&#39;, &#39;Cabin crew&#39;,
+       &#39;Editor, magazine features&#39;, &#39;Medical physicist&#39;,
+       &#39;Medical laboratory scientific officer&#39;, &#39;Press photographer&#39;,
+       &#39;Field seismologist&#39;, &#39;Estate manager/land agent&#39;,
+       &#39;Industrial/product designer&#39;, &#39;Software engineer&#39;,
+       &#39;Air cabin crew&#39;, &#39;Freight forwarder&#39;, &#39;Engineer, structural&#39;,
+       &#39;Fitness centre manager&#39;, &#39;Interpreter&#39;,
+       &#39;Scientific laboratory technician&#39;, &#39;Data scientist&#39;,
+       &#39;Electrical engineer&#39;, &#39;Clinical research associate&#39;,
+       &#39;Engineering geologist&#39;, &#39;Call centre manager&#39;,
+       &#39;Psychologist, educational&#39;, &#39;Conservator, museum/gallery&#39;,
+       &#39;Emergency planning/management officer&#39;, &#39;Communications engineer&#39;,
+       &#39;Conservation officer, historic buildings&#39;, &#39;Cytogeneticist&#39;,
+       &#39;Personnel officer&#39;, &#39;Dramatherapist&#39;,
+       &#39;Investment banker, corporate&#39;, &#39;Camera operator&#39;,
+       &#39;Chartered loss adjuster&#39;, &#39;Health promotion specialist&#39;,
+       &#39;Scientist, product/process development&#39;, &#39;Learning mentor&#39;,
+       &#39;Lecturer, higher education&#39;,
+       &#39;Sound technician, broadcasting/film/video&#39;,
+       &#39;Restaurant manager, fast food&#39;, &#39;Engineer, maintenance (IT)&#39;,
+       &#39;Energy engineer&#39;, &#39;Dispensing optician&#39;,
+       &#39;Chief Executive Officer&#39;, &#39;Ambulance person&#39;,
+       &#39;Public affairs consultant&#39;, &#39;Product designer&#39;,
+       &#39;Community arts worker&#39;, &#39;Higher education careers adviser&#39;,
+       &#39;Dentist&#39;, &#39;Exhibitions officer, museum/gallery&#39;, &#39;Futures trader&#39;,
+       &#39;Commercial/residential surveyor&#39;, &#39;Engineer, production&#39;,
+       &#39;Animal technologist&#39;, &#39;Banker&#39;, &#39;Programmer, applications&#39;,
+       &#39;Best boy&#39;, &#39;Secretary/administrator&#39;, &#39;Journalist, magazine&#39;,
+       &#39;Production engineer&#39;, &#39;Accountant, chartered public finance&#39;,
+       &#39;Geologist, engineering&#39;, &#39;Aeronautical engineer&#39;,
+       &#39;Engineer, chemical&#39;, &#39;Forensic psychologist&#39;,
+       &#39;Broadcast journalist&#39;, &#39;Town planner&#39;, &#39;Toxicologist&#39;, &#39;Writer&#39;],
+      dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Well then, how many unique jobs are there and will this variable help us out much?</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Job&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[31]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>639</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Children&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[32]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([nan,  1.,  4.,  0.,  3.,  2.,  7.,  5.,  9.,  6., 10.,  8.])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[33]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([68., 27., 50., 48., 83., nan, 49., 86., 23., 56., 30., 39., 63.,
+       60., 61., 52., 75., 77., 47., 70., 69., 45., 40., 82., 26., 25.,
+       66., 72., 41., 44., 43., 84., 59., 31., 51., 58., 73., 33., 42.,
+       81., 87., 54., 67., 46., 24., 20., 71., 32., 29., 80., 53., 79.,
+       65., 35., 34., 74., 55., 76., 57., 38., 78., 19., 36., 88., 62.,
+       37., 28., 22., 85., 89., 18., 21., 64.])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Examine age range</span>
+<span class="n">age_range</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">age_range</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[23.0, 25.0, 26.0, 27.0, 30.0, 31.0, 39.0, 40.0, 41.0, 43.0, 44.0, 45.0, 47.0, 48.0, 49.0, 50.0, 51.0, 52.0, 59.0, 61.0, 68.0, 83.0, nan, 18.0, 19.0, 20.0, 21.0, 22.0, 24.0, 28.0, 29.0, 32.0, 33.0, 34.0, 35.0, 36.0, 37.0, 38.0, 42.0, 46.0, 53.0, 54.0, 55.0, 56.0, 57.0, 58.0, 60.0, 62.0, 63.0, 64.0, 65.0, 66.0, 67.0, 69.0, 70.0, 71.0, 72.0, 73.0, 74.0, 75.0, 76.0, 77.0, 78.0, 79.0, 80.0, 81.0, 82.0, 84.0, 85.0, 86.0, 87.0, 88.0, 89.0]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Education&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[35]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#34;Master&#39;s Degree&#34;, &#39;Regular High School Diploma&#39;,
+       &#39;Doctorate Degree&#39;, &#39;No Schooling Completed&#39;, &#34;Associate&#39;s Degree&#34;,
+       &#34;Bachelor&#39;s Degree&#34;, &#39;Some College, Less than 1 Year&#39;,
+       &#39;GED or Alternative Credential&#39;,
+       &#39;Some College, 1 or More Years, No Degree&#39;,
+       &#39;9th Grade to 12th Grade, No Diploma&#39;,
+       &#39;Nursery School to 8th Grade&#39;, &#39;Professional School Degree&#39;],
+      dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Employment&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[36]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;Part Time&#39;, &#39;Retired&#39;, &#39;Student&#39;, &#39;Full Time&#39;, &#39;Unemployed&#39;],
+      dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[37]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;Widowed&#39;, &#39;Married&#39;, &#39;Separated&#39;, &#39;Never Married&#39;, &#39;Divorced&#39;],
+      dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[38]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;Male&#39;, &#39;Female&#39;, &#39;Prefer not to answer&#39;], dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Contract&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[39]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;One year&#39;, &#39;Month-to-month&#39;, &#39;Two Year&#39;], dtype=object)</pre>
 </div>
 
 </div>
@@ -17885,8 +21411,7 @@ memory usage: 4.0+ MB
 <div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate Churn Rate</span>
-<span class="n">churn_df</span><span class="o">.</span><span class="n">Churn</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">churn_df</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;PaymentMethod&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -17905,9 +21430,8 @@ memory usage: 4.0+ MB
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>No     0.735
-Yes    0.265
-Name: Churn, dtype: float64</pre>
+<pre>array([&#39;Credit Card (automatic)&#39;, &#39;Bank Transfer(automatic)&#39;,
+       &#39;Mailed Check&#39;, &#39;Electronic Check&#39;], dtype=object)</pre>
 </div>
 
 </div>
@@ -17915,6 +21439,412 @@ Name: Churn, dtype: float64</pre>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Check ranges of Income, Tenure, MonthlyCharge, Bandwidth_GB_Year</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Left of Bluelime tutorial here . . . .</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display any duplicate rows in the dataframe.</span>
+<span class="c1"># data_duplicates = df.loc[df.duplicated()]</span>
+<span class="c1"># print(data_duplicates)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Identify the standard deviation of every numeric column in the dataset</span>
+<span class="c1"># data_std = df.std()</span>
+<span class="c1"># print(data_std)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># data_nulls = df_short.isnull().sum()</span>
+<span class="c1"># print(data_nulls)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Impute missing fields for Income, Tenure and Bandwidth_GB_Year with median or mean</span>
+<span class="c1"># df_short[&#39;Income&#39;] = df[&#39;Income&#39;].fillna(df[&#39;Income&#39;].median())</span>
+<span class="c1"># df_short[&#39;Tenure&#39;] = df[&#39;Tenure&#39;].fillna(df[&#39;Tenure&#39;].median())</span>
+<span class="c1"># df_short[&#39;Bandwidth_GB_Year&#39;] = df[&#39;Bandwidth_GB_Year&#39;].fillna(df[&#39;Bandwidth_GB_Year&#39;].median())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># data_nulls = df_short.isnull().sum()</span>
+<span class="c1"># print(data_nulls)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="PCA-Code"><span style="color:green">PCA Code</span><a class="anchor-link" href="#PCA-Code">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Perform a PCA to identify significant features</span>
+<span class="n">churn_pca</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;churn_raw_data.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Again, rename survey columns</span>
+<span class="n">churn_pca</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;item1&#39;</span><span class="p">:</span><span class="s1">&#39;Responses&#39;</span><span class="p">,</span> 
+                    <span class="s1">&#39;item2&#39;</span><span class="p">:</span><span class="s1">&#39;Fixes&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;item3&#39;</span><span class="p">:</span><span class="s1">&#39;Replacements&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;item4&#39;</span><span class="p">:</span><span class="s1">&#39;Reliability&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;item5&#39;</span><span class="p">:</span><span class="s1">&#39;Options&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;item6&#39;</span><span class="p">:</span><span class="s1">&#39;Respectful&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;item7&#39;</span><span class="p">:</span><span class="s1">&#39;Courteous&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;item8&#39;</span><span class="p">:</span><span class="s1">&#39;Listening&#39;</span><span class="p">},</span> 
+          <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Subset dataset to exclude categorical variables</span>
+<span class="n">churn_pca</span> <span class="o">=</span> <span class="n">churn_pca</span><span class="p">[[</span><span class="s1">&#39;Population&#39;</span><span class="p">,</span><span class="s1">&#39;Children&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Income&#39;</span><span class="p">,</span> <span class="s1">&#39;Outage_sec_perweek&#39;</span><span class="p">,</span> 
+                    <span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="s1">&#39;Contacts&#39;</span><span class="p">,</span> <span class="s1">&#39;Yearly_equip_failure&#39;</span><span class="p">,</span> <span class="s1">&#39;Tenure&#39;</span><span class="p">,</span> 
+                    <span class="s1">&#39;MonthlyCharge&#39;</span><span class="p">,</span> <span class="s1">&#39;Bandwidth_GB_Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Responses&#39;</span><span class="p">,</span> <span class="s1">&#39;Fixes&#39;</span><span class="p">,</span> 
+                    <span class="s1">&#39;Replacements&#39;</span><span class="p">,</span> <span class="s1">&#39;Reliability&#39;</span><span class="p">,</span> <span class="s1">&#39;Options&#39;</span><span class="p">,</span> <span class="s1">&#39;Respectful&#39;</span><span class="p">,</span> 
+                    <span class="s1">&#39;Courteous&#39;</span><span class="p">,</span> <span class="s1">&#39;Listening&#39;</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">churn_pca</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[51]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>Children</th>
+      <th>Age</th>
+      <th>Income</th>
+      <th>Outage_sec_perweek</th>
+      <th>Email</th>
+      <th>Contacts</th>
+      <th>Yearly_equip_failure</th>
+      <th>Tenure</th>
+      <th>MonthlyCharge</th>
+      <th>Bandwidth_GB_Year</th>
+      <th>Responses</th>
+      <th>Fixes</th>
+      <th>Replacements</th>
+      <th>Reliability</th>
+      <th>Options</th>
+      <th>Respectful</th>
+      <th>Courteous</th>
+      <th>Listening</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>38</td>
+      <td>NaN</td>
+      <td>68.0</td>
+      <td>28561.99</td>
+      <td>6.972566</td>
+      <td>10</td>
+      <td>0</td>
+      <td>1</td>
+      <td>6.795513</td>
+      <td>171.449762</td>
+      <td>904.536110</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>3</td>
+      <td>4</td>
+      <td>4</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10446</td>
+      <td>1.0</td>
+      <td>27.0</td>
+      <td>21704.77</td>
+      <td>12.014541</td>
+      <td>12</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1.156681</td>
+      <td>242.948015</td>
+      <td>800.982766</td>
+      <td>3</td>
+      <td>4</td>
+      <td>3</td>
+      <td>3</td>
+      <td>4</td>
+      <td>3</td>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3735</td>
+      <td>4.0</td>
+      <td>50.0</td>
+      <td>NaN</td>
+      <td>10.245616</td>
+      <td>9</td>
+      <td>0</td>
+      <td>1</td>
+      <td>15.754144</td>
+      <td>159.440398</td>
+      <td>2054.706961</td>
+      <td>4</td>
+      <td>4</td>
+      <td>2</td>
+      <td>4</td>
+      <td>4</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>13863</td>
+      <td>1.0</td>
+      <td>48.0</td>
+      <td>18925.23</td>
+      <td>15.206193</td>
+      <td>15</td>
+      <td>2</td>
+      <td>0</td>
+      <td>17.087227</td>
+      <td>120.249493</td>
+      <td>2164.579412</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>2</td>
+      <td>5</td>
+      <td>4</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>11352</td>
+      <td>0.0</td>
+      <td>83.0</td>
+      <td>40074.19</td>
+      <td>8.960316</td>
+      <td>16</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1.670972</td>
+      <td>150.761216</td>
+      <td>271.493436</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>3</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import Scikit Learn PCA application</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Normalize the data</span>
+<span class="n">churn_pca_normalized</span><span class="o">=</span><span class="p">(</span><span class="n">churn_pca</span> <span class="o">-</span> <span class="n">churn_pca</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">churn_pca</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="FINAL-DRAFT-review-Performance-Lab-Python-=&gt;-especially-comments!!!"><span style="color:red">FINAL DRAFT review Performance Lab Python =&gt; especially comments!!!</span><a class="anchor-link" href="#FINAL-DRAFT-review-Performance-Lab-Python-=&gt;-especially-comments!!!">&#182;</a></h1>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -17985,6 +21915,19 @@ D7.</p>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Cut &amp; paste in PCA code from Performance Lab Python!!!</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -18016,7 +21959,8 @@ D7.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="G.-Sources-for-Third-Party-Code"><span style="color:green">G. Sources for Third-Party Code</span><a class="anchor-link" href="#G.-Sources-for-Third-Party-Code">&#182;</a></h3><p>Larose, C. D. &amp; Larose, D. T. (2019). <i>Data Science: Using Python and R.</i>  John Wiley &amp; Sons, Inc.</p>
+<h3 id="G.-Sources-for-Third-Party-Code"><span style="color:green">G. Sources for Third-Party Code</span><a class="anchor-link" href="#G.-Sources-for-Third-Party-Code">&#182;</a></h3><p>Cmdline. (2018, March 20). <i>How To Change Column Names and Row Indexes in Pandas?</i>  Python and R Tips.  <br>&emsp;<a href="https://cmdlinetips.com/2018/03/how-to-change-column-names-and-row-indexes-in-pandas/">https://cmdlinetips.com/2018/03/how-to-change-column-names-and-row-indexes-in-pandas/</a></p>
+<p>Larose, C. D. &amp; Larose, D. T. (2019). <i>Data Science: Using Python and R.</i>  John Wiley &amp; Sons, Inc.</p>
 <p>Sree. (2020, October 26). <i>Predict Customer Churn in Python.</i>  Towards Data Science.  <br>&emsp;<a href="https://towardsdatascience.com/predict-customer-churn-in-python-e8cd6d3aaa7">https://towardsdatascience.com/predict-customer-churn-in-python-e8cd6d3aaa7</a></p>
 <p>VanderPlas, J. (2017). <i>Python Data Science Handbook: Essential Tools for WOrking with Data.</i>  <br>&emsp;O'Reilly Media, Inc.</p>
 
