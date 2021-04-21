@@ -21562,11 +21562,11 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Perform a PCA to identify significant features</span>
-<span class="n">churn_pca</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;churn_raw_data.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">churn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;churn_raw_data.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -21576,11 +21576,11 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Again, rename survey columns</span>
-<span class="n">churn_pca</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;item1&#39;</span><span class="p">:</span><span class="s1">&#39;Responses&#39;</span><span class="p">,</span> 
+<span class="n">churn</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;item1&#39;</span><span class="p">:</span><span class="s1">&#39;Responses&#39;</span><span class="p">,</span> 
                     <span class="s1">&#39;item2&#39;</span><span class="p">:</span><span class="s1">&#39;Fixes&#39;</span><span class="p">,</span> 
                      <span class="s1">&#39;item3&#39;</span><span class="p">:</span><span class="s1">&#39;Replacements&#39;</span><span class="p">,</span> 
                      <span class="s1">&#39;item4&#39;</span><span class="p">:</span><span class="s1">&#39;Reliability&#39;</span><span class="p">,</span> 
@@ -21598,15 +21598,15 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Subset dataset to exclude categorical variables</span>
-<span class="n">churn_pca</span> <span class="o">=</span> <span class="n">churn_pca</span><span class="p">[[</span><span class="s1">&#39;Population&#39;</span><span class="p">,</span><span class="s1">&#39;Children&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Income&#39;</span><span class="p">,</span> <span class="s1">&#39;Outage_sec_perweek&#39;</span><span class="p">,</span> 
-                    <span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="s1">&#39;Contacts&#39;</span><span class="p">,</span> <span class="s1">&#39;Yearly_equip_failure&#39;</span><span class="p">,</span> <span class="s1">&#39;Tenure&#39;</span><span class="p">,</span> 
-                    <span class="s1">&#39;MonthlyCharge&#39;</span><span class="p">,</span> <span class="s1">&#39;Bandwidth_GB_Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Responses&#39;</span><span class="p">,</span> <span class="s1">&#39;Fixes&#39;</span><span class="p">,</span> 
-                    <span class="s1">&#39;Replacements&#39;</span><span class="p">,</span> <span class="s1">&#39;Reliability&#39;</span><span class="p">,</span> <span class="s1">&#39;Options&#39;</span><span class="p">,</span> <span class="s1">&#39;Respectful&#39;</span><span class="p">,</span> 
-                    <span class="s1">&#39;Courteous&#39;</span><span class="p">,</span> <span class="s1">&#39;Listening&#39;</span><span class="p">]]</span>
+<span class="n">churn</span> <span class="o">=</span> <span class="n">churn</span><span class="p">[[</span><span class="s1">&#39;Population&#39;</span><span class="p">,</span><span class="s1">&#39;Children&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Income&#39;</span><span class="p">,</span> 
+                       <span class="s1">&#39;Outage_sec_perweek&#39;</span><span class="p">,</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="s1">&#39;Contacts&#39;</span><span class="p">,</span> <span class="s1">&#39;Yearly_equip_failure&#39;</span><span class="p">,</span> 
+                       <span class="s1">&#39;Tenure&#39;</span><span class="p">,</span> <span class="s1">&#39;MonthlyCharge&#39;</span><span class="p">,</span> <span class="s1">&#39;Bandwidth_GB_Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Responses&#39;</span><span class="p">,</span> 
+                       <span class="s1">&#39;Fixes&#39;</span><span class="p">,</span> <span class="s1">&#39;Replacements&#39;</span><span class="p">,</span> <span class="s1">&#39;Reliability&#39;</span><span class="p">,</span> <span class="s1">&#39;Options&#39;</span><span class="p">,</span> 
+                       <span class="s1">&#39;Respectful&#39;</span><span class="p">,</span> <span class="s1">&#39;Courteous&#39;</span><span class="p">,</span> <span class="s1">&#39;Listening&#39;</span><span class="p">]]</span>
 </pre></div>
 
     </div>
@@ -21616,10 +21616,10 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">churn_pca</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">churn</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -21632,7 +21632,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[51]:</div>
+    <div class="prompt output_prompt">Out[61]:</div>
 
 
 
@@ -21800,7 +21800,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import Scikit Learn PCA application</span>
@@ -21814,14 +21814,101 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Normalize the data</span>
-<span class="n">churn_pca_normalized</span><span class="o">=</span><span class="p">(</span><span class="n">churn_pca</span> <span class="o">-</span> <span class="n">churn_pca</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">churn_pca</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">churn_normalized</span><span class="o">=</span><span class="p">(</span><span class="n">churn</span> <span class="o">-</span> <span class="n">churn</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">churn</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Select number of components to extract</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">churn</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Call PCA application &amp; convert the dataset of  19 variables into a dataset of 19 components</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">churn_normalized</span><span class="p">)</span>
+<span class="n">churn_pca</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">churn_normalized</span><span class="p">),</span>
+                        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">,</span><span class="s1">&#39;PC2&#39;</span><span class="p">,</span><span class="s1">&#39;PC3&#39;</span><span class="p">,</span><span class="s1">&#39;PC4&#39;</span><span class="p">,</span><span class="s1">&#39;PC5&#39;</span><span class="p">,</span><span class="s1">&#39;PC6&#39;</span><span class="p">,</span> <span class="s1">&#39;PC7&#39;</span><span class="p">,</span>
+                                 <span class="s1">&#39;PC8&#39;</span><span class="p">,</span><span class="s1">&#39;PC9&#39;</span><span class="p">,</span><span class="s1">&#39;PC10&#39;</span><span class="p">,</span> <span class="s1">&#39;PC11&#39;</span><span class="p">,</span> <span class="s1">&#39;PC12&#39;</span><span class="p">,</span><span class="s1">&#39;PC13&#39;</span><span class="p">,</span>
+                                 <span class="s1">&#39;PC14&#39;</span><span class="p">,</span><span class="s1">&#39;PC15&#39;</span><span class="p">,</span><span class="s1">&#39;PC16&#39;</span><span class="p">,</span><span class="s1">&#39;PC17&#39;</span><span class="p">,</span><span class="s1">&#39;PC18&#39;</span><span class="p">,</span><span class="s1">&#39;PC19&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-65-7743833a3674&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">      1</span> <span class="ansi-red-intense-fg ansi-bold"># Call PCA application &amp; convert the dataset of  19 variables into a dataset of 19 components</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 2</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>pca<span class="ansi-yellow-intense-fg ansi-bold">.</span>fit<span class="ansi-yellow-intense-fg ansi-bold">(</span>churn_normalized<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      3</span> churn_pca = pd.DataFrame(pca.transform(churn_normalized),
+<span class="ansi-green-fg">      4</span>                         columns=[&#39;PC1&#39;,&#39;PC2&#39;,&#39;PC3&#39;,&#39;PC4&#39;,&#39;PC5&#39;,&#39;PC6&#39;, &#39;PC7&#39;,
+<span class="ansi-green-fg">      5</span>                                  <span class="ansi-blue-intense-fg ansi-bold">&#39;PC8&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-blue-intense-fg ansi-bold">&#39;PC9&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-blue-intense-fg ansi-bold">&#39;PC10&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;PC11&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;PC12&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-blue-intense-fg ansi-bold">&#39;PC13&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span>
+
+<span class="ansi-green-intense-fg ansi-bold">~\anaconda3\lib\site-packages\sklearn\decomposition\_pca.py</span> in <span class="ansi-cyan-fg">fit</span><span class="ansi-blue-intense-fg ansi-bold">(self, X, y)</span>
+<span class="ansi-green-fg">    342</span>             Returns the instance itself<span class="ansi-yellow-intense-fg ansi-bold">.</span>
+<span class="ansi-green-fg">    343</span>         &#34;&#34;&#34;
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 344</span><span class="ansi-yellow-intense-fg ansi-bold">         </span>self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_fit<span class="ansi-yellow-intense-fg ansi-bold">(</span>X<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    345</span>         <span class="ansi-green-intense-fg ansi-bold">return</span> self
+<span class="ansi-green-fg">    346</span> 
+
+<span class="ansi-green-intense-fg ansi-bold">~\anaconda3\lib\site-packages\sklearn\decomposition\_pca.py</span> in <span class="ansi-cyan-fg">_fit</span><span class="ansi-blue-intense-fg ansi-bold">(self, X)</span>
+<span class="ansi-green-fg">    389</span> 
+<span class="ansi-green-fg">    390</span>         X = check_array(X, dtype=[np.float64, np.float32], ensure_2d=True,
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 391</span><span class="ansi-yellow-intense-fg ansi-bold">                         copy=self.copy)
+</span><span class="ansi-green-fg">    392</span> 
+<span class="ansi-green-fg">    393</span>         <span class="ansi-red-intense-fg ansi-bold"># Handle n_components==None</span>
+
+<span class="ansi-green-intense-fg ansi-bold">~\anaconda3\lib\site-packages\sklearn\utils\validation.py</span> in <span class="ansi-cyan-fg">check_array</span><span class="ansi-blue-intense-fg ansi-bold">(array, accept_sparse, accept_large_sparse, dtype, order, copy, force_all_finite, ensure_2d, allow_nd, ensure_min_samples, ensure_min_features, warn_on_dtype, estimator)</span>
+<span class="ansi-green-fg">    576</span>         <span class="ansi-green-intense-fg ansi-bold">if</span> force_all_finite<span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">    577</span>             _assert_all_finite(array,
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 578</span><span class="ansi-yellow-intense-fg ansi-bold">                                allow_nan=force_all_finite == &#39;allow-nan&#39;)
+</span><span class="ansi-green-fg">    579</span> 
+<span class="ansi-green-fg">    580</span>     <span class="ansi-green-intense-fg ansi-bold">if</span> ensure_min_samples <span class="ansi-yellow-intense-fg ansi-bold">&gt;</span> <span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+
+<span class="ansi-green-intense-fg ansi-bold">~\anaconda3\lib\site-packages\sklearn\utils\validation.py</span> in <span class="ansi-cyan-fg">_assert_all_finite</span><span class="ansi-blue-intense-fg ansi-bold">(X, allow_nan, msg_dtype)</span>
+<span class="ansi-green-fg">     58</span>                     msg_err<span class="ansi-yellow-intense-fg ansi-bold">.</span>format
+<span class="ansi-green-fg">     59</span>                     (type_err,
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 60</span><span class="ansi-yellow-intense-fg ansi-bold">                      msg_dtype if msg_dtype is not None else X.dtype)
+</span><span class="ansi-green-fg">     61</span>             )
+<span class="ansi-green-fg">     62</span>     <span class="ansi-red-intense-fg ansi-bold"># for object dtype data, we only check for NaNs (GH-13254)</span>
+
+<span class="ansi-red-intense-fg ansi-bold">ValueError</span>: Input contains NaN, infinity or a value too large for dtype(&#39;float64&#39;).</pre>
+</div>
+</div>
+
 </div>
 </div>
 
