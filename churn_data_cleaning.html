@@ -16348,7 +16348,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Performance-Assessment-|-D206-Data-Cleaning">Performance Assessment | D206 Data Cleaning<a class="anchor-link" href="#Performance-Assessment-|-D206-Data-Cleaning">&#182;</a></h1><p>&emsp;Ryan L. Buchanan
+<h1><b>Performance Assessment | D206 Data Cleaning<b></h1>
+<p>&emsp;Ryan L. Buchanan
 <br>&emsp;Student ID:  001826691
 <br>&emsp;Masters Data Analytics (12/01/2020)
 <br>&emsp;Program Mentor:  Dan Estes
@@ -16411,11 +16412,10 @@ Independent variables or predictors that may lead to identifying a relationship 
 <br>&ensp; 1. Back up my data and the process I am following as a copy to my machine and, since this is a manageable dataset, to GitHub using command line and gitbash.
 <br>&ensp; 2. Read the data set into Python using Pandas read_csv command.
 <br>&ensp; 3. Evaluate the data struture to better understand input data.
-<br>&ensp; 4. Naming the dataset as a the variable "churn_df" and subsequent useful slices of the dataframe as "data".
-<br>&ensp; 5. Examine misspellings &amp; missing data.
+<br>&ensp; 4. Naming the dataset as a the variable "churn_df" and subsequent useful slices of the dataframe as "df".
+<br>&ensp; 5. Examine potential misspellings, awkward variable namimg &amp; missing data.
 <br>&ensp; 6. Find outliers that may create or hide statistical significance using histograms.
 <br>&ensp; 7. Imputing records missing data with meaningful measures of central tendency (mean, median or mode) or simply remove outliers that are several standard deviations above the mean.</p>
-<p><br>&ensp; ?. <span style="color:red">Drop records with missing information???<span></p>
 
 </div>
 </div>
@@ -16450,8 +16450,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="C4.-Provide-the-Code:"><span style="color:green"><b>C4. Provide the Code</b>:</span><a class="anchor-link" href="#C4.-Provide-the-Code:">&#182;</a></h3><p>Code follows in subsequent cells:</p>
-
+<h3 id="C4.-Provide-the-Code:"><span style="color:green"><b>C4. Provide the Code</b>:</span><a class="anchor-link" href="#C4.-Provide-the-Code:">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -16460,16 +16459,44 @@ Independent variables or predictors that may lead to identifying a relationship 
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Standard imports</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">skew</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
-<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Install necessary packages</span>
+<span class="o">!</span>pip install pandas
+<span class="o">!</span>pip install numpy
+<span class="o">!</span>pip install scipy
+<span class="o">!</span>pip install sklearn
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Requirement already satisfied: pandas in c:\users\vreed\anaconda3\lib\site-packages (1.0.1)
+Requirement already satisfied: python-dateutil&gt;=2.6.1 in c:\users\vreed\anaconda3\lib\site-packages (from pandas) (2.8.1)
+Requirement already satisfied: pytz&gt;=2017.2 in c:\users\vreed\anaconda3\lib\site-packages (from pandas) (2019.3)
+Requirement already satisfied: numpy&gt;=1.13.3 in c:\users\vreed\anaconda3\lib\site-packages (from pandas) (1.18.1)
+Requirement already satisfied: six&gt;=1.5 in c:\users\vreed\anaconda3\lib\site-packages (from python-dateutil&gt;=2.6.1-&gt;pandas) (1.14.0)
+Requirement already satisfied: numpy in c:\users\vreed\anaconda3\lib\site-packages (1.18.1)
+Requirement already satisfied: scipy in c:\users\vreed\anaconda3\lib\site-packages (1.4.1)
+Requirement already satisfied: numpy&gt;=1.13.3 in c:\users\vreed\anaconda3\lib\site-packages (from scipy) (1.18.1)
+Requirement already satisfied: sklearn in c:\users\vreed\anaconda3\lib\site-packages (0.0)
+Requirement already satisfied: scikit-learn in c:\users\vreed\anaconda3\lib\site-packages (from sklearn) (0.22.1)
+Requirement already satisfied: numpy&gt;=1.11.0 in c:\users\vreed\anaconda3\lib\site-packages (from scikit-learn-&gt;sklearn) (1.18.1)
+Requirement already satisfied: joblib&gt;=0.11 in c:\users\vreed\anaconda3\lib\site-packages (from scikit-learn-&gt;sklearn) (0.14.1)
+Requirement already satisfied: scipy&gt;=0.17.0 in c:\users\vreed\anaconda3\lib\site-packages (from scikit-learn-&gt;sklearn) (1.4.1)
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -16479,11 +16506,11 @@ Independent variables or predictors that may lead to identifying a relationship 
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Scikit-learn modules for data cleaning</span>
-<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
-<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Standard imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">scale</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
 </pre></div>
 
     </div>
@@ -16493,55 +16520,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[81]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Standard libraries for data visualization</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="n">color</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">pylab</span>
-<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">mtick</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_columns</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="kn">from</span> <span class="nn">pandas.plotting</span> <span class="kn">import</span> <span class="n">scatter_matrix</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Utility libraries imports</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">timeit</span>
-<span class="kn">import</span> <span class="nn">string</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
-<span class="kn">from</span> <span class="nn">dateutil.parser</span> <span class="kn">import</span> <span class="n">parse</span>
-<span class="kn">import</span> <span class="nn">joblib</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Increase Jupyter display cell-width</span>
@@ -16575,7 +16554,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load data set into Pandas dataframe</span>
@@ -16589,7 +16568,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display Churn dataframe</span>
@@ -16606,7 +16585,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -16639,38 +16618,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <th>Zip</th>
       <th>Lat</th>
       <th>Lng</th>
-      <th>Population</th>
-      <th>Area</th>
-      <th>Timezone</th>
-      <th>Job</th>
-      <th>Children</th>
-      <th>Age</th>
-      <th>Education</th>
-      <th>Employment</th>
-      <th>Income</th>
-      <th>Marital</th>
-      <th>Gender</th>
-      <th>Churn</th>
-      <th>Outage_sec_perweek</th>
-      <th>Email</th>
-      <th>Contacts</th>
-      <th>Yearly_equip_failure</th>
-      <th>Techie</th>
-      <th>Contract</th>
-      <th>Port_modem</th>
-      <th>Tablet</th>
-      <th>InternetService</th>
-      <th>Phone</th>
-      <th>Multiple</th>
-      <th>OnlineSecurity</th>
-      <th>OnlineBackup</th>
-      <th>DeviceProtection</th>
-      <th>TechSupport</th>
-      <th>StreamingTV</th>
-      <th>StreamingMovies</th>
-      <th>PaperlessBilling</th>
-      <th>PaymentMethod</th>
-      <th>Tenure</th>
+      <th>...</th>
       <th>MonthlyCharge</th>
       <th>Bandwidth_GB_Year</th>
       <th>item1</th>
@@ -16696,38 +16644,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>99927</td>
       <td>56.25100</td>
       <td>-133.37571</td>
-      <td>38</td>
-      <td>Urban</td>
-      <td>America/Sitka</td>
-      <td>Environmental health practitioner</td>
-      <td>NaN</td>
-      <td>68.0</td>
-      <td>Master's Degree</td>
-      <td>Part Time</td>
-      <td>28561.99</td>
-      <td>Widowed</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>6.972566</td>
-      <td>10</td>
-      <td>0</td>
-      <td>1</td>
-      <td>No</td>
-      <td>One year</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Fiber Optic</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Credit Card (automatic)</td>
-      <td>6.795513</td>
+      <td>...</td>
       <td>171.449762</td>
       <td>904.536110</td>
       <td>5</td>
@@ -16751,38 +16668,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>48661</td>
       <td>44.32893</td>
       <td>-84.24080</td>
-      <td>10446</td>
-      <td>Urban</td>
-      <td>America/Detroit</td>
-      <td>Programmer, multimedia</td>
-      <td>1.0</td>
-      <td>27.0</td>
-      <td>Regular High School Diploma</td>
-      <td>Retired</td>
-      <td>21704.77</td>
-      <td>Married</td>
-      <td>Female</td>
-      <td>Yes</td>
-      <td>12.014541</td>
-      <td>12</td>
-      <td>0</td>
-      <td>1</td>
-      <td>Yes</td>
-      <td>Month-to-month</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Fiber Optic</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Bank Transfer(automatic)</td>
-      <td>1.156681</td>
+      <td>...</td>
       <td>242.948015</td>
       <td>800.982766</td>
       <td>3</td>
@@ -16806,38 +16692,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>97148</td>
       <td>45.35589</td>
       <td>-123.24657</td>
-      <td>3735</td>
-      <td>Urban</td>
-      <td>America/Los_Angeles</td>
-      <td>Chief Financial Officer</td>
-      <td>4.0</td>
-      <td>50.0</td>
-      <td>Regular High School Diploma</td>
-      <td>Student</td>
-      <td>NaN</td>
-      <td>Widowed</td>
-      <td>Female</td>
-      <td>No</td>
-      <td>10.245616</td>
-      <td>9</td>
-      <td>0</td>
-      <td>1</td>
-      <td>Yes</td>
-      <td>Two Year</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>DSL</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Credit Card (automatic)</td>
-      <td>15.754144</td>
+      <td>...</td>
       <td>159.440398</td>
       <td>2054.706961</td>
       <td>4</td>
@@ -16861,38 +16716,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>92014</td>
       <td>32.96687</td>
       <td>-117.24798</td>
-      <td>13863</td>
-      <td>Suburban</td>
-      <td>America/Los_Angeles</td>
-      <td>Solicitor</td>
-      <td>1.0</td>
-      <td>48.0</td>
-      <td>Doctorate Degree</td>
-      <td>Retired</td>
-      <td>18925.23</td>
-      <td>Married</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>15.206193</td>
-      <td>15</td>
-      <td>2</td>
-      <td>0</td>
-      <td>Yes</td>
-      <td>Two Year</td>
-      <td>No</td>
-      <td>No</td>
-      <td>DSL</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Mailed Check</td>
-      <td>17.087227</td>
+      <td>...</td>
       <td>120.249493</td>
       <td>2164.579412</td>
       <td>4</td>
@@ -16916,38 +16740,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>77461</td>
       <td>29.38012</td>
       <td>-95.80673</td>
-      <td>11352</td>
-      <td>Suburban</td>
-      <td>America/Chicago</td>
-      <td>Medical illustrator</td>
-      <td>0.0</td>
-      <td>83.0</td>
-      <td>Master's Degree</td>
-      <td>Student</td>
-      <td>40074.19</td>
-      <td>Separated</td>
-      <td>Male</td>
-      <td>Yes</td>
-      <td>8.960316</td>
-      <td>16</td>
-      <td>2</td>
-      <td>1</td>
-      <td>No</td>
-      <td>Month-to-month</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Fiber Optic</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Mailed Check</td>
-      <td>1.670972</td>
+      <td>...</td>
       <td>150.761216</td>
       <td>271.493436</td>
       <td>4</td>
@@ -16982,37 +16775,6 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>...</td>
       <td>...</td>
       <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
     </tr>
     <tr>
       <th>9995</th>
@@ -17026,38 +16788,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>5758</td>
       <td>43.43391</td>
       <td>-72.78734</td>
-      <td>640</td>
-      <td>Rural</td>
-      <td>America/New_York</td>
-      <td>Sport and exercise psychologist</td>
-      <td>3.0</td>
-      <td>NaN</td>
-      <td>Some College, Less than 1 Year</td>
-      <td>Retired</td>
-      <td>55723.74</td>
-      <td>Married</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>9.265392</td>
-      <td>12</td>
-      <td>2</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>Month-to-month</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>DSL</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Electronic Check</td>
-      <td>68.197130</td>
+      <td>...</td>
       <td>159.828800</td>
       <td>6511.253000</td>
       <td>3</td>
@@ -17081,38 +16812,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>37042</td>
       <td>36.56907</td>
       <td>-87.41694</td>
-      <td>77168</td>
-      <td>Rural</td>
-      <td>America/Chicago</td>
-      <td>Consulting civil engineer</td>
-      <td>4.0</td>
-      <td>48.0</td>
-      <td>Regular High School Diploma</td>
-      <td>Part Time</td>
-      <td>NaN</td>
-      <td>Divorced</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>8.115849</td>
-      <td>15</td>
-      <td>2</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>Two Year</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Fiber Optic</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Electronic Check</td>
-      <td>61.040370</td>
+      <td>...</td>
       <td>208.856400</td>
       <td>5695.952000</td>
       <td>4</td>
@@ -17136,38 +16836,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>79061</td>
       <td>35.52039</td>
       <td>-100.44180</td>
-      <td>406</td>
-      <td>Rural</td>
-      <td>America/Chicago</td>
-      <td>IT technical support officer</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Nursery School to 8th Grade</td>
-      <td>Full Time</td>
-      <td>NaN</td>
-      <td>Never Married</td>
-      <td>Female</td>
-      <td>No</td>
-      <td>4.837696</td>
-      <td>10</td>
-      <td>0</td>
-      <td>0</td>
-      <td>No</td>
-      <td>Month-to-month</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Fiber Optic</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Bank Transfer(automatic)</td>
-      <td>NaN</td>
+      <td>...</td>
       <td>168.220900</td>
       <td>4159.306000</td>
       <td>4</td>
@@ -17191,38 +16860,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>30117</td>
       <td>33.58016</td>
       <td>-85.13241</td>
-      <td>35575</td>
-      <td>Urban</td>
-      <td>America/New_York</td>
-      <td>Water engineer</td>
-      <td>1.0</td>
-      <td>39.0</td>
-      <td>Bachelor's Degree</td>
-      <td>Full Time</td>
-      <td>16667.58</td>
-      <td>Separated</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>12.076460</td>
-      <td>14</td>
-      <td>1</td>
-      <td>0</td>
-      <td>No</td>
-      <td>Two Year</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Fiber Optic</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Credit Card (automatic)</td>
-      <td>71.095600</td>
+      <td>...</td>
       <td>252.628600</td>
       <td>6468.457000</td>
       <td>4</td>
@@ -17246,38 +16884,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>30523</td>
       <td>34.70783</td>
       <td>-83.53648</td>
-      <td>12230</td>
-      <td>Urban</td>
-      <td>America/New_York</td>
-      <td>Personal assistant</td>
-      <td>1.0</td>
-      <td>28.0</td>
-      <td>GED or Alternative Credential</td>
-      <td>Full Time</td>
-      <td>NaN</td>
-      <td>Never Married</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>12.641760</td>
-      <td>17</td>
-      <td>1</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>Month-to-month</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Fiber Optic</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Electronic Check</td>
-      <td>63.350860</td>
+      <td>...</td>
       <td>218.371000</td>
       <td>5857.586000</td>
       <td>2</td>
@@ -17303,7 +16910,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># List of Dataframe Columns</span>
@@ -17346,7 +16953,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Remove redundant &quot;Unnamed&quot; column at beginning &amp; display first five records</span>
@@ -17364,7 +16971,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -17397,37 +17004,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <th>Lat</th>
       <th>Lng</th>
       <th>Population</th>
-      <th>Area</th>
-      <th>Timezone</th>
-      <th>Job</th>
-      <th>Children</th>
-      <th>Age</th>
-      <th>Education</th>
-      <th>Employment</th>
-      <th>Income</th>
-      <th>Marital</th>
-      <th>Gender</th>
-      <th>Churn</th>
-      <th>Outage_sec_perweek</th>
-      <th>Email</th>
-      <th>Contacts</th>
-      <th>Yearly_equip_failure</th>
-      <th>Techie</th>
-      <th>Contract</th>
-      <th>Port_modem</th>
-      <th>Tablet</th>
-      <th>InternetService</th>
-      <th>Phone</th>
-      <th>Multiple</th>
-      <th>OnlineSecurity</th>
-      <th>OnlineBackup</th>
-      <th>DeviceProtection</th>
-      <th>TechSupport</th>
-      <th>StreamingTV</th>
-      <th>StreamingMovies</th>
-      <th>PaperlessBilling</th>
-      <th>PaymentMethod</th>
-      <th>Tenure</th>
+      <th>...</th>
       <th>MonthlyCharge</th>
       <th>Bandwidth_GB_Year</th>
       <th>item1</th>
@@ -17453,37 +17030,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>56.25100</td>
       <td>-133.37571</td>
       <td>38</td>
-      <td>Urban</td>
-      <td>America/Sitka</td>
-      <td>Environmental health practitioner</td>
-      <td>NaN</td>
-      <td>68.0</td>
-      <td>Master's Degree</td>
-      <td>Part Time</td>
-      <td>28561.99</td>
-      <td>Widowed</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>6.972566</td>
-      <td>10</td>
-      <td>0</td>
-      <td>1</td>
-      <td>No</td>
-      <td>One year</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Fiber Optic</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Credit Card (automatic)</td>
-      <td>6.795513</td>
+      <td>...</td>
       <td>171.449762</td>
       <td>904.536110</td>
       <td>5</td>
@@ -17507,37 +17054,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>44.32893</td>
       <td>-84.24080</td>
       <td>10446</td>
-      <td>Urban</td>
-      <td>America/Detroit</td>
-      <td>Programmer, multimedia</td>
-      <td>1.0</td>
-      <td>27.0</td>
-      <td>Regular High School Diploma</td>
-      <td>Retired</td>
-      <td>21704.77</td>
-      <td>Married</td>
-      <td>Female</td>
-      <td>Yes</td>
-      <td>12.014541</td>
-      <td>12</td>
-      <td>0</td>
-      <td>1</td>
-      <td>Yes</td>
-      <td>Month-to-month</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Fiber Optic</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Bank Transfer(automatic)</td>
-      <td>1.156681</td>
+      <td>...</td>
       <td>242.948015</td>
       <td>800.982766</td>
       <td>3</td>
@@ -17561,37 +17078,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>45.35589</td>
       <td>-123.24657</td>
       <td>3735</td>
-      <td>Urban</td>
-      <td>America/Los_Angeles</td>
-      <td>Chief Financial Officer</td>
-      <td>4.0</td>
-      <td>50.0</td>
-      <td>Regular High School Diploma</td>
-      <td>Student</td>
-      <td>NaN</td>
-      <td>Widowed</td>
-      <td>Female</td>
-      <td>No</td>
-      <td>10.245616</td>
-      <td>9</td>
-      <td>0</td>
-      <td>1</td>
-      <td>Yes</td>
-      <td>Two Year</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>DSL</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Credit Card (automatic)</td>
-      <td>15.754144</td>
+      <td>...</td>
       <td>159.440398</td>
       <td>2054.706961</td>
       <td>4</td>
@@ -17615,37 +17102,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>32.96687</td>
       <td>-117.24798</td>
       <td>13863</td>
-      <td>Suburban</td>
-      <td>America/Los_Angeles</td>
-      <td>Solicitor</td>
-      <td>1.0</td>
-      <td>48.0</td>
-      <td>Doctorate Degree</td>
-      <td>Retired</td>
-      <td>18925.23</td>
-      <td>Married</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>15.206193</td>
-      <td>15</td>
-      <td>2</td>
-      <td>0</td>
-      <td>Yes</td>
-      <td>Two Year</td>
-      <td>No</td>
-      <td>No</td>
-      <td>DSL</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Mailed Check</td>
-      <td>17.087227</td>
+      <td>...</td>
       <td>120.249493</td>
       <td>2164.579412</td>
       <td>4</td>
@@ -17669,37 +17126,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>29.38012</td>
       <td>-95.80673</td>
       <td>11352</td>
-      <td>Suburban</td>
-      <td>America/Chicago</td>
-      <td>Medical illustrator</td>
-      <td>0.0</td>
-      <td>83.0</td>
-      <td>Master's Degree</td>
-      <td>Student</td>
-      <td>40074.19</td>
-      <td>Separated</td>
-      <td>Male</td>
-      <td>Yes</td>
-      <td>8.960316</td>
-      <td>16</td>
-      <td>2</td>
-      <td>1</td>
-      <td>No</td>
-      <td>Month-to-month</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Fiber Optic</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Mailed Check</td>
-      <td>1.670972</td>
+      <td>...</td>
       <td>150.761216</td>
       <td>271.493436</td>
       <td>4</td>
@@ -17713,6 +17140,7 @@ Independent variables or predictors that may lead to identifying a relationship 
     </tr>
   </tbody>
 </table>
+<p>5 rows × 51 columns</p>
 </div>
 </div>
 
@@ -17724,7 +17152,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Rename last 8 survey columns for better description of variables</span>
@@ -17746,7 +17174,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
@@ -17762,7 +17190,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -17790,7 +17218,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -17806,7 +17234,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -17839,37 +17267,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <th>Lat</th>
       <th>Lng</th>
       <th>Population</th>
-      <th>Area</th>
-      <th>Timezone</th>
-      <th>Job</th>
-      <th>Children</th>
-      <th>Age</th>
-      <th>Education</th>
-      <th>Employment</th>
-      <th>Income</th>
-      <th>Marital</th>
-      <th>Gender</th>
-      <th>Churn</th>
-      <th>Outage_sec_perweek</th>
-      <th>Email</th>
-      <th>Contacts</th>
-      <th>Yearly_equip_failure</th>
-      <th>Techie</th>
-      <th>Contract</th>
-      <th>Port_modem</th>
-      <th>Tablet</th>
-      <th>InternetService</th>
-      <th>Phone</th>
-      <th>Multiple</th>
-      <th>OnlineSecurity</th>
-      <th>OnlineBackup</th>
-      <th>DeviceProtection</th>
-      <th>TechSupport</th>
-      <th>StreamingTV</th>
-      <th>StreamingMovies</th>
-      <th>PaperlessBilling</th>
-      <th>PaymentMethod</th>
-      <th>Tenure</th>
+      <th>...</th>
       <th>MonthlyCharge</th>
       <th>Bandwidth_GB_Year</th>
       <th>Responses</th>
@@ -17895,37 +17293,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>56.25100</td>
       <td>-133.37571</td>
       <td>38</td>
-      <td>Urban</td>
-      <td>America/Sitka</td>
-      <td>Environmental health practitioner</td>
-      <td>NaN</td>
-      <td>68.0</td>
-      <td>Master's Degree</td>
-      <td>Part Time</td>
-      <td>28561.99</td>
-      <td>Widowed</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>6.972566</td>
-      <td>10</td>
-      <td>0</td>
-      <td>1</td>
-      <td>No</td>
-      <td>One year</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Fiber Optic</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Credit Card (automatic)</td>
-      <td>6.795513</td>
+      <td>...</td>
       <td>171.449762</td>
       <td>904.536110</td>
       <td>5</td>
@@ -17949,37 +17317,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>44.32893</td>
       <td>-84.24080</td>
       <td>10446</td>
-      <td>Urban</td>
-      <td>America/Detroit</td>
-      <td>Programmer, multimedia</td>
-      <td>1.0</td>
-      <td>27.0</td>
-      <td>Regular High School Diploma</td>
-      <td>Retired</td>
-      <td>21704.77</td>
-      <td>Married</td>
-      <td>Female</td>
-      <td>Yes</td>
-      <td>12.014541</td>
-      <td>12</td>
-      <td>0</td>
-      <td>1</td>
-      <td>Yes</td>
-      <td>Month-to-month</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Fiber Optic</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Bank Transfer(automatic)</td>
-      <td>1.156681</td>
+      <td>...</td>
       <td>242.948015</td>
       <td>800.982766</td>
       <td>3</td>
@@ -18003,37 +17341,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>45.35589</td>
       <td>-123.24657</td>
       <td>3735</td>
-      <td>Urban</td>
-      <td>America/Los_Angeles</td>
-      <td>Chief Financial Officer</td>
-      <td>4.0</td>
-      <td>50.0</td>
-      <td>Regular High School Diploma</td>
-      <td>Student</td>
-      <td>NaN</td>
-      <td>Widowed</td>
-      <td>Female</td>
-      <td>No</td>
-      <td>10.245616</td>
-      <td>9</td>
-      <td>0</td>
-      <td>1</td>
-      <td>Yes</td>
-      <td>Two Year</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>DSL</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Credit Card (automatic)</td>
-      <td>15.754144</td>
+      <td>...</td>
       <td>159.440398</td>
       <td>2054.706961</td>
       <td>4</td>
@@ -18057,37 +17365,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>32.96687</td>
       <td>-117.24798</td>
       <td>13863</td>
-      <td>Suburban</td>
-      <td>America/Los_Angeles</td>
-      <td>Solicitor</td>
-      <td>1.0</td>
-      <td>48.0</td>
-      <td>Doctorate Degree</td>
-      <td>Retired</td>
-      <td>18925.23</td>
-      <td>Married</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>15.206193</td>
-      <td>15</td>
-      <td>2</td>
-      <td>0</td>
-      <td>Yes</td>
-      <td>Two Year</td>
-      <td>No</td>
-      <td>No</td>
-      <td>DSL</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Mailed Check</td>
-      <td>17.087227</td>
+      <td>...</td>
       <td>120.249493</td>
       <td>2164.579412</td>
       <td>4</td>
@@ -18111,37 +17389,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>29.38012</td>
       <td>-95.80673</td>
       <td>11352</td>
-      <td>Suburban</td>
-      <td>America/Chicago</td>
-      <td>Medical illustrator</td>
-      <td>0.0</td>
-      <td>83.0</td>
-      <td>Master's Degree</td>
-      <td>Student</td>
-      <td>40074.19</td>
-      <td>Separated</td>
-      <td>Male</td>
-      <td>Yes</td>
-      <td>8.960316</td>
-      <td>16</td>
-      <td>2</td>
-      <td>1</td>
-      <td>No</td>
-      <td>Month-to-month</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Fiber Optic</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Mailed Check</td>
-      <td>1.670972</td>
+      <td>...</td>
       <td>150.761216</td>
       <td>271.493436</td>
       <td>4</td>
@@ -18155,6 +17403,7 @@ Independent variables or predictors that may lead to identifying a relationship 
     </tr>
   </tbody>
 </table>
+<p>5 rows × 51 columns</p>
 </div>
 </div>
 
@@ -18166,7 +17415,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display number of records in dataset</span>
@@ -18183,7 +17432,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -18200,7 +17449,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Find number of records and columns of dataset</span>
@@ -18217,7 +17466,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[12]:</div>
 
 
 
@@ -18234,7 +17483,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Describe Churn dataset statistics</span>
@@ -18251,7 +17500,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
@@ -18284,9 +17533,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <th>Income</th>
       <th>Outage_sec_perweek</th>
       <th>Email</th>
-      <th>Contacts</th>
-      <th>Yearly_equip_failure</th>
-      <th>Tenure</th>
+      <th>...</th>
       <th>MonthlyCharge</th>
       <th>Bandwidth_GB_Year</th>
       <th>Responses</th>
@@ -18312,9 +17559,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>7510.000000</td>
       <td>10000.000000</td>
       <td>10000.000000</td>
-      <td>10000.000000</td>
-      <td>10000.000000</td>
-      <td>9069.000000</td>
+      <td>...</td>
       <td>10000.000000</td>
       <td>8979.000000</td>
       <td>10000.000000</td>
@@ -18338,9 +17583,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>39936.762226</td>
       <td>11.452955</td>
       <td>12.016000</td>
-      <td>0.994200</td>
-      <td>0.398000</td>
-      <td>34.498858</td>
+      <td>...</td>
       <td>174.076305</td>
       <td>3398.842752</td>
       <td>3.490800</td>
@@ -18364,9 +17607,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>28358.469482</td>
       <td>7.025921</td>
       <td>3.025898</td>
-      <td>0.988466</td>
-      <td>0.635953</td>
-      <td>26.438904</td>
+      <td>...</td>
       <td>43.335473</td>
       <td>2187.396807</td>
       <td>1.037797</td>
@@ -18390,9 +17631,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>740.660000</td>
       <td>-1.348571</td>
       <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>1.000259</td>
+      <td>...</td>
       <td>77.505230</td>
       <td>155.506715</td>
       <td>1.000000</td>
@@ -18416,9 +17655,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>19285.522500</td>
       <td>8.054362</td>
       <td>10.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>7.890442</td>
+      <td>...</td>
       <td>141.071078</td>
       <td>1234.110529</td>
       <td>3.000000</td>
@@ -18442,9 +17679,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>33186.785000</td>
       <td>10.202896</td>
       <td>12.000000</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>36.196030</td>
+      <td>...</td>
       <td>169.915400</td>
       <td>3382.424000</td>
       <td>3.000000</td>
@@ -18468,9 +17703,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>53472.395000</td>
       <td>12.487644</td>
       <td>14.000000</td>
-      <td>2.000000</td>
-      <td>1.000000</td>
-      <td>61.426670</td>
+      <td>...</td>
       <td>203.777441</td>
       <td>5587.096500</td>
       <td>4.000000</td>
@@ -18494,9 +17727,7 @@ Independent variables or predictors that may lead to identifying a relationship 
       <td>258900.700000</td>
       <td>47.049280</td>
       <td>23.000000</td>
-      <td>7.000000</td>
-      <td>6.000000</td>
-      <td>71.999280</td>
+      <td>...</td>
       <td>315.878600</td>
       <td>7158.982000</td>
       <td>7.000000</td>
@@ -18510,6 +17741,7 @@ Independent variables or predictors that may lead to identifying a relationship 
     </tr>
   </tbody>
 </table>
+<p>8 rows × 23 columns</p>
 </div>
 </div>
 
@@ -18521,7 +17753,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Remove less meaningful variables from statistics description</span>
@@ -18539,7 +17771,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -18773,7 +18005,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate Churn Rate</span>
@@ -18790,7 +18022,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -18809,7 +18041,7 @@ Name: Churn, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Review data types (numerical =&gt; &quot;int64&quot; &amp; &quot;float64&quot;; &amp; categorical =&gt; &quot;object&quot;) in data set</span>
@@ -18826,7 +18058,7 @@ Name: Churn, dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -18894,7 +18126,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Re-validate column data types and missing values</span>
@@ -18911,7 +18143,7 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -18941,7 +18173,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display non-null fields within each columns</span>
@@ -19030,7 +18262,7 @@ memory usage: 3.9+ MB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Find missing values </span>
@@ -19047,7 +18279,7 @@ memory usage: 3.9+ MB
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[21]:</div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
@@ -19080,37 +18312,7 @@ memory usage: 3.9+ MB
       <th>Lat</th>
       <th>Lng</th>
       <th>Population</th>
-      <th>Area</th>
-      <th>Timezone</th>
-      <th>Job</th>
-      <th>Children</th>
-      <th>Age</th>
-      <th>Education</th>
-      <th>Employment</th>
-      <th>Income</th>
-      <th>Marital</th>
-      <th>Gender</th>
-      <th>Churn</th>
-      <th>Outage_sec_perweek</th>
-      <th>Email</th>
-      <th>Contacts</th>
-      <th>Yearly_equip_failure</th>
-      <th>Techie</th>
-      <th>Contract</th>
-      <th>Port_modem</th>
-      <th>Tablet</th>
-      <th>InternetService</th>
-      <th>Phone</th>
-      <th>Multiple</th>
-      <th>OnlineSecurity</th>
-      <th>OnlineBackup</th>
-      <th>DeviceProtection</th>
-      <th>TechSupport</th>
-      <th>StreamingTV</th>
-      <th>StreamingMovies</th>
-      <th>PaperlessBilling</th>
-      <th>PaymentMethod</th>
-      <th>Tenure</th>
+      <th>...</th>
       <th>MonthlyCharge</th>
       <th>Bandwidth_GB_Year</th>
       <th>Responses</th>
@@ -19136,37 +18338,7 @@ memory usage: 3.9+ MB
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>...</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -19190,37 +18362,7 @@ memory usage: 3.9+ MB
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>...</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -19244,37 +18386,7 @@ memory usage: 3.9+ MB
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>...</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -19298,37 +18410,7 @@ memory usage: 3.9+ MB
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>...</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -19352,37 +18434,7 @@ memory usage: 3.9+ MB
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>...</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -19417,36 +18469,6 @@ memory usage: 3.9+ MB
       <td>...</td>
       <td>...</td>
       <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
     </tr>
     <tr>
       <th>9995</th>
@@ -19460,37 +18482,7 @@ memory usage: 3.9+ MB
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>...</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -19514,37 +18506,7 @@ memory usage: 3.9+ MB
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>...</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -19568,37 +18530,7 @@ memory usage: 3.9+ MB
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
+      <td>...</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -19622,37 +18554,7 @@ memory usage: 3.9+ MB
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>...</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -19676,37 +18578,7 @@ memory usage: 3.9+ MB
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>...</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -19732,7 +18604,7 @@ memory usage: 3.9+ MB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Access only rows from dataframe containing missing values</span>
@@ -19749,7 +18621,7 @@ memory usage: 3.9+ MB
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[22]:</div>
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
 
@@ -19777,7 +18649,7 @@ Length: 10000, dtype: bool</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Woah, lots of empty fields!  Immediately noticeable as &quot;True&quot; in columns of &quot;Children&quot;, &quot;Age&quot;, &quot;Income&quot;, &quot;Techie&quot;, &quot;Phone&quot;, &quot;Tenure&quot;</span>
@@ -19795,7 +18667,7 @@ Length: 10000, dtype: bool</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[23]:</div>
+    <div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -19863,7 +18735,7 @@ dtype: bool</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Confirm missing observations numbers</span>
@@ -19947,7 +18819,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Store rows with missing values in a new variable</span>
@@ -19965,7 +18837,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[25]:</div>
+    <div class="prompt output_prompt">Out[23]:</div>
 
 
 
@@ -19998,37 +18870,7 @@ dtype: int64
       <th>Lat</th>
       <th>Lng</th>
       <th>Population</th>
-      <th>Area</th>
-      <th>Timezone</th>
-      <th>Job</th>
-      <th>Children</th>
-      <th>Age</th>
-      <th>Education</th>
-      <th>Employment</th>
-      <th>Income</th>
-      <th>Marital</th>
-      <th>Gender</th>
-      <th>Churn</th>
-      <th>Outage_sec_perweek</th>
-      <th>Email</th>
-      <th>Contacts</th>
-      <th>Yearly_equip_failure</th>
-      <th>Techie</th>
-      <th>Contract</th>
-      <th>Port_modem</th>
-      <th>Tablet</th>
-      <th>InternetService</th>
-      <th>Phone</th>
-      <th>Multiple</th>
-      <th>OnlineSecurity</th>
-      <th>OnlineBackup</th>
-      <th>DeviceProtection</th>
-      <th>TechSupport</th>
-      <th>StreamingTV</th>
-      <th>StreamingMovies</th>
-      <th>PaperlessBilling</th>
-      <th>PaymentMethod</th>
-      <th>Tenure</th>
+      <th>...</th>
       <th>MonthlyCharge</th>
       <th>Bandwidth_GB_Year</th>
       <th>Responses</th>
@@ -20054,37 +18896,7 @@ dtype: int64
       <td>56.25100</td>
       <td>-133.37571</td>
       <td>38</td>
-      <td>Urban</td>
-      <td>America/Sitka</td>
-      <td>Environmental health practitioner</td>
-      <td>NaN</td>
-      <td>68.0</td>
-      <td>Master's Degree</td>
-      <td>Part Time</td>
-      <td>28561.99</td>
-      <td>Widowed</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>6.972566</td>
-      <td>10</td>
-      <td>0</td>
-      <td>1</td>
-      <td>No</td>
-      <td>One year</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Fiber Optic</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Credit Card (automatic)</td>
-      <td>6.795513</td>
+      <td>...</td>
       <td>171.449762</td>
       <td>904.536110</td>
       <td>5</td>
@@ -20108,37 +18920,7 @@ dtype: int64
       <td>45.35589</td>
       <td>-123.24657</td>
       <td>3735</td>
-      <td>Urban</td>
-      <td>America/Los_Angeles</td>
-      <td>Chief Financial Officer</td>
-      <td>4.0</td>
-      <td>50.0</td>
-      <td>Regular High School Diploma</td>
-      <td>Student</td>
-      <td>NaN</td>
-      <td>Widowed</td>
-      <td>Female</td>
-      <td>No</td>
-      <td>10.245616</td>
-      <td>9</td>
-      <td>0</td>
-      <td>1</td>
-      <td>Yes</td>
-      <td>Two Year</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>DSL</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Credit Card (automatic)</td>
-      <td>15.754144</td>
+      <td>...</td>
       <td>159.440398</td>
       <td>2054.706961</td>
       <td>4</td>
@@ -20162,37 +18944,7 @@ dtype: int64
       <td>32.57032</td>
       <td>-83.89040</td>
       <td>17701</td>
-      <td>Urban</td>
-      <td>America/New_York</td>
-      <td>Chief Technology Officer</td>
-      <td>3.0</td>
-      <td>83.0</td>
-      <td>No Schooling Completed</td>
-      <td>Full Time</td>
-      <td>NaN</td>
-      <td>Never Married</td>
-      <td>Female</td>
-      <td>No</td>
-      <td>7.814859</td>
-      <td>15</td>
-      <td>3</td>
-      <td>1</td>
-      <td>No</td>
-      <td>One year</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>None</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Electronic Check</td>
-      <td>7.000994</td>
+      <td>...</td>
       <td>184.401558</td>
       <td>1039.357983</td>
       <td>3</td>
@@ -20216,37 +18968,7 @@ dtype: int64
       <td>36.43420</td>
       <td>-84.27892</td>
       <td>2535</td>
-      <td>Suburban</td>
-      <td>America/New_York</td>
-      <td>Surveyor, hydrographic</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>Associate's Degree</td>
-      <td>Full Time</td>
-      <td>11467.50</td>
-      <td>Widowed</td>
-      <td>Male</td>
-      <td>Yes</td>
-      <td>11.129094</td>
-      <td>10</td>
-      <td>0</td>
-      <td>1</td>
-      <td>Yes</td>
-      <td>Month-to-month</td>
-      <td>No</td>
-      <td>No</td>
-      <td>DSL</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Electronic Check</td>
-      <td>13.236774</td>
+      <td>...</td>
       <td>200.064886</td>
       <td>1907.242972</td>
       <td>6</td>
@@ -20270,37 +18992,7 @@ dtype: int64
       <td>35.43313</td>
       <td>-97.52463</td>
       <td>23144</td>
-      <td>Suburban</td>
-      <td>America/Chicago</td>
-      <td>Sales promotion account executive</td>
-      <td>2.0</td>
-      <td>NaN</td>
-      <td>Bachelor's Degree</td>
-      <td>Full Time</td>
-      <td>26759.64</td>
-      <td>Married</td>
-      <td>Female</td>
-      <td>Yes</td>
-      <td>7.594838</td>
-      <td>16</td>
-      <td>0</td>
-      <td>0</td>
-      <td>Yes</td>
-      <td>Month-to-month</td>
-      <td>No</td>
-      <td>No</td>
-      <td>DSL</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Mailed Check</td>
-      <td>NaN</td>
+      <td>...</td>
       <td>114.754111</td>
       <td>979.612708</td>
       <td>2</td>
@@ -20335,36 +19027,6 @@ dtype: int64
       <td>...</td>
       <td>...</td>
       <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
     </tr>
     <tr>
       <th>9994</th>
@@ -20378,37 +19040,7 @@ dtype: int64
       <td>42.18491</td>
       <td>-74.33574</td>
       <td>210</td>
-      <td>Urban</td>
-      <td>America/New_York</td>
-      <td>Youth worker</td>
-      <td>NaN</td>
-      <td>46.0</td>
-      <td>Professional School Degree</td>
-      <td>Full Time</td>
-      <td>56384.35</td>
-      <td>Separated</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>7.110666</td>
-      <td>14</td>
-      <td>1</td>
-      <td>0</td>
-      <td>No</td>
-      <td>Month-to-month</td>
-      <td>No</td>
-      <td>No</td>
-      <td>DSL</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Credit Card (automatic)</td>
-      <td>NaN</td>
+      <td>...</td>
       <td>143.687900</td>
       <td>4945.756000</td>
       <td>4</td>
@@ -20432,37 +19064,7 @@ dtype: int64
       <td>43.43391</td>
       <td>-72.78734</td>
       <td>640</td>
-      <td>Rural</td>
-      <td>America/New_York</td>
-      <td>Sport and exercise psychologist</td>
-      <td>3.0</td>
-      <td>NaN</td>
-      <td>Some College, Less than 1 Year</td>
-      <td>Retired</td>
-      <td>55723.74</td>
-      <td>Married</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>9.265392</td>
-      <td>12</td>
-      <td>2</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>Month-to-month</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>DSL</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Electronic Check</td>
-      <td>68.197130</td>
+      <td>...</td>
       <td>159.828800</td>
       <td>6511.253000</td>
       <td>3</td>
@@ -20486,37 +19088,7 @@ dtype: int64
       <td>36.56907</td>
       <td>-87.41694</td>
       <td>77168</td>
-      <td>Rural</td>
-      <td>America/Chicago</td>
-      <td>Consulting civil engineer</td>
-      <td>4.0</td>
-      <td>48.0</td>
-      <td>Regular High School Diploma</td>
-      <td>Part Time</td>
-      <td>NaN</td>
-      <td>Divorced</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>8.115849</td>
-      <td>15</td>
-      <td>2</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>Two Year</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Fiber Optic</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Electronic Check</td>
-      <td>61.040370</td>
+      <td>...</td>
       <td>208.856400</td>
       <td>5695.952000</td>
       <td>4</td>
@@ -20540,37 +19112,7 @@ dtype: int64
       <td>35.52039</td>
       <td>-100.44180</td>
       <td>406</td>
-      <td>Rural</td>
-      <td>America/Chicago</td>
-      <td>IT technical support officer</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Nursery School to 8th Grade</td>
-      <td>Full Time</td>
-      <td>NaN</td>
-      <td>Never Married</td>
-      <td>Female</td>
-      <td>No</td>
-      <td>4.837696</td>
-      <td>10</td>
-      <td>0</td>
-      <td>0</td>
-      <td>No</td>
-      <td>Month-to-month</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Fiber Optic</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Bank Transfer(automatic)</td>
-      <td>NaN</td>
+      <td>...</td>
       <td>168.220900</td>
       <td>4159.306000</td>
       <td>4</td>
@@ -20594,37 +19136,7 @@ dtype: int64
       <td>34.70783</td>
       <td>-83.53648</td>
       <td>12230</td>
-      <td>Urban</td>
-      <td>America/New_York</td>
-      <td>Personal assistant</td>
-      <td>1.0</td>
-      <td>28.0</td>
-      <td>GED or Alternative Credential</td>
-      <td>Full Time</td>
-      <td>NaN</td>
-      <td>Never Married</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>12.641760</td>
-      <td>17</td>
-      <td>1</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>Month-to-month</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Fiber Optic</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>Electronic Check</td>
-      <td>63.350860</td>
+      <td>...</td>
       <td>218.371000</td>
       <td>5857.586000</td>
       <td>2</td>
@@ -20650,22 +19162,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Drop less meaningful columns </span>
-<span class="c1"># df_cleaned = df.drop(columns=[&#39;Customer_id&#39;, &#39;Interaction&#39;])</span>
-<span class="c1"># df_cleaned</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Examine columns for misspellings in categorical variables using unique() method</span>
@@ -20682,7 +19179,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[27]:</div>
+    <div class="prompt output_prompt">Out[24]:</div>
 
 
 
@@ -20700,7 +19197,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -20716,7 +19213,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[28]:</div>
+    <div class="prompt output_prompt">Out[25]:</div>
 
 
 
@@ -20733,7 +19230,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Timezone&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -20749,7 +19246,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[29]:</div>
+    <div class="prompt output_prompt">Out[26]:</div>
 
 
 
@@ -20775,7 +19272,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Job&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -20791,7 +19288,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[30]:</div>
+    <div class="prompt output_prompt">Out[27]:</div>
 
 
 
@@ -21096,7 +19593,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Well then, how many unique jobs are there and will this variable help us out much?</span>
@@ -21113,7 +19610,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[31]:</div>
+    <div class="prompt output_prompt">Out[28]:</div>
 
 
 
@@ -21130,7 +19627,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Children&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -21146,7 +19643,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[32]:</div>
+    <div class="prompt output_prompt">Out[29]:</div>
 
 
 
@@ -21163,7 +19660,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -21179,7 +19676,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[33]:</div>
+    <div class="prompt output_prompt">Out[30]:</div>
 
 
 
@@ -21201,7 +19698,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Examine age range</span>
@@ -21234,7 +19731,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Education&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -21250,7 +19747,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[35]:</div>
+    <div class="prompt output_prompt">Out[32]:</div>
 
 
 
@@ -21274,10 +19771,111 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Employment&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[33]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;Part Time&#39;, &#39;Retired&#39;, &#39;Student&#39;, &#39;Full Time&#39;, &#39;Unemployed&#39;],
+      dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[34]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;Widowed&#39;, &#39;Married&#39;, &#39;Separated&#39;, &#39;Never Married&#39;, &#39;Divorced&#39;],
+      dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[35]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;Male&#39;, &#39;Female&#39;, &#39;Prefer not to answer&#39;], dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Contract&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -21296,8 +19894,7 @@ dtype: int64
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;Part Time&#39;, &#39;Retired&#39;, &#39;Student&#39;, &#39;Full Time&#39;, &#39;Unemployed&#39;],
-      dtype=object)</pre>
+<pre>array([&#39;One year&#39;, &#39;Month-to-month&#39;, &#39;Two Year&#39;], dtype=object)</pre>
 </div>
 
 </div>
@@ -21311,7 +19908,7 @@ dtype: int64
 <div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;PaymentMethod&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -21330,106 +19927,6 @@ dtype: int64
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;Widowed&#39;, &#39;Married&#39;, &#39;Separated&#39;, &#39;Never Married&#39;, &#39;Divorced&#39;],
-      dtype=object)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[38]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;Male&#39;, &#39;Female&#39;, &#39;Prefer not to answer&#39;], dtype=object)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Contract&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[39]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;One year&#39;, &#39;Month-to-month&#39;, &#39;Two Year&#39;], dtype=object)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;PaymentMethod&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[40]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
 <pre>array([&#39;Credit Card (automatic)&#39;, &#39;Bank Transfer(automatic)&#39;,
        &#39;Mailed Check&#39;, &#39;Electronic Check&#39;], dtype=object)</pre>
 </div>
@@ -21442,33 +19939,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Check ranges of Income, Tenure, MonthlyCharge, Bandwidth_GB_Year</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Left of Bluelime tutorial here . . . .</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display any duplicate rows in the dataframe.</span>
@@ -21493,6 +19964,8 @@ dtype: int64
 <pre>Empty DataFrame
 Columns: [CaseOrder, Customer_id, Interaction, City, State, County, Zip, Lat, Lng, Population, Area, Timezone, Job, Children, Age, Education, Employment, Income, Marital, Gender, Churn, Outage_sec_perweek, Email, Contacts, Yearly_equip_failure, Techie, Contract, Port_modem, Tablet, InternetService, Phone, Multiple, OnlineSecurity, OnlineBackup, DeviceProtection, TechSupport, StreamingTV, StreamingMovies, PaperlessBilling, PaymentMethod, Tenure, MonthlyCharge, Bandwidth_GB_Year, Responses, Fixes, Replacements, Reliability, Options, Respectful, Courteous, Listening]
 Index: []
+
+[0 rows x 51 columns]
 </pre>
 </div>
 </div>
@@ -21503,7 +19976,7 @@ Index: []
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Identify the standard deviation of every numeric column in the dataset</span>
@@ -21555,7 +20028,7 @@ dtype: float64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[71]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_nulls</span> <span class="o">=</span> <span class="n">df_stats</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -21634,10 +20107,10 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[72]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Impute missing fields for Income, Tenure and Bandwidth_GB_Year with median or mean</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Impute missing fields for variables Children, Age, Income, Tenure and Bandwidth_GB_Year with median or mean</span>
 <span class="n">df_stats</span><span class="p">[</span><span class="s1">&#39;Children&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Children&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Children&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
 <span class="n">df_stats</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
 <span class="n">df_stats</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
@@ -21652,7 +20125,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_nulls</span> <span class="o">=</span> <span class="n">df_stats</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -21729,19 +20202,6 @@ dtype: int64
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -21751,43 +20211,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[58]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Perform a PCA to identify significant features</span>
-<span class="c1"># churn = pd.read_csv(&#39;churn_raw_data.csv&#39;, index_col=0)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[59]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Again, rename survey columns</span>
-<span class="c1"># churn.rename(columns = {&#39;item1&#39;:&#39;Responses&#39;, </span>
-<span class="c1">#                     &#39;item2&#39;:&#39;Fixes&#39;, </span>
-<span class="c1">#                      &#39;item3&#39;:&#39;Replacements&#39;, </span>
-<span class="c1">#                      &#39;item4&#39;:&#39;Reliability&#39;, </span>
-<span class="c1">#                      &#39;item5&#39;:&#39;Options&#39;, </span>
-<span class="c1">#                      &#39;item6&#39;:&#39;Respectful&#39;, </span>
-<span class="c1">#                      &#39;item7&#39;:&#39;Courteous&#39;, </span>
-<span class="c1">#                      &#39;item8&#39;:&#39;Listening&#39;}, </span>
-<span class="c1">#           inplace=True)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[74]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">churn</span> <span class="o">=</span> <span class="n">df_stats</span>
@@ -21800,7 +20224,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[102]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Extract Clean dataset</span>
@@ -21814,7 +20238,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[75]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Subset dataset to exclude categorical variables</span>
@@ -21832,7 +20256,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[76]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">churn</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -21848,7 +20272,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[76]:</div>
+    <div class="prompt output_prompt">Out[46]:</div>
 
 
 
@@ -22016,7 +20440,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import Scikit Learn PCA application</span>
@@ -22030,7 +20454,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Normalize the data</span>
@@ -22044,7 +20468,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[79]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Select number of components to extract</span>
@@ -22058,7 +20482,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[90]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create a list of PCA names</span>
@@ -22098,7 +20522,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[101]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">churn_numeric</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -22114,7 +20538,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[101]:</div>
+    <div class="prompt output_prompt">Out[51]:</div>
 
 
 
@@ -22282,7 +20706,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[91]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Call PCA application &amp; convert the dataset of  19 variables into a dataset of 19 components</span>
@@ -22298,7 +20722,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[92]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># For a scree plot import matplotlib &amp; seaborn libraries</span>
@@ -22313,7 +20737,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[93]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Run the scree plot</span>
@@ -22330,6 +20754,17 @@ dtype: int64
 <div class="output_wrapper">
 <div class="output">
 
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>findfont: Font family [&#39;sans-serif&#39;] not found. Falling back to DejaVu Sans.
+</pre>
+</div>
+</div>
 
 <div class="output_area">
 
@@ -22354,7 +20789,7 @@ height=438
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[94]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Extract the eigenvalues</span>
@@ -22369,7 +20804,7 @@ height=438
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[95]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot the eigenvalues</span>
@@ -22410,7 +20845,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[98]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Select the fewest components </span>
@@ -22461,10 +20896,10 @@ PC19 1.0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[99]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Above, we see that 89% of variance is explained by 14 components PERHAPS I SHOULD GET RIDDA SOME OUTLIERS, HMMM?!</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Above, we see that 89% of variance is explained by 14 components</span>
 <span class="c1"># Create a rotation </span>
 <span class="n">rotation</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">pcs_names</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">churn_numeric</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">rotation</span><span class="p">)</span>
@@ -22577,7 +21012,7 @@ Listening            -0.043334  0.046351 -0.042821 -0.003012
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[97]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Output loadings for components</span>
@@ -22597,7 +21032,7 @@ Listening            -0.043334  0.046351 -0.042821 -0.003012
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[97]:</div>
+    <div class="prompt output_prompt">Out[59]:</div>
 
 
 
@@ -23073,7 +21508,7 @@ Listening            -0.043334  0.046351 -0.042821 -0.003012
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[100]:</div>
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Finally, extract reduced dataset &amp; print 14 components</span>
@@ -23133,20 +21568,6 @@ Listening            -0.043334  0.046351 -0.042821 -0.003012
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="***-Ahah!-just-as-suspected-=&gt;-Timely-responses,-timely-fixes-&amp;-timely-replacements-have-the-highest-values-in-the-first-component,-followed-by-respectful-response!--This-would-verify-intuitive-or-gut-instinct.--But-now-it's-quantitative!">*** Ahah! just as suspected =&gt; Timely responses, timely fixes &amp; timely replacements have the highest values in the first component, followed by respectful response!  This would verify intuitive or gut instinct.  But now it's quantitative!<a class="anchor-link" href="#***-Ahah!-just-as-suspected-=&gt;-Timely-responses,-timely-fixes-&amp;-timely-replacements-have-the-highest-values-in-the-first-component,-followed-by-respectful-response!--This-would-verify-intuitive-or-gut-instinct.--But-now-it's-quantitative!">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="FINAL-DRAFT-review-Performance-Lab-Python-=&gt;-especially-comments!!!"><span style="color:red">FINAL DRAFT review Performance Lab Python =&gt; especially comments!!!</span><a class="anchor-link" href="#FINAL-DRAFT-review-Performance-Lab-Python-=&gt;-especially-comments!!!">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Part-III:-Data-Cleaning"><span style="color:red">Part III: Data Cleaning</span><a class="anchor-link" href="#Part-III:-Data-Cleaning">&#182;</a></h2>
 </div>
 </div>
@@ -23154,22 +21575,13 @@ Listening            -0.043334  0.046351 -0.042821 -0.003012
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="D.--Summarize-the-data-cleaning-process-by-doing-the-following:">D.  Summarize the data-cleaning process by doing the following:<a class="anchor-link" href="#D.--Summarize-the-data-cleaning-process-by-doing-the-following:">&#182;</a></h3><ol>
-<li><p>Describe the findings, including all anomalies, from the implementation of the data-cleaning plan from part C.</p>
-</li>
-<li><p>Justify your methods for mitigating each type of discovered anomaly in the data set.</p>
-</li>
-<li><p>Summarize the outcome from the implementation of each data-cleaning step.</p>
-</li>
-<li><p>Provide the code used to mitigate anomalies.</p>
-</li>
-<li><p>Provide a copy of the cleaned data set.</p>
-</li>
-<li><p>Summarize the limitations of the data-cleaning process.</p>
-</li>
-<li><p>Discuss how the limitations in part D6 affect the analysis of the question or decision from part A.</p>
-</li>
-</ol>
+<h3 id="D.-Data-Cleaning-Summary"><span style="color:green">D. Data Cleaning Summary</span><a class="anchor-link" href="#D.-Data-Cleaning-Summary">&#182;</a></h3><p>D1.<b>Cleaning Findings</b>:  There was much missing data with meaningful variable fields including Children, Age, Income, Tenure and Bandwidth_GB_Year.  Given mean and variance of these variables, it seemed reasonable to impute missing values with median values.  Many categorical (such as whether or not the customer was "Techie") &amp; non-numeric (columns for customer ID numbers &amp; related customer transaction IDs) data were not included in analysis given they seemed less meaningful to interpretation and decision-making.  The anomalies discovered were not significant &amp; were mitigated as follows.</p>
+<p>D2.<b>Justification of Mitigation Methods</b>:  Anomalies were mitigated by . . . <b style="color:red">Justify your methods for mitigating each type of discovered anomaly in the data set.</b></p>
+<p>D3.<b>Summary of Outcomes</b>:  Once the the missing values where . . .  <b style="color:red">Summarize the outcome from the implementation of each data-cleaning step.</b></p>
+<p>D4.<b>Mitigation Code</b>:  (see code above and Panopto recording)</p>
+<p>D5.<b>Clean Data</b>: (see attached file <b style="color:green">'churn_clean.csv'</b>)</p>
+<p>D6.<b>Limitations</b>: Limitations given the telecom company data set are that the data are not coming from an warehouse.  In this scenario, it is as though I initiated and gathered the data.  So, I am not able to reach out to the staff that organized &amp; gathered this information to ask them why certain NAs are there, why are fields such as age or yearly bandwidth usage missing information that might be relevant to answering questions about customer retention or churn.  In a real world project, you would be able to go down to the department where these folks worked and fill in the empty fields or discover why fields are left blank.</p>
+<p>D7. The accurate factual data for missing fields that might be recoverable given the ability to access the staff in the data warehouse, such as company tenure with the company, may give a slighty different overall picture to the analysis. While imputation may provide a path to move forward and give decision-makers reasonable answers, there really is no reason for these data to be missing.  The limitations here could be remedied by instituting stricter data acquisition procedures, follow-ups &amp; feedback.</p>
 
 </div>
 </div>
@@ -23177,54 +21589,17 @@ Listening            -0.043334  0.046351 -0.042821 -0.003012
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="D.-Data-Cleaning-Summary"><span style="color:green">D. Data Cleaning Summary</span><a class="anchor-link" href="#D.-Data-Cleaning-Summary">&#182;</a></h3><p>D1.<b>Cleaning Findings</b>:</p>
-<p>D2.<b>Justification of Mitigation Methods</b>:</p>
-<p>D3.<b>Summary of Outcomes</b>:</p>
-<p>D4.<b>Mitigation Code</b>:</p>
-<p>D5.<b>Clean Data</b>: (see attached file 'churn_data_cleaned.csv')</p>
-<p>D6.<b>Limitations</b>: Limitations given the telecom company data set are that the data are not coming from an warehouse.  It this scenario, it is as though I initiated and gathered the data.  So, I am not able to reach out to the folks that organized and gathered this information and ask them why certain NAs are there, why are fields such as age or yearly bandwidth used missing information that might be relevant to answering questions about customer retention or churn.  In a real world project, you would be able to go down to the department where these folks worked and fill in the empty fields or discover why fields are left blank.<br>
-D7.</p>
+<h3 id="E.-PCA-Application"><span style="color:green">E. PCA Application</span><a class="anchor-link" href="#E.-PCA-Application">&#182;</a></h3><p>E1. <b>Principal Components</b>:  The principal components, and what I determined to be "most important", in this dataset include survey responses to:</p>
+<ul>
+    <li>Timely Responses</li>
+    <li>Timely Fixes</li>
+    <li>Timely Replacements</li>
+    <li>Respectful Response</li>
+</ul><p>E2. <b>Criteria Used</b>:  I had a sneaking intuitition that these might be the most important features to predict why a customer might or might not leave a company.  However, confirmation bias is not what confirmed this forethought.  I used a scree plot &amp; extracted the eigenvalues for visualization of where the "elbow was bending".  The elbow bent at about 3 but kept an eigenvalue above 1 until the tenth component.  Then, the fewest number of components were selected based on the 89% explanation using the Numpy cumsum method. A rotation &amp; loadings were created which suggested the "most important" features of the dataset.&lt;/b&gt;</p>
+<p>E3. <b>Benefits</b>:  Their is as the loadings suggest the variables involved in timely action with regard to customer satisfaction should be given greater emphasis and hopefully help reduce the the churn rate from the large number of 27% &amp; "increase the retention period of customers" by targeting more resources in the direction prompt customer service (Ahmad, 2019).  Again, this seems an intuitive result but now decision-makers in the company of reasonable verification of what might have been a "hunch".</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="E.--Apply-principal-component-analysis-(PCA)-to-identify-the-significant-features-of-the-data-set-by-doing-the-following:">E.  Apply principal component analysis (PCA) to identify the significant features of the data set by doing the following:<a class="anchor-link" href="#E.--Apply-principal-component-analysis-(PCA)-to-identify-the-significant-features-of-the-data-set-by-doing-the-following:">&#182;</a></h3><ol>
-<li><p>List the principal components in the data set.</p>
-</li>
-<li><p>Describe how you identified the principal components of the data set.</p>
-</li>
-<li><p>Describe how the organization can benefit from the results of the PCA</p>
-</li>
-</ol>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="E.-PCA-Application"><span style="color:green">E. PCA Application</span><a class="anchor-link" href="#E.-PCA-Application">&#182;</a></h3><p>E1. <b>Principal Components</b>:</p>
-<p>E2. <b>Criteria Used</b>:</p>
-<p>E3. <b>Benefits</b>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Cut &amp; paste in PCA code from Performance Lab Python!!!</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -23236,21 +21611,8 @@ D7.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="F.--Provide-a-Panopto-recording-that-demonstrates-the-warning--and-error-free-functionality-of-the-code-used-to-support-the-discovery-of-anomalies-and-the-data-cleaning-process-and-summarizes-the-programming-environment.">F.  Provide a Panopto recording that demonstrates the warning- and error-free functionality of the code used to support the discovery of anomalies and the data cleaning process and summarizes the programming environment.<a class="anchor-link" href="#F.--Provide-a-Panopto-recording-that-demonstrates-the-warning--and-error-free-functionality-of-the-code-used-to-support-the-discovery-of-anomalies-and-the-data-cleaning-process-and-summarizes-the-programming-environment.">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="F.-Video"><span style="color:green">F. Video</span><a class="anchor-link" href="#F.-Video">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="G.--Reference-the-web-sources-used-to-acquire-segments-of-third-party-code-to-support-the-application.-Be-sure-the-web-sources-are-reliable.">G.  Reference the web sources used to acquire segments of third-party code to support the application. <span style="color:red">Be sure the web sources are reliable.</span><a class="anchor-link" href="#G.--Reference-the-web-sources-used-to-acquire-segments-of-third-party-code-to-support-the-application.-Be-sure-the-web-sources-are-reliable.">&#182;</a></h3>
+<h3 id="F.-Video"><span style="color:green">F. Video</span><a class="anchor-link" href="#F.-Video">&#182;</a></h3><p>(see Panopto recording)</p>
+
 </div>
 </div>
 </div>
@@ -23261,14 +21623,6 @@ D7.</p>
 <p>Larose, C. D. &amp; Larose, D. T. (2019). <i>Data Science: Using Python and R.</i>  John Wiley &amp; Sons, Inc.</p>
 <p>Sree. (2020, October 26). <i>Predict Customer Churn in Python.</i>  Towards Data Science.  <br>&emsp;<a href="https://towardsdatascience.com/predict-customer-churn-in-python-e8cd6d3aaa7">https://towardsdatascience.com/predict-customer-churn-in-python-e8cd6d3aaa7</a></p>
 <p>VanderPlas, J. (2017). <i>Python Data Science Handbook: Essential Tools for WOrking with Data.</i>  <br>&emsp;O'Reilly Media, Inc.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3>H.  Acknowledge sources, <span style="color:red">using in-text citations<span></h3>
 
 </div>
 </div>
