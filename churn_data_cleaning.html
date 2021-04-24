@@ -16483,24 +16483,24 @@ Independent variables or predictors that may lead to identifying a relationship 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Requirement already satisfied: pandas in c:\users\vreed\anaconda3\lib\site-packages (1.0.1)
 Requirement already satisfied: python-dateutil&gt;=2.6.1 in c:\users\vreed\anaconda3\lib\site-packages (from pandas) (2.8.1)
-Requirement already satisfied: pytz&gt;=2017.2 in c:\users\vreed\anaconda3\lib\site-packages (from pandas) (2019.3)
 Requirement already satisfied: numpy&gt;=1.13.3 in c:\users\vreed\anaconda3\lib\site-packages (from pandas) (1.18.1)
+Requirement already satisfied: pytz&gt;=2017.2 in c:\users\vreed\anaconda3\lib\site-packages (from pandas) (2019.3)
 Requirement already satisfied: six&gt;=1.5 in c:\users\vreed\anaconda3\lib\site-packages (from python-dateutil&gt;=2.6.1-&gt;pandas) (1.14.0)
 Requirement already satisfied: numpy in c:\users\vreed\anaconda3\lib\site-packages (1.18.1)
 Requirement already satisfied: scipy in c:\users\vreed\anaconda3\lib\site-packages (1.4.1)
 Requirement already satisfied: numpy&gt;=1.13.3 in c:\users\vreed\anaconda3\lib\site-packages (from scipy) (1.18.1)
 Requirement already satisfied: sklearn in c:\users\vreed\anaconda3\lib\site-packages (0.0)
 Requirement already satisfied: scikit-learn in c:\users\vreed\anaconda3\lib\site-packages (from sklearn) (0.22.1)
-Requirement already satisfied: numpy&gt;=1.11.0 in c:\users\vreed\anaconda3\lib\site-packages (from scikit-learn-&gt;sklearn) (1.18.1)
 Requirement already satisfied: scipy&gt;=0.17.0 in c:\users\vreed\anaconda3\lib\site-packages (from scikit-learn-&gt;sklearn) (1.4.1)
+Requirement already satisfied: numpy&gt;=1.11.0 in c:\users\vreed\anaconda3\lib\site-packages (from scikit-learn-&gt;sklearn) (1.18.1)
 Requirement already satisfied: joblib&gt;=0.11 in c:\users\vreed\anaconda3\lib\site-packages (from scikit-learn-&gt;sklearn) (0.14.1)
 Requirement already satisfied: matplotlib in c:\users\vreed\anaconda3\lib\site-packages (3.1.3)
+Requirement already satisfied: cycler&gt;=0.10 in c:\users\vreed\anaconda3\lib\site-packages (from matplotlib) (0.10.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in c:\users\vreed\anaconda3\lib\site-packages (from matplotlib) (1.1.0)
 Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in c:\users\vreed\anaconda3\lib\site-packages (from matplotlib) (2.4.6)
 Requirement already satisfied: python-dateutil&gt;=2.1 in c:\users\vreed\anaconda3\lib\site-packages (from matplotlib) (2.8.1)
-Requirement already satisfied: cycler&gt;=0.10 in c:\users\vreed\anaconda3\lib\site-packages (from matplotlib) (0.10.0)
 Requirement already satisfied: numpy&gt;=1.11 in c:\users\vreed\anaconda3\lib\site-packages (from matplotlib) (1.18.1)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in c:\users\vreed\anaconda3\lib\site-packages (from matplotlib) (1.1.0)
-Requirement already satisfied: six&gt;=1.5 in c:\users\vreed\anaconda3\lib\site-packages (from python-dateutil&gt;=2.1-&gt;matplotlib) (1.14.0)
+Requirement already satisfied: six in c:\users\vreed\anaconda3\lib\site-packages (from cycler&gt;=0.10-&gt;matplotlib) (1.14.0)
 Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-packages (from kiwisolver&gt;=1.0.1-&gt;matplotlib) (45.2.0.post20200210)
 </pre>
 </div>
@@ -19176,7 +19176,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19192,7 +19192,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[24]:</div>
+    <div class="prompt output_prompt">Out[28]:</div>
 
 
 
@@ -19209,7 +19209,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Timezone&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19225,7 +19225,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[25]:</div>
+    <div class="prompt output_prompt">Out[29]:</div>
 
 
 
@@ -19251,7 +19251,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Job&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19267,7 +19267,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[26]:</div>
+    <div class="prompt output_prompt">Out[31]:</div>
 
 
 
@@ -19572,7 +19572,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Well then, how many unique jobs are there and will this variable help us out much?</span>
@@ -19589,7 +19589,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[27]:</div>
+    <div class="prompt output_prompt">Out[33]:</div>
 
 
 
@@ -19606,7 +19606,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Children&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19622,7 +19622,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[28]:</div>
+    <div class="prompt output_prompt">Out[34]:</div>
 
 
 
@@ -19639,7 +19639,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19655,7 +19655,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[29]:</div>
+    <div class="prompt output_prompt">Out[35]:</div>
 
 
 
@@ -19677,7 +19677,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Examine age range</span>
@@ -19710,7 +19710,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Education&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19726,7 +19726,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[31]:</div>
+    <div class="prompt output_prompt">Out[37]:</div>
 
 
 
@@ -19750,7 +19750,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Employment&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19766,7 +19766,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[32]:</div>
+    <div class="prompt output_prompt">Out[38]:</div>
 
 
 
@@ -19784,7 +19784,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19800,7 +19800,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[33]:</div>
+    <div class="prompt output_prompt">Out[39]:</div>
 
 
 
@@ -19818,7 +19818,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19834,7 +19834,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[34]:</div>
+    <div class="prompt output_prompt">Out[40]:</div>
 
 
 
@@ -19851,7 +19851,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Contract&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19867,7 +19867,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[35]:</div>
+    <div class="prompt output_prompt">Out[41]:</div>
 
 
 
@@ -19884,7 +19884,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;PaymentMethod&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19900,7 +19900,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[36]:</div>
+    <div class="prompt output_prompt">Out[42]:</div>
 
 
 
@@ -19918,7 +19918,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display any duplicate rows in the dataframe.</span>
@@ -19955,7 +19955,7 @@ Index: []
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Identify the standard deviation of every numeric column in the dataset</span>
@@ -20007,7 +20007,7 @@ dtype: float64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_nulls</span> <span class="o">=</span> <span class="n">df_stats</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -20086,7 +20086,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Impute missing fields for variables Children, Age, Income, Tenure and Bandwidth_GB_Year with median or mean</span>
@@ -20104,7 +20104,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_nulls</span> <span class="o">=</span> <span class="n">df_stats</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -20191,7 +20191,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create histograms of important variables</span>
@@ -20244,7 +20244,7 @@ height=470
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Some odd distributions here, let&#39;s see some box plots for outliers</span>
@@ -20284,7 +20284,7 @@ height=415
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Let&#39;s see monthly charge separately</span>
@@ -20302,13 +20302,13 @@ height=415
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[44]:</div>
+    <div class="prompt output_prompt">Out[50]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1ed899af548&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x150f465dc08&gt;</pre>
 </div>
 
 </div>
@@ -20336,7 +20336,7 @@ height=414
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Let&#39;s see a Seaborn boxplot fee &amp; bandwidth</span>
@@ -20383,7 +20383,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Extract Clean dataset</span>
@@ -20397,7 +20397,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Reload cleaned data &amp; remove all variable except user services payment info and survey data</span>
@@ -20411,7 +20411,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Slice off all but last eleven service realted variables</span>
@@ -20429,7 +20429,7 @@ height=437
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[48]:</div>
+    <div class="prompt output_prompt">Out[54]:</div>
 
 
 
@@ -20556,7 +20556,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import Scikit Learn PCA application</span>
@@ -20570,7 +20570,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Normalize the data</span>
@@ -20584,7 +20584,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Select number of components to extract</span>
@@ -20598,7 +20598,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create a list of PCA names</span>
@@ -20636,7 +20636,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Re-Extract Clean dataset</span>
@@ -20650,7 +20650,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">churn_numeric</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -20666,7 +20666,7 @@ height=437
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[55]:</div>
+    <div class="prompt output_prompt">Out[60]:</div>
 
 
 
@@ -20786,7 +20786,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Call PCA application &amp; convert the dataset of  19 variables into a dataset of 19 components</span>
@@ -20802,7 +20802,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># For a scree plot import matplotlib &amp; seaborn libraries</span>
@@ -20817,7 +20817,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[58]:</div>
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Run the scree plot</span>
@@ -20858,7 +20858,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Extract the eigenvalues</span>
@@ -20873,7 +20873,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot the eigenvalues</span>
@@ -20914,7 +20914,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Select the fewest components </span>
@@ -20957,7 +20957,7 @@ PC11 1.0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Above, we see that 89% of variance is explained by 14 components</span>
@@ -21015,7 +21015,7 @@ Listening         -0.113297 -0.045132  0.046107 -0.042251 -0.002357
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Output loadings for components</span>
@@ -21035,7 +21035,7 @@ Listening         -0.113297 -0.045132  0.046107 -0.042251 -0.002357
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[63]:</div>
+    <div class="prompt output_prompt">Out[68]:</div>
 
 
 
@@ -21239,7 +21239,7 @@ Listening         -0.113297 -0.045132  0.046107 -0.042251 -0.002357
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Finally, extract reduced dataset &amp; print 3 components</span>
