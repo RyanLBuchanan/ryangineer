@@ -216,6 +216,10 @@ html {
   text-align: center;
 }
 
+.no-italics {
+    font-style: normal;
+}
+
 p {
   color: #2B5275;
   font-size: 15px;
