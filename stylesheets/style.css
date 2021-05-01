@@ -300,6 +300,13 @@ p {
   text-align: center;
 }
 
+#stephenson_quotation {
+  float: center;
+  font-style: italic;
+  text-align: center;
+  font-size: 20px;
+}
+
 table, th, td {
   margin-top: 0px;
   margin-bottom: 10px;
