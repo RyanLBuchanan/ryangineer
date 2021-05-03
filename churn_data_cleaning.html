@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>D206_Performance_Assessment</title>
+<title>D206_Performance_Assessment_revision</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -16377,14 +16377,6 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="**A1.-Alternative-Question:"><span style="color:green"><b>**A1. Alternative Question</b>:</span><a class="anchor-link" href="#**A1.-Alternative-Question:">&#182;</a></h3><p>Also, Are there certain responses to survey that correlate with customer churn?</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="B.-Required-Variables:"><span style="color:green"><b>B. Required Variables</b>:</span><a class="anchor-link" href="#B.-Required-Variables:">&#182;</a></h3><p>The data set is 10,000 customer records of a popular telecommunications company. The dependent variable (target) in question is whether or not each customer has continued or discontinued service within the last month.  This column is titled "Churn."<br>
 Independent variables or predictors that may lead to identifying a relationship with the dependent variable of "Churn" within the dataset include:</p>
 <ol>
@@ -16410,12 +16402,13 @@ Independent variables or predictors that may lead to identifying a relationship 
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="C1.-Plan-to-Find-Anomalies:"><span style="color:green"><b>C1. Plan to Find Anomalies</b>:</span><a class="anchor-link" href="#C1.-Plan-to-Find-Anomalies:">&#182;</a></h3><p>My approach will include:
 <br>&ensp; 1. Back up my data and the process I am following as a copy to my machine and, since this is a manageable dataset, to GitHub using command line and gitbash.
-<br>&ensp; 2. Read the data set into Python using Pandas read_csv command.
+<br>&ensp; 2. Read the data set into Python using Pandas' read_csv command.
 <br>&ensp; 3. Evaluate the data struture to better understand input data.
 <br>&ensp; 4. Naming the dataset as a the variable "churn_df" and subsequent useful slices of the dataframe as "df".
-<br>&ensp; 5. Examine potential misspellings, awkward variable namimg &amp; missing data.
+<br>&ensp; 5. Examine potential misspellings, awkward variable naming &amp; missing data.
 <br>&ensp; 6. Find outliers that may create or hide statistical significance using histograms.
-<br>&ensp; 7. Imputing records missing data with meaningful measures of central tendency (mean, median or mode) or simply remove outliers that are several standard deviations above the mean.</p>
+<br>&ensp; 7. Imputing records missing data with meaningful measures of central tendency (mean, median or mode) or simply remove outliers that are several standard deviations above the mean.
+<br>*Referenced &amp; paraphrased within above plan (Larose, 2019, p. 29-43).</p>
 
 </div>
 </div>
@@ -16431,7 +16424,7 @@ Independent variables or predictors that may lead to identifying a relationship 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="C3.-Justification-of-Tools:"><span style="color:green"><b>C3. Justification of Tools</b>:</span><a class="anchor-link" href="#C3.-Justification-of-Tools:">&#182;</a></h3><p>I will use the Python programming language as I have a bit of a background in Python having studied machine learning independently over the last year before beginning this masters program and its ability to perform many things right "out of the box."  Python provides clean, intuitive and readable syntax that has become ubiquitous across in the data science industry.  Also, I find the Jupyter notebooks a convenient way to run code visually, in its attractive single document markdown format, the ability to display results of code and graphic visualizations and provide crystal-clear running documentation for future reference.   A thorough installation and importation of Python packages and libraries will provide specially designed code to perfom complex data science tasks rather than personally building them from scratch.  This will include: 
+<h3 id="C3.-Justification-of-Tools:"><span style="color:green"><b>C3. Justification of Tools</b>:</span><a class="anchor-link" href="#C3.-Justification-of-Tools:">&#182;</a></h3><p>I will use the Python programming language as I have a bit of a background in Python having studied machine learning independently over the last year before beginning this masters program and its ability to perform many things right "out of the box" (Poulson, 2016, section 2).    Python provides clean, intuitive and readable syntax that has become ubiquitous across in the data science industry.  Also, I find the Jupyter notebooks a convenient way to run code visually, in its attractive single document markdown format, the ability to display results of code and graphic visualizations and provide crystal-clear running documentation for future reference.   A thorough installation and importation of Python packages and libraries will provide specially designed code to perfom complex data science tasks rather than personally building them from scratch.  This will include: 
 <br>&ensp; • NumPy - to work with arrays
 <br>&ensp; • Pandas - to load datasets
 <br>&ensp; • Matplotlib - to plot charts
@@ -16483,23 +16476,23 @@ Independent variables or predictors that may lead to identifying a relationship 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Requirement already satisfied: pandas in c:\users\vreed\anaconda3\lib\site-packages (1.0.1)
 Requirement already satisfied: python-dateutil&gt;=2.6.1 in c:\users\vreed\anaconda3\lib\site-packages (from pandas) (2.8.1)
-Requirement already satisfied: numpy&gt;=1.13.3 in c:\users\vreed\anaconda3\lib\site-packages (from pandas) (1.18.1)
 Requirement already satisfied: pytz&gt;=2017.2 in c:\users\vreed\anaconda3\lib\site-packages (from pandas) (2019.3)
+Requirement already satisfied: numpy&gt;=1.13.3 in c:\users\vreed\anaconda3\lib\site-packages (from pandas) (1.18.1)
 Requirement already satisfied: six&gt;=1.5 in c:\users\vreed\anaconda3\lib\site-packages (from python-dateutil&gt;=2.6.1-&gt;pandas) (1.14.0)
 Requirement already satisfied: numpy in c:\users\vreed\anaconda3\lib\site-packages (1.18.1)
 Requirement already satisfied: scipy in c:\users\vreed\anaconda3\lib\site-packages (1.4.1)
 Requirement already satisfied: numpy&gt;=1.13.3 in c:\users\vreed\anaconda3\lib\site-packages (from scipy) (1.18.1)
 Requirement already satisfied: sklearn in c:\users\vreed\anaconda3\lib\site-packages (0.0)
 Requirement already satisfied: scikit-learn in c:\users\vreed\anaconda3\lib\site-packages (from sklearn) (0.22.1)
-Requirement already satisfied: scipy&gt;=0.17.0 in c:\users\vreed\anaconda3\lib\site-packages (from scikit-learn-&gt;sklearn) (1.4.1)
 Requirement already satisfied: numpy&gt;=1.11.0 in c:\users\vreed\anaconda3\lib\site-packages (from scikit-learn-&gt;sklearn) (1.18.1)
+Requirement already satisfied: scipy&gt;=0.17.0 in c:\users\vreed\anaconda3\lib\site-packages (from scikit-learn-&gt;sklearn) (1.4.1)
 Requirement already satisfied: joblib&gt;=0.11 in c:\users\vreed\anaconda3\lib\site-packages (from scikit-learn-&gt;sklearn) (0.14.1)
 Requirement already satisfied: matplotlib in c:\users\vreed\anaconda3\lib\site-packages (3.1.3)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in c:\users\vreed\anaconda3\lib\site-packages (from matplotlib) (2.4.6)
+Requirement already satisfied: numpy&gt;=1.11 in c:\users\vreed\anaconda3\lib\site-packages (from matplotlib) (1.18.1)
 Requirement already satisfied: cycler&gt;=0.10 in c:\users\vreed\anaconda3\lib\site-packages (from matplotlib) (0.10.0)
 Requirement already satisfied: kiwisolver&gt;=1.0.1 in c:\users\vreed\anaconda3\lib\site-packages (from matplotlib) (1.1.0)
-Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in c:\users\vreed\anaconda3\lib\site-packages (from matplotlib) (2.4.6)
 Requirement already satisfied: python-dateutil&gt;=2.1 in c:\users\vreed\anaconda3\lib\site-packages (from matplotlib) (2.8.1)
-Requirement already satisfied: numpy&gt;=1.11 in c:\users\vreed\anaconda3\lib\site-packages (from matplotlib) (1.18.1)
 Requirement already satisfied: six in c:\users\vreed\anaconda3\lib\site-packages (from cycler&gt;=0.10-&gt;matplotlib) (1.14.0)
 Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-packages (from kiwisolver&gt;=1.0.1-&gt;matplotlib) (45.2.0.post20200210)
 </pre>
@@ -16536,40 +16529,6 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Increase Jupyter display cell-width</span>
-<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
-<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;style&gt;.container { width:75% !important; }&lt;/style&gt;&quot;</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<style>.container { width:75% !important; }</style>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load data set into Pandas dataframe</span>
 <span class="n">churn_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;churn_raw_data.csv&#39;</span><span class="p">)</span>
 </pre></div>
@@ -16581,7 +16540,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display Churn dataframe</span>
@@ -16598,7 +16557,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -16923,7 +16882,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># List of Dataframe Columns</span>
@@ -16966,7 +16925,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Remove redundant &quot;Unnamed&quot; column at beginning &amp; display first five records</span>
@@ -16984,7 +16943,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -17165,7 +17124,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Rename last 8 survey columns for better description of variables</span>
@@ -17174,7 +17133,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
                      <span class="s1">&#39;item3&#39;</span><span class="p">:</span><span class="s1">&#39;Replacements&#39;</span><span class="p">,</span> 
                      <span class="s1">&#39;item4&#39;</span><span class="p">:</span><span class="s1">&#39;Reliability&#39;</span><span class="p">,</span> 
                      <span class="s1">&#39;item5&#39;</span><span class="p">:</span><span class="s1">&#39;Options&#39;</span><span class="p">,</span> 
-                     <span class="s1">&#39;item6&#39;</span><span class="p">:</span><span class="s1">&#39;Respectful&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;item6&#39;</span><span class="p">:</span><span class="s1">&#39;Respectfulness&#39;</span><span class="p">,</span> 
                      <span class="s1">&#39;item7&#39;</span><span class="p">:</span><span class="s1">&#39;Courteous&#39;</span><span class="p">,</span> 
                      <span class="s1">&#39;item8&#39;</span><span class="p">:</span><span class="s1">&#39;Listening&#39;</span><span class="p">},</span> 
           <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -17187,248 +17146,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[9]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Index([&#39;CaseOrder&#39;, &#39;Customer_id&#39;, &#39;Interaction&#39;, &#39;City&#39;, &#39;State&#39;, &#39;County&#39;,
-       &#39;Zip&#39;, &#39;Lat&#39;, &#39;Lng&#39;, &#39;Population&#39;, &#39;Area&#39;, &#39;Timezone&#39;, &#39;Job&#39;,
-       &#39;Children&#39;, &#39;Age&#39;, &#39;Education&#39;, &#39;Employment&#39;, &#39;Income&#39;, &#39;Marital&#39;,
-       &#39;Gender&#39;, &#39;Churn&#39;, &#39;Outage_sec_perweek&#39;, &#39;Email&#39;, &#39;Contacts&#39;,
-       &#39;Yearly_equip_failure&#39;, &#39;Techie&#39;, &#39;Contract&#39;, &#39;Port_modem&#39;, &#39;Tablet&#39;,
-       &#39;InternetService&#39;, &#39;Phone&#39;, &#39;Multiple&#39;, &#39;OnlineSecurity&#39;,
-       &#39;OnlineBackup&#39;, &#39;DeviceProtection&#39;, &#39;TechSupport&#39;, &#39;StreamingTV&#39;,
-       &#39;StreamingMovies&#39;, &#39;PaperlessBilling&#39;, &#39;PaymentMethod&#39;, &#39;Tenure&#39;,
-       &#39;MonthlyCharge&#39;, &#39;Bandwidth_GB_Year&#39;, &#39;Responses&#39;, &#39;Fixes&#39;,
-       &#39;Replacements&#39;, &#39;Reliability&#39;, &#39;Options&#39;, &#39;Respectful&#39;, &#39;Courteous&#39;,
-       &#39;Listening&#39;],
-      dtype=&#39;object&#39;)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[10]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>CaseOrder</th>
-      <th>Customer_id</th>
-      <th>Interaction</th>
-      <th>City</th>
-      <th>State</th>
-      <th>County</th>
-      <th>Zip</th>
-      <th>Lat</th>
-      <th>Lng</th>
-      <th>Population</th>
-      <th>...</th>
-      <th>MonthlyCharge</th>
-      <th>Bandwidth_GB_Year</th>
-      <th>Responses</th>
-      <th>Fixes</th>
-      <th>Replacements</th>
-      <th>Reliability</th>
-      <th>Options</th>
-      <th>Respectful</th>
-      <th>Courteous</th>
-      <th>Listening</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>K409198</td>
-      <td>aa90260b-4141-4a24-8e36-b04ce1f4f77b</td>
-      <td>Point Baker</td>
-      <td>AK</td>
-      <td>Prince of Wales-Hyder</td>
-      <td>99927</td>
-      <td>56.25100</td>
-      <td>-133.37571</td>
-      <td>38</td>
-      <td>...</td>
-      <td>171.449762</td>
-      <td>904.536110</td>
-      <td>5</td>
-      <td>5</td>
-      <td>5</td>
-      <td>3</td>
-      <td>4</td>
-      <td>4</td>
-      <td>3</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>S120509</td>
-      <td>fb76459f-c047-4a9d-8af9-e0f7d4ac2524</td>
-      <td>West Branch</td>
-      <td>MI</td>
-      <td>Ogemaw</td>
-      <td>48661</td>
-      <td>44.32893</td>
-      <td>-84.24080</td>
-      <td>10446</td>
-      <td>...</td>
-      <td>242.948015</td>
-      <td>800.982766</td>
-      <td>3</td>
-      <td>4</td>
-      <td>3</td>
-      <td>3</td>
-      <td>4</td>
-      <td>3</td>
-      <td>4</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>K191035</td>
-      <td>344d114c-3736-4be5-98f7-c72c281e2d35</td>
-      <td>Yamhill</td>
-      <td>OR</td>
-      <td>Yamhill</td>
-      <td>97148</td>
-      <td>45.35589</td>
-      <td>-123.24657</td>
-      <td>3735</td>
-      <td>...</td>
-      <td>159.440398</td>
-      <td>2054.706961</td>
-      <td>4</td>
-      <td>4</td>
-      <td>2</td>
-      <td>4</td>
-      <td>4</td>
-      <td>3</td>
-      <td>3</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>D90850</td>
-      <td>abfa2b40-2d43-4994-b15a-989b8c79e311</td>
-      <td>Del Mar</td>
-      <td>CA</td>
-      <td>San Diego</td>
-      <td>92014</td>
-      <td>32.96687</td>
-      <td>-117.24798</td>
-      <td>13863</td>
-      <td>...</td>
-      <td>120.249493</td>
-      <td>2164.579412</td>
-      <td>4</td>
-      <td>4</td>
-      <td>4</td>
-      <td>2</td>
-      <td>5</td>
-      <td>4</td>
-      <td>3</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>K662701</td>
-      <td>68a861fd-0d20-4e51-a587-8a90407ee574</td>
-      <td>Needville</td>
-      <td>TX</td>
-      <td>Fort Bend</td>
-      <td>77461</td>
-      <td>29.38012</td>
-      <td>-95.80673</td>
-      <td>11352</td>
-      <td>...</td>
-      <td>150.761216</td>
-      <td>271.493436</td>
-      <td>4</td>
-      <td>4</td>
-      <td>4</td>
-      <td>3</td>
-      <td>4</td>
-      <td>4</td>
-      <td>4</td>
-      <td>5</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 51 columns</p>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Find number of records and columns of dataset</span>
@@ -17445,7 +17163,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -17462,7 +17180,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Describe Churn dataset statistics</span>
@@ -17479,7 +17197,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -17520,7 +17238,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
       <th>Replacements</th>
       <th>Reliability</th>
       <th>Options</th>
-      <th>Respectful</th>
+      <th>Respectfulness</th>
       <th>Courteous</th>
       <th>Listening</th>
     </tr>
@@ -17732,7 +17450,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Remove less meaningful variables from statistics description</span>
@@ -17750,7 +17468,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -17789,7 +17507,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
       <th>Replacements</th>
       <th>Reliability</th>
       <th>Options</th>
-      <th>Respectful</th>
+      <th>Respectfulness</th>
       <th>Courteous</th>
       <th>Listening</th>
     </tr>
@@ -17984,7 +17702,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate Churn Rate</span>
@@ -18001,7 +17719,7 @@ Requirement already satisfied: setuptools in c:\users\vreed\anaconda3\lib\site-p
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -18020,7 +17738,7 @@ Name: Churn, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Review data types (numerical =&gt; &quot;int64&quot; &amp; &quot;float64&quot;; &amp; categorical =&gt; &quot;object&quot;) in data set</span>
@@ -18037,7 +17755,7 @@ Name: Churn, dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[12]:</div>
 
 
 
@@ -18091,7 +17809,7 @@ Fixes                     int64
 Replacements              int64
 Reliability               int64
 Options                   int64
-Respectful                int64
+Respectfulness            int64
 Courteous                 int64
 Listening                 int64
 dtype: object</pre>
@@ -18105,7 +17823,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Re-validate column data types and missing values</span>
@@ -18122,7 +17840,7 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
@@ -18130,7 +17848,7 @@ dtype: object</pre>
 <div class="output_text output_subarea output_execute_result">
 <pre>{dtype(&#39;int64&#39;): Index([&#39;CaseOrder&#39;, &#39;Zip&#39;, &#39;Population&#39;, &#39;Email&#39;, &#39;Contacts&#39;,
         &#39;Yearly_equip_failure&#39;, &#39;Responses&#39;, &#39;Fixes&#39;, &#39;Replacements&#39;,
-        &#39;Reliability&#39;, &#39;Options&#39;, &#39;Respectful&#39;, &#39;Courteous&#39;, &#39;Listening&#39;],
+        &#39;Reliability&#39;, &#39;Options&#39;, &#39;Respectfulness&#39;, &#39;Courteous&#39;, &#39;Listening&#39;],
        dtype=&#39;object&#39;),
  dtype(&#39;float64&#39;): Index([&#39;Lat&#39;, &#39;Lng&#39;, &#39;Children&#39;, &#39;Age&#39;, &#39;Income&#39;, &#39;Outage_sec_perweek&#39;,
         &#39;Tenure&#39;, &#39;MonthlyCharge&#39;, &#39;Bandwidth_GB_Year&#39;],
@@ -18152,96 +17870,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display non-null fields within each columns</span>
-<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 10000 entries, 0 to 9999
-Data columns (total 51 columns):
- #   Column                Non-Null Count  Dtype  
----  ------                --------------  -----  
- 0   CaseOrder             10000 non-null  int64  
- 1   Customer_id           10000 non-null  object 
- 2   Interaction           10000 non-null  object 
- 3   City                  10000 non-null  object 
- 4   State                 10000 non-null  object 
- 5   County                10000 non-null  object 
- 6   Zip                   10000 non-null  int64  
- 7   Lat                   10000 non-null  float64
- 8   Lng                   10000 non-null  float64
- 9   Population            10000 non-null  int64  
- 10  Area                  10000 non-null  object 
- 11  Timezone              10000 non-null  object 
- 12  Job                   10000 non-null  object 
- 13  Children              7505 non-null   float64
- 14  Age                   7525 non-null   float64
- 15  Education             10000 non-null  object 
- 16  Employment            10000 non-null  object 
- 17  Income                7510 non-null   float64
- 18  Marital               10000 non-null  object 
- 19  Gender                10000 non-null  object 
- 20  Churn                 10000 non-null  object 
- 21  Outage_sec_perweek    10000 non-null  float64
- 22  Email                 10000 non-null  int64  
- 23  Contacts              10000 non-null  int64  
- 24  Yearly_equip_failure  10000 non-null  int64  
- 25  Techie                7523 non-null   object 
- 26  Contract              10000 non-null  object 
- 27  Port_modem            10000 non-null  object 
- 28  Tablet                10000 non-null  object 
- 29  InternetService       10000 non-null  object 
- 30  Phone                 8974 non-null   object 
- 31  Multiple              10000 non-null  object 
- 32  OnlineSecurity        10000 non-null  object 
- 33  OnlineBackup          10000 non-null  object 
- 34  DeviceProtection      10000 non-null  object 
- 35  TechSupport           9009 non-null   object 
- 36  StreamingTV           10000 non-null  object 
- 37  StreamingMovies       10000 non-null  object 
- 38  PaperlessBilling      10000 non-null  object 
- 39  PaymentMethod         10000 non-null  object 
- 40  Tenure                9069 non-null   float64
- 41  MonthlyCharge         10000 non-null  float64
- 42  Bandwidth_GB_Year     8979 non-null   float64
- 43  Responses             10000 non-null  int64  
- 44  Fixes                 10000 non-null  int64  
- 45  Replacements          10000 non-null  int64  
- 46  Reliability           10000 non-null  int64  
- 47  Options               10000 non-null  int64  
- 48  Respectful            10000 non-null  int64  
- 49  Courteous             10000 non-null  int64  
- 50  Listening             10000 non-null  int64  
-dtypes: float64(9), int64(14), object(28)
-memory usage: 3.9+ MB
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Find missing values </span>
@@ -18258,7 +17887,7 @@ memory usage: 3.9+ MB
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -18299,7 +17928,7 @@ memory usage: 3.9+ MB
       <th>Replacements</th>
       <th>Reliability</th>
       <th>Options</th>
-      <th>Respectful</th>
+      <th>Respectfulness</th>
       <th>Courteous</th>
       <th>Listening</th>
     </tr>
@@ -18583,7 +18212,7 @@ memory usage: 3.9+ MB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Access only rows from dataframe containing missing values</span>
@@ -18600,7 +18229,7 @@ memory usage: 3.9+ MB
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -18628,7 +18257,7 @@ Length: 10000, dtype: bool</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Woah, lots of empty fields!  Immediately noticeable as &quot;True&quot; in columns of &quot;Children&quot;, &quot;Age&quot;, &quot;Income&quot;, &quot;Techie&quot;, &quot;Phone&quot;, &quot;Tenure&quot;</span>
@@ -18646,7 +18275,7 @@ Length: 10000, dtype: bool</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[20]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -18700,7 +18329,7 @@ Fixes                   False
 Replacements            False
 Reliability             False
 Options                 False
-Respectful              False
+Respectfulness          False
 Courteous               False
 Listening               False
 dtype: bool</pre>
@@ -18714,7 +18343,7 @@ dtype: bool</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Confirm missing observations numbers</span>
@@ -18784,7 +18413,7 @@ Fixes                      0
 Replacements               0
 Reliability                0
 Options                    0
-Respectful                 0
+Respectfulness             0
 Courteous                  0
 Listening                  0
 dtype: int64
@@ -18798,7 +18427,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Store rows with missing values in a new variable</span>
@@ -18816,7 +18445,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[22]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -18857,7 +18486,7 @@ dtype: int64
       <th>Replacements</th>
       <th>Reliability</th>
       <th>Options</th>
-      <th>Respectful</th>
+      <th>Respectfulness</th>
       <th>Courteous</th>
       <th>Listening</th>
     </tr>
@@ -19141,7 +18770,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Examine columns for misspellings in categorical variables using unique() method</span>
@@ -19158,7 +18787,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[23]:</div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
@@ -19176,7 +18805,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19192,7 +18821,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[28]:</div>
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
 
@@ -19209,7 +18838,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Timezone&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19225,7 +18854,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[29]:</div>
+    <div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -19251,328 +18880,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Job&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[31]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;Environmental health practitioner&#39;, &#39;Programmer, multimedia&#39;,
-       &#39;Chief Financial Officer&#39;, &#39;Solicitor&#39;, &#39;Medical illustrator&#39;,
-       &#39;Chief Technology Officer&#39;, &#39;Surveyor, hydrographic&#39;,
-       &#39;Sales promotion account executive&#39;,
-       &#39;Teaching laboratory technician&#39;, &#39;Museum education officer&#39;,
-       &#39;Teacher, special educational needs&#39;, &#39;Maintenance engineer&#39;,
-       &#39;Engineer, broadcasting (operations)&#39;, &#39;Learning disability nurse&#39;,
-       &#39;Automotive engineer&#39;, &#39;Amenity horticulturist&#39;,
-       &#39;Applications developer&#39;, &#39;Immunologist&#39;, &#39;Engineer, electrical&#39;,
-       &#39;Broadcast presenter&#39;, &#39;Counsellor&#39;, &#39;Geophysical data processor&#39;,
-       &#39;Designer, multimedia&#39;, &#39;Event organiser&#39;,
-       &#39;Equality and diversity officer&#39;, &#39;Psychiatrist&#39;,
-       &#39;Surveyor, commercial/residential&#39;, &#39;Civil Service administrator&#39;,
-       &#39;Radiographer, diagnostic&#39;, &#39;Air traffic controller&#39;, &#39;Dietitian&#39;,
-       &#39;Therapist, occupational&#39;, &#39;Building services engineer&#39;,
-       &#39;Information officer&#39;, &#39;Outdoor activities/education manager&#39;,
-       &#39;Market researcher&#39;, &#39;Surveyor, insurance&#39;, &#39;Office manager&#39;,
-       &#39;Editorial assistant&#39;, &#39;Customer service manager&#39;,
-       &#39;Production designer, theatre/television/film&#39;,
-       &#39;Analytical chemist&#39;, &#39;Print production planner&#39;,
-       &#39;Conservation officer, nature&#39;, &#39;Librarian, public&#39;,
-       &#39;Financial adviser&#39;, &#39;Surveyor, building&#39;,
-       &#39;Horticulturist, amenity&#39;, &#39;Diagnostic radiographer&#39;,
-       &#39;Doctor, general practice&#39;, &#39;Insurance risk surveyor&#39;,
-       &#39;Heritage manager&#39;, &#39;Legal executive&#39;, &#39;Professor Emeritus&#39;,
-       &#39;Radio producer&#39;, &#34;Barrister&#39;s clerk&#34;, &#39;Engineer, automotive&#39;,
-       &#39;Recruitment consultant&#39;, &#39;Commercial horticulturist&#39;,
-       &#39;Pharmacist, community&#39;, &#39;Forest/woodland manager&#39;,
-       &#39;Designer, graphic&#39;, &#39;Civil engineer, consulting&#39;,
-       &#39;Science writer&#39;, &#39;Health and safety inspector&#39;,
-       &#39;Administrator, Civil Service&#39;, &#39;Technical sales engineer&#39;,
-       &#39;Special educational needs teacher&#39;, &#39;Sports therapist&#39;,
-       &#39;Engineer, communications&#39;, &#39;Oceanographer&#39;, &#39;Archaeologist&#39;,
-       &#39;Personal assistant&#39;, &#39;Animal nutritionist&#39;, &#39;Hydrologist&#39;,
-       &#39;Arts development officer&#39;, &#39;Herpetologist&#39;,
-       &#39;Medical sales representative&#39;,
-       &#39;Scientist, research (physical sciences)&#39;,
-       &#39;Higher education lecturer&#39;, &#39;Nurse, adult&#39;, &#39;Chiropodist&#39;,
-       &#39;Therapeutic radiographer&#39;, &#39;Designer, television/film set&#39;,
-       &#39;Education officer, environmental&#39;, &#39;Colour technologist&#39;,
-       &#39;Academic librarian&#39;, &#39;Mudlogger&#39;, &#39;Designer, textile&#39;,
-       &#39;Chief Strategy Officer&#39;, &#39;Loss adjuster, chartered&#39;,
-       &#39;Pharmacologist&#39;, &#39;Hydrographic surveyor&#39;,
-       &#39;Engineer, manufacturing&#39;, &#39;Research scientist (medical)&#39;,
-       &#39;Wellsite geologist&#39;, &#39;Embryologist, clinical&#39;,
-       &#39;Occupational psychologist&#39;, &#39;Sales professional, IT&#39;,
-       &#39;Advertising copywriter&#39;, &#39;Radiographer, therapeutic&#39;,
-       &#39;English as a second language teacher&#39;, &#39;Occupational therapist&#39;,
-       &#39;Armed forces logistics/support/administrative officer&#39;,
-       &#39;Technical author&#39;, &#39;Regulatory affairs officer&#39;,
-       &#39;Optician, dispensing&#39;, &#39;Theme park manager&#39;, &#39;IT trainer&#39;,
-       &#39;Contracting civil engineer&#39;, &#39;Psychologist, sport and exercise&#39;,
-       &#39;Manufacturing engineer&#39;, &#39;Musician&#39;,
-       &#39;Senior tax professional/tax inspector&#39;, &#39;Engineer, biomedical&#39;,
-       &#39;Facilities manager&#39;, &#39;Osteopath&#39;, &#39;Corporate investment banker&#39;,
-       &#39;Psychotherapist&#39;, &#39;Copywriter, advertising&#39;,
-       &#39;Horticultural consultant&#39;, &#39;Microbiologist&#39;,
-       &#39;Educational psychologist&#39;, &#39;Sport and exercise psychologist&#39;,
-       &#39;Risk manager&#39;, &#39;Health visitor&#39;, &#39;Visual merchandiser&#39;,
-       &#39;Clinical biochemist&#39;, &#39;Water quality scientist&#39;, &#39;Optometrist&#39;,
-       &#39;Petroleum engineer&#39;, &#39;Building control surveyor&#39;,
-       &#39;Financial planner&#39;, &#39;Theatre director&#39;, &#39;Secretary, company&#39;,
-       &#39;Materials engineer&#39;, &#39;Civil Service fast streamer&#39;,
-       &#39;Health service manager&#39;, &#39;Scientist, forensic&#39;,
-       &#39;Immigration officer&#39;, &#39;Dealer&#39;,
-       &#39;Planning and development surveyor&#39;, &#39;Broadcast engineer&#39;,
-       &#39;Local government officer&#39;, &#39;Nature conservation officer&#39;,
-       &#39;Private music teacher&#39;, &#39;Geologist, wellsite&#39;, &#39;Gaffer&#39;,
-       &#39;Curator&#39;, &#39;Editor, commissioning&#39;, &#39;Barrister&#39;, &#39;TEFL teacher&#39;,
-       &#39;Public relations account executive&#39;, &#39;Audiological scientist&#39;,
-       &#39;Travel agency manager&#39;, &#39;Land&#39;, &#39;Music therapist&#39;,
-       &#39;Librarian, academic&#39;, &#39;Film/video editor&#39;,
-       &#39;Journalist, broadcasting&#39;, &#39;Waste management officer&#39;,
-       &#39;Scientist, water quality&#39;, &#39;Sub&#39;, &#39;Neurosurgeon&#39;,
-       &#39;Scientist, research (maths)&#39;, &#39;Public house manager&#39;,
-       &#39;Building surveyor&#39;, &#39;Animator&#39;,
-       &#39;Production assistant, television&#39;, &#39;Transport planner&#39;,
-       &#39;Geneticist, molecular&#39;, &#39;Merchant navy officer&#39;,
-       &#39;Research scientist (life sciences)&#39;,
-       &#39;Engineer, building services&#39;, &#39;Solicitor, Scotland&#39;,
-       &#39;Hospital pharmacist&#39;, &#39;Engineer, petroleum&#39;, &#39;Oncologist&#39;,
-       &#39;IT technical support officer&#39;, &#39;Site engineer&#39;,
-       &#39;Early years teacher&#39;, &#39;Plant breeder/geneticist&#39;,
-       &#39;Chartered management accountant&#39;,
-       &#39;Runner, broadcasting/film/video&#39;, &#39;Newspaper journalist&#39;,
-       &#39;Naval architect&#39;, &#39;Agricultural engineer&#39;, &#39;Meteorologist&#39;,
-       &#39;Designer, ceramics/pottery&#39;, &#39;Environmental education officer&#39;,
-       &#39;Textile designer&#39;, &#39;Engineer, materials&#39;, &#39;Magazine journalist&#39;,
-       &#39;Conference centre manager&#39;, &#39;Dance movement psychotherapist&#39;,
-       &#39;Warden/ranger&#39;, &#39;Teacher, English as a foreign language&#39;,
-       &#39;Producer, television/film/video&#39;, &#39;Make&#39;, &#39;Pharmacist, hospital&#39;,
-       &#39;Therapist, horticultural&#39;, &#39;Journalist, newspaper&#39;,
-       &#39;Retail merchandiser&#39;, &#39;Nurse, mental health&#39;, &#39;Chief of Staff&#39;,
-       &#39;Systems analyst&#39;, &#39;Electronics engineer&#39;, &#39;Quantity surveyor&#39;,
-       &#39;Minerals surveyor&#39;, &#39;Scientist, research (life sciences)&#39;,
-       &#39;Archivist&#39;, &#39;Brewing technologist&#39;,
-       &#39;Investment banker, operational&#39;,
-       &#39;Accountant, chartered certified&#39;, &#39;Surveyor, minerals&#39;,
-       &#39;Hospital doctor&#39;, &#39;Theatre stage manager&#39;,
-       &#39;Operational researcher&#39;, &#39;Tax inspector&#39;,
-       &#39;Television camera operator&#39;, &#39;Arts administrator&#39;,
-       &#39;Patent attorney&#39;, &#39;Bonds trader&#39;, &#39;Ship broker&#39;,
-       &#39;Furniture conservator/restorer&#39;, &#39;Media planner&#39;,
-       &#39;Radio broadcast assistant&#39;, &#39;Mental health nurse&#39;,
-       &#39;Purchasing manager&#39;, &#39;Scientist, biomedical&#39;, &#39;Photographer&#39;,
-       &#39;Sports coach&#39;, &#39;Environmental manager&#39;, &#39;Estate agent&#39;,
-       &#39;Public librarian&#39;, &#39;Designer, blown glass/stained glass&#39;,
-       &#39;Occupational hygienist&#39;, &#39;Surgeon&#39;, &#39;Youth worker&#39;,
-       &#39;Hotel manager&#39;, &#39;Programmer, systems&#39;, &#34;Politician&#39;s assistant&#34;,
-       &#39;Social researcher&#39;, &#39;Publishing copy&#39;, &#39;Tax adviser&#39;,
-       &#39;Quarry manager&#39;, &#39;Buyer, industrial&#39;, &#39;Production manager&#39;,
-       &#39;Police officer&#39;, &#39;Theatre manager&#39;, &#39;Sports administrator&#39;,
-       &#39;Research scientist (maths)&#39;, &#39;Therapist, music&#39;, &#39;Soil scientist&#39;,
-       &#39;Holiday representative&#39;, &#39;Producer, radio&#39;,
-       &#39;Intelligence analyst&#39;, &#39;Geochemist&#39;, &#39;Probation officer&#39;,
-       &#39;Fish farm manager&#39;, &#39;Chartered accountant&#39;, &#39;Architect&#39;,
-       &#39;Psychiatric nurse&#39;, &#39;Farm manager&#39;, &#39;Geoscientist&#39;,
-       &#39;Lecturer, further education&#39;, &#39;Horticulturist, commercial&#39;,
-       &#39;Surveyor, quantity&#39;, &#39;Clothing/textile technologist&#39;,
-       &#39;Technical brewer&#39;, &#39;Landscape architect&#39;,
-       &#39;Information systems manager&#39;, &#39;Sales executive&#39;,
-       &#39;Exercise physiologist&#39;, &#39;Administrator, arts&#39;, &#39;Careers adviser&#39;,
-       &#39;Lobbyist&#39;, &#39;Claims inspector/assessor&#39;, &#39;Recycling officer&#39;,
-       &#39;Product/process development scientist&#39;, &#39;Paramedic&#39;,
-       &#39;Fine artist&#39;, &#39;Teacher, secondary school&#39;,
-       &#39;Data processing manager&#39;, &#39;Government social research officer&#39;,
-       &#39;Product manager&#39;, &#39;Accounting technician&#39;, &#39;Engineer, land&#39;,
-       &#39;Lawyer&#39;, &#39;Restaurant manager&#39;, &#39;Catering manager&#39;, &#39;Contractor&#39;,
-       &#39;Research officer, government&#39;, &#39;Medical secretary&#39;, &#39;Podiatrist&#39;,
-       &#39;Phytotherapist&#39;, &#39;Surveyor, building control&#39;, &#39;Comptroller&#39;,
-       &#39;Lighting technician, broadcasting/film/video&#39;, &#39;Paediatric nurse&#39;,
-       &#39;Designer, furniture&#39;, &#39;Adult guidance worker&#39;,
-       &#39;Clinical molecular geneticist&#39;, &#39;Games developer&#39;, &#39;Metallurgist&#39;,
-       &#39;Armed forces technical officer&#39;, &#39;Risk analyst&#39;,
-       &#39;Careers information officer&#39;, &#39;Garment/textile technologist&#39;,
-       &#39;Multimedia specialist&#39;, &#39;Trade union research officer&#39;,
-       &#39;Museum/gallery exhibitions officer&#39;,
-       &#39;Armed forces operational officer&#39;, &#39;Air broker&#39;,
-       &#39;Mechanical engineer&#39;, &#39;Ceramics designer&#39;, &#39;Airline pilot&#39;,
-       &#39;Trading standards officer&#39;, &#39;Advice worker&#39;, &#39;Music tutor&#39;,
-       &#39;Leisure centre manager&#39;, &#39;Surveyor, rural practice&#39;,
-       &#39;Scientist, physiological&#39;, &#39;Fisheries officer&#39;,
-       &#39;Research officer, trade union&#39;, &#39;Licensed conveyancer&#39;,
-       &#34;Nurse, children&#39;s&#34;, &#39;Museum/gallery curator&#39;,
-       &#39;Psychologist, occupational&#39;, &#39;Astronomer&#39;, &#39;Therapist, drama&#39;,
-       &#39;Therapist, speech and language&#39;, &#39;Surveyor, land/geomatics&#39;,
-       &#39;Production assistant, radio&#39;, &#39;Human resources officer&#39;,
-       &#39;Fast food restaurant manager&#39;, &#39;Orthoptist&#39;,
-       &#39;Public relations officer&#39;, &#39;Bookseller&#39;,
-       &#39;Health and safety adviser&#39;, &#39;Clinical cytogeneticist&#39;,
-       &#39;Ergonomist&#39;, &#39;Psychologist, prison and probation services&#39;,
-       &#39;Actuary&#39;,
-       &#39;Scientist, clinical (histocompatibility and immunogenetics)&#39;,
-       &#39;Community development worker&#39;, &#39;Consulting civil engineer&#39;,
-       &#39;Television production assistant&#39;, &#39;Veterinary surgeon&#39;,
-       &#39;Teacher, adult education&#39;, &#39;Civil engineer, contracting&#39;,
-       &#39;Architectural technologist&#39;, &#39;Volunteer coordinator&#39;,
-       &#39;Primary school teacher&#39;, &#39;Insurance underwriter&#39;,
-       &#39;Research officer, political party&#39;,
-       &#39;Radiation protection practitioner&#39;, &#39;Psychotherapist, child&#39;,
-       &#39;Interior and spatial designer&#39;, &#39;Therapist, nutritional&#39;,
-       &#39;Jewellery designer&#39;, &#39;Press sub&#39;,
-       &#39;Clinical scientist, histocompatibility and immunogenetics&#39;,
-       &#39;Administrator, sports&#39;, &#39;Insurance account manager&#39;,
-       &#39;Museum/gallery conservator&#39;, &#39;Furniture designer&#39;,
-       &#39;Haematologist&#39;, &#39;Associate Professor&#39;, &#39;Physicist, medical&#39;,
-       &#39;Pathologist&#39;, &#39;Chartered public finance accountant&#39;, &#39;Printmaker&#39;,
-       &#39;Surveyor, mining&#39;, &#39;Chief Marketing Officer&#39;,
-       &#39;General practice doctor&#39;, &#39;Chemical engineer&#39;,
-       &#39;Forensic scientist&#39;, &#39;Marketing executive&#39;, &#39;Art gallery manager&#39;,
-       &#39;Therapist, sports&#39;, &#39;Insurance claims handler&#39;,
-       &#39;Secondary school teacher&#39;,
-       &#39;Development worker, international aid&#39;, &#39;Quality manager&#39;,
-       &#39;Conservator, furniture&#39;, &#39;Tour manager&#39;,
-       &#39;Control and instrumentation engineer&#39;, &#39;Adult nurse&#39;,
-       &#39;Diplomatic Services operational officer&#39;, &#39;Cartographer&#39;,
-       &#39;Chiropractor&#39;, &#39;Land/geomatics surveyor&#39;, &#39;Statistician&#39;,
-       &#39;Financial trader&#39;, &#39;Special effects artist&#39;,
-       &#39;Clinical psychologist&#39;, &#39;Further education lecturer&#39;,
-       &#39;Engineer, water&#39;, &#39;Energy manager&#39;, &#39;Education administrator&#39;,
-       &#39;Art therapist&#39;, &#39;Television floor manager&#39;, &#39;Legal secretary&#39;,
-       &#39;Merchandiser, retail&#39;, &#39;Web designer&#39;,
-       &#39;Nurse, learning disability&#39;,
-       &#39;International aid/development worker&#39;, &#39;Warehouse manager&#39;,
-       &#39;Engineer, mining&#39;, &#39;Exhibition designer&#39;,
-       &#39;Administrator, local government&#39;, &#39;Water engineer&#39;,
-       &#39;Physiotherapist&#39;, &#39;Engineer, electronics&#39;, &#39;Equities trader&#39;,
-       &#39;Telecommunications researcher&#39;, &#39;Hydrogeologist&#39;,
-       &#39;Community education officer&#39;, &#39;Engineer, energy&#39;,
-       &#39;Scientist, audiological&#39;, &#39;Patent examiner&#39;, &#39;Retail manager&#39;,
-       &#39;Engineer, aeronautical&#39;, &#39;Engineer, site&#39;,
-       &#39;Engineer, civil (contracting)&#39;, &#39;Proofreader&#39;,
-       &#39;Scientist, marine&#39;, &#39;Speech and language therapist&#39;,
-       &#39;IT sales professional&#39;, &#39;Buyer, retail&#39;, &#39;Network engineer&#39;,
-       &#39;Commercial art gallery manager&#39;,
-       &#39;Chartered legal executive (England and Wales)&#39;,
-       &#39;Presenter, broadcasting&#39;, &#39;Surveyor, planning and development&#39;,
-       &#39;Research scientist (physical sciences)&#39;, &#39;Commissioning editor&#39;,
-       &#39;Operational investment banker&#39;, &#39;Seismic interpreter&#39;,
-       &#39;Charity officer&#39;, &#39;English as a foreign language teacher&#39;,
-       &#39;Scientist, research (medical)&#39;, &#39;Designer, interior/spatial&#39;,
-       &#39;Lexicographer&#39;, &#39;Therapist, art&#39;, &#39;Clinical embryologist&#39;,
-       &#39;Child psychotherapist&#39;, &#39;Midwife&#39;, &#39;Pensions consultant&#39;,
-       &#39;Tree surgeon&#39;, &#39;Health physicist&#39;, &#39;Artist&#39;, &#39;Company secretary&#39;,
-       &#39;Fashion designer&#39;, &#39;IT consultant&#39;, &#39;Teacher, early years/pre&#39;,
-       &#39;Geographical information systems officer&#39;,
-       &#39;Tourist information centre manager&#39;, &#39;Biomedical engineer&#39;,
-       &#39;Biomedical scientist&#39;, &#39;Financial risk analyst&#39;,
-       &#39;Multimedia programmer&#39;, &#39;Engineer, control and instrumentation&#39;,
-       &#39;Insurance broker&#39;, &#39;Drilling engineer&#39;,
-       &#39;Development worker, community&#39;, &#39;Designer, industrial/product&#39;,
-       &#39;Medical technical officer&#39;, &#39;Advertising account executive&#39;,
-       &#39;Counselling psychologist&#39;, &#39;Tourism officer&#39;, &#39;Dancer&#39;,
-       &#39;Social research officer, government&#39;, &#39;Teacher, music&#39;,
-       &#39;Translator&#39;, &#39;Race relations officer&#39;,
-       &#39;Engineer, civil (consulting)&#39;,
-       &#39;Historic buildings inspector/conservation officer&#39;,
-       &#39;Financial manager&#39;, &#39;Financial controller&#39;, &#39;Designer, jewellery&#39;,
-       &#39;Retail banker&#39;,
-       &#39;Administrator, charities/voluntary organisations&#39;,
-       &#39;Magazine features editor&#39;, &#39;Psychotherapist, dance movement&#39;,
-       &#39;Barista&#39;, &#39;Passenger transport manager&#39;, &#39;Mining engineer&#39;,
-       &#39;Administrator, education&#39;,
-       &#39;Programme researcher, broadcasting/film/video&#39;, &#39;Ranger/warden&#39;,
-       &#39;Actor&#39;, &#39;Pension scheme manager&#39;, &#39;Investment analyst&#39;,
-       &#39;Physiological scientist&#39;, &#39;Advertising art director&#39;,
-       &#39;Sports development officer&#39;, &#39;Manufacturing systems engineer&#39;,
-       &#39;Accommodation manager&#39;, &#39;Television/film/video producer&#39;,
-       &#39;Accountant, chartered&#39;, &#39;Engineer, agricultural&#39;,
-       &#39;Horticultural therapist&#39;, &#39;Economist&#39;,
-       &#39;Training and development officer&#39;, &#39;Engineer, maintenance&#39;,
-       &#39;Logistics and distribution manager&#39;, &#39;Psychologist, clinical&#39;,
-       &#39;Accountant, chartered management&#39;, &#39;Rural practice surveyor&#39;,
-       &#39;Biochemist, clinical&#39;, &#39;Set designer&#39;, &#39;Nutritional therapist&#39;,
-       &#39;Illustrator&#39;, &#39;Designer, exhibition/display&#39;,
-       &#39;Armed forces training and education officer&#39;, &#39;Location manager&#39;,
-       &#39;Charity fundraiser&#39;, &#39;Community pharmacist&#39;,
-       &#39;Geophysicist/field seismologist&#39;, &#39;Designer, fashion/clothing&#39;,
-       &#39;Computer games developer&#39;, &#39;Acupuncturist&#39;,
-       &#39;Database administrator&#39;, &#39;Stage manager&#39;, &#39;Operations geologist&#39;,
-       &#39;Marine scientist&#39;, &#39;Glass blower/designer&#39;, &#39;Corporate treasurer&#39;,
-       &#39;Ecologist&#39;, &#39;Structural engineer&#39;, &#39;Housing manager/officer&#39;,
-       &#39;Chief Operating Officer&#39;, &#39;Engineer, manufacturing systems&#39;,
-       &#39;Herbalist&#39;, &#39;Editor, film/video&#39;, &#39;Retail buyer&#39;,
-       &#39;Doctor, hospital&#39;, &#39;Prison officer&#39;, &#39;Ophthalmologist&#39;,
-       &#39;Chemist, analytical&#39;, &#39;Chartered certified accountant&#39;,
-       &#39;Industrial buyer&#39;, &#39;Video editor&#39;, &#39;Publishing rights manager&#39;,
-       &#39;Engineer, drilling&#39;, &#39;Food technologist&#39;, &#39;Arboriculturist&#39;,
-       &#39;Engineer, technical sales&#39;, &#39;Systems developer&#39;, &#39;Firefighter&#39;,
-       &#39;Education officer, museum&#39;, &#39;Media buyer&#39;, &#39;Records manager&#39;,
-       &#39;Aid worker&#39;, &#39;Pilot, airline&#39;, &#39;Advertising account planner&#39;,
-       &#39;Psychologist, counselling&#39;, &#39;Environmental consultant&#39;, &#39;Copy&#39;,
-       &#39;Trade mark attorney&#39;, &#39;Psychologist, forensic&#39;, &#39;Social worker&#39;,
-       &#39;Administrator&#39;, &#39;Agricultural consultant&#39;,
-       &#39;Education officer, community&#39;, &#39;Management consultant&#39;,
-       &#39;Field trials officer&#39;, &#39;Graphic designer&#39;,
-       &#39;Teacher, primary school&#39;, &#39;Homeopath&#39;, &#39;Cabin crew&#39;,
-       &#39;Editor, magazine features&#39;, &#39;Medical physicist&#39;,
-       &#39;Medical laboratory scientific officer&#39;, &#39;Press photographer&#39;,
-       &#39;Field seismologist&#39;, &#39;Estate manager/land agent&#39;,
-       &#39;Industrial/product designer&#39;, &#39;Software engineer&#39;,
-       &#39;Air cabin crew&#39;, &#39;Freight forwarder&#39;, &#39;Engineer, structural&#39;,
-       &#39;Fitness centre manager&#39;, &#39;Interpreter&#39;,
-       &#39;Scientific laboratory technician&#39;, &#39;Data scientist&#39;,
-       &#39;Electrical engineer&#39;, &#39;Clinical research associate&#39;,
-       &#39;Engineering geologist&#39;, &#39;Call centre manager&#39;,
-       &#39;Psychologist, educational&#39;, &#39;Conservator, museum/gallery&#39;,
-       &#39;Emergency planning/management officer&#39;, &#39;Communications engineer&#39;,
-       &#39;Conservation officer, historic buildings&#39;, &#39;Cytogeneticist&#39;,
-       &#39;Personnel officer&#39;, &#39;Dramatherapist&#39;,
-       &#39;Investment banker, corporate&#39;, &#39;Camera operator&#39;,
-       &#39;Chartered loss adjuster&#39;, &#39;Health promotion specialist&#39;,
-       &#39;Scientist, product/process development&#39;, &#39;Learning mentor&#39;,
-       &#39;Lecturer, higher education&#39;,
-       &#39;Sound technician, broadcasting/film/video&#39;,
-       &#39;Restaurant manager, fast food&#39;, &#39;Engineer, maintenance (IT)&#39;,
-       &#39;Energy engineer&#39;, &#39;Dispensing optician&#39;,
-       &#39;Chief Executive Officer&#39;, &#39;Ambulance person&#39;,
-       &#39;Public affairs consultant&#39;, &#39;Product designer&#39;,
-       &#39;Community arts worker&#39;, &#39;Higher education careers adviser&#39;,
-       &#39;Dentist&#39;, &#39;Exhibitions officer, museum/gallery&#39;, &#39;Futures trader&#39;,
-       &#39;Commercial/residential surveyor&#39;, &#39;Engineer, production&#39;,
-       &#39;Animal technologist&#39;, &#39;Banker&#39;, &#39;Programmer, applications&#39;,
-       &#39;Best boy&#39;, &#39;Secretary/administrator&#39;, &#39;Journalist, magazine&#39;,
-       &#39;Production engineer&#39;, &#39;Accountant, chartered public finance&#39;,
-       &#39;Geologist, engineering&#39;, &#39;Aeronautical engineer&#39;,
-       &#39;Engineer, chemical&#39;, &#39;Forensic psychologist&#39;,
-       &#39;Broadcast journalist&#39;, &#39;Town planner&#39;, &#39;Toxicologist&#39;, &#39;Writer&#39;],
-      dtype=object)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Well then, how many unique jobs are there and will this variable help us out much?</span>
@@ -19589,7 +18897,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[33]:</div>
+    <div class="prompt output_prompt">Out[22]:</div>
 
 
 
@@ -19606,7 +18914,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Children&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19622,7 +18930,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[34]:</div>
+    <div class="prompt output_prompt">Out[23]:</div>
 
 
 
@@ -19639,7 +18947,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19655,7 +18963,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[35]:</div>
+    <div class="prompt output_prompt">Out[24]:</div>
 
 
 
@@ -19677,7 +18985,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Examine age range</span>
@@ -19710,7 +19018,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Education&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19726,7 +19034,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[37]:</div>
+    <div class="prompt output_prompt">Out[26]:</div>
 
 
 
@@ -19750,7 +19058,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Employment&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19766,7 +19074,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[38]:</div>
+    <div class="prompt output_prompt">Out[27]:</div>
 
 
 
@@ -19784,7 +19092,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19800,7 +19108,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[39]:</div>
+    <div class="prompt output_prompt">Out[28]:</div>
 
 
 
@@ -19818,7 +19126,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19834,7 +19142,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[40]:</div>
+    <div class="prompt output_prompt">Out[29]:</div>
 
 
 
@@ -19851,7 +19159,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Contract&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19867,7 +19175,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[41]:</div>
+    <div class="prompt output_prompt">Out[30]:</div>
 
 
 
@@ -19884,7 +19192,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;PaymentMethod&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -19900,7 +19208,7 @@ dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[42]:</div>
+    <div class="prompt output_prompt">Out[31]:</div>
 
 
 
@@ -19918,7 +19226,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display any duplicate rows in the dataframe.</span>
@@ -19941,7 +19249,7 @@ dtype: int64
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Empty DataFrame
-Columns: [CaseOrder, Customer_id, Interaction, City, State, County, Zip, Lat, Lng, Population, Area, Timezone, Job, Children, Age, Education, Employment, Income, Marital, Gender, Churn, Outage_sec_perweek, Email, Contacts, Yearly_equip_failure, Techie, Contract, Port_modem, Tablet, InternetService, Phone, Multiple, OnlineSecurity, OnlineBackup, DeviceProtection, TechSupport, StreamingTV, StreamingMovies, PaperlessBilling, PaymentMethod, Tenure, MonthlyCharge, Bandwidth_GB_Year, Responses, Fixes, Replacements, Reliability, Options, Respectful, Courteous, Listening]
+Columns: [CaseOrder, Customer_id, Interaction, City, State, County, Zip, Lat, Lng, Population, Area, Timezone, Job, Children, Age, Education, Employment, Income, Marital, Gender, Churn, Outage_sec_perweek, Email, Contacts, Yearly_equip_failure, Techie, Contract, Port_modem, Tablet, InternetService, Phone, Multiple, OnlineSecurity, OnlineBackup, DeviceProtection, TechSupport, StreamingTV, StreamingMovies, PaperlessBilling, PaymentMethod, Tenure, MonthlyCharge, Bandwidth_GB_Year, Responses, Fixes, Replacements, Reliability, Options, Respectfulness, Courteous, Listening]
 Index: []
 
 [0 rows x 51 columns]
@@ -19955,7 +19263,7 @@ Index: []
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Identify the standard deviation of every numeric column in the dataset</span>
@@ -19993,7 +19301,7 @@ Fixes                       1.034641
 Replacements                1.027977
 Reliability                 1.025816
 Options                     1.024819
-Respectful                  1.033586
+Respectfulness              1.033586
 Courteous                   1.028502
 Listening                   1.028633
 dtype: float64
@@ -20007,7 +19315,7 @@ dtype: float64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_nulls</span> <span class="o">=</span> <span class="n">df_stats</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -20072,7 +19380,7 @@ Fixes                      0
 Replacements               0
 Reliability                0
 Options                    0
-Respectful                 0
+Respectfulness             0
 Courteous                  0
 Listening                  0
 dtype: int64
@@ -20086,7 +19394,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Impute missing fields for variables Children, Age, Income, Tenure and Bandwidth_GB_Year with median or mean</span>
@@ -20104,7 +19412,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_nulls</span> <span class="o">=</span> <span class="n">df_stats</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -20169,7 +19477,7 @@ Fixes                      0
 Replacements               0
 Reliability                0
 Options                    0
-Respectful                 0
+Respectfulness             0
 Courteous                  0
 Listening                  0
 dtype: int64
@@ -20191,7 +19499,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create histograms of important variables</span>
@@ -20244,7 +19552,7 @@ height=470
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Some odd distributions here, let&#39;s see some box plots for outliers</span>
@@ -20284,7 +19592,7 @@ height=415
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Let&#39;s see monthly charge separately</span>
@@ -20302,13 +19610,13 @@ height=415
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[50]:</div>
+    <div class="prompt output_prompt">Out[39]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x150f465dc08&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x22728a4c788&gt;</pre>
 </div>
 
 </div>
@@ -20336,7 +19644,7 @@ height=414
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Let&#39;s see a Seaborn boxplot fee &amp; bandwidth</span>
@@ -20383,7 +19691,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Extract Clean dataset</span>
@@ -20397,7 +19705,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Reload cleaned data &amp; remove all variable except user services payment info and survey data</span>
@@ -20411,7 +19719,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Slice off all but last eleven service realted variables</span>
@@ -20429,7 +19737,7 @@ height=437
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[54]:</div>
+    <div class="prompt output_prompt">Out[43]:</div>
 
 
 
@@ -20460,7 +19768,7 @@ height=437
       <th>Replacements</th>
       <th>Reliability</th>
       <th>Options</th>
-      <th>Respectful</th>
+      <th>Respectfulness</th>
       <th>Courteous</th>
       <th>Listening</th>
     </tr>
@@ -20556,7 +19864,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import Scikit Learn PCA application</span>
@@ -20570,7 +19878,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Normalize the data</span>
@@ -20584,7 +19892,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Select number of components to extract</span>
@@ -20598,13 +19906,13 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[58]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create a list of PCA names</span>
 <span class="n">churn_numeric</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Tenure&#39;</span><span class="p">,</span> <span class="s1">&#39;MonthlyCharge&#39;</span><span class="p">,</span> <span class="s1">&#39;Bandwidth_GB_Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Responses&#39;</span><span class="p">,</span> 
                        <span class="s1">&#39;Fixes&#39;</span><span class="p">,</span> <span class="s1">&#39;Replacements&#39;</span><span class="p">,</span> <span class="s1">&#39;Reliability&#39;</span><span class="p">,</span> <span class="s1">&#39;Options&#39;</span><span class="p">,</span> 
-                       <span class="s1">&#39;Respectful&#39;</span><span class="p">,</span> <span class="s1">&#39;Courteous&#39;</span><span class="p">,</span> <span class="s1">&#39;Listening&#39;</span><span class="p">]]</span>
+                       <span class="s1">&#39;Respectfulness&#39;</span><span class="p">,</span> <span class="s1">&#39;Courteous&#39;</span><span class="p">,</span> <span class="s1">&#39;Listening&#39;</span><span class="p">]]</span>
 <span class="n">pcs_names</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">churn_numeric</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
     <span class="n">pcs_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;PC&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
@@ -20636,160 +19944,10 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Re-Extract Clean dataset</span>
-<span class="n">churn_numeric</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;churn_clean_final.csv&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">churn_numeric</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[60]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Tenure</th>
-      <th>MonthlyCharge</th>
-      <th>Bandwidth_GB_Year</th>
-      <th>Responses</th>
-      <th>Fixes</th>
-      <th>Replacements</th>
-      <th>Reliability</th>
-      <th>Options</th>
-      <th>Respectful</th>
-      <th>Courteous</th>
-      <th>Listening</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>6.795513</td>
-      <td>171.449762</td>
-      <td>904.536110</td>
-      <td>5</td>
-      <td>5</td>
-      <td>5</td>
-      <td>3</td>
-      <td>4</td>
-      <td>4</td>
-      <td>3</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.156681</td>
-      <td>242.948015</td>
-      <td>800.982766</td>
-      <td>3</td>
-      <td>4</td>
-      <td>3</td>
-      <td>3</td>
-      <td>4</td>
-      <td>3</td>
-      <td>4</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>15.754144</td>
-      <td>159.440398</td>
-      <td>2054.706961</td>
-      <td>4</td>
-      <td>4</td>
-      <td>2</td>
-      <td>4</td>
-      <td>4</td>
-      <td>3</td>
-      <td>3</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>17.087227</td>
-      <td>120.249493</td>
-      <td>2164.579412</td>
-      <td>4</td>
-      <td>4</td>
-      <td>4</td>
-      <td>2</td>
-      <td>5</td>
-      <td>4</td>
-      <td>3</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1.670972</td>
-      <td>150.761216</td>
-      <td>271.493436</td>
-      <td>4</td>
-      <td>4</td>
-      <td>4</td>
-      <td>3</td>
-      <td>4</td>
-      <td>4</td>
-      <td>4</td>
-      <td>5</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[61]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Call PCA application &amp; convert the dataset of  19 variables into a dataset of 19 components</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Call PCA application &amp; convert the dataset of 11 variables into a dataset of 11 components</span>
 <span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">churn_normalized</span><span class="p">)</span>
 <span class="n">churn_pca</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">churn_normalized</span><span class="p">),</span>
                         <span class="n">columns</span> <span class="o">=</span> <span class="n">pcs_names</span><span class="p">)</span>
@@ -20802,7 +19960,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># For a scree plot import matplotlib &amp; seaborn libraries</span>
@@ -20817,7 +19975,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Run the scree plot</span>
@@ -20858,7 +20016,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Extract the eigenvalues</span>
@@ -20873,7 +20031,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot the eigenvalues</span>
@@ -20914,7 +20072,7 @@ height=437
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Select the fewest components </span>
@@ -20957,10 +20115,10 @@ PC11 1.0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Above, we see that 89% of variance is explained by 14 components</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Above, we see that 86% of variance is explained by 7 components</span>
 <span class="c1"># Create a rotation </span>
 <span class="n">rotation</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">pcs_names</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">churn_numeric</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">rotation</span><span class="p">)</span>
@@ -20989,7 +20147,7 @@ Fixes              0.434134  0.042559  0.282404  0.007508 -0.106632 -0.169752
 Replacements       0.400639  0.034665  0.281118 -0.019631 -0.173742 -0.255336   
 Reliability        0.145799 -0.050367 -0.567815 -0.010310 -0.171334 -0.483328   
 Options           -0.175633  0.066334  0.587335 -0.000047  0.135949  0.060124   
-Respectful         0.405207 -0.012680 -0.183447  0.004596 -0.062342  0.064609   
+Respectfulness     0.405207 -0.012680 -0.183447  0.004596 -0.062342  0.064609   
 Courteous          0.358342 -0.003886 -0.181697 -0.027959 -0.182406  0.806166   
 Listening          0.308925 -0.017396 -0.131173  0.015574  0.931612 -0.011133   
 
@@ -21002,7 +20160,7 @@ Fixes             -0.065414  0.074400 -0.592131 -0.573832 -0.002217
 Replacements      -0.146887 -0.396333  0.673088 -0.177665  0.014933  
 Reliability       -0.443353  0.431528  0.087207  0.018301  0.002283  
 Options           -0.209767  0.693861  0.265474 -0.042012 -0.002514  
-Respectful         0.757954  0.402835  0.230319 -0.063972  0.001604  
+Respectfulness     0.757954  0.402835  0.230319 -0.063972  0.001604  
 Courteous         -0.379136  0.067889  0.067293 -0.040946 -0.006875  
 Listening         -0.113297 -0.045132  0.046107 -0.042251 -0.002357  
 </pre>
@@ -21015,7 +20173,7 @@ Listening         -0.113297 -0.045132  0.046107 -0.042251 -0.002357
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Output loadings for components</span>
@@ -21035,7 +20193,7 @@ Listening         -0.113297 -0.045132  0.046107 -0.042251 -0.002357
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[68]:</div>
+    <div class="prompt output_prompt">Out[55]:</div>
 
 
 
@@ -21185,7 +20343,7 @@ Listening         -0.113297 -0.045132  0.046107 -0.042251 -0.002357
       <td>-0.002514</td>
     </tr>
     <tr>
-      <th>Respectful</th>
+      <th>Respectfulness</th>
       <td>0.405207</td>
       <td>-0.012680</td>
       <td>-0.183447</td>
@@ -21239,7 +20397,7 @@ Listening         -0.113297 -0.045132  0.046107 -0.042251 -0.002357
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Finally, extract reduced dataset &amp; print 3 components</span>
@@ -21294,11 +20452,11 @@ Listening         -0.113297 -0.045132  0.046107 -0.042251 -0.002357
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="D.-Data-Cleaning-Summary"><span style="color:green">D. Data Cleaning Summary</span><a class="anchor-link" href="#D.-Data-Cleaning-Summary">&#182;</a></h3><p>D1.<b>Cleaning Findings</b>:  There was much missing data with meaningful variable fields including Children, Age, Income, Tenure and Bandwidth_GB_Year.  Given mean and variance of these variables, it seemed reasonable to impute missing values with median values.  Many categorical (such as whether or not the customer was "Techie") &amp; non-numeric (columns for customer ID numbers &amp; related customer transaction IDs) data were not included in analysis given they seemed less meaningful to interpretation and decision-making.  The anomalies discovered were not significant &amp; were mitigated as follows.</p>
-<p>D2.<b>Justification of Mitigation Methods</b>:  Mitigated missing values with imputation using median values.  MonthlyCharge variable shows outliers so left alone. Does not seem significant to this analysis.</p>
-<p>D3.<b>Summary of Outcomes</b>:  Cleaned dataset to leave remaining variables describing customer tenure, monthly service charge, yearly bandwidth usage &amp; responses to survey.  Seems pretty straightforward at this point.&lt;/b&gt;</p>
+<p>D2.<b>Justification of Mitigation Methods</b>:  Mitigated missing values with imputation using median values.  MonthlyCharge variable shows outliers so left alone. This does not seem significant to this analysis.</p>
+<p>D3.<b>Summary of Outcomes</b>:  Cleaned dataset to leave remaining variables describing customer tenure, monthly service charge, yearly bandwidth usage &amp; responses to survey.  It seems pretty straightforward at this point.&lt;/b&gt;</p>
 <p>D4.<b>Mitigation Code</b>:  (see code above and Panopto recording)</p>
 <p>D5.<b>Clean Data</b>: (see attached file <b style="color:green">'churn_clean.csv'</b>)</p>
-<p>D6.<b>Limitations</b>: Limitations given the telecom company data set are that the data are not coming from an warehouse.  In this scenario, it is as though I initiated and gathered the data.  So, I am not able to reach out to the staff that organized &amp; gathered this information to ask them why certain NAs are there, why are fields such as age or yearly bandwidth usage missing information that might be relevant to answering questions about customer retention or churn.  In a real world project, you would be able to go down to the department where these folks worked and fill in the empty fields or discover why fields are left blank.</p>
+<p>D6.<b>Limitations</b>: Limitations given the telecom company data set are that the data are not coming from a warehouse.  In this scenario, it is as though I initiated and gathered the data.  So, I am not able to reach out to the staff that organized &amp; gathered this information to ask them why certain NAs are there, why are fields such as age or yearly bandwidth usage missing information that might be relevant to answering questions about customer retention or churn.  In a real world project, you would be able to go down to the department where these folks worked and fill in the empty fields or discover why fields are left blank.</p>
 <p>D7. The accurate factual data for missing fields that might be recoverable given the ability to access the staff in the data warehouse, such as company tenure with the company, may give a slighty different overall picture to the analysis. While imputation may provide a path to move forward and give decision-makers reasonable answers, there really is no reason for these data to be missing.  The limitations here could be remedied by instituting stricter data acquisition procedures, follow-ups &amp; feedback.</p>
 
 </div>
@@ -21313,8 +20471,9 @@ Listening         -0.113297 -0.045132  0.046107 -0.042251 -0.002357
     <li>Timely Fixes</li>
     <li>Timely Replacements</li>
     <li>Respectful Response</li>
-</ul><p>E2. <b>Criteria Used</b>:  I had a sneaking intuitition that these might be the most important features to predict why a customer might or might not leave a company.  However, confirmation bias is not what confirmed this forethought.  I used a scree plot &amp; extracted the eigenvalues for visualization of where the "elbow was bending".  The elbow bent at about 3 but kept an eigenvalue above 1 until the tenth component.  Then, the fewest number of components were selected based on the 89% explanation using the Numpy cumsum method. A rotation &amp; loadings were created which suggested the "most important" features of the dataset.&lt;/b&gt;</p>
-<p>E3. <b>Benefits</b>:  Their is as the loadings suggest the variables involved in timely action with regard to customer satisfaction should be given greater emphasis and hopefully help reduce the the churn rate from the large number of 27% &amp; "increase the retention period of customers" by targeting more resources in the direction prompt customer service (Ahmad, 2019).  Again, this seems an intuitive result but now decision-makers in the company of reasonable verification of what might have been a "hunch".</p>
+</ul><p>E2. <b>Criteria Used</b>:  Intuition about customer service suggests that feedback from user survey might offer the most important components when analyzing churn rate.  Also, since survey results were the easiest to select as numeric predictors of whether or not a user would leave the company I included the 8 responses as variables for the PCA.  And, of course, users' tenure with the company as well as monthly charge &amp; yearly GB use are seem like significant numeric data points for analysis.
+I used a scree plot &amp; extracted the eigenvalues for visualization of where the "elbow was bending".  The elbow bent at about 3 but kept an eigenvalue above 1 until the tenth component.  Then, the fewest number of components were selected based on the 86% explanation at 7 components using the Numpy cumsum method. A rotation &amp; loadings were created which suggested the "most important" features of the dataset.&lt;/b&gt;</p>
+<p>E3. <b>Benefits</b>:  The loadings suggest the variables involved in timely action with regard to customer satisfaction (Responses, Fixes, Replacements &amp; Respectfulness) should be given greater emphasis and hopefully help reduce the churn rate from the large number of 27% &amp; "increase the retention period of customers" by targeting more resources in the direction prompt customer service (Ahmad, 2019, p. 1).  Again, this seems an intuitive result but now decision-makers in the company of reasonable verification of what might have been a "hunch".</p>
 
 </div>
 </div>
