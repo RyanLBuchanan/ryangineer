@@ -2286,6 +2286,67 @@
               </h6>
             </li>
             <li>
+              <h5>Percentile: Precise Definition</h5>
+              <h7>Take any value between the <i>order statistics</i> (sorted or
+                ranked data) <i>x</i><sub>(<i>j</i>)</sub> & <i>x</i><sub>(<i>j</i>
+                  + 1)</sub> where <i>j</i> satisfies:</h7>
+                  <h6>
+                    <math>
+                      <mn>100</mn>
+                      <mo>*</mo>
+                      <mfrac>
+                        <mrow>
+                          <mi>j</mi>
+                        </mrow>
+                        <mrow>
+                          <mi>n</mi>
+                        </mrow>
+                      </mfrac>
+                      <mo>&#8804;</mo>
+                      <mi>P</mi>
+                      <mo>&#60;</mo>
+                      <mn>100</mn>
+                      <mo>*</mo>
+                      <mfrac>
+                        <mrow>
+                          <mi>j</mi>
+                          <mo>+</mo>
+                          <mn>1</mn>
+                        </mrow>
+                        <mrow>
+                          <mi>n</mi>
+                        </mrow>
+                      </mfrac>
+                    </math>
+                  </h6>
+                  <h7>The percentile is the weighted average:</h7>
+                  <h6>
+                    <math>
+                      <mn>Percentile</mn>
+                      <mo>(</mo>
+                      <mi>P</mi>
+                      <mo>)</mo>
+                      <mo>=</mo>
+                      <mo stretchy=True>(</mo>
+                      <mn>1</mn>
+                      <mo>-</mo>
+                      <mi>w</mi>
+                      <mo stretchy=True>)</mo>
+                      <msub>
+                        <mi>x</mi>
+                        <mi>(j)</mi>
+                      </msub>
+                      <mo>+</mo>
+                      <mi>w</mi>
+                      <msub>
+                      <mi>x</mi>
+                      <mi>(j + 1)</mi>
+                      </msub>
+                    </math>
+                  </h6>
+                  <h7>for some weight between 0 & 1.</h7>
+            </li>
+            <li>
               <h5>N-Quantiles</h5>
               <ul>
                 <li>
