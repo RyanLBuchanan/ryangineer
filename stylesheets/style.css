@@ -14,6 +14,28 @@ body {
   align-items: center;
 }
 
+#correlation_matrix {
+  height: 10%;
+  width: 10%;
+  margin: 4px;
+  padding: 10px;
+}
+
+#correlation_matrix th {
+  height: 10%;
+  width: 10%;
+  padding: 10px;
+  margin: 4px;
+  color: turquoise;
+}
+
+#correlation_matrix td {
+  height: 10%;
+  width: 10%;
+  padding: 10px;
+  margin: 4px;
+}
+
 #dijkstra_quotation {
   float: center;
   font-style: italic;

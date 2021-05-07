@@ -2541,59 +2541,90 @@
             <li>
               <h5>Correlation</h5>
               <h7>A measurement of the extent to which numeric variables are associated
-                with one another</h7>
-                <ul>
-                  <li>
-                    <h5>Pearson's Correlation Coefficient (r)</h5>
-                    <h7>A measure of linear correlation between two sets of data.</h7>
-                    <h6>
-                      <math>
-                        <mi>r</mi>
-                        <mo>&nbsp;=&nbsp;</mo>
-                        <mfrac>
-                          <mrow>
-                            <msup>
-                              <mo>&Sigma;</mo>
-                              <mi>n</mi>
-                              <mi>i=1</mi>
-                            </msup>
-                            <mo>(</mo>
-                              <msub>
-                                <mi>x</mi>
-                                <mi>i</mi>
-                              </msub>
-                              <mo>&nbsp;-&nbsp;</mo>
-                              <mi>x&#772;</mi>
-                            <mo>)</mo>
-                            <mo>(</mo>
-                              <msub>
-                                <mi>y</mi>
-                                <mi>i</mi>
-                              </msub>
-                              <mo>&nbsp;-&nbsp;</mo>
-                              <mi>y&#772;</mi>
-                            <mo>)</mo>
-                          </mrow>
-                          <mrow>
-                            <mo>(</mo>
-                              <mi>n</mi>
-                              <mo>&nbsp;-&nbsp;</mo>
-                              <mn>1</mn>
-                            <mo>)</mo>
-                            <msub>
-                              <mi>s</mi>
-                              <mi>x</mi>
-                            </msub>
-                            <msub>
-                              <mi>s</mi>
-                              <mi>y</mi>
-                            </msub>
-                          </mrow>
-                        </mfrac>
-                      </math>
-                    </h6>
-                  </li>
-                </ul>
+                with one another.</h7>
+              <ul>
+                <li>
+                  <h5>Pearson's Correlation Coefficient (r)</h5>
+                  <h7>A measure of linear correlation between two sets of data;
+                    will always lie between +1 (perfect positive correlation) & -1 (perfect negative correlation).</h7>
+                  <h6>
+                    <math>
+                      <mi>r</mi>
+                      <mo>&nbsp;=&nbsp;</mo>
+                      <mfrac>
+                        <mrow>
+                          <msup>
+                            <mo>&Sigma;</mo>
+                            <mi>n</mi>
+                            <mi>i=1</mi>
+                          </msup>
+                          <mo>(</mo>
+                          <msub>
+                            <mi>x</mi>
+                            <mi>i</mi>
+                          </msub>
+                          <mo>&nbsp;-&nbsp;</mo>
+                          <mi>x&#772;</mi>
+                          <mo>)</mo>
+                          <mo>(</mo>
+                          <msub>
+                            <mi>y</mi>
+                            <mi>i</mi>
+                          </msub>
+                          <mo>&nbsp;-&nbsp;</mo>
+                          <mi>y&#772;</mi>
+                          <mo>)</mo>
+                        </mrow>
+                        <mrow>
+                          <mo>(</mo>
+                          <mi>n</mi>
+                          <mo>&nbsp;-&nbsp;</mo>
+                          <mn>1</mn>
+                          <mo>)</mo>
+                          <msub>
+                            <mi>s</mi>
+                            <mi>x</mi>
+                          </msub>
+                          <msub>
+                            <mi>s</mi>
+                            <mi>y</mi>
+                          </msub>
+                        </mrow>
+                      </mfrac>
+                    </math>
+                  </h6>
+                </li>
+                <li>
+                  <h5>Correlation Matrix</h5>
+                  <h7>A table where the variables are shown on both rows & columns, & the cell values are the correlation between the variables.</h7>
+                  <table id="correlation_matrix">
+                    <tr>
+                      <th></th>
+                      <th>v<sub>1</sub></th>
+                      <th>v<sub>2</sub></th>
+                      <th>v<sub>3</sub></th>
+                    </tr>
+                    <tr>
+                      <th>v<sub>1</sub></th>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <th>v<sub>2</sub></th>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <th>v<sub>3</sub></th>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                  </table>
+                </li>
+              </ul>
             </li>
           </ul>
         </li>
