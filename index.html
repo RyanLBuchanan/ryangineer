@@ -2790,12 +2790,38 @@
         </li>
         <li>
           <h5>Poisson Distributions</h5>
-          <h7>Measuring a count of events over some interval of time/space.</h7>
+          <h7>Measuring a count of events over some interval of time/space. In
+            many applications, the event rate, <b><i>&lambda;,</i></b> is known
+            or can be estimated from prior data.</h7>
           <h6>
             <math>
+              <mn>Event rate</mn>
+              <mo>&nbsp;=&nbsp;</mo>
               <mi>&lambda;</mi>
               <mo>&nbsp;=&nbsp;</mo>
               <mn>mean # of events occurring in interval of time or space </mn>
+            </math>
+          </h6>
+        </li>
+        <li>
+          <h5>Weibull Distribution</h5>
+          <h7>An extension of the exponential distribution in which the event rate
+            is allowed to change, as specified by a <b><i>shape parameter, &beta;</i></b>.</h7>
+          <h6>
+            <math>
+              <mi>&beta;</mi>
+              <mo>&nbsp;&#62;&nbsp;</mo>
+              <mn>1</mn>
+              <mo>&emsp;&rArr;&emsp;</mo>
+              <mn>probability of event increases over time</mn>
+            </math>
+            <br />
+            <math>
+              <mi>&beta;</mi>
+              <mo>&nbsp;&#60;&nbsp;</mo>
+              <mn>1</mn>
+              <mo>&emsp;&rArr;&emsp;</mo>
+              <mn>probability of event decreases over time</mn>
             </math>
           </h6>
         </li>
