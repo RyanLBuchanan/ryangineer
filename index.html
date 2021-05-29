@@ -3292,50 +3292,47 @@
         </li>
         <li>
           <h5>Chi-Square Tests(&chi;<sup>2</sup>)</h5>
+          <h5>Assumptions</h5>
           <ul>
             <li>
-              <h5>Assumptions</h5>
-              <ul>
-                <li>
-                  <h7>Data in cells should be frequencies or counts of cases.</h7>
-                </li>
-                <li>
-                  <h7>Levels (or categories) of the variables are mutually exclusive.</h7>
-                </li>
-                <li>
-                  <h7>Each subject may contribute to one & only one cell.</h7>
-                </li>
-                <li>
-                  <h7>Study groups must be independent.</h7>
-                </li>
-                <li>
-                  <h7>Two variables, both are measured as categories, usuallys at the nominal level.</h7>
-                </li>
-                <li>
-                  <h7>Values in cells should be five or more.</h7>
-                </li>
-              </ul>
+              <h7>Data in cells should be frequencies or counts of cases.</h7>
             </li>
             <li>
-              <h5>Features</h5>
-              <ul>
-                <li>
-                  <h7>A hypothesis test comparing two or more proportions, H<sub>o</sub>: P<sub>1</sub> = P<sub>2</sub></h7>
-                </li>
-                <li>
-                  <h7>Random samples are required.</h7>
-                </li>
-                <li>
-                  <h7>Observations are independent.</h7>
-                </li>
-                <li>
-                  <h7>Uses &chi;<sup>2</sup> table to show the critical values of
-                    the &chi;<sup>2</sup> distribution.</h7>
-                </li>
-              </ul>
+              <h7>Levels (or categories) of the variables are mutually exclusive.</h7>
             </li>
             <li>
-              <h5>Goodness of Fit Test</h5>
+              <h7>Each subject may contribute to one & only one cell.</h7>
+            </li>
+            <li>
+              <h7>Study groups must be independent.</h7>
+            </li>
+            <li>
+              <h7>Two variables, both are measured as categories, usuallys at the nominal level.</h7>
+            </li>
+            <li>
+              <h7>Values in cells should be five or more.</h7>
+            </li>
+          </ul>
+
+
+          <h5>Features</h5>
+          <ul>
+            <li>
+              <h7>A hypothesis test comparing two or more proportions, H<sub>o</sub>: P<sub>1</sub> = P<sub>2</sub></h7>
+            </li>
+            <li>
+              <h7>Random samples are required.</h7>
+            </li>
+            <li>
+              <h7>Observations are independent.</h7>
+            </li>
+            <li>
+              <h7>Uses &chi;<sup>2</sup> table to show the critical values of
+                the &chi;<sup>2</sup> distribution.</h7>
+            </li>
+          </ul>
+
+              <h5>I. <u>Goodness of Fit Test</u>:</h5>
               <h7>Tests if a categroical variable follows a hypothesized distribution.</h7>
               <ul>
                 <li>
@@ -3344,10 +3341,60 @@
                     <li>
                       <h7>Simple random sampling</h7>
                     </li>
+                    <li>
+                      <h7>Categorical variables</h7>
+                    </li>
+                    <li>
+                      <h7>Expected frequency count from previous samples, ex. percentage by category</h7>
+                    </li>
+                    <li>
+                      <h7>Degrees of freedom is k - 1</h7>
+                    </li>
+                    <li>
+                      <h7>H<sub>o</sub>: the population frequencies = expected frequencies values.
+                        <br />H<sub>a</sub>: the null hypothesis is false.</h7>
+                    </li>
+                    <li>
+                      <h7>Test statistic is defined:</h7>
+                      <h6>
+                        <math>
+                          <msup>
+                            <mn>&chi;</mn>
+                            <mn>2</mn>
+                          </msup>
+                          <mo>&nbsp; = &nbsp;</mo>
+                          <mn>&Sigma;</mn>
+                          <mo stretchy=True>[</mo>
+                          <mfrac>
+                            <mrow>
+                              <mo>(</mo>
+                              <msub>
+                                <mn>O</mn>
+                                <mn>r, c</mn>
+                              </msub>
+                              <mo>&nbsp; - &nbsp;</mo>
+                              <msub>
+                                <mn>E</mn>
+                                <mn>r, c</mn>
+                              </msub>
+                              <mo>)</mo>
+                            </mrow>
+                            <mrow>
+                              <msub>
+                                <mn>E</mn>
+                                <mn>r, c</mn>
+                              </msub>
+                            </mrow>
+                          </mfrac>
+                          <mo stretchy=True>]</mo>
+                        </math>
+                      </h6>
+                    </li>
                   </ul>
                 </li>
               </ul>
-            </li>
+
+              <h5>II. <u>Test for Independence</u>:</h5>
           </ul>
         </li>
       </ul>
