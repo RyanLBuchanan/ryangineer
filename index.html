@@ -103,17 +103,101 @@
   <br /><br />
   <div id="ML_Algorithms">
     <h3>Noteworthy Machine Learning Algorithms</h3>
-    <h7><b>&nbsp; Machine Learning &nbsp; &#8658; &nbsp; software able to detect patterns, make decisions, predict outcomes, learn from mistakes & optimize own performance without being explicitly programmed to do so</b></h7>
+    <h7><b>&nbsp; Machine Learning &nbsp; &#8658; &nbsp; software able to detect
+        patterns, make decisions, predict outcomes, learn from mistakes & optimize
+        own performance without being explicitly programmed to do so</b></h7>
     <a target="_blank" href="https://en.wikipedia.org/wiki/Supervised_learning">
       <h4>Supervised Learning</h4>
     </a>
     <h7><b>Learning a function that maps to an output based on the example of
         input-output pairs.</b>
-      <br />"[P]resent labeled examples to learn from. For instance, when we want
+      <br />"Present labeled examples to learn from. For instance, when we want
       to be able to predict the selling price of a house in advance in a real estate
       market, we can get the historical prices of houses and have a supervised
       learning algorithm successfully figure out how to associate the prices to the
-      house characteristics." <a target="_blank" href="https://www.wgu.edu/online-it-degrees/data-analytics-masters-program.html">WGU MSDA</a></h7>
+      house characteristics.
+      <br /><b>Using the uppercase letter X we intend to use matrix notation,
+        since we can also treat the <i>y</i> as a response vector (technically a
+        column vector) and the X as a matrix containing all values of the feature
+        vectors, each arranged into a separate column of the matrix. . . . building
+        a function that can answer the question about how <i>X</i> can imply <i>y</i>
+        . . . [with] a functional mapping that can translate <i>X</i> values into
+        <i>y</i> without error or with an acceptable margin of error. . . . to
+        determinate a function of the following kind:"</b> <a target="_blank" href="https://www.wgu.edu/online-it-degrees/data-analytics-masters-program.html">WGU MSDA</a></h7>
+    <ul>
+      <li>
+        <h5>Matrix Notation Function</h5>
+        <h7>"When the function is specified, and we have in mind a certain algorithm
+          with certain parameters & an X matrix made up of certain data, conventionally
+          we can refer to it as a <b><i>hypothesis</i></b>." </h7>
+        <h6>
+          <math>
+            <mi>y</mi>
+            <mo>&nbsp; = &nbsp;</mo>
+            <mi>h</mi>
+            <mo>(</mo>
+            <mi>X</mi>
+            <mo>)</mo>
+          </math>
+          <br />&nbsp; &#8627; where:
+          <br />&emsp; <i>X</i> = a matrix of size (<i>n</i>, <i>p</i>)
+          <br />&emsp; <i>y</i> = a response vector of size <i>n</i>
+          <br />&emsp; <i>n</i> = # of observations
+          <br />&emsp; <i>p</i> = # of variables
+        </h6>
+        <h7>Store the predictive variables (features or attributes) in the <i>X</i> matrix:</h7>
+        <h6>
+          <math>
+            <mi>X</mi>
+            <mo>&nbsp; = &nbsp;</mo>
+            <mo stretchy=True>[</mo>
+            <mtable>
+              <mtr>
+                <mtd>
+                  <msub>
+                    <mi>x</mi>
+                    <mn>1</mn>
+                  </msub>
+                </mtd>
+              </mtr>
+              <mtr>
+                <mtd>
+                  <msub>
+                    <mi>x</mi>
+                    <mn>2</mn>
+                  </msub>
+                </mtd>
+              </mtr>
+              <mtr>
+                <mtd>
+                  <mn>.</mn>
+              </mtr>
+              </mtd>
+              <mtr>
+                <mtd>
+                  <mn>.</mn>
+              </mtr>
+              </mtd>
+              <mtr>
+                <mtd>
+                  <mn>.</mn>
+              </mtr>
+              </mtd>
+              <mtr>
+                <mtd>
+                  <msub>
+                    <mi>x</mi>
+                    <mn>n</mn>
+                  </msub>
+                </mtd>
+              </mtr>
+            </mtable>
+            <mo stretchy=True>]</mo>
+          </math>
+        </h6>
+      </li>
+    </ul>
+
     <ul>
       <li>
         <h5>Linear Regression | Predict Real Values</h5>
@@ -764,11 +848,11 @@
     <a target="_blank" title="" href="https://en.wikipedia.org/wiki/Unsupervised_learning#:~:text=Unsupervised%20learning%20is%20a%20type,a%20minimum%20of%20human%20supervision" />
     <h4>Unsupervised Learning</h4></a>
     <h7><b>"Looks for previously undetected patterns in a data set with no
-      pre-existing labels and with a minimum of human supervision"</b>
-    <br />"[P]resent examples without any hint, leaving it to the algorithm to
-    create a label. For instance, when we need to figure out how the groups inside
-    a customer database can be partitioned into similar segments based on their
-    characteristics and behaviors." <a target="_blank" href="https://www.wgu.edu/online-it-degrees/data-analytics-masters-program.html">WGU MSDA</a></h7>
+        pre-existing labels and with a minimum of human supervision"</b>
+      <br />"[P]resent examples without any hint, leaving it to the algorithm to
+      create a label. For instance, when we need to figure out how the groups inside
+      a customer database can be partitioned into similar segments based on their
+      characteristics and behaviors." <a target="_blank" href="https://www.wgu.edu/online-it-degrees/data-analytics-masters-program.html">WGU MSDA</a></h7>
     <ul>
       <li><a target="_blank" title="" href="" />
         <h5>K-Means Clustering</h5></a>
@@ -921,116 +1005,116 @@
       In this case, the software will then start acting in the setting and it will
       learn directly from its errors until it finds a set of rules that ensure its
       success." <a target="_blank" href="https://www.wgu.edu/online-it-degrees/data-analytics-masters-program.html">WGU MSDA</a></h7>
-        <ul>
-          <li>
-            <h5>Upper Confidence Bound Algorithm | Deterministic Model</h5>
-          </li>
-          <a target="_blank" href="https://en.wikipedia.org/wiki/Multi-armed_bandit">
-            <h7>Modern application of Multi-Armed Bandit Problem (reference slot machine distributions)</h7>
-          </a>
+    <ul>
+      <li>
+        <h5>Upper Confidence Bound Algorithm | Deterministic Model</h5>
+      </li>
+      <a target="_blank" href="https://en.wikipedia.org/wiki/Multi-armed_bandit">
+        <h7>Modern application of Multi-Armed Bandit Problem (reference slot machine distributions)</h7>
+      </a>
+      <ul>
+        <li><a target="_blank" title="" href="">
+            <h5>Advertising Model (requires update at every round)</h5>
+          </a></li>
+        <h6><u>Step 1</u>: Each round <i>n</i> considers two numbers for each ad <i>i</i>:<br />
           <ul>
-            <li><a target="_blank" title="" href="">
-                <h5>Advertising Model (requires update at every round)</h5>
-              </a></li>
-            <h6><u>Step 1</u>: Each round <i>n</i> considers two numbers for each ad <i>i</i>:<br />
-              <ul>
-                &nbsp; &#8627; <i>N<sub>i</sub></i>(<i>n</i>) &#x2192; # of times the ad <i>i</i> selected up to round <i>n</i><br />
-                &nbsp; &#8627; <i>R<sub>i</sub></i>(<i>n</i>) &#x2192; &Sigma; of rewards of ad <i>i</i> up to round <i>n</i><br />
-              </ul><br />
-              <u>Step 2</u>: From these two numbers we compute:<br />
-              <ul>
-                &nbsp; &#8627; Average reward of ad <i>i</i> up to round <i>n</i> with:
-            </h6>
-            <div style="text-align: left;">
-              <ul>
-                <h6>&nbsp; &nbsp; &nbsp; &nbsp;
-                  <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
-                    <mi>r&#772;</mi>
-                    <mo stretchy="false">(</mo>
-                    <mi>n</mi>
-                    <mo stretchy="false">)</mo>
-                    <mo>=</mo>
-                    <mfrac>
-                      <mrow>
-                        <msub>
-                          <mi>R</mi>
-                          <mn>i</mn>
-                        </msub>
-                        <mo stretchy="false">(</mo>
-                        <mi>n</mi>
-                        <mo stretchy="false">)</mo>
-                      </mrow>
-                      <mrow>
-                        <msub>
-                          <mi>N</mi>
-                          <mn>i</mn>
-                        </msub>
-                        <mo stretchy="false">(</mo>
-                        <mi>n</mi>
-                        <mo stretchy="false">)</mo>
-                      </mrow>
-                    </mfrac>
-                  </math><br />
-                </h6>
-              </ul>
-            </div>
-            <ul>
-              <h6>&nbsp; &#8627; Confidence interval [<i>r&#772;<sub>i</sub></i>(<i>n</i>) - &#x25B3;<sub><i>i</i></sub>(<i>n</i>), <i>r&#772;<sub>i</sub></i>(<i>n</i>) +
-                &#x25B3;<sub><i>i</i></sub>(<i>n</i>)] at round <i>n</i> with:</h6>
-            </ul>
-            <div>
-              <ul>
-                <h6>&nbsp; &nbsp; &nbsp; &nbsp;
-                  <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
+            &nbsp; &#8627; <i>N<sub>i</sub></i>(<i>n</i>) &#x2192; # of times the ad <i>i</i> selected up to round <i>n</i><br />
+            &nbsp; &#8627; <i>R<sub>i</sub></i>(<i>n</i>) &#x2192; &Sigma; of rewards of ad <i>i</i> up to round <i>n</i><br />
+          </ul><br />
+          <u>Step 2</u>: From these two numbers we compute:<br />
+          <ul>
+            &nbsp; &#8627; Average reward of ad <i>i</i> up to round <i>n</i> with:
+        </h6>
+        <div style="text-align: left;">
+          <ul>
+            <h6>&nbsp; &nbsp; &nbsp; &nbsp;
+              <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
+                <mi>r&#772;</mi>
+                <mo stretchy="false">(</mo>
+                <mi>n</mi>
+                <mo stretchy="false">)</mo>
+                <mo>=</mo>
+                <mfrac>
+                  <mrow>
                     <msub>
-                      <mi>&#x25B3;</mi>
+                      <mi>R</mi>
                       <mn>i</mn>
                     </msub>
                     <mo stretchy="false">(</mo>
                     <mi>n</mi>
                     <mo stretchy="false">)</mo>
-                    <mo>=</mo>
-                    <msqrt>
-                      <mfrac>
-                        <mrow>
-                          <mi>3</mi>
-                        </mrow>
-                        <mrow>
-                          <mi>2</mi>
-                        </mrow>
-                      </mfrac>
-                      <mo>*</mo>
-                      <mfrac>
-                        <mrow>
-                          <mi>log</mi>
-                          <mo stretchy="false">(</mo>
-                          <mi>n</mi>
-                          <mo stretchy="false">)</mo>
-                        </mrow>
-                        <mrow>
-                          <msub>
-                            <mi>N</mi>
-                            <mn>i</mn>
-                          </msub>
-                          <mo stretchy="false">(</mo>
-                          <mi>n</mi>
-                          <mo stretchy="false">)</mo>
-                        </mrow>
-                      </mfrac>
-                    </msqrt>
-                  </math><br />
-                </h6>
-              </ul>
-            </div>
-            <h6><u>Step 3</u>: Select the ad <i>i</i> that has the maximum UCB <i>r&#772;<sub>i</sub></i>(<i>n</i>) +
-              &#x25B3;<sub><i>i</i></sub>(<i>n</i>)<br />
+                  </mrow>
+                  <mrow>
+                    <msub>
+                      <mi>N</mi>
+                      <mn>i</mn>
+                    </msub>
+                    <mo stretchy="false">(</mo>
+                    <mi>n</mi>
+                    <mo stretchy="false">)</mo>
+                  </mrow>
+                </mfrac>
+              </math><br />
+            </h6>
           </ul>
-        </ul>
-        </ul>
+        </div>
         <ul>
-          <li><a target="_blank" title="" href="" />
-            <h5>Thompson Sampling Algorithm | Probabilistic Model</h5>
-      </a>
+          <h6>&nbsp; &#8627; Confidence interval [<i>r&#772;<sub>i</sub></i>(<i>n</i>) - &#x25B3;<sub><i>i</i></sub>(<i>n</i>), <i>r&#772;<sub>i</sub></i>(<i>n</i>) +
+            &#x25B3;<sub><i>i</i></sub>(<i>n</i>)] at round <i>n</i> with:</h6>
+        </ul>
+        <div>
+          <ul>
+            <h6>&nbsp; &nbsp; &nbsp; &nbsp;
+              <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
+                <msub>
+                  <mi>&#x25B3;</mi>
+                  <mn>i</mn>
+                </msub>
+                <mo stretchy="false">(</mo>
+                <mi>n</mi>
+                <mo stretchy="false">)</mo>
+                <mo>=</mo>
+                <msqrt>
+                  <mfrac>
+                    <mrow>
+                      <mi>3</mi>
+                    </mrow>
+                    <mrow>
+                      <mi>2</mi>
+                    </mrow>
+                  </mfrac>
+                  <mo>*</mo>
+                  <mfrac>
+                    <mrow>
+                      <mi>log</mi>
+                      <mo stretchy="false">(</mo>
+                      <mi>n</mi>
+                      <mo stretchy="false">)</mo>
+                    </mrow>
+                    <mrow>
+                      <msub>
+                        <mi>N</mi>
+                        <mn>i</mn>
+                      </msub>
+                      <mo stretchy="false">(</mo>
+                      <mi>n</mi>
+                      <mo stretchy="false">)</mo>
+                    </mrow>
+                  </mfrac>
+                </msqrt>
+              </math><br />
+            </h6>
+          </ul>
+        </div>
+        <h6><u>Step 3</u>: Select the ad <i>i</i> that has the maximum UCB <i>r&#772;<sub>i</sub></i>(<i>n</i>) +
+          &#x25B3;<sub><i>i</i></sub>(<i>n</i>)<br />
+      </ul>
+    </ul>
+    </ul>
+    <ul>
+      <li><a target="_blank" title="" href="" />
+        <h5>Thompson Sampling Algorithm | Probabilistic Model</h5>
+        </a>
       </li>
       <a target="_blank" href="https://en.wikipedia.org/wiki/Multi-armed_bandit">
         <h7>Constructs distributions of where we think the actual expected value might lie; an auxiliary mechanism to solve the problem</h7>
@@ -1053,27 +1137,27 @@
         </h6>
         <h6><u>Step 3</u>: Select the ad <i>i</i> that has highest <i>&theta;</i><sub>i</sub>(<i>n</i>)<br />
       </ul>
-      </ul>
-      <ul>
-        <li><a target="_blank" title="" href="" />
-          <h5>Random Forest Regression</h5></a>
-        </li>
-        <h7>Ensemble decision trees; a collection of decision trees (aka forest) to classify a new object based on attributes; each tree gives a classification & we say the tree "votes" for the class </h7>
-        <li><a target="_blank" title="" href="" />
-          <h5>Dimensionality Reduction</h5></a>
-        </li>
-        <h7>Identifies highly significant variables when you have thousands</h7>
-        <li><a target="_blank" title="" href="" />
-          <h5>Gradient Boosting</h5></a>
-        </li>
-        <h7>Ensemble of machine learning algorithms</h7>
-        <!-- <ul>
+    </ul>
+    <ul>
+      <li><a target="_blank" title="" href="" />
+        <h5>Random Forest Regression</h5></a>
+      </li>
+      <h7>Ensemble decision trees; a collection of decision trees (aka forest) to classify a new object based on attributes; each tree gives a classification & we say the tree "votes" for the class </h7>
+      <li><a target="_blank" title="" href="" />
+        <h5>Dimensionality Reduction</h5></a>
+      </li>
+      <h7>Identifies highly significant variables when you have thousands</h7>
+      <li><a target="_blank" title="" href="" />
+        <h5>Gradient Boosting</h5></a>
+      </li>
+      <h7>Ensemble of machine learning algorithms</h7>
+      <!-- <ul>
         <li><a target="_blank" title="" href="">
             <h5>Type</h5>
           </a></li>
         <h6>Equation</h6>
       </ul> -->
-      </ul>
+    </ul>
   </div>
 
 
