@@ -131,14 +131,14 @@
       <li>
         <h5>Active Learning</h5>
         <h7>Semi-supervised learning algorithm where the software picks examples
-        of data that are most useful to its learning & ignoring the bulk of data
-      in data warehouses or data lakes.</h7>
+          of data that are most useful to its learning & ignoring the bulk of data
+          in data warehouses or data lakes.</h7>
       </li>
       <li>
         <h5>Online Learning</h5>
         <h7>In a fast-paced environment, a learning algorithm may stream data as
-        it becomes available, continuously adapting to any new associations
-      between predictive variables & the response.</h7>
+          it becomes available, continuously adapting to any new associations
+          between predictive variables & the response.</h7>
       </li>
       <li>
         <h5>Matrix Notation Function</h5>
@@ -359,7 +359,7 @@
           <h5>Family of Linear Models or Generalized Linear Model (GLM)</h5>
           <h7>Function that specifies the relationship between the <i>X</i>, the
             predictors, & the <i>y</i>, the target, is a linear combination of
-            the <i>X</i> values.  By means of special link functions proper
+            the <i>X</i> values. By means of special link functions proper
             transformation of the answer variable, proper constraints on the
             weights & different optimization procedures (the learning procedures),
             GLM can solve a very wide range of problems.</h7>
@@ -367,7 +367,7 @@
         <li>
           <h5>Probability Density Function (PDF)</h5>
           <h7>A function describing the probability of values in the distribution.
-          For a normal distribution:</h7>
+            For a normal distribution:</h7>
           <h6>
             <math>
               <mi>f</mi>
@@ -420,6 +420,119 @@
               </msup>
             </math>
           </h6>
+        </li>
+        <li>
+          <h5>Covariation vs. Correlation</h5>
+          <h7><b><i>Covariation</i></b> is a measure of association that is
+            affected by the scale of the variables & is not <b><i>standardized</i></b>.
+            When a variable is standardized, it returns a value
+            between -1 to 1, -1 being negatively correlated (one grows, the other
+            shrinks), 1 being positively correlated (one grows, so does the other)
+            & 0 meaning there is no relationship, at all.</h7>
+          <ul>
+            <li>
+              <h5>Covariance Expression</h5>
+              <h6>
+                <math>
+                  <mi>c</mi>
+                  <mi>o</mi>
+                  <mi>v</mi>
+                  <mo stretchy=False>(</mo>
+                  <msub>
+                    <mi>x</mi>
+                    <mi>i</mi>
+                  </msub>
+                  <mo>, </mo>
+                  <mi>y</mi>
+                  <mo stretchy=False>)</mo>
+                  <mo>&nbsp; = &nbsp;</mo>
+                  <mfrac>
+                    <mrow>
+                      <mn>1</mn>
+                    </mrow>
+                    <mrow>
+                      <mi>n</mi>
+                    </mrow>
+                  </mfrac>
+                  <mo>&nbsp; * &nbsp;</mo>
+                  <mo stretchy=True>&Sigma;</mo>
+                  <mo stretchy=False>(</mo>
+                  <msub>
+                    <mi>x</mi>
+                    <mi>i</mi>
+                  </msub>
+                  <mo>&nbsp; - &nbsp;</mo>
+                  <msub>
+                    <mi>x&#772;</mi>
+                    <mi>i</mi>
+                  </msub>
+                  <mo stretchy=False>)</mo>
+                  <mo>&nbsp; * &nbsp;</mo>
+                  <mo stretchy=False>(</mo>
+                  <mi>y</mi>
+                  <mo>&nbsp; - &nbsp;</mo>
+                  <mi>y</mi>
+                  <mo>&#772;</mo>
+                  <mo stretchy=False>)</mo>
+                </math>
+              </h6>
+            </li>
+            <li>
+              <h5>Pearson's Correlation</h5>
+              <h6>
+                <math>
+                  <mi>r</mi>
+                  <mo>&nbsp; = &nbsp;</mo>
+                  <mfrac>
+                    <mrow>
+                      <mn>1</mn>
+                    </mrow>
+                    <mrow>
+                      <mi>n</mi>
+                    </mrow>
+                  </mfrac>
+                  <mo>&nbsp; * &nbsp;</mo>
+                  <mfrac>
+                    <mrow>
+                      <mo stretchy=True>&Sigma;</mo>
+                      <mo stretchy=False>(</mo>
+                      <msub>
+                        <mi>x</mi>
+                        <mi>i</mi>
+                      </msub>
+                      <mo>&nbsp; - &nbsp;</mo>
+                      <msub>
+                        <mi>x&#772;</mi>
+                        <mi>i</mi>
+                      </msub>
+                      <mo stretchy=False>)</mo>
+                      <mo>&nbsp; * &nbsp;</mo>
+                      <mo stretchy=False>(</mo>
+                      <mi>y</mi>
+                      <mo>&nbsp; - &nbsp;</mo>
+                      <mi>y</mi>
+                      <mo>&#772;</mo>
+                      <mo stretchy=False>)</mo>
+                    </mrow>
+                    <mrow>
+                      <msub>
+                        <mi>&sigma;</mi>
+                        <msub>
+                          <mi>x</mi>
+                          <mi>i</mi>
+                        </msub>
+                      </msub>
+                      <mo>&nbsp; * &nbsp;</mo>
+                      <msub>
+                        <mi>&sigma;</mi>
+                        <mi>y</mi>
+                      </msub>
+                    </mrow>
+                  </mfrac>
+                </math>
+              </h6>
+            </li>
+          </ul>
         </li>
         <li>
           <h5>Derivation of Line of Best Fit | Ordinary Least Squares (OLS) method | Sum of Squares Residual</h5>
