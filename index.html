@@ -798,59 +798,111 @@
           <h7>"The search for a line's equation that it is able to minimize the
             sum of the squared errors of the difference between the line's y
             values and the original ones." WGU MSDA
-          <br />Methods of minimization include <b>Pseudoinverse</b>, <b>QR
-            factorization</b>, & <b>gradient descent</b>.</h7>
-            <ul>
-              <li>
-                <h5>Regression Function of <i>h</i>(X):</h5>
-                <h6>
-                  <math>
-                    <mi>y</mi>
-                    <mo>&nbsp; &#8776; &nbsp;</mo>
-                    <mi>h</mi>
-                    <mo stretchy=False>(</mo>
-                    <mi>X</mi>
-                    <mo stretchy=False>)</mo>
-                    <mo>&nbsp; = &nbsp;</mo>
+            <br />Methods of minimization include <b>Pseudoinverse</b>, <b>QR
+              factorization</b>, & <b>gradient descent</b>.</h7>
+          <ul>
+            <li>
+              <h5>Regression Function of <i>h</i>(X):</h5>
+              <h6>
+                <math>
+                  <mi>y</mi>
+                  <mo>&nbsp; &#8776; &nbsp;</mo>
+                  <mi>h</mi>
+                  <mo stretchy=False>(</mo>
+                  <mi>X</mi>
+                  <mo stretchy=False>)</mo>
+                  <mo>&nbsp; = &nbsp;</mo>
+                  <mi>&beta;</mi>
+                  <mi>X</mi>
+                  <mo>&nbsp; + &nbsp;</mo>
+                  <msub>
                     <mi>&beta;</mi>
-                    <mi>X</mi>
-                    <mo>&nbsp; + &nbsp;</mo>
-                    <msub>
-                      <mi>&beta;</mi>
-                      <mn>0</mn>
-                    </msub>
-                  </math>
-                  <br /><b style="color:Maroon">Cost function minimized as follows:</b>
-                  <br />
-                  <math>
-                    <mfrac>
-                      <mrow>
-                        <mn>1</mn>
-                      </mrow>
-                      <mrow>
-                        <mn>2</mn>
-                        <mi>N/mi>
-                      </mrow>
-                    </mfrac>
-                    <mo>&nbsp; * &nbsp;</mo>
-                    <mo>&Sigma;</mo>
-                    <mo stretchy=False>(</mo>
-                    <mi>h</mi>
-                    <mo stretchy=False>(</mo>
-                    <mi>X</mi>
-                    <mo stretchy=False>)</mo>
-                    <mo>&nbsp; - &nbsp;</mo>
-                    <mi>y</mi>
-                    <mo stretchy=False>)</mo>
-                    <msup>
-                      <mn></mn>
+                    <mn>0</mn>
+                  </msub>
+                </math>
+                <br /><b style="color:Maroon">Cost function minimized as follows:</b>
+                <br />
+                <math>
+                  <mfrac>
+                    <mrow>
+                      <mn>1</mn>
+                    </mrow>
+                    <mrow>
                       <mn>2</mn>
-                    </msup>
-                  </math>
-                </h6>
-              </li>
-            </ul>
+                      <mi>N/mi>
+                    </mrow>
+                  </mfrac>
+                  <mo>&nbsp; * &nbsp;</mo>
+                  <mo>&Sigma;</mo>
+                  <mo stretchy=False>(</mo>
+                  <mi>h</mi>
+                  <mo stretchy=False>(</mo>
+                  <mi>X</mi>
+                  <mo stretchy=False>)</mo>
+                  <mo>&nbsp; - &nbsp;</mo>
+                  <mi>y</mi>
+                  <mo stretchy=False>)</mo>
+                  <msup>
+                    <mn></mn>
+                    <mn>2</mn>
+                  </msup>
+                </math>
+              </h6>
+            </li>
+            <li>
+              <h5>Pseudoinverse</h5>
+              <h7>An analytical formula for solving a regression analysis and getting
+                a vector of coefficients out of data, minimizing the cost function:</h7>
+              <h6>
+                <math>
+                  <mi>w</mi>
+                  <mo>&nbsp; = &nbsp;</mo>
+                  <mo stretchy=False>(</mo>
+                  <msup>
+                    <mi>X</mi>
+                    <mi>T</mi>
+                  </msup>
+                  <mi>X</mi>
+                  <mo stretchy=False>)</mo>
+                  <msup>
+                    <mn></mn>
+                    <mn>-1</mn>
+                  </msup>
+                  <msup>
+                    <mi>X</mi>
+                    <mi>T</mi>
+                  </msup>
+                  <mi>y</mi>
+                </math>
+                <br /><b style="color:Maroon">Or solve for <i>w</i> in linear
+                  equations called <b><i>normal equations</i></b>:</b>
+                <br />
+                <math>
+                  <mo stretchy=False>(</mo>
+                  <msup>
+                    <mi>X</mi>
+                    <mi>T</mi>
+                  </msup>
+                  <mi>X</mi>
+                  <mo stretchy=False>)</mo>
+                  <msup>
+                    <mn></mn>
+                    <mn>-1</mn>
+                  </msup>
+                  <mo>&nbsp; * &nbsp;</mo>
+                  <mi>w</mi>
+                  <mo>&nbsp; = &nbsp;</mo>
+                  <msup>
+                    <mi>X</mi>
+                    <mi>T</mi>
+                  </msup>
+                  <mi>y</mi>
+                </math>
+              </h6>
+            </li>
+          </ul>
         </li>
+
         <li>
           <h5>Multiple Linear Regression (MLR)</h5>
           <h7>Combining many variables in an equation to predict a single outcome</h7>
