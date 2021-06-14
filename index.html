@@ -585,13 +585,13 @@
           <h6>bias = y-intercept</h6>
         </li>
         <li>
-          <h5>Derivation of Line of Best Fit | Sum of Squares Residual</h5>
+          <h5>Derivation of Line of Best Fit | Residual Sum of Squares(RSS)</h5>
           <h7>Linear regression tries to fit a line through a given set of points,
             choosing the best fit. The best fit is the line that minimizes the
             summed squared difference between the value dictated by the line for
             a certain value of x and its corresponding y values. It is optimizing
             the squared error.</h7>
-          <h6>SS<sub>res</sub> = <span id="" class="sigma_sum" style="font-size: 20px;">&Sigma;</span>(y - y&#770;)<sup>2</sup> &#8594; min</h6>
+          <h6>RSS = <span id="" class="sigma_sum" style="font-size: 20px;">&Sigma;</span>(y - y&#770;)<sup>2</sup> &#8594; min</h6>
         </li>
         <li>
           <h5>Residuals or Errors</h5>
@@ -608,7 +608,7 @@
         <li>
           <h5>Fitted Values or Predicted Values</h5>
           <h7>The estimates <i>Y&#770;<sub>i</sub></i> obtained from a regression
-            line.</h7>
+            line, the predictions.</h7>
         </li>
         <li>
           <h5>Interpolation & Extrapolation</h5>
@@ -655,13 +655,16 @@
             <br />y = mx + b
             <br />&emsp;&ensp; <b style="color:Maroon">or</b>
             <br />y = <i>a</i> + <i>b</i>x
+            <br />&emsp;&ensp; <b style="color:Maroon">or</b>
+            <br /><i>Y<sub>i</sub></i> = <i>b</i><sub>0</sub> + <i>b</i><sub>1</sub><i>X<sub>i</sub></i> + <i>e<sub>i</sub></i>
             <br />&nbsp; &#8627; where:
             <br />&emsp; y = response, dependent, criterion, target variable
             <br />&emsp; <i>a</i>, b, b<sub>0</sub>, <i>&beta;</i><sub>0</sub> = constant, y-intercept, bias
             <br />&emsp; m, <i>b</i>, b<sub>1</sub>, <i>&beta;</i> = slope, coefficient, gradient,
             angular coefficient
-            <br />&emsp; x, x<sub>1</sub> = independent, explanatory, predictor
+            <br />&emsp; x, x<sub>1</sub>, <i>X<sub>i</sub></i> = independent, explanatory, predictor
             variable, matrix of predictors, feature vector
+            <br />&emsp; <i>e<sub>i</sub></i> = explicit error term
             <br />&emsp;
             <br />
             <math>
@@ -754,6 +757,39 @@
                   </msup>
                 </mrow>
               </mfrac>
+            </math>
+            <br />
+            <math>
+              <msub>
+                <mn>b</mn>
+                <mn>1</mn>
+              </msub>
+              <mo>&nbsp; = &nbsp;</mo>
+              <mfrac>
+                <mrow>
+                  <mn>&Delta;Y</mn>
+                </mrow>
+                <mrow>
+                  <mn>&Delta;X</mn>
+                </mrow>
+              </mfrac>
+            </math>
+            <br />
+            <math>
+              <msub>
+                <mi>e&#770;</mi>
+                <mi>i</mi>
+              </msub>
+              <mo>&nbsp; = &nbsp;</mo>
+              <msub>
+                <mi>Y</mi>
+                <mi>i</mi>
+              </msub>
+              <mo>&nbsp; + &nbsp;</mo>
+              <msub>
+                <mi>Y&#770;</mi>
+                <mi>i</mi>
+              </msub>
             </math>
           </h6>
         </li>
