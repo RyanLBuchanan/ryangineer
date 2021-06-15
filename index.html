@@ -911,85 +911,99 @@
             for a while, then stopping, then going downhill again and so on, always
             aiming at each stage for where the surface descends until you arrive
             at a point when you cannot descend anymore. Hopefully, at that point
-            you will have reached your destination." WGU MSDA</h7>
-            <ul>
-              <li>
-                <h5>Cost Function</h5>
-                <h6>
-                  <math>
-                    <mi>J</mi>
-                    <mo stretchy=false>(</mo>
-                      <mi>w</mi>
-                    <mo stretchy=false>)</mo>
-                    <mo>&nbsp; = &nbsp;</mo>
-                    <mfrac>
-                      <mrow>
-                        <mn>1</mn>
-                      </mrow>
-                      <mrow>
-                        <mn>2</mn>
-                        <mi>N</mi>
-                      </mrow>
-                    </mfrac>
-                    <mo>&Sigma;</mo>
-                    <mo stretchy=false>(</mo>
-                      <mi>X</mi>
-                      <mi>w</mi>
-                      <mo>&nbsp; - &nbsp;</mo>
-                      <mi>y</mi>
-                    <mo stretchy=false>)</mo>
-                    <msup>
-                      <mn></mn>
+            you will have reached your destination.
+            <br />&emsp; . . . Though quite conceptually simple (it is based on
+            an intuition that we have surely applied ourselves to move step-by-step,
+            directing where we can optimize our result), gradient descent is very
+            effective and indeed scalable when working with real data. Such interesting
+            characteristics have elevated it to the core optimization algorithm
+            in machine learning; it is not limited to just the linear model family,
+            but it can also be extended, for instance, to neural networks for the
+            process of back propagation, which updates all the weights of the neural
+            net in order to minimize training errors. Surprisingly, gradient descent
+            is also at the core of another complex machine learning algorithm,
+            gradient boosting tree ensembles, where we have an iterative process
+            minimizing the errors using a simpler learning algorithm (a so-called
+            <b>weak learner</b> because it is limited by a high bias) to progress
+            towards optimization." WGU MSDA</h7>
+          <ul>
+            <li>
+              <h5>Cost Function</h5>
+              <h6>
+                <math>
+                  <mi>J</mi>
+                  <mo stretchy=false>(</mo>
+                  <mi>w</mi>
+                  <mo stretchy=false>)</mo>
+                  <mo>&nbsp; = &nbsp;</mo>
+                  <mfrac>
+                    <mrow>
+                      <mn>1</mn>
+                    </mrow>
+                    <mrow>
                       <mn>2</mn>
-                    </msup>
-                  </math>
-                </h6>
-              </li>
-              <li>
-                <h5>Final Resolution Form</h5>
-                <h6>
-                  <math>
-                    <msub>
-                      <mi>w</mi>
-                      <mi>j</mi>
-                    </msub>
-                    <mo>&nbsp; = &nbsp;</mo>
-                    <msub>
-                      <mi>w</mi>
-                      <mi>j</mi>
-                    </msub>
-                    <mo>&nbsp; - &nbsp;</mo>
-                    <mi>&alpha;</mi>
-                    <mo>&nbsp; * &nbsp;</mo>
-                    <mfrac>
-                      <mrow>
-                        <mn>1</mn>
-                      </mrow>
-                      <mrow>
-                        <mi>n</mi>
-                      </mrow>
-                    </mfrac>
-                    <mo>&Sigma;</mo>
-                    <mo stretchy=false>(</mo>
-                    <mi>X</mi>
+                      <mi>N</mi>
+                    </mrow>
+                  </mfrac>
+                  <mo>&Sigma;</mo>
+                  <mo stretchy=false>(</mo>
+                  <mi>X</mi>
+                  <mi>w</mi>
+                  <mo>&nbsp; - &nbsp;</mo>
+                  <mi>y</mi>
+                  <mo stretchy=false>)</mo>
+                  <msup>
+                    <mn></mn>
+                    <mn>2</mn>
+                  </msup>
+                </math>
+              </h6>
+            </li>
+            <li>
+              <h5>Final Resolution Form</h5>
+              <h6>
+                <math>
+                  <msub>
                     <mi>w</mi>
-                    <mo>&nbsp; - &nbsp;</mo>
-                    <mi>y</mi>
-                    <mo stretchy=false>)</mo>
-                    <mo>&nbsp; * &nbsp;</mo>
-                    <msub>
-                      <mi>x</mi>
-                      <mi>j</mi>
-                    </msub>
-                  </math>
-                </h6>
-              </li>
-              <li>
-                <h5>Learning Rate (<i>&alpha;</i>)</h5>
-                <h7>Very important in the process, because, if it is too large,
-                  it may cause the optimization to detour & fail.</h7>
-              </li>
-            </ul>
+                    <mi>j</mi>
+                  </msub>
+                  <mo>&nbsp; = &nbsp;</mo>
+                  <msub>
+                    <mi>w</mi>
+                    <mi>j</mi>
+                  </msub>
+                  <mo>&nbsp; - &nbsp;</mo>
+                  <mi>&alpha;</mi>
+                  <mo>&nbsp; * &nbsp;</mo>
+                  <mfrac>
+                    <mrow>
+                      <mn>1</mn>
+                    </mrow>
+                    <mrow>
+                      <mi>n</mi>
+                    </mrow>
+                  </mfrac>
+                  <mo>&Sigma;</mo>
+                  <mo stretchy=false>(</mo>
+                  <mi>X</mi>
+                  <mi>w</mi>
+                  <mo>&nbsp; - &nbsp;</mo>
+                  <mi>y</mi>
+                  <mo stretchy=false>)</mo>
+                  <mo>&nbsp; * &nbsp;</mo>
+                  <msub>
+                    <mi>x</mi>
+                    <mi>j</mi>
+                  </msub>
+                </math>
+              </h6>
+            </li>
+            <li>
+              <h5>Learning Rate (<i>&alpha;</i>)</h5>
+              <h7>Very important in the process, because, if it is too large,
+                it may cause the optimization to detour & fail.</h7>
+            </li>
+          </ul>
         </li>
         <li>
           <h5>Multiple Linear Regression (MLR)</h5>
