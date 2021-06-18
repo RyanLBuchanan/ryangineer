@@ -1165,7 +1165,7 @@
           </h6>
           <ul>
             <li>
-              <h5>Given Vector of Standardized Coefficients & Bias</h5>
+              <h5>Vector of Standardized Coefficients & Bias</h5>
               <h6>
                 <math>
                   <mi>y</mi>
@@ -1183,6 +1183,119 @@
                   <msub>
                     <mi>x</mi>
                     <mi>i</mi>
+                  </msub>
+                </math>
+              </h6>
+            </li>
+            <li>
+              <h5>Transformation of Predictors</h5>
+              <h6>
+                <math>
+                  <mi>y</mi>
+                  <mo>&nbsp; = &nbsp;</mo>
+                  <mo>(</mo>
+                  <msub>
+                    <mi>&beta;&#770;</mi>
+                    <mn>0</mn>
+                  </msub>
+                  <mo>&nbsp; - &nbsp;</mo>
+                  <mo stretchy=True>&Sigma;</mo>
+                  <mfrac>
+                    <mrow>
+                      <msub>
+                        <mi>&beta;&#770;</mi>
+                        <mi>i</mi>
+                      </msub>
+                      <msub>
+                        <mi>x&#772;</mi>
+                        <mi>i</mi>
+                      </msub>
+                    </mrow>
+                    <mrow>
+                      <msub>
+                        <mi>&delta;</mi>
+                        <mi>i</mi>
+                      </msub>
+                    </mrow>
+                  </mfrac>
+                  <mo>)</mo>
+                  <mo>&nbsp; + &nbsp;</mo>
+                  <mo>&Sigma;</mo>
+                  <mo>(</mo>
+                  <mfrac>
+                    <mrow>
+                      <msub>
+                        <mi>&beta;&#770;</mi>
+                        <mi>i</mi>
+                      </msub>
+                    </mrow>
+                    <mrow>
+                      <msub>
+                        <mi>&delta;</mi>
+                        <mi>i</mi>
+                      </msub>
+                    </mrow>
+                  </mfrac>
+                  <mo>&nbsp; * &nbsp;</mo>
+                  <msub>
+                    <mi>x&#772;</mi>
+                    <mi>i</mi>
+                  </msub>
+                  <mo>)</mo>
+                </math>
+                <br />&nbsp; &#8627; where:
+                <br />&emsp; x&#772; = original mean
+                <br />&emsp; &delta; = original variance
+            </li>
+            <li>
+              <h5>Variable(s) Interactions</h5>
+              <h7>"One of the first sources of non-linearity is due to possible
+                interactions between predictors. Two predictors interact when the
+                effect of one of them on the response variable varies in respect
+                of the values of the other predictors. . . .[I]nteraction terms
+                have to be multiplied by themselves for our linear model to catch
+                the supplementary information of their relation as expressed in
+                this example of a model with two interacting predictors."
+                <a target="_blank" href="https://www.amazon.com/Regression-Analysis-Python-Luca-Massaron-ebook/dp/B01BFD2Z44">(Massaron, p. 87)</a></h7>
+              <h6>
+                <math>
+                  <mi>y</mi>
+                  <mo>&nbsp; = &nbsp;</mo>
+                  <msub>
+                    <mi>&beta;</mi>
+                    <mn>0</mn>
+                  </msub>
+                  <mo>&nbsp; + &nbsp;</mo>
+                  <msub>
+                    <mi>&beta;</mi>
+                    <mn>1</mn>
+                  </msub>
+                  <msub>
+                    <mi>x</mi>
+                    <mn>1</mn>
+                  </msub>
+                  <mo>&nbsp; + &nbsp;</mo>
+                  <msub>
+                    <mi>&beta;</mi>
+                    <mn>2</mn>
+                  </msub>
+                  <msub>
+                    <mi>x</mi>
+                    <mn>2</mn>
+                  </msub>
+                  <mo>&nbsp; + &nbsp;</mo>
+                  <msub>
+                    <mi>&beta;</mi>
+                    <mn>12</mn>
+                  </msub>
+                  <msub>
+                    <mi>x</mi>
+                    <mn>1</mn>
+                  </msub>
+                  <msub>
+                    <mi>x</mi>
+                    <mi>2</mi>
+                  </msub>
                   </msub>
                 </math>
               </h6>
