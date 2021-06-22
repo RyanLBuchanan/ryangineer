@@ -1726,7 +1726,51 @@
             </h7>
           </li>
           <li>
-            <h5>McFadden's R<sup>2</sup></h5>
+            <h5>McFadden's <i>R</i><sup>2</sup></h5>
+            <h7>The default "pseudo <i>R</i><sup>2</sup>" value reported by the Stata package.</h7>
+            <h6>
+              <math>
+                <msup>
+                  <mi>R</mi>
+                  <mn>2</mn>
+                </msup>
+                <msub>
+                  <mi></mi>
+                  <mn>McFadden</mn>
+                </msub>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mn>1</mn>
+                <mo>&nbsp; - &nbsp;</mo>
+                <mfrac>
+                  <mrow>
+                    <mi>l</mi>
+                    <mi>o</mi>
+                    <mi>g</mi>
+                    <mo>(</mo>
+                    <msub>
+                      <mi>L</mi>
+                      <mi>c</mi>
+                    </msub>
+                    <mo>)</mo>
+                  </mrow>
+                  <mrow>
+                    <mi>l</mi>
+                    <mi>o</mi>
+                    <mi>g</mi>
+                    <mo>(</mo>
+                    <msub>
+                      <mi>L</mi>
+                      <mi>null</mi>
+                    </msub>
+                    <mo>)</mo>
+                  </mrow>
+                </mfrac>
+              </math>
+              <br />&nbsp; &#8627; where:
+              <br />&nbsp;&nbsp; <i>L</i><sub>c</sub> = the maximum likelihood value from the current fitted model
+              <br />&nbsp;&nbsp; <i>L</i><sub>null</sub> = the corresponding value but for the null value - the
+              model with only an intercept & no covariates
+            </h6>
           </li>
         </ul>
       </li>
