@@ -1514,7 +1514,7 @@
         </h7>
         <ul>
           <li>
-            <h5>Binary Classification</h5>
+            <h5>Binary Classification Problem</h5>
             <h7>An <i>n</i>-dimensional feature vector (<i>x<sub>i</sub></i>) paired
               with its label.</h7>
             <h6>
@@ -1552,6 +1552,28 @@
                 <mo stretchy=False>}</mo>
               </math>
             </h6>
+            <h7>The output can be either "0" or "1". What if we check the probability
+              of the label belonging to class "1"? More specifically, a classification
+              problem can be seen as: given the feature vector, find the class
+              (either 0 or 1) that maximizes the conditional probability.</h7>
+              <h6>
+                <math>
+                  <mi>P</mi>
+                  <mo stretchy=False>(</mo>
+                  <msub>
+                    <mi>y</mi>
+                    <mi>i</mi>
+                  </msub>
+                  <mo>&nbsp; = &nbsp;</mo>
+                  <mn>"1"</mn>
+                  <mo>|</mo>
+                  <msub>
+                    <mi>x</mi>
+                    <mi>i</mi>
+                  </msub>
+                  <mo stretchy=False>)</mo>
+                </math>
+              </h6>
             <ul>
               <li>
                 <h5>Classification Function</h5>
