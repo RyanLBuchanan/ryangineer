@@ -1197,7 +1197,7 @@
             <br />&emsp; <i>a</i>, &beta;<sub>0</sub> = constant, y-intercept
             <br />&emsp; &beta;<sub>0</sub>, &beta;<sub>1</sub>, &beta;<sub>2</sub>, &beta;<sub>3</sub> = population regression parameters, coefficients
             <br />&emsp; X<sub>1</sub>, X<sub>2</sub>, X<sub>3</sub> = independent,
-            explanatory, predictor variables, covariates
+            explanatory, predictor variables, covariates, IVs
             <br />&emsp; &epsilon; = regression error term, an adjustment term
           </h6>
           <ul>
@@ -1486,37 +1486,66 @@
         <h7> A classification algorithm used to estimate discrete values, binary values (0/1, yes/no, true/false)
           based on given set of independent variables; predicts probability between
           0 & 1 as output values.
-          <br /> &emsp; Like its name is logarithmic. Its graph
+          <br /> &emsp; Like its name is <b><i>logarithmic</i></b>. Its graph
           is curvilinear. The dependent variable may be binomial, ordinal or
           multinomial. If the dependent variable is binary, the graph is sigmoid.
           If not, the graph can be more pronounced, parabolic, etc.
           <br /> &emsp; Models are fitted using the method of maximum
           likelihood - i.e. the parameter estimates are those which maximize the likelihood
-          of the data which have been observed.
+          of the data which have been observed.</h7>
+        <ul>
+          <li>
+            <h5>Assumptions</h5>
+          </li>
           <ul>
             <li>
-              <b>Based on Bernoulli (also, Binomial or Boolean) Distribution rather
-                than Gaussian because the dependent variable is binary.</b>
+              <h7>Based on Bernoulli (also, Binomial or Boolean) Distribution rather
+                than Gaussian because the dependent variable is binary.</h7>
             </li>
             <li>
-              <b>The predicted values are restricted to a range of nomial values
-                like 'Yes', 'No', S, M, L, etc.</b>
+              <h7>The predicted values are restricted to a range of nomial values
+                like 'Yes', 'No', S, M, L, etc.</h7>
             </li>
             <li>
-              <b>It predicts the <i>probability</i> of a particular outcome rather
-                than the outcome itself.</b>
+              <h7>It predicts the <i>probability</i> of a particular outcome rather
+                than the outcome itself.</h7>
             </li>
             <li>
-              <b>There are no high correlations (multicollinearity) among predictors.</b>
+              <h7>There are no high correlations (multicollinearity) among predictors.</h7>
             </li>
             <li>
-              <b>It is the logarithm of the odds of achieving 1. In other words,
+              <h7>It is the logarithm of the odds of achieving 1. In other words,
                 a regression model, where the output is natural logarithm of the
-                odds, also known as '<i>logit</i>'.</b>
+                odds, also known as '<b><i>logit</i></b>'.</h7>
             </li>
           </ul>
-        </h7>
-        <ul>
+          <li>
+            <h5>Sample Size Minimum</h5>
+            <h7>According to Peduzzi, et al (1996) use the following guidlines for
+              minimum # of cases. Let <i>p</i> be the smallest of the proportions
+              of negative or positive cases in the population, & <i>k</i> be the # of
+              covariates (IVs). According to Long (1997), if the result is < 100, increase it to 100.</h7>
+                <h6>
+                  <math>
+                    <mi>N</mi>
+                    <mo>&nbsp; = &nbsp;</mo>
+                    <mfrac>
+                      <mrow>
+                        <mn>10</mn>
+                        <mo>&nbsp; * &nbsp;</mo>
+                        <mi>k</mi>
+                      </mrow>
+                      <mrow>
+                        <mi>p</mi>
+                      </mrow>
+                    </mfrac>
+                  </math>
+                  <br />&nbsp; &#8627; where:
+                  <br />&emsp; <i>N</i> = Minimum number of cases
+                  <br />&emsp; <i>k</i> = # of covariates
+                  <br />&emsp; <i>p</i> = Smallest proportions of negative/positive cases
+                </h6>
+          </li>
           <li>
             <h5>Binary Classification Problem</h5>
             <h7>An <i>n</i>-dimensional feature vector (<i>x<sub>i</sub></i>) paired
@@ -1560,24 +1589,24 @@
               of the label belonging to class "1"? More specifically, a classification
               problem can be seen as: given the feature vector, find the class
               (either 0 or 1) that maximizes the conditional probability.</h7>
-              <h6>
-                <math>
-                  <mi>P</mi>
-                  <mo stretchy=False>(</mo>
-                  <msub>
-                    <mi>y</mi>
-                    <mi>i</mi>
-                  </msub>
-                  <mo>&nbsp; = &nbsp;</mo>
-                  <mn>"1"</mn>
-                  <mo>|</mo>
-                  <msub>
-                    <mi>x</mi>
-                    <mi>i</mi>
-                  </msub>
-                  <mo stretchy=False>)</mo>
-                </math>
-              </h6>
+            <h6>
+              <math>
+                <mi>P</mi>
+                <mo stretchy=False>(</mo>
+                <msub>
+                  <mi>y</mi>
+                  <mi>i</mi>
+                </msub>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mn>"1"</mn>
+                <mo>|</mo>
+                <msub>
+                  <mi>x</mi>
+                  <mi>i</mi>
+                </msub>
+                <mo stretchy=False>)</mo>
+              </math>
+            </h6>
             <ul>
               <li>
                 <h5>Classification Function</h5>
@@ -1753,7 +1782,10 @@
           </li>
           <li>
             <h5>McFadden's <i>R</i><sup>2</sup></h5>
-            <h7>The default "pseudo <i>R</i><sup>2</sup>" value reported by the Stata package.</h7>
+            <h7>A default pseudo <i>R</i><sup>2</sup>, McFadden's "denotes the
+              corresponding value but for the null model – the model with only
+              an intercept & no covariates. It will be close to zero, as we would hope."
+              <a target="_blank" href="https://thestatsgeek.com/2014/02/08/r-squared-in-logistic-regression/">The Stats Geek</a></h7>
             <h6>
               <math>
                 <msup>
