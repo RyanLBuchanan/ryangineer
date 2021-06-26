@@ -1487,7 +1487,8 @@
           based on given set of independent variables; predicts probability between
           0 & 1 as output values.
           <br /> &emsp; Like its name is logarithmic. Its graph
-          is curvilinear. If the dependent variable is binary, the graph is sigmoid.
+          is curvilinear. The dependent variable may be binomial, ordinal or
+          multinomial. If the dependent variable is binary, the graph is sigmoid.
           If not, the graph can be more pronounced, parabolic, etc.
           <br /> &emsp; Models are fitted using the method of maximum
           likelihood - i.e. the parameter estimates are those which maximize the likelihood
@@ -1504,6 +1505,9 @@
             <li>
               <b>It predicts the <i>probability</i> of a particular outcome rather
                 than the outcome itself.</b>
+            </li>
+            <li>
+              <b>There are no high correlations (multicollinearity) among predictors.</b>
             </li>
             <li>
               <b>It is the logarithm of the odds of achieving 1. In other words,
