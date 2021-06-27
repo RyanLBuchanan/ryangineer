@@ -1888,10 +1888,51 @@
               are only useful in comparison with other AIC scores for the same
               dataset. <b><i>A lower AIC score is better</i></b>." AIC is derived
               from frequentist probability. <a target="_blank" href="https://towardsdatascience.com/introduction-to-aic-akaike-information-criterion-9c9ba1c96ced">TowardDataScience</a></h7>
+            <h6>
+              <math>
+                <mi mathvariant="italic">AIC</mi>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mn>-2ln</mn>
+                <mo stretchy=false>(</mo>
+                <mi>L</mi>
+                <mo stretchy=false>)</mo>
+                <mo>&nbsp; + &nbsp;</mo>
+                <mn>2</mn>
+                <mi>k</mi>
+              </math>
+              <br />&nbsp; &#8627; where:
+              <br />&nbsp;&nbsp; <i>L</i> = likelihood
+              <br />&nbsp;&nbsp; <i>k</i> = # of parameters
+            </h6>
           </li>
           <li>
             <h5>Bayesian Information Criterion (BIC)</h5>
-            <h7> BIC is derived from Bayesian probability.</h7>
+            <h7>"[A] criterion for model selection among a finite set of models.
+              It is based, in part, on the likelihood function, & it is closely
+              related to AIC. . . . The BIC resolves this problem by introducing
+              a penalty term for the number of parameters in the model." BIC is
+              derived from Bayesian probability. <a target="_blank" href="https://medium.com/@analyttica/what-is-bayesian-information-criterion-bic-b3396a894be6">Analyttica Datalab</a></h7>
+              <h6>
+                <math>
+                  <mi mathvariant=italic>BIC</mi>
+                  <mo>&nbsp; = &nbsp;</mo>
+                  <mn>ln</mn>
+                  <mo stretchy=false>(</mo>
+                  <mi>n</mi>
+                  <mo stretchy=false>)</mo>
+                  <mi>k</mi>
+                  <mo>&nbsp; - &nbsp;</mo>
+                  <mn>2ln</mn>
+                  <mo stretchy=false>(</mo>
+                  <mi mathvariant=italic>L&#770;</mi>
+                  <mo stretchy=false>)</mo>
+                </math>
+                <br />&nbsp; &#8627; where:
+                <br />&nbsp;&nbsp; <i>L&#770;</i> = maximized value of likelihood
+                function of the model
+                <br />&nbsp;&nbsp; <i>n</i> = # of data points
+                <br />&nbsp;&nbsp; <i>k</i> = # of free parameters to be estimated
+              </h6>
           </li>
         </ul>
       </li>
