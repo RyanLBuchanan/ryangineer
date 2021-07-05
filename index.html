@@ -2083,6 +2083,55 @@
               <br />&nbsp;&nbsp; <i>k</i> = # of free parameters to be estimated
             </h6>
           </li>
+          <li>
+            <h5>Root Mean Squared Error (RMSE)</h5>
+            <h7>"The standard deviation of the residuals (prediction errors).
+              Residuals are a measure of how far from the regression line data
+              points are; RMSE is a measure of how spread out these residuals are.
+              In other words, it tells you how concentrated the data is around
+              the line of best fit." <a target="_blank"
+                href="https://www.statisticshowto.com/probability-and-statistics/regression-analysis/rmse-root-mean-square-error/#:~:text=Root%20Mean%20Square%20Error%20(RMSE)%20is%20the%20standard%20deviation%20of,the%20line%20of%20best%20fit.">StatisticsHowTo</a>
+            </h7>
+            <h6>
+              <math mode="display">
+                <mi>RMSE</mi>
+                <mo>&nbsp; = &nbsp;</mo>
+                <msqrt stretchy=True>
+                  <munderover>
+                    <mo>&sum;</mo>
+                    <mrow>
+                      <mi>n</mi>
+                      <mo>=</mo>
+                      <mn>1</mn>
+                    </mrow>
+                    <mi>n</mi>
+                  </munderover>
+                  <mfrac>
+                    <mrow>
+                      <mo stretchy=False>(</mo>
+                      <msub>
+                        <mi mathvariant="italic">y&#770;</mi>
+                        <mi>i</mi>
+                      </msub>
+                      <mo>&nbsp; - &nbsp;</mo>
+                      <msub>
+                        <mi>y</mi>
+                        <mi>i</mi>
+                      </msub>
+                      <mo stretchy=False>)</mo>
+                      <msup>
+                        <mn></mn>
+                        <mn>2</mn>
+                      </msup>
+                    </mrow>
+                    <mrow>
+                      <mi>n</mi>
+                    </mrow>
+                  </mfrac>
+                </msqrt>
+              </math>
+            </h6>
+          </li>
         </ul>
       </li>
       <li>

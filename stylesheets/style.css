@@ -238,6 +238,15 @@ html {
   text-align: center;
 }
 
+mroot > :not(:first-child) {
+  math-depth: add(2);
+  math-style: compact;
+}
+
+mroot, msqrt {
+  math-shift: compact;
+}
+
 .no-italics {
     font-style: normal;
 }
