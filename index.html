@@ -1970,18 +1970,64 @@
                 <h5>Accuracy</h5>
                 <h7>An error measure of the confusion matrix that is percentage of
                   correct classifications, over the total number of samples.</h7>
+                <h6>
+                  <math>
+                    <mn>Accuracy</mn>
+                    <mo>&nbsp; = &nbsp;</mo>
+                    <mfrac>
+                      <mrow>
+                        <mn>True Positives + True Negatives</mn>
+                      </mrow>
+                      <mrow>
+                        <mn>Total</mn>
+                      </mrow>
+                    </mfrac>
+                  </math>
+                </h6>
               </li>
               <li>
                 <h5>Precision</h5>
-                <h7>considers only one label and counts the percentage of correct
+                <h7>Considers only one label and counts the percentage of correct
                   classifications on that label.</h7>
+                <h6>
+                  <math>
+                    <mn>Precision</mn>
+                    <mo>&nbsp; = &nbsp;</mo>
+                    <mfrac>
+                      <mrow>
+                        <mn>True Positives</mn>
+                      </mrow>
+                      <mrow>
+                        <mn>True Positives</mn>
+                        <mo>&nbsp; + &nbsp;</mo>
+                        <mn>False Positives</mn>
+                      </mrow>
+                    </mfrac>
+                  </math>
+                </h6>
               </li>
               <li>
-                <h5>Recall</h5>
+                <h5>Recall or Sensitivity</h5>
                 <h7>If precision is about the quality of what you got (that is,
                   the quality of the results marked with the label 1), recall is about the
                   quality of what you could have gotten—that is, how many instances of 1 
                   you've been able to extract properly.</h7>
+                <h6>
+                  <math>
+                    <mn>Recall</mn>
+                    <mo>&nbsp; = &nbsp;</mo>
+                    <mfrac>
+                      <mrow>
+                        <mn>True Positives</mn>
+                      </mrow>
+                      <mrow>
+                        <mn>True Positives</mn>
+                        <mo>&nbsp; + &nbsp;</mo>
+                        <mn>False Negatives</mn>
+                      </mrow>
+                    </mfrac>
+                  </math>
+                </h6>
               </li>
             </ul>
           </li>
@@ -1994,9 +2040,47 @@
               <ul>
                 <li>
                   <b>True Positive Rate (TPR)</b>
+                  <h6>
+                    <math>
+                      <mo>TPR</mo>
+                      <mo>&nbsp; = &nbsp;</mo>
+                      <mn>Sensitivity</mn>
+                      <mo>&nbsp; = &nbsp;</mo>
+                      <mfrac>
+                        <mrow>
+                          <mn>True Positives</mn>
+                        </mrow>
+                        <mrow>
+                          <mn>True Positives</mn>
+                          <mo>&nbsp; + &nbsp;</mo>
+                          <mn>False Negatives</mn>
+                        </mrow>
+                      </mfrac>
+                    </math>
+                  </h6>
                 </li>
                 <li>
                   <b>False Positive Rate (FPR)</b>
+                  <h6>
+                    <math>
+                      <mo>FPR</mo>
+                      <mo>&nbsp; = &nbsp;</mo>
+                      <mn>1</mn>
+                      <mo>&nbsp; - &nbsp;</mo>
+                      <mn>Specificity</mn>
+                      <mo>&nbsp; = &nbsp;</mo>
+                      <mfrac>
+                        <mrow>
+                          <mn>False Positives</mn>
+                        </mrow>
+                        <mrow>
+                          <mn>False Positives</mn>
+                          <mo>&nbsp; + &nbsp;</mo>
+                          <mn>False Negatives</mn>
+                        </mrow>
+                      </mfrac>
+                    </math>
+                  </h6>
                 </li>
               </ul>
             </h7>
