@@ -7153,8 +7153,8 @@
   </div>
 
   <br /><br />
-  <div id="Computer_Science_Arithmetic">
-    <h3>Computer Science Arithmetic</h3>
+  <div id="Computer_Science_Mathematics">
+    <h3>Computer Science Mathematics</h3>
     <h4>Absolute Value Inequalities</h4>
     <ul>
       <li>
@@ -7287,6 +7287,51 @@
         </h6>
       </li>
     </ul>
+    <h4>NP Complete Problem</h4>
+    <h7>"We call these problems "nondeterministic polynomial" or NP, because you
+      can't give someone a pre-determined set of steps to solve it (unless that
+      someone is a perfect guesser!), but if someone does happen to solve it,
+      they would only need a polynomial number of steps. . . .
+      <br /> &emsp; [W]e can find the answer to any NP problem by solving a related
+      problem in this group. The problems in this group are called "NP-complete"
+      (because solving one of them can solve the complete group of NP problems).
+      If we ever found a fast (i.e. polynomial) way to solve any NP-complete
+      problem, we could find fast ways to solve every NP problem. Then we wouldn't
+      have to talk about NP any more, because they would all just be P (polynomial)
+      problems. That's why we call the problem "P=NP". . . .
+      <br /> &emsp; [M]athematicians think that NP-complete problems are not P,
+      because so many people have spent so much time thinking about it that if
+      they were, somebody would have found out how by now (because it's usually
+      easier to find a way to do something than to prove that there is no way)."
+      <a target="_blank" href="https://www.reddit.com/r/explainlikeimfive/comments/t3fp4/eli5_np_completeness/">Reddit ELI5</a></h7>
+      <ul>
+        <li>
+          <h6><b>P</b>: The set of all problems that can be solved in polynomial
+            time (polynomial in relation to the input) by a deterministic Turing
+            machine.</h6>
+        </li>
+        <li>
+          <h6><b>NP</b>: The set of all problems that can be solved in polynomial
+            time if you have a non-deterministic Turing machine. That is, if you
+            have a magical computer that can perform both actions at a decision
+            point simultaneously. However, given a proposed solution to a problem
+            in NP, that solution can be verified in polynomial time by a normal,
+            deterministic Turing machine.</h6>
+        </li>
+        <li>
+          <h6><b>NP-hard</b>: The set of all problems that any problem in NP can
+            be reduced to in polynomial time.</h6>
+        </li>
+        <li>
+          <h6><b>NP-complete</b>: The set of problems that any problem in NP can
+            be reduced to in polynomial time, whose solutions can still be
+            verified in polynomial time. This is the subset of NP-hard that
+            overlaps NP. Generally-speaking, the set of NP-complete problems is
+            a kind of "upper bound" on the complexity of NP problems. Every NP
+            problem can be solved by an NP-complete problem, and the solution can
+            be verified in polynomial time.</h6>
+        </li>
+      </ul>
   </div>
 
   <br /><br />
