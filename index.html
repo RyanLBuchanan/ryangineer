@@ -2248,6 +2248,8 @@
               Regularization can be applied to objective functions in ill-posed
               optimization problems." <a target="_blank" href="https://en.wikipedia.org/wiki/Regularization_(mathematics)#:~:text=In%20mathematics%2C%20statistics%2C%20finance%2C,in%20ill%2Dposed%20optimization%20problems.">Wikipedia</a></h7>
             <br />
+          <li>
+            <h5><i>L</i>2 Regularization Norm</h5>
             <h6>
               <math>
                 <mn>Loss function</mn>
@@ -2279,255 +2281,261 @@
               </ul>
             </h6>
           </li>
-          <li>
-            <h5>Hyperparameter Tuning</h5>
-            <h7>Choosing a set of optimal hyperparameters for a learning algorithm.
-              For example, picking an alpha parameter (<b><i>&alpha;</i></b>) for Ridge Regression
-              loss function. </h7>
-          </li>
-        </ul>
       </li>
       <li>
-        <h5>Lasso Regression</h5>
-        <h7>The Lasso algortihm performs regularization by adding to the loss
-          function a penalty term of the absolute value of each coefficient
-          multiplied by some alpha. This is also known as <i>L</i>1 regularization
-          because the regularization term is the <i>L</i>1 norm of the coefficients.
-          <br />&emsp; Similar to Ridge Regression & can be used to select important features
-          of dataset; shrinks the coefficients of less important features to exactly
-          0.</h7>
-        <h6>
-          <math>
-            <mn>Loss function</mn>
-            <mo>&nbsp; = &nbsp;</mo>
-            <mn>OLS loss function</mn>
-            <mo>&nbsp; + &nbsp;</mo>
-            <mi>&alpha;</mi>
-            <mo>&nbsp; * &nbsp;</mo>
-          </math>
-          <span id="epsilon" style="font-size: 20px;">&Sigma;</span>
-          <math>
-            <mo>|</mo>
-            <msub>
-              <mi>a</mi>
-              <mi>i</mi>
-            </msub>
-            <mo>|</mo>
-          </math>
-        </h6>
+        <h5>Hyperparameter Tuning</h5>
+        <h7>Choosing a set of optimal hyperparameters for a learning algorithm.
+          For example, picking an alpha parameter (<b><i>&alpha;</i></b>) for Ridge Regression
+          loss function. </h7>
       </li>
-      <li>
-        <h5>Decision Tree Regression</h5>
-        <h7>Supervised learning algorithm used for classification problems; works for categorical & continuous variables</h7>
-        <ul>
-          <li>
-            <h5>Standard Deviation Reduction</h5>
-          </li>
-          <h6>F(T, X) = <span id="" class="sigma_sum" style="font-size: 20px;">&Sigma;</span>P(c)S(c)</h6>
-        </ul>
-      </li>
-      <li>
-        <h5>Support Vector Machines | Discriminative Classifier</h5>
-        <h7>Discriminative classifier formally defined by a separating hyperplane</h7>
-        <ul>
-          <li><a target="_blank" title="" href="https://medium.com/@ankitnitjsr13/math-behind-support-vector-machine-svm-5e7376d0ee4d">
-              <h5>Maximum Margin Hyperplane | Support Vectors</h5>
-            </a></li>
-          <h6>{x<sub><i>i</i></sub>, y<sub><i>i</i></sub>} where <i>i</i> = 1 . . . L, y<sub><i>i</i></sub> &#8712; {-1, 1}, x &#8712; &#8477;<sup>D</sup></h6>
-        </ul>
-      </li>
-      <li><a target="_blank" title="Kernel Functions" href="https://towardsdatascience.com/kernel-function-6f1d2be6091" />
-        <h5>Kernel SVM | Nonlinear</h5></a>
-      </li>
-      <h7>Mapping to a higher-dimensional space, applying the support vector algorithm & then projecting back to lower dimensional space resulting in a nonlinear separator</h7>
+    </ul>
+    </li>
+    <li>
+      <h5>Lasso Regression</h5>
+      <h7>The Lasso algortihm performs regularization by adding to the loss
+        function a penalty term of the absolute value of each coefficient
+        multiplied by some alpha. This is also known as <i>L</i>1 regularization
+        because the regularization term is the <i>L</i>1 norm of the coefficients.
+        <br />&emsp; Similar to Ridge Regression & can be used to select important features
+        of dataset; shrinks the coefficients of less important features to exactly
+        0.</h7>
       <ul>
-        <li><a target="_blank" title="The Math Behind SVM" href="https://medium.com/@ankitnitjsr13/math-behind-support-vector-machine-svm-5e7376d0ee4d">
-            <h5>Linearly Separable with Hyperplane in 3D</h5>
-          </a></li>
-        <h6>&phi;(x<sub>1</sub>, x<sub>2</sub>) &#8658; (x<sub>1</sub>, x<sub>2</sub>, z) </h6>
-        <li><a target="_blank" title="The Kernel Cookbook" href="https://en.wikipedia.org/wiki/Radial_basis_function_kernel">
-            <h5>The Gaussian or Radial Basis Function (RBF) Kernel</h5>
-          </a></li>
-        <div style="text-align: left;">
+        <li>
+          <h5><i>L</i>1 Regularization Norm</h5>
           <h6>
-            <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
-              <mi>K</mi>
+            <math>
+              <mn>Loss function</mn>
+              <mo>&nbsp; = &nbsp;</mo>
+              <mn>OLS loss function</mn>
+              <mo>&nbsp; + &nbsp;</mo>
+              <mi>&alpha;</mi>
+              <mo>&nbsp; * &nbsp;</mo>
+            </math>
+            <span id="epsilon" style="font-size: 20px;">&Sigma;</span>
+            <math>
+              <mo>|</mo>
+              <msub>
+                <mi>a</mi>
+                <mi>i</mi>
+              </msub>
+              <mo>|</mo>
+            </math>
+          </h6>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <h5>Decision Tree Regression</h5>
+      <h7>Supervised learning algorithm used for classification problems; works for categorical & continuous variables</h7>
+      <ul>
+        <li>
+          <h5>Standard Deviation Reduction</h5>
+        </li>
+        <h6>F(T, X) = <span id="" class="sigma_sum" style="font-size: 20px;">&Sigma;</span>P(c)S(c)</h6>
+      </ul>
+    </li>
+    <li>
+      <h5>Support Vector Machines | Discriminative Classifier</h5>
+      <h7>Discriminative classifier formally defined by a separating hyperplane</h7>
+      <ul>
+        <li><a target="_blank" title="" href="https://medium.com/@ankitnitjsr13/math-behind-support-vector-machine-svm-5e7376d0ee4d">
+            <h5>Maximum Margin Hyperplane | Support Vectors</h5>
+          </a></li>
+        <h6>{x<sub><i>i</i></sub>, y<sub><i>i</i></sub>} where <i>i</i> = 1 . . . L, y<sub><i>i</i></sub> &#8712; {-1, 1}, x &#8712; &#8477;<sup>D</sup></h6>
+      </ul>
+    </li>
+    <li><a target="_blank" title="Kernel Functions" href="https://towardsdatascience.com/kernel-function-6f1d2be6091" />
+      <h5>Kernel SVM | Nonlinear</h5></a>
+    </li>
+    <h7>Mapping to a higher-dimensional space, applying the support vector algorithm & then projecting back to lower dimensional space resulting in a nonlinear separator</h7>
+    <ul>
+      <li><a target="_blank" title="The Math Behind SVM" href="https://medium.com/@ankitnitjsr13/math-behind-support-vector-machine-svm-5e7376d0ee4d">
+          <h5>Linearly Separable with Hyperplane in 3D</h5>
+        </a></li>
+      <h6>&phi;(x<sub>1</sub>, x<sub>2</sub>) &#8658; (x<sub>1</sub>, x<sub>2</sub>, z) </h6>
+      <li><a target="_blank" title="The Kernel Cookbook" href="https://en.wikipedia.org/wiki/Radial_basis_function_kernel">
+          <h5>The Gaussian or Radial Basis Function (RBF) Kernel</h5>
+        </a></li>
+      <div style="text-align: left;">
+        <h6>
+          <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
+            <mi>K</mi>
+            <mo stretchy="false">(</mo>
+            <mi>x&#8407;, &nbsp;</mi>
+            <msup>
+              <mi>l&#8407;</mi>
+              <mn>&nbsp;i</mn>
+            </msup>
+            <mo stretchy="false">)</mo>
+            <mo>=</mo>
+            <mi>exp</mi>
+            <mo stretchy="true">(</mo>
+            <mo>-</mo>
+            <mfrac>
+              <mrow>
+                <mi>|| x&#8407;, &nbsp;</mi>
+                <msup>
+                  <mi>l&#8407;</mi>
+                  <mn>&nbsp;i</mn>
+                </msup>
+                <msup>
+                  <mi>||</mi>
+                  <mn>2</mn>
+                </msup>
+              </mrow>
+              <mrow>
+                <mi>2</mi>
+                <msup>
+                  <mi>&sigma;</mi>
+                  <mn>2</mn>
+                </msup>
+              </mrow>
+            </mfrac>
+            <mo stretchy="true">)</mo>
+          </math><br />
+        </h6>
+      </div>
+      <h6>&#8627; where:<br />
+        <ul>
+          &#8627; K = function applied to two vectors<br />
+          &#8627; x = point in datasets<br />
+          &#8627; <i>l</i> = landmark
+        </ul>
+      </h6>
+      <li><a target="_blank" title="The Kernel Cookbook" href="http://www.cs.toronto.edu/~duvenaud/cookbook/index.html">
+          <h5>Sigmoid Kernel</h5>
+        </a></li>
+      <h6><i>K(X, Y)</i> = tanh(<i>&gamma; <b>&dot;</b> X<sup>T</sup>Y + r</i>)</h6>
+      <li><a target="_blank" title="The Kernel Cookbook" href="http://www.cs.toronto.edu/~duvenaud/cookbook/index.html">
+          <h5>Polynomial Kernel</h5>
+        </a></li>
+      <h6><i>K(X, Y)</i> = tanh(<i>&gamma; <b>&dot;</b> X<sup>T</sup>Y + r</i>)<sup><i>d</i></sup>, <i>&gamma;</i> &#62; 0</h6>
+    </ul>
+    <li>
+      <h5>Naive Bayes Classification</h5>
+      <h7>Probabilistic classifier based on Bayes Theorem with an assumption of independence between predictors (aka, features or independent variables)</h7>
+      <ul>
+        <li>
+          <h5>Bayes Theorem &#8658; The probability of an event given prior knowledge of related events that occurred earlier</h5>
+          <div style="text-align: left;">
+            <math id="bayes_theorem" xmlns="http://www.w3.org/1998/Math/MathML">
+              <mi>P</mi>
               <mo stretchy="false">(</mo>
-              <mi>x&#8407;, &nbsp;</mi>
-              <msup>
-                <mi>l&#8407;</mi>
-                <mn>&nbsp;i</mn>
-              </msup>
+              <mi>y</mi>
+              <mo>&#x2223;</mo>
+              <msub>
+                <mi>x</mi>
+                <mn>1</mn>
+              </msub>
+              <mo>,</mo>
+              <mo>&#x2026;</mo>
+              <mo>,</mo>
+              <msub>
+                <mi>x</mi>
+                <mi>n</mi>
+              </msub>
               <mo stretchy="false">)</mo>
               <mo>=</mo>
-              <mi>exp</mi>
-              <mo stretchy="true">(</mo>
-              <mo>-</mo>
               <mfrac>
                 <mrow>
-                  <mi>|| x&#8407;, &nbsp;</mi>
-                  <msup>
-                    <mi>l&#8407;</mi>
-                    <mn>&nbsp;i</mn>
-                  </msup>
-                  <msup>
-                    <mi>||</mi>
-                    <mn>2</mn>
-                  </msup>
+                  <mi>P</mi>
+                  <mo stretchy="false">(</mo>
+                  <mi>y</mi>
+                  <mo stretchy="false">)</mo>
+                  <mi>P</mi>
+                  <mo stretchy="false">(</mo>
+                  <msub>
+                    <mi>x</mi>
+                    <mn>1</mn>
+                  </msub>
+                  <mo>,</mo>
+                  <mo>&#x2026;</mo>
+                  <mo>,</mo>
+                  <msub>
+                    <mi>x</mi>
+                    <mi>n</mi>
+                  </msub>
+                  <mo>&#x2223;</mo>
+                  <mi>y</mi>
+                  <mo stretchy="false">)</mo>
                 </mrow>
                 <mrow>
-                  <mi>2</mi>
-                  <msup>
-                    <mi>&sigma;</mi>
-                    <mn>2</mn>
-                  </msup>
+                  <mi>P</mi>
+                  <mo stretchy="false">(</mo>
+                  <msub>
+                    <mi>x</mi>
+                    <mn>1</mn>
+                  </msub>
+                  <mo>,</mo>
+                  <mo>&#x2026;</mo>
+                  <mo>,</mo>
+                  <msub>
+                    <mi>x</mi>
+                    <mi>n</mi>
+                  </msub>
+                  <mo stretchy="false">)</mo>
                 </mrow>
               </mfrac>
-              <mo stretchy="true">)</mo>
-            </math><br />
-          </h6>
-        </div>
-        <h6>&#8627; where:<br />
-          <ul>
-            &#8627; K = function applied to two vectors<br />
-            &#8627; x = point in datasets<br />
-            &#8627; <i>l</i> = landmark
-          </ul>
-        </h6>
-        <li><a target="_blank" title="The Kernel Cookbook" href="http://www.cs.toronto.edu/~duvenaud/cookbook/index.html">
-            <h5>Sigmoid Kernel</h5>
-          </a></li>
-        <h6><i>K(X, Y)</i> = tanh(<i>&gamma; <b>&dot;</b> X<sup>T</sup>Y + r</i>)</h6>
-        <li><a target="_blank" title="The Kernel Cookbook" href="http://www.cs.toronto.edu/~duvenaud/cookbook/index.html">
-            <h5>Polynomial Kernel</h5>
-          </a></li>
-        <h6><i>K(X, Y)</i> = tanh(<i>&gamma; <b>&dot;</b> X<sup>T</sup>Y + r</i>)<sup><i>d</i></sup>, <i>&gamma;</i> &#62; 0</h6>
+            </math>
+          </div>
+        </li>
       </ul>
-      <li>
-        <h5>Naive Bayes Classification</h5>
-        <h7>Probabilistic classifier based on Bayes Theorem with an assumption of independence between predictors (aka, features or independent variables)</h7>
-        <ul>
-          <li>
-            <h5>Bayes Theorem &#8658; The probability of an event given prior knowledge of related events that occurred earlier</h5>
-            <div style="text-align: left;">
-              <math id="bayes_theorem" xmlns="http://www.w3.org/1998/Math/MathML">
+    </li>
+    <li>
+      <h5>K-Nearest Neighbors</h5>
+      <h7>An algorithm that predicts the label of a data point in both classification & regression. &nbsp; The algorithm stores all available cases & classifies new cases by a "majority vote" of its K-nearest neighbors</h7>
+      <ul>
+        <li>
+          <h5>Euclidean Distance</h5>
+          <div style="text-align: left;">
+            <math id="euclidean" xmlns="http://www.w3.org/1998/Math/MathML">
+              <mi>Between</mi>
+              <msub>
                 <mi>P</mi>
+                <mn>1</mn>
+              </msub>
+              <mo stretchy="false"> & </mo>
+              <msub>
+                <mi>P</mi>
+                <mn>2</mn>
+              </msub>
+              <mo>=</mo>
+              <msqrt>
                 <mo stretchy="false">(</mo>
-                <mi>y</mi>
-                <mo>&#x2223;</mo>
                 <msub>
                   <mi>x</mi>
-                  <mn>1</mn>
-                </msub>
-                <mo>,</mo>
-                <mo>&#x2026;</mo>
-                <mo>,</mo>
-                <msub>
-                  <mi>x</mi>
-                  <mi>n</mi>
-                </msub>
-                <mo stretchy="false">)</mo>
-                <mo>=</mo>
-                <mfrac>
-                  <mrow>
-                    <mi>P</mi>
-                    <mo stretchy="false">(</mo>
-                    <mi>y</mi>
-                    <mo stretchy="false">)</mo>
-                    <mi>P</mi>
-                    <mo stretchy="false">(</mo>
-                    <msub>
-                      <mi>x</mi>
-                      <mn>1</mn>
-                    </msub>
-                    <mo>,</mo>
-                    <mo>&#x2026;</mo>
-                    <mo>,</mo>
-                    <msub>
-                      <mi>x</mi>
-                      <mi>n</mi>
-                    </msub>
-                    <mo>&#x2223;</mo>
-                    <mi>y</mi>
-                    <mo stretchy="false">)</mo>
-                  </mrow>
-                  <mrow>
-                    <mi>P</mi>
-                    <mo stretchy="false">(</mo>
-                    <msub>
-                      <mi>x</mi>
-                      <mn>1</mn>
-                    </msub>
-                    <mo>,</mo>
-                    <mo>&#x2026;</mo>
-                    <mo>,</mo>
-                    <msub>
-                      <mi>x</mi>
-                      <mi>n</mi>
-                    </msub>
-                    <mo stretchy="false">)</mo>
-                  </mrow>
-                </mfrac>
-              </math>
-            </div>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <h5>K-Nearest Neighbors</h5>
-        <h7>An algorithm that predicts the label of a data point in both classification & regression. &nbsp; The algorithm stores all available cases & classifies new cases by a "majority vote" of its K-nearest neighbors</h7>
-        <ul>
-          <li>
-            <h5>Euclidean Distance</h5>
-            <div style="text-align: left;">
-              <math id="euclidean" xmlns="http://www.w3.org/1998/Math/MathML">
-                <mi>Between</mi>
-                <msub>
-                  <mi>P</mi>
-                  <mn>1</mn>
-                </msub>
-                <mo stretchy="false"> & </mo>
-                <msub>
-                  <mi>P</mi>
                   <mn>2</mn>
                 </msub>
-                <mo>=</mo>
-                <msqrt>
-                  <mo stretchy="false">(</mo>
-                  <msub>
-                    <mi>x</mi>
-                    <mn>2</mn>
-                  </msub>
-                  <mo>-</mo>
-                  <msub>
-                    <mi>x</mi>
-                    <mi>1</mi>
-                  </msub>
-                  <mo stretchy="false">)</mo>
-                  <msup>
-                    <mi>2</mi>
-                  </msup>
-                  <mo stretchy="false">+</mo>
-                  <mo stretchy="false">(</mo>
-                  <msub>
-                    <mi>y</mi>
-                    <mn>2</mn>
-                  </msub>
-                  <mo>-</mo>
-                  <msub>
-                    <mi>y</mi>
-                    <mi>1</mi>
-                  </msub>
-                  <mo stretchy="false">)</mo>
-                  <msup>
-                    <mi>2</mi>
-                  </msup>
-                </msqrt>
-              </math>
-            </div>
-          </li>
-        </ul>
-      </li>
+                <mo>-</mo>
+                <msub>
+                  <mi>x</mi>
+                  <mi>1</mi>
+                </msub>
+                <mo stretchy="false">)</mo>
+                <msup>
+                  <mi>2</mi>
+                </msup>
+                <mo stretchy="false">+</mo>
+                <mo stretchy="false">(</mo>
+                <msub>
+                  <mi>y</mi>
+                  <mn>2</mn>
+                </msub>
+                <mo>-</mo>
+                <msub>
+                  <mi>y</mi>
+                  <mi>1</mi>
+                </msub>
+                <mo stretchy="false">)</mo>
+                <msup>
+                  <mi>2</mi>
+                </msup>
+              </msqrt>
+            </math>
+          </div>
+        </li>
+      </ul>
+    </li>
     </ul>
     <a target="_blank" title="" href="https://en.wikipedia.org/wiki/Unsupervised_learning#:~:text=Unsupervised%20learning%20is%20a%20type,a%20minimum%20of%20human%20supervision" />
     <h4>Unsupervised Learning</h4></a>
