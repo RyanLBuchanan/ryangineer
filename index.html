@@ -2045,34 +2045,28 @@
                   </math>
                 </h6>
               </li>
-            </ul>
-          </li>
-          <li>
-            <h5>ROC (Receiver Operating Characteristics) Curve</h5>
-            <h7>"[The] <b>receiver operating characteristic</b> (ROC) curve is a graph
-              showing the performance of a classification model at all classification
-              thresholds. This curve plots two parameters."
-              <a target="_blank" href="https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc#:~:text=An%20ROC%20curve%20(receiver%20operating,False%20Positive%20Rate">Google ML Crash Course</a>
-            </h7>
-            <ul>
               <li>
-                <h5>True Positive Rate (TPR)</h5>
+                <h5>F1 Score</h5>
+                <h7>The harmonic mean of precision & recall.</h7>
                 <h6>
                   <math>
-                    <mo>TPR</mo>
+                    <mi>F1 score</mi>
                     <mo>&nbsp; = &nbsp;</mo>
-                    <mn>Sensitivity</mn>
-                    <mo>&nbsp; = &nbsp;</mo>
+                    <mn>2</mn>
+                    <mo>(</mo>
                     <mfrac>
                       <mrow>
-                        <mn>True Positives</mn>
+                        <mi mathvariant="italic">precision</mi>
+                        <mo>&nbsp; &#215; &nbsp;</mo>
+                        <mi mathvariant="italic">recall</mi>
                       </mrow>
                       <mrow>
-                        <mn>True Positives</mn>
+                        <mi mathvariant="italic">precision</mi>
                         <mo>&nbsp; + &nbsp;</mo>
-                        <mn>False Negatives</mn>
+                        <mi mathvariant="italic">recall</mi>
                       </mrow>
                     </mfrac>
+                    <mo>)</mo>
                   </math>
                 </h6>
               </li>
@@ -2100,6 +2094,14 @@
                 </h6>
               </li>
             </ul>
+          </li>
+          <li>
+            <h5>ROC (Receiver Operating Characteristics) Curve</h5>
+            <h7>"[The] <b>receiver operating characteristic</b> (ROC) curve is a graph
+              showing the performance of a classification model at all classification
+              thresholds. This curve plots two parameters."
+              <a target="_blank" href="https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc#:~:text=An%20ROC%20curve%20(receiver%20operating,False%20Positive%20Rate">Google ML Crash Course</a>
+            </h7>
           </li>
           <li>
             <h5>AUC (Area Under the ROC Curve)</h5>
