@@ -2006,6 +2006,21 @@
                 <h5>Precision - Positive Predictive Value (PPV)</h5>
                 <h7>Considers only one label and counts the percentage of correct
                   classifications on that label.</h7>
+                <ul>
+                  <li>
+                    <h7>"</i>Precision is undefined for a classifier which
+                      makes no positive predictions, that is, classifies
+                      everyone as not having diabetes.</i>"</h7>
+                  </li>
+                  <li>
+                    <h7>"<i>When the threshold is very close to 1, precision is also 1, because the classifier
+                        is absolutely certain about its predictions.</i>"</h7>
+                  </li>
+                  <li>
+                    <h7>"<i>Precision & recall do not take true negatives into
+                        consideration.</i>"</h7>
+                  </li>
+                </ul>
                 <h6>
                   <math>
                     <mn>Precision</mn>
@@ -2032,6 +2047,14 @@
                   the quality of the results marked with the label 1), recall is about the
                   quality of what you could have gotten—that is, how many instances of 1 
                   you've been able to extract properly.</h7>
+                <ul>
+                  <li>
+                    </h7>"<i>A recall of 1 corresponds to a classifier with a low
+                      threshold in which all females who contract diabetes were
+                      correctly classified as such, at the expense of many
+                      misclassifications of those who did not have diabetes.</i>"</h7>
+                  </li>
+                </ul>
                 <h6>
                   <math>
                     <mn>Recall</mn>
