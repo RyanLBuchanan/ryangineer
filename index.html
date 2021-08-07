@@ -2275,10 +2275,26 @@
         </ul>
       </li>
       <li>
+        <h5>Lasso Regression</h5>
+        <h7>The Lasso algortihm performs regularization by adding to the loss
+          function a penalty term of the absolute value of each coefficient
+          multiplied by some alpha. This is also known as <i>L</i>1 regularization
+          because the regularization term is the <i>L</i>1 norm of the coefficients.
+          <br />&emsp; Similar to Ridge Regression & can be used to select important features
+          of dataset; shrinks the coefficients of less important features to exactly
+          0.</h7>
+      </li>
+      <li>
         <h5>Ridge Regression</h5>
         <h7>Regularized regression where large coefficients are penalized (to
           avoid over-fitting)</h7>
         <ul>
+        <li>
+          <h5>Hyperparameter Tuning</h5>
+          <h7>Choosing a set of optimal hyperparameters for a learning algorithm.
+            For example, picking an alpha parameter (<b><i>&alpha;</i></b>) for Ridge Regression
+            loss function. </h7>
+        </li>
           <li>
             <h5>Regularization</h5>
             <h7>"In mathematics, statistics, finance, computer science,
@@ -2288,6 +2304,28 @@
               Regularization can be applied to objective functions in ill-posed
               optimization problems." <a target="_blank" href="https://en.wikipedia.org/wiki/Regularization_(mathematics)#:~:text=In%20mathematics%2C%20statistics%2C%20finance%2C,in%20ill%2Dposed%20optimization%20problems.">Wikipedia</a></h7>
             <br />
+          <li>
+            <h5><i>L</i>1 Regularization Norm</h5>
+            <h6>
+              <math>
+                <mn>Loss function</mn>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mn>OLS loss function</mn>
+                <mo>&nbsp; + &nbsp;</mo>
+                <mi>&alpha;</mi>
+                <mo>&nbsp; * &nbsp;</mo>
+              </math>
+              <span id="epsilon" style="font-size: 20px;">&Sigma;</span>
+              <math>
+                <mo>|</mo>
+                <msub>
+                  <mi>a</mi>
+                  <mi>i</mi>
+                </msub>
+                <mo>|</mo>
+              </math>
+            </h6>
+          </li>
           <li>
             <h5><i>L</i>2 Regularization Norm</h5>
             <h6>
@@ -2321,48 +2359,28 @@
               </ul>
             </h6>
           </li>
-      </li>
-      <li>
-        <h5>Hyperparameter Tuning</h5>
-        <h7>Choosing a set of optimal hyperparameters for a learning algorithm.
-          For example, picking an alpha parameter (<b><i>&alpha;</i></b>) for Ridge Regression
-          loss function. </h7>
+          <li>
+            <h5>Elastic Net Regularization</h5>
+            <h7>The penalty is a linear combination of the <i>L</i>1 & <i>L</i>2
+              penalties.</h7>
+              <h6>
+                <math>
+                  <mi mathvariant="italic">Elastic Net</mi>
+                  <mo>&nbsp; = &nbsp;</mo>
+                  <mi>a</mi>
+                  <mo>&nbsp; * &nbsp;</mo>
+                  <mi>L</mi>
+                  <mn>1</mn>
+                  <mo>&nbsp; + &nbsp;</mo>
+                  <mi>b</mi>
+                  <mo>&nbsp; * &nbsp;</mo>
+                  <mi>L</mi>
+                  <mn>2</mn>
+                </math>
+              </h6>
+          </li>
       </li>
     </ul>
-    </li>
-    <li>
-      <h5>Lasso Regression</h5>
-      <h7>The Lasso algortihm performs regularization by adding to the loss
-        function a penalty term of the absolute value of each coefficient
-        multiplied by some alpha. This is also known as <i>L</i>1 regularization
-        because the regularization term is the <i>L</i>1 norm of the coefficients.
-        <br />&emsp; Similar to Ridge Regression & can be used to select important features
-        of dataset; shrinks the coefficients of less important features to exactly
-        0.</h7>
-      <ul>
-        <li>
-          <h5><i>L</i>1 Regularization Norm</h5>
-          <h6>
-            <math>
-              <mn>Loss function</mn>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mn>OLS loss function</mn>
-              <mo>&nbsp; + &nbsp;</mo>
-              <mi>&alpha;</mi>
-              <mo>&nbsp; * &nbsp;</mo>
-            </math>
-            <span id="epsilon" style="font-size: 20px;">&Sigma;</span>
-            <math>
-              <mo>|</mo>
-              <msub>
-                <mi>a</mi>
-                <mi>i</mi>
-              </msub>
-              <mo>|</mo>
-            </math>
-          </h6>
-        </li>
-      </ul>
     </li>
     <li>
       <h5>Decision Tree Regression</h5>
@@ -8292,37 +8310,37 @@
 
 </body>
 
-  <br /><br />
-  <footer>
-    <div id="My_Links">
-      <section>
-        <h4 class="visuallyhidden"></h4>
-        <a target="_blank" class="social-link" href="https://github.com/RyanLBuchanan">
-          <img src="assets/social-github.png" alt="GitHub">
-        </a>
-        <a target="_blank" class="social-link" href="https://www.facebook.com/buchananryan22">
-          <img src="assets/social-facebook.png" alt="Facebook">
-        </a>
-        <a target="_blank" class="social-link" href="https://www.linkedin.com/in/ryanlbuchanan/">
-          <img src="assets/social-linkedin.png" alt="LinkedIn">
-        </a>
-        <a target="_blank" class="social-link" href="https://twitter.com/buchananryan22">
-          <img src="assets/social-twitter.png" alt="Twitter">
-        </a>
-        <a target="_blank" class="social-link" href="https://www.datacamp.com/profile/ryanlbuchanan">
-          <img src="assets/social-datacamp.png" alt="Datacamp">
-        </a>
-        <a target="_blank" class="social-link" href="https://stackoverflow.com/users/story/7541619?view=Timeline">
-          <img src="assets/social-stack-overflow.png" alt="Stack Overflow">
-        </a>
-        <a target="_blank" class="social-link" href="https://www.ryangineer.com/virtual_reality.html">
-          <img src="assets/social-youtube.png" alt="VR Dev Kids">
-        </a>
-        <a target="_blank" class="social-link" href="https://www.instagram.com/ryanlbuchanan/">
-          <img src="assets/social-instagram.png" alt="Instagram">
-        </a>
-      </section>
-    </div>
+<br /><br />
+<footer>
+  <div id="My_Links">
+    <section>
+      <h4 class="visuallyhidden"></h4>
+      <a target="_blank" class="social-link" href="https://github.com/RyanLBuchanan">
+        <img src="assets/social-github.png" alt="GitHub">
+      </a>
+      <a target="_blank" class="social-link" href="https://www.facebook.com/buchananryan22">
+        <img src="assets/social-facebook.png" alt="Facebook">
+      </a>
+      <a target="_blank" class="social-link" href="https://www.linkedin.com/in/ryanlbuchanan/">
+        <img src="assets/social-linkedin.png" alt="LinkedIn">
+      </a>
+      <a target="_blank" class="social-link" href="https://twitter.com/buchananryan22">
+        <img src="assets/social-twitter.png" alt="Twitter">
+      </a>
+      <a target="_blank" class="social-link" href="https://www.datacamp.com/profile/ryanlbuchanan">
+        <img src="assets/social-datacamp.png" alt="Datacamp">
+      </a>
+      <a target="_blank" class="social-link" href="https://stackoverflow.com/users/story/7541619?view=Timeline">
+        <img src="assets/social-stack-overflow.png" alt="Stack Overflow">
+      </a>
+      <a target="_blank" class="social-link" href="https://www.ryangineer.com/virtual_reality.html">
+        <img src="assets/social-youtube.png" alt="VR Dev Kids">
+      </a>
+      <a target="_blank" class="social-link" href="https://www.instagram.com/ryanlbuchanan/">
+        <img src="assets/social-instagram.png" alt="Instagram">
+      </a>
+    </section>
+  </div>
 </footer>
 
 </html>
