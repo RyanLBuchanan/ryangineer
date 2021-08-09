@@ -2394,6 +2394,10 @@
           <h7>A data structure consisting of a hierarchy of <b>Nodes</b> (questions or predictions):</h7>
           <ul>
             <li>
+              <h5>Nodes</h5>
+              <h7>Grown recursively - based on the known state of its predecessors.</h7>
+            </li>
+            <li>
               <h5>Root</h5>
               <h7>It is the position at which the decision tree starts growing;
                 has no parent node & is a question giving rise to two children
@@ -2483,10 +2487,10 @@
               <mo stretchy=False>)</mo>
               <mo stretchy=True>)</mo>
             </math>
-            <br />
             <br />&#8627; where:
             <br />&emsp; f = feature
             <br />&emsp; sp = split point
+            <br />&emsp; impurity criteria = measured via gini index, entropy
           </h6>
         </li>
         <figure>
