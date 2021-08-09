@@ -1369,7 +1369,12 @@
             extraction of the form of the data to draw predictions from; the model
             won't learn general rules but it will just be memorizing the dataset
             itself in another form."
-            <a target="_blank" href="https://www.amazon.com/Regression-Analysis-Python-Luca-Massaron-ebook/dp/B01BFD2Z44">(Massaron, p. 94)</a></h7>
+            <a target="_blank" href="https://www.amazon.com/Regression-Analysis-Python-Luca-Massaron-ebook/dp/B01BFD2Z44">(Massaron, p. 94)</a>
+          <br /><b>In other words, <i>f&#770;</i>(<i>x</i>) fits the training set noise.</b></h7>
+        </li>
+        <li>
+          <h5>Underfitting</h5>
+          <h7>When <i>f&#770;</i> is not flexible enough to approximate <i>f</i>.</h7>
         </li>
         <li>
           <h5>Coefficient of Determination | R Squared (<i>R</i><sup>2</sup>) | Goodness of Fit Parameter</h5>
@@ -2395,7 +2400,8 @@
           <ul>
             <li>
               <h5>Nodes</h5>
-              <h7>Grown recursively - based on the known state of its predecessors.</h7>
+              <h7>Grown recursively - based on the known state of its predecessors.
+              </h7>
             </li>
             <li>
               <h5>Root</h5>
@@ -2499,6 +2505,49 @@
             <p style="text-align:center">source</p>
           </a>
         </figure>
+        <li>
+          <h5>Generalization Error</h5>
+          <h7>Does <i>f&#770;</i> generelize well to unseen data?</h7>
+          <h6>
+            <math>
+              <mi mathvariant=italic>Generalization Error(f&#770;)</mi>
+              <mo>&nbsp; = &nbsp;</mo>
+              <msup>
+              <mi mathvariant=italic>bias</mi>
+              <mn>2</mn>
+              </msup>
+              <mo>&nbsp; + &nbsp;</mo>
+              <mi mathvariant=italic>variance</mi>
+              <mo>&nbsp; + &nbsp;</mo>
+              <mn>irreducible error</mn>
+            </math>
+            <br />&#8627; where:
+            <br />&emsp; irreducible error = contribution of noise
+          </h6>
+        </li>
+        <li>
+          <h5>Bias</h5>
+          <h7>Bias is an error term that tells you, on average, how much <i>f&#770;</i> &#8800; <i>f</i>.</h7>
+          <ul>
+            <li>
+              <h7><b>High-bias</b> models lead to underfitting.</h7>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h5>Variance</h5>
+          <h7>Variance tells you how much <i>f&#770;</i> is inconsistent over
+            different training sets.</h7>
+          <ul>
+            <li>
+              <h7><b>High-variance</b> models lead to overfitting.</h7>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h5>Model Complexity</h5>
+          <h7>Sets the flexibility to approximate the true function of <i>f&#770;</i>.</h7>
+        </li>
         <li>
           <h5>Decision Tree Regression</h5>
           <h7>Supervised learning algorithm used for classification problems; works for categorical & continuous variables</h7>
