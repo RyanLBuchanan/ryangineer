@@ -2701,10 +2701,40 @@
             <p style="text-align:center">source</p>
           </a>
         </figure>
-
         <li>
           <h5>Boosting</h5>
-          <h7>Ensemble method combing several weak learners to form a stron learner.</h7>
+          <h7>Ensemble method combing several weak learners to form a strong learner.
+            <br />&#8627; where: weak learner = slightly better than random guessing
+            &#8658; the proverbial dart-throwing monkey.</h7>
+          <ul>
+            <li>
+              <h5>AdaBoost: <b>Ada</b>ptive <b>Boost</b>ing</h5>
+              <ul>
+                <li>
+                  <h7>Each predictor pays more attention to the instances wrongly
+                    predicted by its predecessors.</h7>
+                </li>
+                <li>
+                  <h7>Achieved by constantly changing the weights of training instances.</h7>
+                </li>
+                <li>
+                  <h7>Each predictor is assigned a coefficient <i>&alpha;</i>.</h7>
+                </li>
+                <li>
+                  <h7><i>&alpha;</i> depends on the predictor's training error.</h7>
+                </li>
+                <li>
+                  <h7>Leanring Rate: 0 < <i>&eta;</i> &#8804; 1</h7>
+                </li>
+              </ul>
+            </li>
+            <figure>
+              <img src="assets/img-adaboost.png" alt="Adaboost" style="width:382px;height:213px;">
+              <a target="_blank" href="https://www.datacamp.com/community/tutorials/decision-tree-classification-python">
+                <p style="text-align:center">source</p>
+              </a>
+            </figure>
+          </ul>
         </li>
       </ul>
     </li>
