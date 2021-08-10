@@ -2654,12 +2654,49 @@
                 in <i>N</i> models.</h7>
             </li>
             <li>
+              <h7><b>Base estimator</b>: Decision Tree, Logistic Regression, Neural Net . . .</h7>
+            </li>
+            <li>
+              <h7>Each estimator is trained on a distinct bootstrap sample of the
+                training set.</h7>
+            </li>
+            <li>
+              <h7>Estimators use all available features for training & prediction.</h7>
+            </li>
+            <li>
               <h7>Reduces variance of individual models in the ensemble.</h7>
             </li>
           </ul>
         </li>
         <figure>
           <img src="assets/img-bagging.png" alt="Baggging" style="width:384px;height108px;">
+          <a target="_blank" href="https://www.datacamp.com/community/tutorials/decision-tree-classification-python">
+            <p style="text-align:center">source</p>
+          </a>
+        </figure>
+        <li>
+          <h5>Random Forests</h5>
+          <ul>
+            <li>
+              <h7><b>Base estimator</b>: Decision Tree</h7>
+            </li>
+            <li>
+              <h7>Each estimator is trained on a different bootstrap sample having
+                the same size as the training set.</h7>
+            </li>
+            <li>
+              <h7>Introduces further randomization in the training of individual
+                trees.</h7>
+            </li>
+            <li>
+              <h7><i>d</i> features are sampled at each node without replacement.
+                <br />where: <i>d</i>
+                < total # of features</h7>
+            </li>
+          </ul>
+        </li>
+        <figure>
+          <img src="assets/img-random-forests.png" alt="Random Forests" style="width:410px;height:224px;">
           <a target="_blank" href="https://www.datacamp.com/community/tutorials/decision-tree-classification-python">
             <p style="text-align:center">source</p>
           </a>
