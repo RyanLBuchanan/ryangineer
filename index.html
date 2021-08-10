@@ -2734,6 +2734,59 @@
                 <p style="text-align:center">source</p>
               </a>
             </figure>
+            <li>
+              <h5>Gradient Boosting</h5>
+              <ul>
+                <li>
+                  <h7>Sequential correction of predecessor's errors.</h7>
+                </li>
+                <li>
+                  <h7>Does not tweak the weights of training instances.</h7>
+                </li>
+                <li>
+                  <h7>Fit: each predictor is trained using its predecessor's residual
+                  errors as labels.</h7>
+                </li>
+                <li>
+                  <h7>Gradient Boosted Trees: a CART is used as base learner.</h7>
+                </li>
+              </ul>
+            </li>
+            <figure>
+              <img src="assets/img-gradient-boosting.png" alt="Gradient Boosting" style="width:342px;height:221px;">
+              <a target="_blank" href="https://www.datacamp.com/community/tutorials/decision-tree-classification-python">
+                <p style="text-align:center">source</p>
+              </a>
+            </figure>
+            <li>
+              <h5>Stochastic Gradient Boosting</h5>
+              <ul>
+                <li>
+                  <h7>Each tree is trained on a random subset of rows of the training
+                    data.</h7>
+                </li>
+                <li>
+                  <h7>The samples instances (40%-80% of the training set) are sampled
+                    without replacement.</h7>
+                </li>
+                <li>
+                  <h7>Features are sampled (without replacement) when choosing
+                  split points.</h7>
+                </li>
+                <li>
+                  <h7>Result: further ensemble diversity.</h7>
+                </li>
+                <li>
+                  <h7>Effect: adding further variance to the ensemble of trees.</h7>
+                </li>
+              </ul>
+            </li>
+            <figure>
+              <img src="assets/img-stochastic-gradient-boosting.png" alt="Stochasti Gradient Boosting" style="width:342px;height:221px;">
+              <a target="_blank" href="https://www.datacamp.com/community/tutorials/decision-tree-classification-python">
+                <p style="text-align:center">source</p>
+              </a>
+            </figure>
           </ul>
         </li>
       </ul>
