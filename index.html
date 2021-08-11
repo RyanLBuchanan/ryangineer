@@ -2562,7 +2562,10 @@
         </figure>
         <li>
           <h5>Cross-Validation</h5>
-          <h7>"a resampling procedure used to evaluate machine learning models on a limited data sample. ... That is, to use a limited sample in order to estimate how the model is expected to perform in general when used to make predictions on data not used during the training of the model." <a target="_blank" href="https://machinelearningmastery.com/k-fold-cross-validation/#:~:text=Cross%2Dvalidation%20is%20a%20resampling,on%20a%20limited%20data%20sample.&text=That%20is%2C%20to%20use%20a,the%20training%20of%20the%20model.">MachineLearningMastery</a></h7>
+          <h7>"a resampling procedure used to evaluate machine learning models on a limited data sample. ... That is, to use a limited sample in order to estimate how the model is expected to perform in general when used to make predictions on data
+            not used during the training of the model." <a target="_blank"
+              href="https://machinelearningmastery.com/k-fold-cross-validation/#:~:text=Cross%2Dvalidation%20is%20a%20resampling,on%20a%20limited%20data%20sample.&text=That%20is%2C%20to%20use%20a,the%20training%20of%20the%20model.">MachineLearningMastery</a>
+          </h7>
           <ul>
             <li>
               <h5>K-Fold CV Error</h5>
@@ -2592,7 +2595,7 @@
               </h6>
             </li>
           </ul>
-          </li>
+        </li>
         <li>
           <h5>Decision Tree Regression</h5>
           <h7>Supervised learning algorithm used for classification problems; works for categorical & continuous variables</h7>
@@ -2751,7 +2754,7 @@
                 </li>
                 <li>
                   <h7>Fit: each predictor is trained using its predecessor's residual
-                  errors as labels.</h7>
+                    errors as labels.</h7>
                 </li>
                 <li>
                   <h7>Gradient Boosted Trees: a CART is used as base learner.</h7>
@@ -2777,7 +2780,7 @@
                 </li>
                 <li>
                   <h7>Features are sampled (without replacement) when choosing
-                  split points.</h7>
+                    split points.</h7>
                 </li>
                 <li>
                   <h7>Result: further ensemble diversity.</h7>
@@ -2799,9 +2802,46 @@
           <h5>Hyperparameters</h5>
           <h7><b>Parameters</b> are learned from data & include CART examples such as
             split-point of node & split-feature of node.
-          <b>Hyperparameters</b> are not learned from the data & must be set prior
-          to training.  CART examples include maximum depth, minimum samples leaf &
-        splitting criterion.</h7>
+            <b>Hyperparameters</b> are not learned from the data & must be set prior
+            to training. CART examples include maximum depth, minimum samples leaf &
+            splitting criterion.
+            <br />Approaches include:</h7>
+          <ul>
+            <li>
+              <h7><b>Grid Search</b></h7>
+              <ul>
+                <li>
+                  <h7>Manually set a grid of discrete Hyperparameter values.</h7>
+                </li>
+                <li>
+                  <h7>Set a metric for scoring model performance.</h7>
+                </li>
+                <li>
+                  <h7>Search exhaustively through the grid.</h7>
+                </li>
+                <li>
+                  <h7>For each set of hyperparameters, evaluate each model's CV score.</h7>
+                </li>
+                <li>
+                  <h7>The optimal hyperparameters are those of the model achieving
+                    the best CV score.</h7>
+                </li>
+                <li>
+                  <h7><b>Suffers from the curse of dimensionality &#8658; the bigger
+                  the grid the longer it takes to find the solution.</b></h7>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <h7><b>Random Search</b></h7>
+            </li>
+            <li>
+              <h7><b>Bayesian Optimization</b></h7>
+            </li>
+            <li>
+              <h7><b>Genetic Algorithms</b></h7>
+            </li>
+          </ul>
         </li>
       </ul>
     </li>
