@@ -3620,299 +3620,8 @@
       vectors spaces & determinants.
       <br />"Solving for unknowns within a system of linear equations." <a target="_blank" href="https://wgu.udemy.com/course/machine-learning-data-science-foundations-masterclass/learn/lecture/22926432#overview">Mathematical Foundations of Machine
         Learning</a></h7>
-    <h4>Fundamental Data Science</h4>
+    <h4>Fundamental Mathematical Objects</h4>
     <ul>
-      <li>
-        <h5>Linear Regression</h5>
-        <ul>
-          <li>
-            <h5>Matrix-Vector Multiplication Function</h5>
-            <h6>
-              <math>
-                <mrow>
-                  <mo>[</mo>
-                  <mtable>
-                    <mtr>
-                      <mtd>
-                        <msub>
-                          <mi>y</mi>
-                          <mn>1</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                    <mtr>
-                      <mtd>
-                        <msub>
-                          <mi>y</mi>
-                          <mn>2</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                  </mtable>
-                  <mo>]</mo>
-                  <mo>&nbsp; = &nbsp;</mo>
-                  <mo>[</mo>
-                  <mtable>
-                    <mtr>
-                      <mtd>
-                        <mn>1</mn>
-                      </mtd>
-                      <mtd>
-                        <msub>
-                          <mi>x</mi>
-                          <mn>11</mn>
-                        </msub>
-                      </mtd>
-                      <mtd>
-                        <msub>
-                          <mi>x</mi>
-                          <mn>12</mn>
-                        </msub>
-                      </mtd>
-                      <mtd>
-                        <msub>
-                          <mi>x</mi>
-                          <mn>13</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                    <mtr>
-                      <mtd>
-                        <mn>1</mn>
-                      </mtd>
-                      <mtd>
-                        <msub>
-                          <mi>x</mi>
-                          <mn>21</mn>
-                        </msub>
-                      </mtd>
-                      <mtd>
-                        <msub>
-                          <mi>x</mi>
-                          <mn>22</mn>
-                        </msub>
-                      </mtd>
-                      <mtd>
-                        <msub>
-                          <mi>x</mi>
-                          <mn>23</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                  </mtable>
-                  <mo>]</mo>
-                </mrow>
-                <mrow>
-                  <mo>[</mo>
-                  <mtable>
-                    <mtr>
-                      <mtd>
-                        <msub>
-                          <mi>&beta;</mi>
-                          <mn>0</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                    <mtr>
-                      <mtd>
-                        <msub>
-                          <mi>&beta;</mi>
-                          <mn>1</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                    <mtr>
-                      <mtd>
-                        <msub>
-                          <mi>&beta;</mi>
-                          <mn>2</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                    <mtr>
-                      <mtd>
-                        <msub>
-                          <mi>&beta;</mi>
-                          <mn>3</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                  </mtable>
-                  <mo>]</mo>
-                </mrow>
-                <mo>&nbsp; + &nbsp;</mo>
-                <mrow>
-                  <mo>[</mo>
-                  <mtable>
-                    <mtr>
-                      <mtd>
-                        <msub>
-                          <mi>&epsilon;</mi>
-                          <mn>1</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                    <mtr>
-                      <mtd>
-                        <msub>
-                          <mi>&epsilon;</mi>
-                          <mn>2</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                  </mtable>
-                  <mo>]</mo>
-                </mrow>
-              </math>
-              <br />&nbsp; &#8627; where:
-              <br />&nbsp; &nbsp; &nbsp;
-              <math>
-                <mi>Vector of Outcomes for Each Case</mi>
-                <mo>&nbsp; = &nbsp;</mo>
-                <mo>[</mo>
-                <mtable>
-                  <mtr>
-                    <mtd>
-                      <msub>
-                        <mi>y</mi>
-                        <mn>1</mn>
-                      </msub>
-                    </mtd>
-                  </mtr>
-                  <mtr>
-                    <mtd>
-                      <msub>
-                        <mi>y</mi>
-                        <mn>2</mn>
-                      </msub>
-                    </mtd>
-                  </mtr>
-                </mtable>
-                <mo>]</mo>
-                <br />&nbsp; &nbsp; &nbsp;
-                <math>
-                  <mi>Matrix of Scores for Each Case</mi>
-                  <mo>&nbsp; = &nbsp;</mo>
-                  <mo>[</mo>
-                  <mtable>
-                    <mtr>
-                      <mtd>
-                        <mn>1</mn>
-                      </mtd>
-                      <mtd>
-                        <msub>
-                          <mi>x</mi>
-                          <mn>11</mn>
-                        </msub>
-                      </mtd>
-                      <mtd>
-                        <msub>
-                          <mi>x</mi>
-                          <mn>12</mn>
-                        </msub>
-                      </mtd>
-                      <mtd>
-                        <msub>
-                          <mi>x</mi>
-                          <mn>13</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                    <mtr>
-                      <mtd>
-                        <mn>1</mn>
-                      </mtd>
-                      <mtd>
-                        <msub>
-                          <mi>x</mi>
-                          <mn>21</mn>
-                        </msub>
-                      </mtd>
-                      <mtd>
-                        <msub>
-                          <mi>x</mi>
-                          <mn>22</mn>
-                        </msub>
-                      </mtd>
-                      <mtd>
-                        <msub>
-                          <mi>x</mi>
-                          <mn>23</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                  </mtable>
-                  <mo>]</mo>
-                </math>
-                <br />&nbsp; &nbsp; &nbsp;
-                <math>
-                  <mi>Vector of Regression Coefficients (y-intercept & slopes)</mi>
-                  <mo>&nbsp; = &nbsp;</mo>
-                  <mo>[</mo>
-                  <mtable>
-                    <mtr>
-                      <mtd>
-                        <msub>
-                          <mi>&beta;</mi>
-                          <mn>0</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                    <mtr>
-                      <mtd>
-                        <msub>
-                          <mi>&beta;</mi>
-                          <mn>1</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                    <mtr>
-                      <mtd>
-                        <msub>
-                          <mi>&beta;</mi>
-                          <mn>2</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                    <mtr>
-                      <mtd>
-                        <msub>
-                          <mi>&beta;</mi>
-                          <mn>3</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                  </mtable>
-                  <mo>]</mo>
-                </math>
-                <br />&nbsp; &nbsp; &nbsp;
-                <math>
-                  <mi>Vector of Error Terms</mi>
-                  <mo>&nbsp; = &nbsp;</mo>
-                  <mo>[</mo>
-                  <mtable>
-                    <mtr>
-                      <mtd>
-                        <msub>
-                          <mi>&epsilon;</mi>
-                          <mn>1</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                    <mtr>
-                      <mtd>
-                        <msub>
-                          <mi>&epsilon;</mi>
-                          <mn>2</mn>
-                        </msub>
-                      </mtd>
-                    </mtr>
-                  </mtable>
-                  <mo>]</mo>
-                </math>
-            </h6>
-          </li>
-      </li>
       <li>
         <h5>Matrix Notation</h5>
         <h6>
@@ -3931,517 +3640,806 @@
         <h7>In numerical analysis and scientific computing, a sparse matrix or sparse array is a matrix in which most of the elements are zero.</h7>
       </li>
     </ul>
-    </ul>
-    <h4>Determinants</h4>
-    <a target="_blank" href="https://en.wikipedia.org/wiki/Determinant">
-      <h7><b>&nbsp; &#8627; The volume scaling factor of the linear transformation described by the matrix</b></h7>
-    </a>
+    <h4>Linear Regression</h4>
     <ul>
       <li>
-        <h5>Square Matrices</h5>
+        <h5>Matrix-Vector Multiplication Function</h5>
+        <h6>
+          <math>
+            <mrow>
+              <mo>[</mo>
+              <mtable>
+                <mtr>
+                  <mtd>
+                    <msub>
+                      <mi>y</mi>
+                      <mn>1</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd>
+                    <msub>
+                      <mi>y</mi>
+                      <mn>2</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+              </mtable>
+              <mo>]</mo>
+              <mo>&nbsp; = &nbsp;</mo>
+              <mo>[</mo>
+              <mtable>
+                <mtr>
+                  <mtd>
+                    <mn>1</mn>
+                  </mtd>
+                  <mtd>
+                    <msub>
+                      <mi>x</mi>
+                      <mn>11</mn>
+                    </msub>
+                  </mtd>
+                  <mtd>
+                    <msub>
+                      <mi>x</mi>
+                      <mn>12</mn>
+                    </msub>
+                  </mtd>
+                  <mtd>
+                    <msub>
+                      <mi>x</mi>
+                      <mn>13</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd>
+                    <mn>1</mn>
+                  </mtd>
+                  <mtd>
+                    <msub>
+                      <mi>x</mi>
+                      <mn>21</mn>
+                    </msub>
+                  </mtd>
+                  <mtd>
+                    <msub>
+                      <mi>x</mi>
+                      <mn>22</mn>
+                    </msub>
+                  </mtd>
+                  <mtd>
+                    <msub>
+                      <mi>x</mi>
+                      <mn>23</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+              </mtable>
+              <mo>]</mo>
+            </mrow>
+            <mrow>
+              <mo>[</mo>
+              <mtable>
+                <mtr>
+                  <mtd>
+                    <msub>
+                      <mi>&beta;</mi>
+                      <mn>0</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd>
+                    <msub>
+                      <mi>&beta;</mi>
+                      <mn>1</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd>
+                    <msub>
+                      <mi>&beta;</mi>
+                      <mn>2</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd>
+                    <msub>
+                      <mi>&beta;</mi>
+                      <mn>3</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+              </mtable>
+              <mo>]</mo>
+            </mrow>
+            <mo>&nbsp; + &nbsp;</mo>
+            <mrow>
+              <mo>[</mo>
+              <mtable>
+                <mtr>
+                  <mtd>
+                    <msub>
+                      <mi>&epsilon;</mi>
+                      <mn>1</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd>
+                    <msub>
+                      <mi>&epsilon;</mi>
+                      <mn>2</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+              </mtable>
+              <mo>]</mo>
+            </mrow>
+          </math>
+          <br />&nbsp; &#8627; where:
+          <br />&nbsp; &nbsp; &nbsp;
+          <math>
+            <mi>Vector of Outcomes for Each Case</mi>
+            <mo>&nbsp; = &nbsp;</mo>
+            <mo>[</mo>
+            <mtable>
+              <mtr>
+                <mtd>
+                  <msub>
+                    <mi>y</mi>
+                    <mn>1</mn>
+                  </msub>
+                </mtd>
+              </mtr>
+              <mtr>
+                <mtd>
+                  <msub>
+                    <mi>y</mi>
+                    <mn>2</mn>
+                  </msub>
+                </mtd>
+              </mtr>
+            </mtable>
+            <mo>]</mo>
+            <br />&nbsp; &nbsp; &nbsp;
+            <math>
+              <mi>Matrix of Scores for Each Case</mi>
+              <mo>&nbsp; = &nbsp;</mo>
+              <mo>[</mo>
+              <mtable>
+                <mtr>
+                  <mtd>
+                    <mn>1</mn>
+                  </mtd>
+                  <mtd>
+                    <msub>
+                      <mi>x</mi>
+                      <mn>11</mn>
+                    </msub>
+                  </mtd>
+                  <mtd>
+                    <msub>
+                      <mi>x</mi>
+                      <mn>12</mn>
+                    </msub>
+                  </mtd>
+                  <mtd>
+                    <msub>
+                      <mi>x</mi>
+                      <mn>13</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd>
+                    <mn>1</mn>
+                  </mtd>
+                  <mtd>
+                    <msub>
+                      <mi>x</mi>
+                      <mn>21</mn>
+                    </msub>
+                  </mtd>
+                  <mtd>
+                    <msub>
+                      <mi>x</mi>
+                      <mn>22</mn>
+                    </msub>
+                  </mtd>
+                  <mtd>
+                    <msub>
+                      <mi>x</mi>
+                      <mn>23</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+              </mtable>
+              <mo>]</mo>
+            </math>
+            <br />&nbsp; &nbsp; &nbsp;
+            <math>
+              <mi>Vector of Regression Coefficients (y-intercept & slopes)</mi>
+              <mo>&nbsp; = &nbsp;</mo>
+              <mo>[</mo>
+              <mtable>
+                <mtr>
+                  <mtd>
+                    <msub>
+                      <mi>&beta;</mi>
+                      <mn>0</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd>
+                    <msub>
+                      <mi>&beta;</mi>
+                      <mn>1</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd>
+                    <msub>
+                      <mi>&beta;</mi>
+                      <mn>2</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd>
+                    <msub>
+                      <mi>&beta;</mi>
+                      <mn>3</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+              </mtable>
+              <mo>]</mo>
+            </math>
+            <br />&nbsp; &nbsp; &nbsp;
+            <math>
+              <mi>Vector of Error Terms</mi>
+              <mo>&nbsp; = &nbsp;</mo>
+              <mo>[</mo>
+              <mtable>
+                <mtr>
+                  <mtd>
+                    <msub>
+                      <mi>&epsilon;</mi>
+                      <mn>1</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd>
+                    <msub>
+                      <mi>&epsilon;</mi>
+                      <mn>2</mn>
+                    </msub>
+                  </mtd>
+                </mtr>
+              </mtable>
+              <mo>]</mo>
+            </math>
+        </h6>
+      </li>
+    </ul>
+        <h4>Determinants</h4>
+        <a target="_blank" href="https://en.wikipedia.org/wiki/Determinant">
+          <h7><b>&nbsp; &#8627; The volume scaling factor of the linear transformation described by the matrix</b></h7>
+        </a>
         <ul>
           <li>
-            <h5>Determinant Equation 2x2 Matrix</h5>
+            <h5>Square Matrices</h5>
+            <ul>
+              <li>
+                <h5>Determinant Equation 2x2 Matrix</h5>
+                <h6>
+                  <math>
+                    <mrow>
+                      <mo>|</mo>
+                      <mtable>
+                        <mtr>
+                          <mtd>
+                            <mn>a</mn>
+                          </mtd>
+                          <mtd>
+                            <mn>b</mn>
+                          </mtd>
+                        </mtr>
+                        <mtr>
+                          <mtd>
+                            <mn>c</mn>
+                          </mtd>
+                          <mtd>
+                            <mn>d</mn>
+                          </mtd>
+                        </mtr>
+                      </mtable>
+                      <mo>|</mo>
+                      <mo>&nbsp; = &nbsp;</mo>
+                      <mn>ad</mn>
+                      <mo>&nbsp; - &nbsp;</mo>
+                      <mn>bc</mn>
+                    </mrow>
+                  </math>
+                </h6>
+              </li>
+              <li>
+                <h5>Trace of Matrix</h5>
+                <h7>Equal to the sum of the values along the main diagonal</h7>
+                <h6>
+                  <math>
+                    <mrow>
+                      <mi>Trace </mi>
+                      <mo>[</mo>
+                      <mtable>
+                        <mtr>
+                          <mtd>
+                            <mn>a</mn>
+                          </mtd>
+                          <mtd>
+                            <mn>b</mn>
+                          </mtd>
+                        </mtr>
+                        <mtr>
+                          <mtd>
+                            <mn>c</mn>
+                          </mtd>
+                          <mtd>
+                            <mn>d</mn>
+                          </mtd>
+                        </mtr>
+                      </mtable>
+                      <mo>]</mo>
+                      <mo>&nbsp; = &nbsp;</mo>
+                      <mn>a</mn>
+                      <mo>&nbsp; + &nbsp;</mo>
+                      <mn>d</mn>
+                    </mrow>
+                  </math>
+                </h6>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <a target="_blank" title="No BS Guide to Linear Algebra" href="https://github.com/minireference/noBSLAnotebooks#chapters-overview">
+          <h4>Geometrical Aspects of Linear Algebra</h4>
+        </a>
+        <h7><b>&nbsp; &#8627; Mathematics to used see through to the governing dynamics of the physical universe</b></h7>
+        <ul>
+          <li><a target="_blank" title="Intuitive Math" href="https://intuitive-math.club/" />
+            <h5>Orthogonality & Change of Basis</h5></a>
+            <ul>
+              <li><a target="_blank" title="" href="">
+                  <h5>Least Squares Solution</h5>
+                </a>
+                <h6>
+                  <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
+                    <msup>
+                      <mi>A</mi>
+                      <mn>T</mn>
+                    </msup>
+                    <mi>A</mi>
+                    <msup>
+                      <mi>x&#8407;</mi>
+                      <mn>*</mn>
+                    </msup>
+                    <mo>=</mo>
+                    <msup>
+                      <mi>A</mi>
+                      <mn>T</mn>
+                    </msup>
+                    <mi> b&#8407; </mi>
+                  </math>
+                </h6>
+              </li>
+          </li>
+        </ul>
+      <li>
+        <h5>Orthonormal Bases</h5>
+        <ul>
+          <li>
+            <h5>Orthogonality</h5>
+            <h7>Every vector in set is orthogonal to every other vector in set; as perpendicular is to two-dimensional space (vectors at 90&#176; angle), orthogonal is to three- or n-dimensional space.</h7>
             <h6>
               <math>
-                <mrow>
-                  <mo>|</mo>
-                  <mtable>
-                    <mtr>
-                      <mtd>
-                        <mn>a</mn>
-                      </mtd>
-                      <mtd>
-                        <mn>b</mn>
-                      </mtd>
-                    </mtr>
-                    <mtr>
-                      <mtd>
-                        <mn>c</mn>
-                      </mtd>
-                      <mtd>
-                        <mn>d</mn>
-                      </mtd>
-                    </mtr>
-                  </mtable>
-                  <mo>|</mo>
-                  <mo>&nbsp; = &nbsp;</mo>
-                  <mn>ad</mn>
-                  <mo>&nbsp; - &nbsp;</mo>
-                  <mn>bc</mn>
-                </mrow>
+                <msub>
+                  <mi>v&#8407;</mi>
+                  <mn>1</mn>
+                </msub>
+                <mo>&#8901;</mo>
+                <msub>
+                  <mi>v&#8407;</mi>
+                  <mn>2</mn>
+                </msub>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mo>0</mo>
               </math>
             </h6>
           </li>
           <li>
-            <h5>Trace of Matrix</h5>
-            <h7>Equal to the sum of the values along the main diagonal</h7>
+            <h5>Normality</h5>
+            <h7>Every vector has been normalized; every vector has a length of 1.</h7>
+            <h6>
+              <math>
+                <msub>
+                  <mi>v&#8407;</mi>
+                  <mn>1</mn>
+                </msub>
+                <mo>&#8901;</mo>
+                <msub>
+                  <mi>v&#8407;</mi>
+                  <mn>1</mn>
+                </msub>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mo>&#8741;</mo>
+                <msub>
+                  <mi>v&#8407;</mi>
+                  <mn>1</mn>
+                </msub>
+                <mo>&#8741;</mo>
+                <msup>
+                  <mi></mi>
+                  <mn>2</mn>
+                </msup>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mo>1</mo>
+              </math>
+            </h6>
+          </li>
+          <li>
+            <h5>Projection onto an Orthonormal Basis</h5>
+            <h7>Using an orthonormal subspace drastically simplifies projection equation from:</h7>
+            <h6>
+              <math>
+                <msub>
+                  <mi>Proj</mi>
+                  <mn>v</mn>
+                </msub>
+                <mi>x&#8407;</mi>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mo>A</mo>
+                <mo>(</mo>
+                <msup>
+                  <mn>A</mn>
+                  <mn>T</mn>
+                </msup>
+                <mn>A</mn>
+                <mo>)</mo>
+                <msup>
+                  <mn></mn>
+                  <mn>-1</mn>
+                </msup>
+                <msup>
+                  <mn>A</mn>
+                  <mn>T</mn>
+                </msup>
+                <mi>x&#8407;</mi>
+              </math>
+              <br />
+              <mn>&emsp;&emsp;&emsp;&nbsp; &#8595;</mn>
+              <br />
+              <math>
+                <msub>
+                  <mi>Proj</mi>
+                  <mn>v</mn>
+                </msub>
+                <mi>x&#8407;</mi>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mn>A</mn>
+                <msup>
+                  <mn>A</mn>
+                  <mn>T</mn>
+                </msup>
+                <mi>x&#8407;</mi>
+              </math>
+            </h6>
+          </li>
+          <li>
+            <h5>Gram-Schmidt Process</h5>
+            <h7>Converts non-orthonormal set into an orthonormal set</h7>
+            <h6>
+              <math>
+                <mi>Subspace v</mi>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mi>span</mi>
+                <mo>(</mo>
+                <msub>
+                  <mn>v&#8407;</mn>
+                  <mn>1</mn>
+                </msub>
+                <mi>, &nbsp;</mi>
+                <msub>
+                  <mn>v&#8407;</mn>
+                  <mn>2</mn>
+                </msub>
+                <mi>, &nbsp;</mi>
+                <msub>
+                  <mn>v&#8407;</mn>
+                  <mn>3</mn>
+                </msub>
+                <mo>)</mo>
+                <mi>&emsp;&emsp;&emsp;&emsp;Step 1: &emsp;</mi>
+                <msub>
+                  <mn>u&#8407;</mn>
+                  <mn>1</mn>
+                </msub>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mfrac>
+                  <mrow>
+                    <msub>
+                      <mn>v&#8407;</mn>
+                      <mn>1</mn>
+                    </msub>
+                  </mrow>
+                  <mrow>
+                    <mn>&#8741;</mn>
+                    <msub>
+                      <mn>v&#8407;</mn>
+                      <mn>1</mn>
+                    </msub>
+                    <mn>&#8741;</mn>
+                  </mrow>
+                </mfrac>
+              </math>
+              <br />
+              <mi>&emsp;&emsp;&emsp;&emsp;&ensp;</mi>
+              <math>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mi>span</mi>
+                <mo>(</mo>
+                <msub>
+                  <mn>u&#8407;</mn>
+                  <mn>1</mn>
+                </msub>
+                <mi>, &nbsp;</mi>
+                <msub>
+                  <mn>v&#8407;</mn>
+                  <mn>2</mn>
+                </msub>
+                <mi>, &nbsp;</mi>
+                <msub>
+                  <mn>v&#8407;</mn>
+                  <mn>3</mn>
+                </msub>
+                <mo>)</mo>
+                <mi>&emsp;&emsp;&emsp;&emsp; Step 2: &emsp;</mi>
+                <msub>
+                  <mn>w&#8407;</mn>
+                  <mn>2</mn>
+                </msub>
+                <mo>&nbsp; = &nbsp;</mo>
+                <msub>
+                  <mn>v&#8407;</mn>
+                  <mn>2</mn>
+                </msub>
+                <mo>&nbsp; - &nbsp;</mo>
+                <mo>(</mo>
+                <msub>
+                  <mn>v&#8407;</mn>
+                  <mn>2</mn>
+                </msub>
+                <mo>&nbsp; &#8901; &nbsp;</mo>
+                <msub>
+                  <mn>u&#8407;</mn>
+                  <mn>1</mn>
+                </msub>
+                <mo>)</mo>
+                <msub>
+                  <mn>u&#8407;</mn>
+                  <mn>1</mn>
+                </msub>
+              </math>
+              <br />
+              <mi>&emsp;&emsp;&emsp;&emsp;&ensp;</mi>
+              <math>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mi>span</mi>
+                <mo>(</mo>
+                <msub>
+                  <mn>u&#8407;</mn>
+                  <mn>1</mn>
+                </msub>
+                <mi>, &nbsp;</mi>
+                <msub>
+                  <mn>u&#8407;</mn>
+                  <mn>2</mn>
+                </msub>
+                <mi>, &nbsp;</mi>
+                <msub>
+                  <mn>v&#8407;</mn>
+                  <mn>3</mn>
+                </msub>
+                <mo>)</mo>
+                <mi>&emsp;&emsp;&emsp;&emsp; Step 3: &emsp;</mi>
+                <msub>
+                  <mn>w&#8407;</mn>
+                  <mn>3</mn>
+                </msub>
+                <mo>&nbsp; = &nbsp;</mo>
+                <msub>
+                  <mn>v&#8407;</mn>
+                  <mn>3</mn>
+                </msub>
+                <mo>&nbsp; - &nbsp;</mo>
+                <mo>[</mo>
+                <mo>(</mo>
+                <msub>
+                  <mn>v&#8407;</mn>
+                  <mn>3</mn>
+                </msub>
+                <mo>&nbsp; &#8901; &nbsp;</mo>
+                <msub>
+                  <mn>u&#8407;</mn>
+                  <mn>1</mn>
+                </msub>
+                <mo>)</mo>
+                <msub>
+                  <mn>u&#8407;</mn>
+                  <mn>1</mn>
+                </msub>
+                <mo>&nbsp; + &nbsp;</mo>
+                <mo>(</mo>
+                <msub>
+                  <mn>v&#8407;</mn>
+                  <mn>3</mn>
+                </msub>
+                <mo>&nbsp; &#8901; &nbsp;</mo>
+                <msub>
+                  <mn>u&#8407;</mn>
+                  <mn>2</mn>
+                </msub>
+                <mo>)</mo>
+                <msub>
+                  <mn>u&#8407;</mn>
+                  <mn>2</mn>
+                </msub>
+                <mo>]</mo>
+              </math>
+              <br />
+              <mi>&emsp;&emsp;&emsp;&emsp;&ensp;</mi>
+              <math>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mi>span</mi>
+                <mo>(</mo>
+                <msub>
+                  <mn>u&#8407;</mn>
+                  <mn>1</mn>
+                </msub>
+                <mi>, &nbsp;</mi>
+                <msub>
+                  <mn>u&#8407;</mn>
+                  <mn>2</mn>
+                </msub>
+                <mi>, &nbsp;</mi>
+                <msub>
+                  <mn>u&#8407;</mn>
+                  <mn>3</mn>
+                </msub>
+                <mo>)</mo>
+              </math>
+            </h6>
+          </li>
+        </ul>
+      <li>
+        <h5>Eigenvalues & Eigenvectors</h5>
+        <a target="_blank" href="https://www.reddit.com/r/explainlikeimfive/comments/1avwm7/eli5_eigenvalues_and_eigenvectors_and_why_are/">
+          <h7>Literally "special" or "self" values/vectors that correspond to a matrix or linear transformation; a way to diagonalize a problem, adjusting specific parts without disturbing others</h7>
+        </a>
+        <ul>
+          <li>
+            <h5>Eigenvector Transformation <a target="_blank" href="https://www.youtube.com/watch?v=PFDu9oVAE-g">( Brilliant 3Blue1Brown visualization)</a></h5>
+            <h6>
+              <math>
+                <mi>T(v&#8407;)</mi>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mi>Av&#8407;</mi>
+              </math>
+              <br />
+              <math>
+                <mi>T(v&#8407;)</mi>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mi>&lambda;v&#8407;</mi>
+                <br />&nbsp; &#8627; where:
+                <br />&nbsp; &nbsp; &nbsp;
+              </math>
+              <math>
+                <mi>&lambda;</mi>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mi>eigenvalue; a scalar</mi>
+              </math>
+              <br />&nbsp; &nbsp; &nbsp;
+              <math>
+                <mn>v&#8407; </mn>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mi>eigenvector</mi>
+              </math>
+              <br />
+              <math>
+                <mo>&#8756; &nbsp; </mo>
+                <mi>Av&#8407;</mi>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mi>&lambda;v&#8407;</mi>
+              </math>
+              <br />&nbsp; &#8627; algebraically:
+              <br />&nbsp; &nbsp; &nbsp;
+              <math>
+                <mo>0&#8407;</mo>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mo>(</mo>
+                <mo>&lambda;</mo>
+                <msub>
+                  <mn>I</mn>
+                  <mn>n</mn>
+                </msub>
+                <mo>&nbsp; - &nbsp;</mo>
+                <mo>A</mo>
+                <mo>)</mo>
+                <mn>v&#8407;</mn>
+              </math>
+            </h6>
+          </li>
+          <li>
+            <h5>Eigenspace (E<sub>&lambda;</sub>)</h5>
             <h6>
               <math>
                 <mrow>
-                  <mi>Trace </mi>
-                  <mo>[</mo>
-                  <mtable>
-                    <mtr>
-                      <mtd>
-                        <mn>a</mn>
-                      </mtd>
-                      <mtd>
-                        <mn>b</mn>
-                      </mtd>
-                    </mtr>
-                    <mtr>
-                      <mtd>
-                        <mn>c</mn>
-                      </mtd>
-                      <mtd>
-                        <mn>d</mn>
-                      </mtd>
-                    </mtr>
-                  </mtable>
-                  <mo>]</mo>
+                  <msub>
+                    <mn>E</mn>
+                    <mn>&lambda;</mn>
+                  </msub>
                   <mo>&nbsp; = &nbsp;</mo>
-                  <mn>a</mn>
-                  <mo>&nbsp; + &nbsp;</mo>
-                  <mn>d</mn>
+                  <mn>N</mn>
+                  <mo>(</mo>
+                  <mn>&lambda;</mn>
+                  <msub>
+                    <mn>I</mn>
+                    <mn>n</mn>
+                  </msub>
+                  <mo>&nbsp; - &nbsp;</mo>
+                  <mn>A</mn>
+                  <mo>)</mo>
+                </mrow>
+              </math>
+              <br />&nbsp; &#8627; where:
+              <br />&emsp;
+              <math>
+                <mrow>
+                  <mn>N</mn>
+                  <mo>&nbsp; = &nbsp;</mo>
+                  <mn>Null Space</mn>
+                </mrow>
+              </math>
+              <br />&emsp;
+              <math>
+                <mrow>
+                  <msub>
+                    <mn>I</mn>
+                    <mn>n</mn>
+                  </msub>
+                  <mo>&nbsp; = &nbsp;</mo>
+                  <mi>Identity Matrix</mi>
                 </mrow>
               </math>
             </h6>
           </li>
         </ul>
       </li>
-    </ul>
-    <a target="_blank" title="No BS Guide to Linear Algebra" href="https://github.com/minireference/noBSLAnotebooks#chapters-overview">
-      <h4>Geometrical Aspects of Linear Algebra</h4>
-    </a>
-    <h7><b>&nbsp; &#8627; Mathematics to used see through to the governing dynamics of the physical universe</b></h7>
-    <ul>
-      <li><a target="_blank" title="Intuitive Math" href="https://intuitive-math.club/" />
-        <h5>Orthogonality & Change of Basis</h5></a>
-        <ul>
-          <li><a target="_blank" title="" href="">
-              <h5>Least Squares Solution</h5>
-            </a>
-            <h6>
-              <math id="" xmlns="http://www.w3.org/1998/Math/MathML">
-                <msup>
-                  <mi>A</mi>
-                  <mn>T</mn>
-                </msup>
-                <mi>A</mi>
-                <msup>
-                  <mi>x&#8407;</mi>
-                  <mn>*</mn>
-                </msup>
-                <mo>=</mo>
-                <msup>
-                  <mi>A</mi>
-                  <mn>T</mn>
-                </msup>
-                <mi> b&#8407; </mi>
-              </math>
-            </h6>
-          </li>
+      <li>
+        <h5>Fast Fourier Transformation</h5>
+        <h7>"A fast Fourier transform is an algorithm that computes the discrete
+          Fourier transform of a sequence, or its inverse. Fourier analysis converts
+          a signal from its original domain to a representation in the frequency
+          domain and vice versa." <a target="_blank" href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">Wikipedia</a></h7>
       </li>
-    </ul>
-    <li>
-      <h5>Orthonormal Bases</h5>
-      <ul>
-        <li>
-          <h5>Orthogonality</h5>
-          <h7>Every vector in set is orthogonal to every other vector in set; as perpendicular is to two-dimensional space (vectors at 90&#176; angle), orthogonal is to three- or n-dimensional space.</h7>
-          <h6>
-            <math>
-              <msub>
-                <mi>v&#8407;</mi>
-                <mn>1</mn>
-              </msub>
-              <mo>&#8901;</mo>
-              <msub>
-                <mi>v&#8407;</mi>
-                <mn>2</mn>
-              </msub>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mo>0</mo>
-            </math>
-          </h6>
-        </li>
-        <li>
-          <h5>Normality</h5>
-          <h7>Every vector has been normalized; every vector has a length of 1.</h7>
-          <h6>
-            <math>
-              <msub>
-                <mi>v&#8407;</mi>
-                <mn>1</mn>
-              </msub>
-              <mo>&#8901;</mo>
-              <msub>
-                <mi>v&#8407;</mi>
-                <mn>1</mn>
-              </msub>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mo>&#8741;</mo>
-              <msub>
-                <mi>v&#8407;</mi>
-                <mn>1</mn>
-              </msub>
-              <mo>&#8741;</mo>
-              <msup>
-                <mi></mi>
-                <mn>2</mn>
-              </msup>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mo>1</mo>
-            </math>
-          </h6>
-        </li>
-        <li>
-          <h5>Projection onto an Orthonormal Basis</h5>
-          <h7>Using an orthonormal subspace drastically simplifies projection equation from:</h7>
-          <h6>
-            <math>
-              <msub>
-                <mi>Proj</mi>
-                <mn>v</mn>
-              </msub>
-              <mi>x&#8407;</mi>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mo>A</mo>
-              <mo>(</mo>
-              <msup>
-                <mn>A</mn>
-                <mn>T</mn>
-              </msup>
-              <mn>A</mn>
-              <mo>)</mo>
-              <msup>
-                <mn></mn>
-                <mn>-1</mn>
-              </msup>
-              <msup>
-                <mn>A</mn>
-                <mn>T</mn>
-              </msup>
-              <mi>x&#8407;</mi>
-            </math>
-            <br />
-            <mn>&emsp;&emsp;&emsp;&nbsp; &#8595;</mn>
-            <br />
-            <math>
-              <msub>
-                <mi>Proj</mi>
-                <mn>v</mn>
-              </msub>
-              <mi>x&#8407;</mi>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mn>A</mn>
-              <msup>
-                <mn>A</mn>
-                <mn>T</mn>
-              </msup>
-              <mi>x&#8407;</mi>
-            </math>
-          </h6>
-        </li>
-        <li>
-          <h5>Gram-Schmidt Process</h5>
-          <h7>Converts non-orthonormal set into an orthonormal set</h7>
-          <h6>
-            <math>
-              <mi>Subspace v</mi>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mi>span</mi>
-              <mo>(</mo>
-              <msub>
-                <mn>v&#8407;</mn>
-                <mn>1</mn>
-              </msub>
-              <mi>, &nbsp;</mi>
-              <msub>
-                <mn>v&#8407;</mn>
-                <mn>2</mn>
-              </msub>
-              <mi>, &nbsp;</mi>
-              <msub>
-                <mn>v&#8407;</mn>
-                <mn>3</mn>
-              </msub>
-              <mo>)</mo>
-              <mi>&emsp;&emsp;&emsp;&emsp;Step 1: &emsp;</mi>
-              <msub>
-                <mn>u&#8407;</mn>
-                <mn>1</mn>
-              </msub>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mfrac>
-                <mrow>
-                  <msub>
-                    <mn>v&#8407;</mn>
-                    <mn>1</mn>
-                  </msub>
-                </mrow>
-                <mrow>
-                  <mn>&#8741;</mn>
-                  <msub>
-                    <mn>v&#8407;</mn>
-                    <mn>1</mn>
-                  </msub>
-                  <mn>&#8741;</mn>
-                </mrow>
-              </mfrac>
-            </math>
-            <br />
-            <mi>&emsp;&emsp;&emsp;&emsp;&ensp;</mi>
-            <math>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mi>span</mi>
-              <mo>(</mo>
-              <msub>
-                <mn>u&#8407;</mn>
-                <mn>1</mn>
-              </msub>
-              <mi>, &nbsp;</mi>
-              <msub>
-                <mn>v&#8407;</mn>
-                <mn>2</mn>
-              </msub>
-              <mi>, &nbsp;</mi>
-              <msub>
-                <mn>v&#8407;</mn>
-                <mn>3</mn>
-              </msub>
-              <mo>)</mo>
-              <mi>&emsp;&emsp;&emsp;&emsp; Step 2: &emsp;</mi>
-              <msub>
-                <mn>w&#8407;</mn>
-                <mn>2</mn>
-              </msub>
-              <mo>&nbsp; = &nbsp;</mo>
-              <msub>
-                <mn>v&#8407;</mn>
-                <mn>2</mn>
-              </msub>
-              <mo>&nbsp; - &nbsp;</mo>
-              <mo>(</mo>
-              <msub>
-                <mn>v&#8407;</mn>
-                <mn>2</mn>
-              </msub>
-              <mo>&nbsp; &#8901; &nbsp;</mo>
-              <msub>
-                <mn>u&#8407;</mn>
-                <mn>1</mn>
-              </msub>
-              <mo>)</mo>
-              <msub>
-                <mn>u&#8407;</mn>
-                <mn>1</mn>
-              </msub>
-            </math>
-            <br />
-            <mi>&emsp;&emsp;&emsp;&emsp;&ensp;</mi>
-            <math>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mi>span</mi>
-              <mo>(</mo>
-              <msub>
-                <mn>u&#8407;</mn>
-                <mn>1</mn>
-              </msub>
-              <mi>, &nbsp;</mi>
-              <msub>
-                <mn>u&#8407;</mn>
-                <mn>2</mn>
-              </msub>
-              <mi>, &nbsp;</mi>
-              <msub>
-                <mn>v&#8407;</mn>
-                <mn>3</mn>
-              </msub>
-              <mo>)</mo>
-              <mi>&emsp;&emsp;&emsp;&emsp; Step 3: &emsp;</mi>
-              <msub>
-                <mn>w&#8407;</mn>
-                <mn>3</mn>
-              </msub>
-              <mo>&nbsp; = &nbsp;</mo>
-              <msub>
-                <mn>v&#8407;</mn>
-                <mn>3</mn>
-              </msub>
-              <mo>&nbsp; - &nbsp;</mo>
-              <mo>[</mo>
-              <mo>(</mo>
-              <msub>
-                <mn>v&#8407;</mn>
-                <mn>3</mn>
-              </msub>
-              <mo>&nbsp; &#8901; &nbsp;</mo>
-              <msub>
-                <mn>u&#8407;</mn>
-                <mn>1</mn>
-              </msub>
-              <mo>)</mo>
-              <msub>
-                <mn>u&#8407;</mn>
-                <mn>1</mn>
-              </msub>
-              <mo>&nbsp; + &nbsp;</mo>
-              <mo>(</mo>
-              <msub>
-                <mn>v&#8407;</mn>
-                <mn>3</mn>
-              </msub>
-              <mo>&nbsp; &#8901; &nbsp;</mo>
-              <msub>
-                <mn>u&#8407;</mn>
-                <mn>2</mn>
-              </msub>
-              <mo>)</mo>
-              <msub>
-                <mn>u&#8407;</mn>
-                <mn>2</mn>
-              </msub>
-              <mo>]</mo>
-            </math>
-            <br />
-            <mi>&emsp;&emsp;&emsp;&emsp;&ensp;</mi>
-            <math>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mi>span</mi>
-              <mo>(</mo>
-              <msub>
-                <mn>u&#8407;</mn>
-                <mn>1</mn>
-              </msub>
-              <mi>, &nbsp;</mi>
-              <msub>
-                <mn>u&#8407;</mn>
-                <mn>2</mn>
-              </msub>
-              <mi>, &nbsp;</mi>
-              <msub>
-                <mn>u&#8407;</mn>
-                <mn>3</mn>
-              </msub>
-              <mo>)</mo>
-            </math>
-          </h6>
-        </li>
-      </ul>
-    <li>
-      <h5>Eigenvalues & Eigenvectors</h5>
-      <a target="_blank" href="https://www.reddit.com/r/explainlikeimfive/comments/1avwm7/eli5_eigenvalues_and_eigenvectors_and_why_are/">
-        <h7>Literally "special" or "self" values/vectors that correspond to a matrix or linear transformation; a way to diagonalize a problem, adjusting specific parts without disturbing others</h7>
-      </a>
-      <ul>
-        <li>
-          <h5>Eigenvector Transformation <a target="_blank" href="https://www.youtube.com/watch?v=PFDu9oVAE-g">( Brilliant 3Blue1Brown visualization)</a></h5>
-          <h6>
-            <math>
-              <mi>T(v&#8407;)</mi>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mi>Av&#8407;</mi>
-            </math>
-            <br />
-            <math>
-              <mi>T(v&#8407;)</mi>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mi>&lambda;v&#8407;</mi>
-              <br />&nbsp; &#8627; where:
-              <br />&nbsp; &nbsp; &nbsp;
-            </math>
-            <math>
-              <mi>&lambda;</mi>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mi>eigenvalue; a scalar</mi>
-            </math>
-            <br />&nbsp; &nbsp; &nbsp;
-            <math>
-              <mn>v&#8407; </mn>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mi>eigenvector</mi>
-            </math>
-            <br />
-            <math>
-              <mo>&#8756; &nbsp; </mo>
-              <mi>Av&#8407;</mi>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mi>&lambda;v&#8407;</mi>
-            </math>
-            <br />&nbsp; &#8627; algebraically:
-            <br />&nbsp; &nbsp; &nbsp;
-            <math>
-              <mo>0&#8407;</mo>
-              <mo>&nbsp; = &nbsp;</mo>
-              <mo>(</mo>
-              <mo>&lambda;</mo>
-              <msub>
-                <mn>I</mn>
-                <mn>n</mn>
-              </msub>
-              <mo>&nbsp; - &nbsp;</mo>
-              <mo>A</mo>
-              <mo>)</mo>
-              <mn>v&#8407;</mn>
-            </math>
-          </h6>
-        </li>
-        <li>
-          <h5>Eigenspace (E<sub>&lambda;</sub>)</h5>
-          <h6>
-            <math>
-              <mrow>
-                <msub>
-                  <mn>E</mn>
-                  <mn>&lambda;</mn>
-                </msub>
-                <mo>&nbsp; = &nbsp;</mo>
-                <mn>N</mn>
-                <mo>(</mo>
-                <mn>&lambda;</mn>
-                <msub>
-                  <mn>I</mn>
-                  <mn>n</mn>
-                </msub>
-                <mo>&nbsp; - &nbsp;</mo>
-                <mn>A</mn>
-                <mo>)</mo>
-              </mrow>
-            </math>
-            <br />&nbsp; &#8627; where:
-            <br />&emsp;
-            <math>
-              <mrow>
-                <mn>N</mn>
-                <mo>&nbsp; = &nbsp;</mo>
-                <mn>Null Space</mn>
-              </mrow>
-            </math>
-            <br />&emsp;
-            <math>
-              <mrow>
-                <msub>
-                  <mn>I</mn>
-                  <mn>n</mn>
-                </msub>
-                <mo>&nbsp; = &nbsp;</mo>
-                <mi>Identity Matrix</mi>
-              </mrow>
-            </math>
-          </h6>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <h5>Fast Fourier Transformation</h5>
-      <h7>"A fast Fourier transform is an algorithm that computes the discrete
-        Fourier transform of a sequence, or its inverse. Fourier analysis converts
-        a signal from its original domain to a representation in the frequency
-        domain and vice versa." <a target="_blank" href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">Wikipedia</a></h7>
-    </li>
-    </li>
+      </li>
     </ul>
   </div>
 
