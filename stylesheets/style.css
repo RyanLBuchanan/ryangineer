@@ -238,6 +238,37 @@ html {
   text-align: center;
 }
 
+.matrix_product {
+  position: relative;
+  font-size: 2.5em;
+  display: inline-block;
+  line-height: 0.7em;
+  vertical-align: middle;
+}
+
+.matrix_product:before {
+  font-size: 12px;
+  display: block;
+  position absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  width: 5px;
+  text-align: center;
+}
+
+.matrix_product:after {
+  font-size: 10px;
+  font-style: italic;
+  display: block;
+  position absolute;
+  left: 0;
+  bottom: 0;
+  content: " k";
+  width: 20px;
+  text-align: left;
+}
+
 mroot > :not(:first-child) {
   math-depth: add(2);
   math-style: compact;

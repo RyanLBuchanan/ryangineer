@@ -3625,7 +3625,8 @@
       <li>
         <h5>Scalars</h5>
         <h7>A scalar is simply a single number, in contrast to the other mathematical
-          objects studied in linear algebra. <a target="_blank" href="https://www.amazon.com/Deep-Learning-Adaptive-Computation-Machine/dp/0262035618">(Goodfellow, pg. 29)</a></h7>
+          objects studied in linear algebra. A scalar can be thought of a matrix
+          with a single entry. <a target="_blank" href="https://www.amazon.com/Deep-Learning-Adaptive-Computation-Machine/dp/0262035618">(Goodfellow, pg. 29)</a></h7>
       </li>
       <li>
         <h5>Vectors</h5>
@@ -3641,6 +3642,61 @@
             <h5>Transpose</h5>
             <h7>"[T]he mirror image of a matrix across a diagonal line. The
               transpose of a vector is therefore a matrix with only one row" <a target="_blank" href="https://www.amazon.com/Deep-Learning-Adaptive-Computation-Machine/dp/0262035618">(Goodfellow, pg. 31)</a>.</h7>
+          </li>
+          <li>
+            <h5>Matrix product</h5>
+            <h7>Perhaps the most important operation of matrices is their multiplication.
+              The matrix product of matrices <i>A</i> and <i>B</i> is a third matrix
+              <i>C</i>.</h7>
+            <h6>
+              <math>
+                <mi>C</mi>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mi>A</mi>
+                <mi>B</mi>
+                <mo>&ensp; &#x21d2; &ensp;</mo>
+                <msub>
+                  <mi>C</mi>
+                  <mi>i</mi>
+                </msub>
+                <msub>
+                  <mi></mi>
+                  <mi>,</mi>
+                </msub>
+                <msub>
+                  <mi></mi>
+                  <mi>j</mi>
+                </msub>
+                <mo>&nbsp; = &nbsp;</mo>
+              </math>
+              <span id="" class="matrix_product" style="font-size: 25px;">&Sigma;</span>
+              <math>
+                <msub>
+                  <mi>A</mi>
+                  <mi>i</mi>
+                </msub>
+                <msub>
+                  <mi></mi>
+                  <mi>,</mi>
+                </msub>
+                <msub>
+                  <mi></mi>
+                  <mi>k</mi>
+                </msub>
+                <msub>
+                  <mi>B</mi>
+                  <mi>k</mi>
+                </msub>
+                <msub>
+                  <mi></mi>
+                  <mi>,</mi>
+                </msub>
+                <msub>
+                  <mi></mi>
+                  <mi>j</mi>
+                </msub>
+              </math>
+            </h6>
           </li>
         </ul>
       </li>
