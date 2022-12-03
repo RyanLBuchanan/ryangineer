@@ -1,0 +1,134 @@
+* {
+  box-sizing: border-box;
+}
+
+main {
+  background-color: #FEF6C2;
+  padding: 0 0 2em 0;
+  margin-left: 200px;
+  display: block;
+}
+
+main h2, main h3, main h4, main p, main div, main ul, main dl {
+  padding-left: 3em;
+  padding-right: 2em;
+}
+
+body {
+  background-color: #FCEBB6;
+  background-image: url('../assets/background.gif');
+  color: #221811;
+  font-family: Verdana, Arial, sans-serif;
+}
+
+header {
+  background-color: #D2B48C;
+  background-image: url('../assets/javajamlogo.jpg');
+  background-repeat: no-repeat;
+  height: 150px;
+}
+
+footer {
+  background-color: #D2B48C;
+  font-size: .60em;
+  font-style: italic;
+  text-align: center;
+  padding-bottom: 10px;
+  border-top: 2px solid #221811;
+}
+
+h1 {
+  padding-top: 45px;
+  padding-left: 220px;
+  font-size: 3em;
+}
+
+h4 {
+  background-color: #D2B48C;
+  font-size: 1.2em;
+  padding-left: 0.5em;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  border-bottom: 2px solid #221811;
+  clear: left;
+}
+
+nav ul {
+  float: left;
+  list-style-type: none;
+  margin-left: 50px;
+  padding-left: 0;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.floatleft {
+  float: left;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  margin: 0;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+nav a:link {
+  color: #FEF6C2
+}
+
+nav a:visited {
+  color: #D2B48C
+}
+
+nav a:hover {
+  color: #CC9933
+}
+
+#wrapper {
+  background-color: #231814;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  min-width: 900px;
+  max-width: 1280px;
+  box-shadow: 5px 5px 5px #1e1e1e;
+}
+
+.details {
+  padding-left: 20%;
+  padding-right: 20%;
+  overflow: auto;
+}
+
+img {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#heroroad {
+  background-image: url('../assets/heroroad.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 250px;
+}
+
+#heromugs {
+  background-image: url('../assets/heromugs.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 250px;
+}
+
+#heroguitar {
+  background-image: url('../assets/heroguitar.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 250px;
+}
+
+header, nav, main, footer {
+  display: block;
+}
