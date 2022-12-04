@@ -132,3 +132,11 @@ img {
 header, nav, main, footer {
   display: block;
 }
+
+#mobile {
+  display: none;
+}
+
+#desktop {
+  display: inline;
+}
