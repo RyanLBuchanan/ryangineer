@@ -313,3 +313,8 @@ height: 250px;
 background-image: url('../assets/herojobs.jpg');
 background-size: 100% 100%;
 }
+
+audio {
+  display: block;
+  margin-top: 1em;
+}
