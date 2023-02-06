@@ -96,7 +96,7 @@ function storeTaskInLocalStorage(task){
 
   tasks.push(task);
 
-  localStorage.setItem('tasks', JSON.stringify(tasks)); 
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 // Remove Task
@@ -126,7 +126,7 @@ function removeTaskFromLocalStorage(taskItem) {
     }
   });
 
-  localStorage.setItem('tasks', JSON.stringify(tasks)); 
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 // Clear Tasks

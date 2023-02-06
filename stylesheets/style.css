@@ -144,7 +144,7 @@ html {
   width: 100%;
 }
 
-.img-bio_image {
+#img-bio_image {
   float: left;
   display: block;
   margin-left: auto;
