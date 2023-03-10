@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta description="Kittens mainly . . . I mean c'mon!">
+  <meta keywords="Kittens">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KittyHub Signup</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="index.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-wrapper">
+      <div class="internal-wrapper">
+        <div class="header-links-wrapper">
+          <nav>
+            <ul>
+              <li>
+                <a href="index.html">Home</a>
+              </li>
+              <li>
+                <a href="cat-breeds.html">Cat Breeds</a>
+              </li>
+              <!-- <li>
+          <a href="cat-foods.html">Cat Foods</a>
+        </li> -->
+              <li>
+                <a href="kittens.html">Kittens</a>
+              </li>
+              <!-- <li>
+          <a href="about.html">About</a>
+        </li> -->
+              <li>
+                <a href="signup.html">Signup</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <h1>KittyHub Signup</h1>
+  <figure>
+    <!-- The main event - baby ocelot -->
+    <img id="five-head" src="/assets/grumpy-smurf.jpg" alt="Grumpy smurf" class="center" width="250px">
+    <figcaption style="text-align: center;" class="figcaption">Grumpy Smurf here is going to stare you down
+      <br><strong>UNTIL YOU SIGN UP!</strong><br>Pretty please with sugar on top!!!!</figcaption>
+  </figure>
+  <div>
+    <div>
+      <h2>Please complete all the fields below and click the "Submit" button:
+      </h2>
+    </div>
+    <p>
+      By signing up for our website below, you will have access to all of the following incredible
+      luxuries:
+    </p>
+    <ul>
+      <li>Our fabulous feline newsletter!</li>
+      <li>Our wonderful monthly posting and update of potentially adoptle kitties!</li>
+      <li>Have the fortunate opportunity to donate to our fund to save cats world wide!</li>
+    </ul>
+  </div>
+  <form method="post" action="https://webdevbasics.net/scripts/demo.php">
+    <label for="Name">*Name:</label>
+    <input type="text" name="Name" id="Name" required="required" placeholder="your first and last name">
+    <br>
+    <label for="Email">*E-mail:</label>
+    <input type="email" name="Email" id="Email" required="required" placeholder="you@yourdomain.com">
+    <br>
+    <label for="Rating">Rating (1 - 10):</label>
+    <input type="range" name="Rating" id="Rating" min="1" max="10">
+    <br>
+    <div class="formSection">
+      <label for="Birthday">Birthday</label>
+      <input type="date" name="Birthday" id="Birthday" />
+    </div>
+    <br>
+    <div class="formSection">
+      <label for="Male">Male</label>
+      <input type="radio" name="Gender" id="Male" />
+      <br>
+      <label for="Female">Female</label>
+      <input type="radio" name="Gender" id="Female" />
+    </div>
+    <br>
+    <div>
+      <p>Check a radio button below to indicate your generous donation:</p>
+      <label for="five">$5</label>
+      <input type="radio" name="Donation" id="five" />
+      <br>
+      <label for="twenty-five">$25</label>
+      <input type="radio" name="Donation" id="twenty-five" />
+      <br>
+      <label for="one-hundred">$100</label>
+      <input type="radio" name="Donation" id="one-hundred" />
+      <br>
+      <label for="five-hundred">$500</label>
+      <input type="radio" name="Donation" id="five-hundred" />
+    </div>
+    <br>
+    <br>
+    <form>
+      <label for="myComments">*Comments:</label>
+      <textarea name="myComments" id="myComments" rows="2" cols="20" required="required"></textarea>
+      <br>
+      <br>
+      <input id="mySubmit" type="submit" value="Submit">
+    </form>
+
+    <h3 class="center">We thank you so very much! And all the darling cats in our shelter thank you!
+      May you live a thousand years and never be without a feline friend!
+    </h3>
+    <br>  
+    <br>
+  
+    <div>
+      42 Cats Meow Circle<br>
+      Kittville, Catalonia 12345<br>
+      800-867-5309<br><br>
+    </div>
+
+    <footer>
+      <small>
+        <i>
+          Copyright &copy; 2023 KittyHub<br>
+          <a target="_blank" href="mailto:buchanan.ryan22@gmail.com">ryan@KittyHub.com</a>
+        </i>
+      </small>
+    </footer>
+</body>
+
+</html>

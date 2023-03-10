@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KittyHub Cat Breeds</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="index.js" defer></script>
+  <style>
+    ul {
+      list-style-type: none;
+    }
+
+    li.gallery {
+      display: inline-block;
+      width: 225px;
+      padding-bottom: 10px;
+      margin: 10px;
+      background-color: #EAEAEA;
+      border-radius: 15px;
+      text-align: center;
+      font-style: italic;
+      font-family: Georgia, serif;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-wrapper">
+      <div class="internal-wrapper">
+        <div class="header-links-wrapper">
+          <nav>
+            <ul>
+              <li>
+                <a href="index.html">Home</a>
+              </li>
+              <li>
+                <a href="cat-breeds.html">Cat Breeds</a>
+              </li>
+              <!-- <li>
+          <a href="cat-foods.html">Cat Foods</a>
+        </li> -->
+              <li>
+                <a href="kittens.html">Kittens</a>
+              </li>
+              <!-- <li>
+          <a href="about.html">About</a>
+        </li> -->
+              <li>
+                <a href="signup.html">Signup</a>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    </nav>
+  </header>
+  <h1>Cuddly Cat Breeds</h1>
+  <p>The cat is a domestic species of small carnivorous mammal. It is the only domesticated species in the family Felidae and is commonly referred to as the domestic cat or house cat to distinguish it from the wild members of the family. <a
+      href="https://en.wikipedia.org/wiki/Cat">Wikipedia</a>
+  </p>
+  <ul>
+    <li class="gallery">
+      <img src="https://www.purina.com/sites/default/files/styles/kraken_generic_max_width_240/public/Siamese_body_7.jpg?itok=WW-Xx-Fx" alt="Siamese" width="225" height="168" class="free">
+      <a href="https://www.purina.com/cats/cat-breeds/siamese">Siamese</a>
+    </li>
+    <li class="gallery">
+      <img src="https://www.purina.com/sites/default/files/styles/kraken_generic_max_width_240/public/AmericanShorthair_body_6.jpg?itok=xarDHKyX" alt="American Shorthair" width="225" height="168" class="free">
+      <a href="https://www.purina.com/cats/cat-breeds/american-shorthair">American Shorthair</a>
+    </li>
+    <li class="gallery">
+      <img src="https://www.purina.com/sites/default/files/styles/kraken_generic_max_width_240/public/MaineCoon_body_7.jpg?itok=ZUDtmIsc" alt="Maine Coon" width="225" height="168" class="free">
+      <a href="https://www.purina.com/cats/cat-breeds/maine-coon">Maine Coon</a>
+    </li>
+    <li class="gallery">
+      <img src="https://www.purina.com/sites/default/files/styles/kraken_generic_max_width_240/public/PersianSolid_body_6.jpg?itok=N5mSCMHh" alt="Persian" width="225" height="168" class="free">
+      <a href="https://www.purina.com/cats/cat-breeds/persian">Persian</a>
+    </li>
+    <li class="gallery">
+      <img src="https://www.purina.com/sites/default/files/styles/kraken_generic_max_width_240/public/Exotic_body_6.jpg?itok=dPkmmFtW" alt="Exotic Shorthair" width="225" height="168" class="free">
+      <a href="https://www.purina.com/cats/cat-breeds/exotic-shorthair">Exotic Shorthair</a>
+    </li>
+    <li class="gallery">
+      <img src="https://www.purina.com/sites/default/files/styles/kraken_generic_max_width_240/public/NorwegianForestCat_body_6.jpg?itok=RYEZJf7V" alt="Norwegian Forest Cat" width="225" height="168" class="free">
+      <a href="https://www.purina.com/cats/cat-breeds/norwegian-forest-cat">Norwegian Forest Cat</a>
+    </li>
+  </ul>
+
+  <select onchange="showBreedImage(value)" name="breed_selector" id="breed_selector">
+  </select>
+
+  <div class="box">
+    <a id="wiki_link" target="_blank"></a>
+    <div id="breed_json"></div>
+  </div>
+
+  <div>
+    <img id="breed_image"></img>
+  </div>
+  <br>  
+  <br>
+  
+  <div>
+    42 Cats Meow Circle<br>
+    Kittville, Catalonia 12345<br>
+    800-867-5309<br><br>
+  </div>
+  
+  <footer>
+    <small>
+      <i>
+        Copyright &copy; 2023 KittyHub<br>
+        <a target="_blank" href="mailto:buchanan.ryan22@gmail.com">ryan@KittyHub.com</a>
+      </i>
+    </small>
+  </footer>
+
+</body>
+
+</html>
