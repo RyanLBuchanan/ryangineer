@@ -89,16 +89,25 @@
     </li>
   </ul>
 
+  <div>
+    <h1 style="text-align: left;">Breed-O-Matic&#8482;</h1>
+    <p>
+      <em>Click on the drop-down (that litte "v" in the rectangle)<br>
+      below to select a breed that you think just might provide<br>
+      you that feline fix for which you are so desperately in need.</em>
+    </p>
+  </div>
   <select onchange="showBreedImage(value)" name="breed_selector" id="breed_selector">
   </select>
-
+  <br> 
   <div class="box">
+    <br> 
     <a id="wiki_link" target="_blank"></a>
     <div id="breed_json"></div>
   </div>
-
+  <br> 
   <div>
-    <img id="breed_image"></img>
+    <img id="breed_image" class="breed"></img>
   </div>
   <br>  
   <br>

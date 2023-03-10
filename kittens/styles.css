@@ -196,3 +196,8 @@ textarea {
   height: 25px;
   opacity: 0.8;
 }
+
+img.breed {
+  max-width: 40%;
+  height: auto;  
+}
