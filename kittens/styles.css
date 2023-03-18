@@ -1,8 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Golos+Text&display=swap');
 
+p, footer {
+  margin: 40px;
+  padding: 40px;
+}
+
 h1 {
   text-align: center;
   color: #2579aa;
+  padding: 20px;
+  margin: 20px;
 }
 
 .center {
@@ -52,7 +59,7 @@ nav a {
 
 .header-wrapper .header-links-wrapper ul li a:hover {
   color: #ffae00;
-} 
+}
 
 img {
   border: solid 2px gray;
@@ -199,5 +206,5 @@ textarea {
 
 img.breed {
   max-width: 40%;
-  height: auto;  
+  height: auto;
 }
