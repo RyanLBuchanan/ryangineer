@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="QuickStartFinance">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/assets/QuickStartFinance.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
