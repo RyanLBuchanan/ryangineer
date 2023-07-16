@@ -26,6 +26,37 @@
   <!-- MathJax -->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio for responsive video */
+      height: 0;
+      overflow: hidden;
+    }
+  
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 50%;
+    }
+  
+    /* Adjust image size for responsiveness */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  
+    /* Add additional CSS media queries as needed */
+    @media (max-width: 480px) {
+      /* Adjust dimensions for smaller screens */
+      .video-container {
+        padding-bottom: 75%; /* 4:3 aspect ratio for responsive video */
+      }
+    }
+  </style>
+  
 </head>
 
 <body>
