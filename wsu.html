@@ -26,6 +26,15 @@
   <!-- MathJax -->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    /* Add CSS styles for the search bar */
+    .search-bar {
+        position: fixed;
+        top: 50%;
+        right: 10px; /* Adjust the value to control the horizontal position */
+        transform: translateY(-50%);
+    }
+  </style>
 </head>
 
 <body>
@@ -120,8 +129,11 @@
     </div>
   </div>
 
-  <input type="text" id="searchTerm" placeholder="Search...">
-<button onclick="searchWiki()">Search</button>
+  <!-- Create a container for the search bar to apply styles -->
+  <div class="search-bar">
+    <input type="text" id="searchTerm" placeholder="Search...">
+    <button onclick="searchWiki()">Search</button>
+  </div>
 
 
   <br /><br />
@@ -131,17 +143,21 @@
     <a target="_blank" href="https://www.weber.edu/placement/math-placement.html">
       <h4>ALEKS Tool</h4>
     </a>
-    </div>
 
-    <div>
-      <h2 id="algebra">Algebra</h2>
-<!-- Content for the Algebra section -->
+    
+    <h2 id="algebra">Algebra</h2>
+    <!-- Content for the Algebra section -->
+    
+    <h2 id="geometry">Geometry</h2>
+    <!-- Content for the Geometry section -->
+    
+    <h2 id="calculus">Calculus</h2>
+    <!-- Content for the Calculus section -->
+    
+    <h2 id="statistics">Statistics</h2>
+    <!-- Content for the Statistics section -->
 
-<h2 id="geometry">Geometry</h2>
-<!-- Content for the Geometry section -->
-
-<h2 id="calculus">Calculus</h2>
-<!-- Content for the Calculus section -->
+    
     </div>
 
     <script>
