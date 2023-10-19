@@ -120,6 +120,10 @@
     </div>
   </div>
 
+  <input type="text" id="searchTerm" placeholder="Search...">
+<button onclick="searchWiki()">Search</button>
+
+
   <br /><br />
   <div id="ALEKS">
     <h3>Math Placement - ALEKS</h3>
@@ -129,6 +133,30 @@
     </a>
     </div>
 
+    <div>
+      <h2 id="algebra">Algebra</h2>
+<!-- Content for the Algebra section -->
+
+<h2 id="geometry">Geometry</h2>
+<!-- Content for the Geometry section -->
+
+<h2 id="calculus">Calculus</h2>
+<!-- Content for the Calculus section -->
+    </div>
+
+    <script>
+      function searchWiki() {
+        const searchTerm = document.getElementById("searchTerm").value.toLowerCase();
+        const section = document.getElementById(searchTerm);
+        
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        } else {
+          alert("Term not found.");
+        }
+      }
+    </script>
+    
 
   </body>
   </html>
