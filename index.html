@@ -119,11 +119,6 @@
     </div>
   </div>
 
-  <!-- Create a container for the search bar to apply styles -->
-  <div class="search-bar">
-    <input type="text" id="searchTerm" placeholder="Search...">
-    <button onclick="searchWiki()">Search</button>
-  </div>
 
   <br /><br />
   <div id="ML_Algorithms">
@@ -8999,18 +8994,6 @@
     </p>
   </div>
 
-  <script>
-      function searchWiki() {
-        const searchTerm = document.getElementById("searchTerm").value.toLowerCase();
-        const section = document.getElementById(searchTerm);
-        
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
-        } else {
-          alert("Term not found.");
-        }
-      }
-    </script>
 
   <script src="scripts/script.js"></script>
 
