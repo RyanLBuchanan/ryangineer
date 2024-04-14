@@ -1,5 +1,15 @@
 {
   "dependencies": {
     "dotenv": "^16.4.5"
-  }
+  },
+  "name": "ryangineer",
+  "description": "Ryangineer is a porfolio website that I used to reinforce my learning of Machine Learning Algorithms and the mathematics included with each.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

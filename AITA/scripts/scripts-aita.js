@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const apiKey = process.env.OPENAI_API_KEY;
+console.log('API key: ' + apiKey);
 
 
 document.getElementById('buttonInput').addEventListener('click', function() {
