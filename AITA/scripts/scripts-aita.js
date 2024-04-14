@@ -1,3 +1,8 @@
+require('dotenv').config();
+
+const apiKey = process.env.OPENAI_API_KEY;
+
+
 document.getElementById('buttonInput').addEventListener('click', function() {
     var textInput = document.getElementById('textInput').value;
     document.getElementById('textInput').value = '';
