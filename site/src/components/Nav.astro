@@ -1,6 +1,11 @@
 ---
-import { navLinks } from '../data/nav.js';
+import { navLinks, navCta } from '../data/nav.js';
 const { current = '' } = Astro.props;
+
+// A dropdown group is "active" when the current page is one of its children.
+const isActive = (href) => href === current;
+const groupActive = (children) => children.some((c) => isActive(c.href));
+const ext = (link) => (link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {});
 ---
 <nav class="site-nav" aria-label="Primary">
   <div class="container nav-inner">
@@ -8,28 +13,75 @@ const { current = '' } = Astro.props;
     <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation">☰</button>
     <ul class="nav-links" id="nav-links">
       {navLinks.map((link) => (
-        <li>
-          <a
-            href={link.href}
-            aria-current={link.href === current ? 'page' : undefined}
-            {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-          >{link.label}</a>
-        </li>
+        link.children ? (
+          <li class={`has-dropdown${groupActive(link.children) ? ' active' : ''}`}>
+            <button class="dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+              {link.label}
+              <span class="caret" aria-hidden="true">▾</span>
+            </button>
+            <ul class="dropdown">
+              {link.children.map((child) => (
+                <li>
+                  <a
+                    href={child.href}
+                    aria-current={isActive(child.href) ? 'page' : undefined}
+                    {...ext(child)}
+                  >{child.label}</a>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ) : (
+          <li>
+            <a
+              href={link.href}
+              aria-current={isActive(link.href) ? 'page' : undefined}
+              {...ext(link)}
+            >{link.label}</a>
+          </li>
+        )
       ))}
-      <li>
-        <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌗</button>
-      </li>
     </ul>
+    <div class="nav-actions">
+      <a class="nav-cta" href={navCta.href} {...ext(navCta)}>{navCta.label}</a>
+      <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌗</button>
+    </div>
   </div>
 </nav>
 
 <script is:inline>
-  // Mobile menu toggle
+  // Mobile hamburger toggle
   const toggle = document.querySelector('.nav-toggle');
   const links = document.getElementById('nav-links');
   toggle?.addEventListener('click', () => {
     const open = links.classList.toggle('open');
     toggle.setAttribute('aria-expanded', String(open));
+  });
+
+  // Dropdown triggers: click to toggle (works on touch + desktop click;
+  // desktop also opens on hover via CSS). Closing one closes the others.
+  const triggers = Array.from(document.querySelectorAll('.dropdown-trigger'));
+  triggers.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const li = btn.parentElement;
+      const willOpen = !li.classList.contains('open');
+      triggers.forEach((b) => {
+        b.parentElement.classList.remove('open');
+        b.setAttribute('aria-expanded', 'false');
+      });
+      if (willOpen) {
+        li.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+  // Click outside closes any open dropdown
+  document.addEventListener('click', () => {
+    triggers.forEach((b) => {
+      b.parentElement.classList.remove('open');
+      b.setAttribute('aria-expanded', 'false');
+    });
   });
 
   // Theme toggle (persists in localStorage)
