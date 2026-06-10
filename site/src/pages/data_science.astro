@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+// Content preserved verbatim from the original data_science.html (see site/migrate.mjs)
+import body from '../content/data_science-body.html?raw';
+---
+<BaseLayout title="Data Science Diction — Ryangineer" current="/data_science.html" description="A data science glossary: terminology and concepts.">
+  <SiteHeader slot="hero" />
+
+  <blockquote class="quote">
+    "No linear
+          indexing system is adequate to express the multi-dimensionality of knowledge"
+    <cite>— Neal Stephenson, <i class="no-italics">Quicksilver</i></cite>
+  </blockquote>
+  <Fragment set:html={body} />
+</BaseLayout>

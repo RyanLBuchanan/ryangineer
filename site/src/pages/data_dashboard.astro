@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+// Content preserved verbatim from the original data_dashboard.html (see site/migrate.mjs)
+import body from '../content/data_dashboard-body.html?raw';
+---
+<BaseLayout title="Data Dashboard — Ryangineer" current="/data_dashboard.html" description="Interactive Plotly data dashboard.">
+  <SiteHeader slot="hero" />
+
+  <Fragment set:html={body} />
+</BaseLayout>

@@ -1,0 +1,19 @@
+---
+import { socialLinks } from '../data/nav.js';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="social-links">
+      {socialLinks.map((s) => (
+        <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} title={s.label}>
+          <img src={s.icon} alt={s.label} loading="lazy" />
+        </a>
+      ))}
+    </div>
+    <p class="footer-copy">
+      &copy; {year} Ryan L. Buchanan &middot; Ogden, Utah, USA &middot;
+      <a href="mailto:buchananryan22@gmail.com">buchananryan22@gmail.com</a>
+    </p>
+  </div>
+</footer>

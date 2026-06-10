@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+// Content preserved verbatim from the original otech.html (see site/migrate.mjs)
+import body from '../content/otech-body.html?raw';
+---
+<BaseLayout title="OTech — Ryangineer" current="/otech.html" description="Ogden-Weber Technical College coursework and projects.">
+  <SiteHeader slot="hero" />
+
+  <blockquote class="quote">
+    "Math problems are spiral, not linear."
+    <cite>— Lori Jo Webster</cite>
+  </blockquote>
+  <Fragment set:html={body} />
+</BaseLayout>

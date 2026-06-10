@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+// Content preserved verbatim from the original machine_learning.html (see site/migrate.mjs)
+import body from '../content/machine_learning-body.html?raw';
+---
+<BaseLayout title="Machine Learning — Ryangineer" current="/machine_learning.html" description="Machine learning notes: algorithms, terminology, and the mathematics behind them.">
+  <SiteHeader slot="hero" />
+
+  <blockquote class="quote">
+    "The question of whether a computer can think is no more interesting than the question of whether a submarine can swim."
+    <cite>— Edsger W. Dijkstra</cite>
+  </blockquote>
+  <Fragment set:html={body} />
+</BaseLayout>

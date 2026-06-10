@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+// Content preserved verbatim from the original wsu.html (see site/migrate.mjs)
+import body from '../content/wsu-body.html?raw';
+---
+<BaseLayout title="WSU — Ryangineer" current="/wsu.html" description="Weber State University coursework.">
+  <SiteHeader slot="hero" />
+
+  <blockquote class="quote">
+    "AI will probably most likely lead to the end of the world, 
+        but in the meantime, there'll be great companies."
+    <cite>— Sam Altman</cite>
+  </blockquote>
+  <Fragment set:html={body} />
+</BaseLayout>

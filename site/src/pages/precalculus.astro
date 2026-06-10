@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+// Content preserved verbatim from the original precalculus.html (see site/migrate.mjs)
+import body from '../content/precalculus-body.html?raw';
+---
+<BaseLayout title="Precalculus — Ryangineer" current="/precalculus.html" description="A precalculus curriculum outline: functions, trigonometry, vectors, complex numbers, and an introduction to limits.">
+  <SiteHeader slot="hero" />
+
+  <blockquote class="quote">
+    "In mathematics, you don't understand things; you just get used to them."
+    <cite>— John von Neumann</cite>
+  </blockquote>
+  <Fragment set:html={body} />
+</BaseLayout>

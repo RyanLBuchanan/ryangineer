@@ -1,0 +1,86 @@
+/* ============================================================
+   Legacy math-notation styles — carried over from the original
+   stylesheets/style.css so every formula on the mathematics page
+   renders exactly as before. These CSS pseudo-element constructs
+   (summation limits, integral bounds, etc.) are preserved verbatim.
+
+   NOTE: in the long-term migration these should be replaced by real
+   LaTeX (see algebra.astro for the target pattern). They are kept here
+   so no mathematical content is lost during the redesign.
+   ============================================================ */
+
+/* Descriptive notes that used the invalid <h7> tag in the original markup */
+.note {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  margin: 0.25rem 0 0.75rem;
+  padding-inline: 0.5rem;
+}
+
+/* Inline math helper text colors from the original theme */
+#definition { color: var(--heading); font-weight: 600; }
+#bayes_theorem,
+#euclidean {
+  color: var(--highlight);
+  font-family: "Cambria", "Times New Roman", Garamond, serif;
+}
+
+.para { font-size: 1rem; color: var(--text); }
+.no-italics { font-style: normal; }
+
+/* Centered-content wrapper */
+.centered-wrapper { position: relative; text-align: center; }
+.centered-wrapper:before {
+  content: ""; position: relative; display: inline-block;
+  width: 0; height: 100%; vertical-align: middle;
+}
+.centered-content { display: inline-block; vertical-align: middle; }
+
+/* ---- Summation / limit / integral notation (verbatim) ---- */
+#epsilon,
+.sigma_sum,
+.lim_infinity,
+.lim_zero,
+.matrix_product,
+.riemann_sums,
+#wcss1, #wcss2, #wcss3 {
+  position: relative;
+  font-size: 2.5em;
+  display: inline-block;
+  line-height: 0.7em;
+  vertical-align: middle;
+}
+
+#epsilon:before { font-size: 12px; display: block; position: absolute; left: 0; top: 0; content: "n"; width: 5px; text-align: center; }
+#epsilon:after  { font-size: 10px; display: block; position: absolute; left: 0; bottom: 0; content: "i = 1"; width: 20px; text-align: center; }
+
+.sigma_sum:before { font-size: 12px; display: block; position: absolute; left: 0; top: 0; content: "n"; width: 5px; text-align: center; }
+.sigma_sum:after  { font-size: 10px; display: block; position: absolute; left: 0; bottom: 0; content: "i = 1"; width: 20px; text-align: center; }
+
+.lim_infinity:before { font-size: 12px; display: block; position: absolute; left: 0; top: 0; content: " "; width: 5px; text-align: center; }
+.lim_infinity:after  { font-size: 10px; display: block; position: absolute; left: 0; bottom: 0; content: "n \2192 \221E"; width: 25px; text-align: center; }
+
+.lim_zero:before { font-size: 12px; display: block; position: absolute; left: 0; top: 0; content: " "; width: 5px; text-align: center; }
+.lim_zero:after  { font-size: 10px; display: block; position: absolute; left: 0; bottom: 0; content: "n \2192 0"; width: 25px; text-align: center; }
+
+.matrix_product:before { font-size: 12px; display: block; position: absolute; left: 0; top: 0; content: ""; width: 5px; text-align: center; }
+.matrix_product:after  { font-size: 10px; font-style: italic; display: block; position: absolute; left: 0; bottom: 0; content: " k"; width: 20px; text-align: left; }
+
+.riemann_sums:before { font-size: 12px; display: block; position: absolute; left: 0; top: 0; content: "5"; width: 5px; text-align: center; }
+.riemann_sums:after  { font-size: 10px; display: block; position: absolute; left: 0; bottom: 0; content: "n=1"; width: 20px; text-align: center; }
+
+#wcss1:before { font-size: 12px; display: block; position: absolute; left: 0; top: 0; content: ""; width: 22px; text-align: center; }
+#wcss1:after  { font-size: 8px; display: block; position: absolute; left: 0; bottom: 0; content: "Pi in Cluster 1"; width: 50px; text-align: center; }
+#wcss2:before { font-size: 12px; display: block; position: absolute; left: 0; top: 0; content: ""; width: 22px; text-align: center; }
+#wcss2:after  { font-size: 8px; display: block; position: absolute; left: 0; bottom: 0; content: "Pi in Cluster 2"; width: 50px; text-align: center; }
+#wcss3:before { font-size: 12px; display: block; position: absolute; left: 0; top: 0; content: ""; width: 22px; text-align: center; }
+#wcss3:after  { font-size: 8px; display: block; position: absolute; left: 0; bottom: 0; content: "Pi in Cluster 3"; width: 50px; text-align: center; }
+
+/* ---- Tables ---- modern, readable styling (replaces the old fixed 600x150 gold tables) */
+table { border-collapse: collapse; width: 100%; margin: 1.25rem 0; font-size: 0.95rem; }
+th, td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; color: var(--text); }
+th { background: var(--surface-2); color: var(--heading); font-weight: 600; }
+
+#truth_table, #correlation_matrix { width: auto; }
+#truth_table th, #correlation_matrix th { color: var(--accent); }

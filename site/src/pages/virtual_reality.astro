@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+// Content preserved verbatim from the original virtual_reality.html (see site/migrate.mjs)
+import body from '../content/virtual_reality-body.html?raw';
+---
+<BaseLayout title="VR Dev Kids — Ryangineer" current="/virtual_reality.html" description="Virtual reality courses conducted while creating VR Dev Kids LLC.">
+  <SiteHeader slot="hero" />
+
+  <Fragment set:html={body} />
+</BaseLayout>

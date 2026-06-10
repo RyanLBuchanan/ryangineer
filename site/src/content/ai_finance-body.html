@@ -1,0 +1,632 @@
+
+
+  
+
+  
+
+  
+
+  <br /><br />
+  
+
+  <br /><br />
+  <div id="AI_Fundamentals">
+    <h3>Artificial Intelligence Fundamentals</h3>
+    <h4>Expert Systems</h4>
+    <p class="note"></p>
+    <ul>
+      <li>
+        <h5>Weak Methods</h5>
+        <p class="note">"[G]eneral-purpose search mechanism trying to string together elementary
+          reasoning steps to find complete solutions." <a target="" href="https://www.amazon.com/Artificial-Intelligence-A-Modern-Approach-dp-0134610997/dp/0134610997/ref=dp_ob_title_bk">(Russell, p. 22)</p>
+      </li>
+    </ul>
+  </div>
+
+  <br /><br />
+  <div id="Finance_Fundamentals">
+    <h3>Finance Fundamentals</h3>
+    <a target="_blank" href="">
+      <h4>Data Processing</h4>
+    </a>
+    <p class="note">Market data is temporal in nature &#x2192; a series of trading events that
+      will happen in a moment of time.</p>
+    <ul>
+      <li><a target="_blank" title="" href="" />
+        <h5>Technical Indicators</h5></a>
+      </li>
+      <ul>
+        <li>
+          <h5>Constant Threshold (CT)</h5>
+          </a>
+        </li>
+        <h6>
+          <math>
+            <mi>CT = | price - average | > x dollars</mi>
+          </math>
+        </h6>
+        <li>
+          <h5>Fraction Threshold (FT)</h5>
+          </a>
+        </li>
+        <h6>
+          <math>
+            <mi>FT = &nbsp;</mi>
+            <mfrac>
+              <mrow>
+                <mi>| price - average |</mi>
+              </mrow>
+              <mrow>
+                <mi>price</mi>
+              </mrow>
+            </mfrac>
+            <mo>&nbsp; > &nbsp;</mo>
+            <mi>x percent</mi>
+          </math>
+        </h6>
+      </ul>
+      <li>
+        <h5>Fundamental Information</h5>
+      </li>
+      <ul>
+        <li>
+          <h5>Sales Per Share</h5>
+        </li>
+        <h6>
+          <math>
+            <mi>SPS = &nbsp;</mi>
+            <mfrac>
+              <mrow>
+                <mi>revenue</mi>
+              </mrow>
+              <mrow>
+                <mi># of shares</mi>
+              </mrow>
+            </mfrac>
+          </math>
+        </h6>
+        <li>
+          <h5>Earnings Per Share</h5>
+        </li>
+        <h6>
+          <math>
+            <mi>EPS = &nbsp;</mi>
+            <mfrac>
+              <mrow>
+                <mi>revenue - costs</mi>
+              </mrow>
+              <mrow>
+                <mi># of shares</mi>
+              </mrow>
+            </mfrac>
+          </math>
+        </h6>
+        <li>
+          <h5>Dividends Per Share</h5>
+        </li>
+        <h6>
+          <math>
+            <mi>DPS = &nbsp;</mi>
+            <mfrac>
+              <mrow>
+                <mi>dividends</mi>
+              </mrow>
+              <mrow>
+                <mi># of shares</mi>
+              </mrow>
+            </mfrac>
+          </math>
+        </h6>
+        <li>
+          <h5>Price to Earnings Ratio (PE ratio)</h5>
+        </li>
+        <h6>
+          <math>
+            <mi>PE ratio = &nbsp;</mi>
+            <mfrac>
+              <mrow>
+                <mi>current mkt price</mi>
+              </mrow>
+              <mrow>
+                <mi>most recent EPS</mi>
+              </mrow>
+            </mfrac>
+          </math>
+        </h6>
+      </ul>
+      <li>
+        <h5>Stock Returns</h5>
+      </li>
+      <ul>
+        <li>
+          <h5>Returns (aka Linear, Percentage, Raw, Simple)</h5>
+        </li>
+        <h6>
+          <math>
+            <mi>r = &nbsp;</mi>
+            <mfrac>
+              <mrow>
+                <msub>
+                  <mi>p</mi>
+                  <mn>t</mn>
+                </msub>
+                <mo>-</mo>
+                <msub>
+                  <mi>p</mi>
+                  <mn>t - 1</mn>
+                </msub>
+              </mrow>
+              <mrow>
+                <msub>
+                  <mi>p</mi>
+                  <mn>t - 1</mn>
+                </msub>
+              </mrow>
+            </mfrac>
+          </math>
+        </h6>
+        <li>
+          <h5>Log Return</h5>
+        </li>
+        <h6>
+          <math>
+            <mi>R</mi>
+            <mo>=</mo>
+            <mi>ln</mi>
+            <mo stretchy=True>(</mo>
+            <mfrac>
+              <mrow>
+                <msub>
+                  <mi>p</mi>
+                  <mn>t</mn>
+                </msub>
+              </mrow>
+              <mrow>
+                <msub>
+                  <mi>p</mi>
+                  <mn>t - 1</mn>
+                </msub>
+              </mrow>
+            </mfrac>
+            <mo stretchy=True>)</mo>
+          </math>
+        </h6>
+        <li>
+          <h5>Convert between raw returns & log returns</h5>
+        </li>
+        <h6>
+          <math>
+            <mi>R</mi>
+            <mo>=</mo>
+            <mi>ln(r + 1)</mi>
+          </math><br />
+          <math>
+            <mi>r</mi>
+            <mo>=</mo>
+            <msup>
+              <mi>e</mi>
+              <mn>R</mn>
+            </msup>
+            <mo>-</mo>
+            <mo>1</mo>
+          </math>
+        </h6>
+      </ul>
+      <li>
+        <h5>Rates of Compounding</h5>
+      </li>
+      <ul>
+        <li>
+          <h5>Straightforward Yearly Interest</h5>
+          <h6>
+            <math>
+              <mi>Future Value</mi>
+              <mo>&nbsp; = &nbsp;</mo>
+              <mi>Deposit Amount</mi>
+              <mo>&nbsp; * &nbsp;</mo>
+              <mo>(</mo>
+              <mi>1 + Annual Interest Rate</mi>
+              <mo>)</mo>
+            </math>
+          </h6>
+        </li>
+        <li>
+          <h5>Continuous Compounding</h5>
+          <h6>
+            <math>
+              <msub>
+                <mi>p</mi>
+                <mn>t</mn>
+              </msub>
+              <mo>&nbsp; = &nbsp;</mo>
+              <msub>
+                <mi>p</mi>
+                <mn>t - 1</mn>
+              </msub>
+              <mo>(</mo>
+              <mi>1 + </mi>
+              <mfrac>
+                <mrow>
+                  <mi>r</mi>
+                </mrow>
+                <mrow>
+                  <mi>n</mi>
+                </mrow>
+              </mfrac>
+              <mo>)</mo>
+              <msup>
+                <mi></mi>
+                <mn>n</mn>
+              </msup>
+            </math>
+          </h6>
+        </li>
+        <li>
+          <h5>Calculus for Limit</h5>
+          <h6>
+            <math>
+              <msub>
+                <mi>lim</mi>
+                <mn>n &#8594; &#8734;</mn>
+              </msub>
+              <mo stretchy=True>(</mo>
+              <mo>1 + &nbsp;</mo>
+              <mfrac>
+                <mrow>
+                  <mi>r</mi>
+                </mrow>
+                <mrow>
+                  <mi>n</mi>
+                </mrow>
+              </mfrac>
+              <mo stretchy=True>)</mo>
+              <msup>
+                <mi></mi>
+                <mn>n</mn>
+              </msup>
+              <mo>&nbsp; = &nbsp;</mo>
+              <msup>
+                <mo>e</mo>
+                <mn>r</mn>
+              </msup>
+            </math>
+            <br /> &nbsp; &#8627; where:
+            <br /> &nbsp; &nbsp;
+            <math>
+              <mi>&nbsp; r</mi>
+              <mo>&nbsp; = &nbsp;</mo>
+              <mi>continuously compounded annual return</mi>
+              <br />
+            </math>
+            <math>
+              <mo>&nbsp; &nbsp; &nbsp; r</mo>
+              <mo>&nbsp; = &nbsp;</mo>
+              <mi>ln</mi>
+              <mo>(</mo>
+              <mfrac>
+                <mrow>
+                  <msub>
+                    <mi>p</mi>
+                    <mn>t</mn>
+                  </msub>
+                </mrow>
+                <mrow>
+                  <msub>
+                    <mi>p</mi>
+                    <mn>t - 1</mn>
+                  </msub>
+                </mrow>
+              </mfrac>
+              <mo>)</mo>
+              <mi>&nbsp; &#8658; &nbsp;</mi>
+              <mi>log return</mi>
+            </math>
+          </h6>
+        </li>
+      </ul>
+      <li>
+        <h5>Trading Strategy</h5>
+      </li>
+      <ul>
+        <li>
+          <h5>Mean Monthly Return</h5>
+          <h6>
+            <math>
+              <mi>x&#772;</mi>
+              <mi>&nbsp; = &nbsp;</mi>
+              <mfrac>
+                <mrow>
+                  <mo>1</mo>
+                </mrow>
+                <mrow>
+                  <mi>n</mi>
+                </mrow>
+              </mfrac>
+              <span id="" class="sigma_sum" style="font-size: 20px;">&Sigma;</span>x<sub><i>i</i></sub>
+              <br /> &nbsp; &#8627; where:
+              <br /> &nbsp;
+              <mi>n = # of monthly returns in the sample</mi>
+            </math>
+          </h6>
+        </li>
+        <li>
+          <h5>Standard Deviation</h5>
+          <h6>
+            <math>
+              <mi>s</mi>
+              <mi>&nbsp; = &nbsp;</mi>
+              <msqrt>
+                <mfrac>
+                  <mrow>
+                    <mo>1</mo>
+                  </mrow>
+                  <mrow>
+                    <mi>n - 1</mi>
+                  </mrow>
+                </mfrac>
+                <mo>&Sigma;</mo>
+                <mo>(</mo>
+                <msub>
+                  <mi>x</mi>
+                  <mn>i</mn>
+                </msub>
+                <mo>&nbsp; - &nbsp;</mo>
+                <mi>x&#772;</mi>
+                <mo>)</mo>
+                <msup>
+                  <mi></mi>
+                  <mn>2</mn>
+                </msup>
+              </msqrt>
+            </math>
+          </h6>
+        </li>
+        <li>
+          <a target="_blank" href="https://towardsdatascience.com/inferential-statistics-series-t-test-using-numpy-2718f8f9bf2f">
+            <h5>t-Statistic</h5>
+          </a>
+          <p class="note">Way of testing probability getting as large of mean with correct assumptions made to build our model of strategy returns</p>
+          <h6>
+            <math>
+              <mi>t</mi>
+              <mo>&nbsp; = &nbsp;</mo>
+              <mfrac>
+                <mrow>
+                  <mi>x&#772;</mi>
+                </mrow>
+                <mrow>
+                  <msub>
+                    <mi>SE</mi>
+                    <mn>x&#772;</mn>
+                  </msub>
+                </mrow>
+              </mfrac>
+            </math>
+          </h6>
+        </li>
+        <li>
+          <h5>Standard Error of the Mean</h5>
+          <h6>
+            <math>
+              <msub>
+                <mi>s</mi>
+                <mn>x&#772;</mn>
+              </msub>
+              <mo>&nbsp; = &nbsp;</mo>
+              <mfrac>
+                <mrow>
+                  <mi>s</mi>
+                </mrow>
+                <mrow>
+                  <msqrt>
+                    <mi>n</mi>
+                  </msqrt>
+                </mrow>
+              </mfrac>
+            </math>
+          </h6>
+        </li>
+      </ul>
+      <li>
+        <h5>Regression</h5>
+        <ul>
+          <li>
+            <h5>Probability Density Function (PDF)</h5>
+            <p class="note">An equation that defines a probability distribution; for every number from negative infinity to positive infinity, the PDF gives a probability that this number will be generated</p>
+            <h6>
+              <math>
+                <mi>X ~ D</mi>
+              </math>
+              <br /> &nbsp; &#8627; Random variable 'X' follows a probability distribution 'D'
+              <br />
+              <math>
+                <mi>P(x|D) = p(x)</mi>
+              </math>
+            </h6>
+          </li>
+          <li>
+            <h5>Standard Normal Distribution (X ~ N)</h5>
+            <h6>
+              <math>
+                <mi>f</mi>
+                <mo stretchy=False>(</mo>
+                <mi>x</mi>
+                <mo stretchy=False>|</mo>
+                <mi>&mu;,&nbsp;</mi>
+                <msup>
+                  <mi>&sigma;</mi>
+                  <mn>2</mn>
+                </msup>
+                <mo stretchy=False>)</mo>
+                <mo>&nbsp; = &nbsp;</mo>
+                <mfrac>
+                  <mrow>
+                    <mn>1</mn>
+                  </mrow>
+                  <mrow>
+                    <msqrt>
+                      <mn>2</mn>
+                      <mi>&pi;</mi>
+                    </msqrt>
+                  </mrow>
+                </mfrac>
+                <msup>
+                  <mi>e</mi>
+                  <mfrac>
+                    <mrow>
+                      <mo>-</mo>
+                      <msup>
+                        <mi>(x - &mu;)</mi>
+                        <mn>2</mn>
+                      </msup>
+                    </mrow>
+                    <mrow>
+                      <msup>
+                        <mn>2&sigma;</mn>
+                        <mn>2</mn>
+                      </msup>
+                    </mrow>
+                  </mfrac>
+                </msup>
+              </math>
+            </h6>
+          </li>
+          <li>
+            <h5>Box-Cox Transformation</h5>
+            <p class="note">Way to make our data normally distributed & homoscedastic (same
+              over time); a monotonic transformation that changes the value of the
+              dataset, but preserves their relative order</p>
+            <h6>
+              <math>
+                <mi>T</mi>
+                <mo stretchy=False>(</mo>
+                <mi>x</mi>
+                <mo stretchy=False>)</mo>
+                <mo>&#61;</mo>
+                <mfrac>
+                  <mrow>
+                    <mo>(</mo>
+                    <msup>
+                      <mi>x</mi>
+                      <mn>&lambda;</mn>
+                    </msup>
+                    <mo>&#8722;</mo>
+                    <mn>1</mn>
+                    <mo>)</mo>
+                  </mrow>
+                  <mrow>
+                    <mi>&lambda;</mi>
+                  </mrow>
+                </mfrac>
+              </math>
+            </h6>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+
+  <br /><br />
+  <div id="Macro_Economics">
+    <h3>Macroeconomics</h3>
+    <p class="note">"The branch of economics that deals with the structure, performance,
+      behavior, and decision-making of the whole, or aggregate, economy. The two
+      main areas of macroeconomic research are long-term economic growth and
+      shorter-term business cycles." <a target="_blank" href="https://www.investopedia.com/terms/m/macroeconomics.asp#:~:text=Macroeconomics%20is%20the%20branch%20of,and%20shorter%2Dterm%20business%20cycles.">Investopedia</a></p>
+    <h4>Inequality</h4>
+    <ul>
+      <li>
+        <h5>Gini Coefficient</h5>
+        <p class="note">"A single number that demonstrates a degree of inequality in a
+          distribution of income/wealth." <a target="_blank" href="https://en.wikipedia.org/wiki/Gini_coefficient">Wikipedia</a></p>
+        <h6>
+          <math>
+            <mi mathvariant=italic>Gini</mi>
+            <mo>&nbsp; = &nbsp;</mo>
+            <mfrac>
+              <mrow>
+                <mi>A</mi>
+              </mrow>
+              <mrow>
+                <mo>(</mo>
+                <mi>A</mi>
+                <mo>&nbsp; - &nbsp;</mo>
+                <mi>B</mi>
+                <mo>)</mo>
+              </mrow>
+            </mfrac>
+          </math>
+          <br />&nbsp; &#8627; where:
+          <br />&nbsp;&nbsp; <i>A</i> = area above the curve
+          <br />&nbsp;&nbsp; <i>B</i> = area below the curve
+        </h6>
+      </li>
+      <li>
+        <h5>Kuznets Curve</h5>
+        <p class="note">"[E]xpresses a hypothesis advanced by economist Simon Kuznets in the
+          1950s & 1960s. According to this hypothesis, as an economy develops,
+          market forces first increase and then decrease economic inequality."
+          <a target="_blank" href="https://en.wikipedia.org/wiki/Kuznets_curve">Wikipedia</a></p>
+        <figure>
+          <img src="assets/img-kuznets-curve.jpg" alt="Kuznets Curve" style="width:259px;height:194px;">
+        </figure>
+      </li>
+    </ul>
+  </div>
+
+
+  <br /><br />
+  <div id="References">
+    <h3>Positively Brilliant References</h3>
+    <ul>
+      <li>
+        <p class="note">Koshy, T. &nbsp; (2003). &nbsp; <b><i><a target="_blank" href="https://www.amazon.com/Discrete-Mathematics-Applications-Thomas-Koshy/dp/0124211801">Discrete Mathematics & Its
+                Applications</a></i></b>. &nbsp; Academic Press.</p>
+      </li>
+      <li>
+        <p class="note">Massaron, L. &nbsp; (2016). &nbsp; <b><i><a target="_blank" href="https://www.amazon.com/Regression-Analysis-Python-Luca-Massaron/dp/1785286315">Regression Analysis with Python</a></i></b>.
+          &nbsp; Packt Publishing.</p>
+      </li>
+      <li>
+        <p class="note">Russell, S. & Norvig, P. &nbsp; (2021). &nbsp; <b><i><a target="_blank" href="https://www.amazon.com/Artificial-Intelligence-A-Modern-Approach-dp-0134610997/dp/0134610997/ref=dp_ob_title_bk">Artificial Intelligence: A Modern
+                Approach</a></i></b>. &nbsp; Pearson.</p>
+      </li>
+      <li>
+        <p class="note">Ryan, M. (2016). &nbsp; <b><i><a target="_blank"
+                href="https://www.amazon.com/Calculus-Dummies-Math-Science/dp/1119293499/ref=sr_1_1?crid=2HVLDCH8M01H3&dchild=1&keywords=calculus+for+dummies&qid=1624830758&s=books&sprefix=calculus+%2Cstripbooks%2C248&sr=1-1">Calculus for
+                Dummies</a></i></b>. &nbsp;
+          For Dummies.</p>
+      </li>
+      <li>
+        <p class="note">Schneider, M. (1994). &nbsp; <b><i><a target="_blank" href="https://www.amazon.com/Beginners-Guide-Constructing-Universe-Mathematical/dp/0060926716">A Beginner's Guide to Constructing the
+                Universe: The Mathematical Archetypes of Nature, Art, & Science</a></i></b>.
+          &nbsp; HarperCollins Publishers.</p>
+      </li>
+    </ul>
+  </div>
+
+  <br /><br />
+  <div id="about">
+    <h3>About Ryan L Buchanan</h3>
+    <p class="para">
+      I am re-skilling as a Data Analyst & Machine Learning Engineer.&nbsp; I
+      am currently enrolled in a Masters in Data Analytics.&nbsp; I am also
+      acquiring certifications as an ML Engineer & Algorithmic Trader from Udacity.
+      &nbsp; I have an MBA & an MS in Instructional Design.
+      <br /><br />
+      I have a multi-displinary background including military intelligence,
+      psychology, linguistics, economics, virtual reality & educational technology.&nbsp; I have
+      worked abroad for ten years with military, universities & vocational schools.
+      &nbsp; I have working knowledge of Arabic, Chinese & French.&nbsp; I am very
+      mobile, able to relocate quickly, adapt easily to diverse working conditions
+      & have a current passport.
+      <br /><br />
+      I have a passion for mathematics, statistics & artificial intelligence.&nbsp;
+      I am enthusiastic, highly self-motivated & enjoy presenting informative data
+      to decision makers.&nbsp; I am eager to work with dynamic teams to create
+      high quality products & services.
+    </p>
+  </div>
+
+<br /><br />

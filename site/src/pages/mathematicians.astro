@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+// Content preserved verbatim from the original mathematicians.html (see site/migrate.mjs)
+import body from '../content/mathematicians-body.html?raw';
+---
+<BaseLayout title="Mathematicians — Ryangineer" current="/mathematicians.html" description="Profiles of great mathematicians and their contributions.">
+  <SiteHeader slot="hero" />
+
+  <blockquote class="quote">
+    "Symbolic logic
+          has been disowned by many logicians on the plea that its interest is mathematical
+          & by many mathematicians on the plea that its interest it logical."
+    <cite>— Alfred North Whitehead</cite>
+  </blockquote>
+  <Fragment set:html={body} />
+</BaseLayout>
