@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+// LaTeX kept as strings so the { } and \ in the math aren't parsed as Astro expressions.
+const fx = '$f(x) = x^2$';
+const quadraticFormula = '$x = \\dfrac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$';
+
+// Curriculum content preserved verbatim from the original algebra.html,
+// organized as data so it renders consistently as cards.
+const topics = [
+  {
+    title: 'Solving Linear Equations',
+    items: [
+      'Solving one-step equations',
+      'Solving multi-step equations',
+      'Equations with variables on both sides',
+      'Word problems involving linear equations',
+    ],
+  },
+  {
+    title: 'Graphing Linear Equations',
+    items: [
+      'Understanding the coordinate plane',
+      'Graphing linear equations',
+      'Finding the slope of a line',
+      'Writing equations of lines',
+    ],
+  },
+  {
+    title: 'Systems of Equations',
+    items: [
+      'Solving systems of linear equations graphically',
+      'Solving systems of linear equations algebraically (substitution and elimination)',
+      'Applications of systems of equations',
+    ],
+  },
+  {
+    title: 'Exponents and Exponential Functions',
+    items: [
+      'Understanding exponents and their properties',
+      'Evaluating exponential expressions',
+      'Graphing exponential functions',
+      'Applications of exponential growth and decay',
+    ],
+  },
+  {
+    title: 'Polynomials',
+    items: [
+      'Classifying polynomials by degree and number of terms',
+      'Adding and subtracting polynomials',
+      'Multiplying polynomials',
+      'Factoring polynomials',
+      'Dividing polynomials',
+      'Roots and zeros of polynomials',
+    ],
+  },
+  {
+    title: 'Rational Expressions',
+    items: [
+      'Understanding rational expressions',
+      'Graphing rational functions',
+      'Solving rational equations',
+      'Applications of rational expressions',
+    ],
+  },
+  {
+    title: 'Radical Expressions',
+    items: [
+      'Understanding radicals and their properties',
+      'Simplifying radical expressions',
+      'Adding, subtracting, and multiplying radicals',
+      'Dividing radicals',
+      'Radical equations',
+      'Applications involving radicals',
+    ],
+  },
+  {
+    title: 'Quadratic Equations',
+    items: [
+      'Finding roots of quadratic equations',
+      'Factoring quadratic equations',
+      'Completing the square',
+      'Using the quadratic formula',
+      'Graphing quadratic functions',
+      'Applications of quadratic equations',
+    ],
+  },
+  {
+    title: 'Inequalities',
+    items: [
+      'Solving and graphing linear inequalities',
+      'Solving and graphing compound inequalities',
+      'Absolute value equations and inequalities',
+      'Quadratic inequalities',
+      'Systems of inequalities',
+      'Applications of inequalities',
+    ],
+  },
+  {
+    title: 'Sequences and Series',
+    items: [
+      'Arithmetic sequences and series',
+      'Geometric sequences and series',
+      'Recursive sequences',
+      'Summation notation',
+      'Infinite geometric series',
+      'Applications involving sequences and series',
+    ],
+  },
+  {
+    title: 'Logarithmic Functions',
+    items: [
+      'Understanding logarithms and exponents',
+      'Properties of logarithms',
+      'Common logarithms and natural logarithms',
+      'Solving exponential equations using logarithms',
+      'Graphing logarithmic functions',
+      'Applications of logarithms',
+    ],
+  },
+  {
+    title: 'Conic Sections',
+    items: [
+      'Classifying conic sections (parabolas, circles, ellipses, and hyperbolas)',
+      'Graphing conic sections',
+      'Conic sections in polar coordinates',
+      'Applications involving conic sections',
+    ],
+  },
+  {
+    title: 'Introduction to Matrices',
+    items: [
+      'Understanding matrices and their components',
+      'Matrix operations (addition, subtraction, scalar multiplication)',
+      'Multiplication of matrices',
+      'Identity and inverse matrices',
+      'Applications of matrices',
+    ],
+  },
+];
+---
+<BaseLayout title="Algebra — Ryangineer" current="/algebra.html"
+  description="An algebra curriculum outline covering functions, linear and quadratic equations, polynomials, logarithms, conic sections, and matrices.">
+  <SiteHeader slot="hero" />
+
+  <blockquote class="quote">
+    "In mathematics, you don't understand things; you just get used to them."
+    <cite>— John von Neumann</cite>
+  </blockquote>
+
+  <h3>Algebra Curriculum Outline</h3>
+
+  <section class="topic-card span-2">
+    <h4>Introduction to Algebra</h4>
+    <ul>
+      <li>Introduction to variables and constants</li>
+      <li>Simplifying algebraic expressions</li>
+      <li>Evaluating expressions</li>
+    </ul>
+    <p>Real example of a function rendered with LaTeX: {fx}, with the quadratic formula {quadraticFormula}.</p>
+    <div style="display:grid; gap:1.25rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+      <figure>
+        <img width="560" height="314" loading="lazy"
+          src="https://math.libretexts.org/@api/deki/files/15635/WeChatb43dd4e38a82ef3fd240460e60048412.png?revision=1"
+          alt="A function f(x) = x^2 graphed on a Cartesian plane" />
+        <figcaption>
+          A diagram showing a function, such as f(x) = x², graphed on a Cartesian plane.<br />
+          <a target="_blank" rel="noopener noreferrer"
+            href="https://math.libretexts.org/Bookshelves/Algebra/Intermediate_Algebra_%28Arnold%29/02%3A_Functions/2.02%3A_The_Graph_of_a_Function">Mathematics
+            LibreTexts</a>
+        </figcaption>
+      </figure>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/REHdL9K5hOY" title="How to classify functions (KristaKingMath)"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <div class="curriculum">
+    {topics.map((topic) => (
+      <section class="topic-card">
+        <h4>{topic.title}</h4>
+        <ul>
+          {topic.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </section>
+    ))}
+  </div>
+</BaseLayout>

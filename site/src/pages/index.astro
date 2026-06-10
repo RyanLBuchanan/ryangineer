@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import '../styles/legacy.css';
+
+// The full mathematics content (ML algorithms, linear algebra, statistics,
+// calculus, discrete math, number theory, etc.) is preserved verbatim from
+// the original index.html. It is imported as raw HTML so NOT ONE character of
+// the mathematics is lost in the redesign — only the page shell, navigation,
+// <head>, and styling are modernized around it.
+import mathBody from '../content/index-body.html?raw';
+---
+<BaseLayout
+  title="Ryangineer — Machine Learning Mathematics"
+  current="/"
+  description="Ryan L. Buchanan's machine learning mathematics: algorithms, linear algebra, statistics, calculus, discrete math, and number theory.">
+  <SiteHeader slot="hero" />
+
+  <blockquote class="quote">
+    "Mathematics requires a small dose, not of genius, but of an imaginative freedom which, in a larger dose, would be insanity."
+    <cite>— Angus K. Rodgers</cite>
+  </blockquote>
+
+  <Fragment set:html={mathBody} />
+</BaseLayout>

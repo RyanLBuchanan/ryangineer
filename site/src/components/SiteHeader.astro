@@ -1,0 +1,27 @@
+---
+// Shared page hero: portrait + title + Pythagoras illustration.
+// `showPythagoras` lets math pages keep the illustration; others can hide it.
+const { showPythagoras = true } = Astro.props;
+---
+<header class="site-hero">
+  <div class="container hero-grid">
+    <figure class="hero-portrait">
+      <img src="/assets/bio_image.png" alt="Ryan L. Buchanan" width="150" height="150" />
+      <figcaption>
+        <a href="mailto:buchananryan22@gmail.com">buchananryan22@gmail.com</a><br />
+        <a href="https://goo.gl/maps/UnhTaBZieDZU5F5w6" target="_blank" rel="noopener noreferrer">Ogden, Utah, USA</a>
+      </figcaption>
+    </figure>
+
+    <div class="hero-title">
+      <h1><span class="brand">Ryangineer</span></h1>
+      <p class="subtitle">Machine Learning Mathematics &amp; Virtual Reality Aesthetics</p>
+    </div>
+
+    {showPythagoras ? (
+      <div class="hero-pythagoras">
+        <img src="/assets/pythagoras.png" alt="Pythagorean theorem illustration" width="150" />
+      </div>
+    ) : <div></div>}
+  </div>
+</header>
