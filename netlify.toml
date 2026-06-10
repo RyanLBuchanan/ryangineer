@@ -1,0 +1,10 @@
+# Netlify build config for the modernized Astro site.
+# Builds site/ and publishes site/dist, with postbuild.mjs carrying over the
+# not-yet-migrated root content (sub-projects, PDFs, notebook exports) so all
+# existing URLs keep working.
+[build]
+  command = "cd site && npm ci && npm run build && node postbuild.mjs"
+  publish = "site/dist"
+
+[build.environment]
+  NODE_VERSION = "22"
