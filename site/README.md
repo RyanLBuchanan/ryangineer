@@ -39,14 +39,22 @@ npm run build    # outputs static HTML to ./dist
 npm run preview  # preview the production build
 ```
 
-## Migration status (proof-of-concept)
+## Migration status
 
 Done:
 - `index.html` — full mathematics page, content preserved, modern shell.
 - `algebra.html` — rebuilt as cards with **real LaTeX** (the target pattern for
   converting the legacy CSS notation hacks on other pages).
+- Migrated via `migrate.mjs` (content preserved verbatim, hero/nav/footer
+  boilerplate replaced by the shared shell): `precalculus`, `mathematicians`,
+  `machine_learning`, `data_science`, `ai_finance`, `about`, `dtech`, `otech`,
+  `virtual_reality`, `wsu`, `data_dashboard`.
+- `ckk_store.html` and `QuickStartFinance.html` are standalone Materialize apps,
+  shipped verbatim via `public/`.
+- `public/assets`, `public/scripts`, `public/stylesheets` are symlinks to the
+  repo root, so no binaries are duplicated in git.
 
-Remaining pages to migrate the same way (`precalculus`, `mathematicians`,
-`machine_learning`, `data_science`, `about`, etc.). The large notebook-export
-pages (`exploratory_data_analysis.html`, `data_cleaning.html`,
-`predictive_modeling.html`) should be linked or embedded with isolated styling.
+Remaining: the large notebook-export pages (`exploratory_data_analysis.html`,
+`data_cleaning.html`, `predictive_modeling.html`) should be linked or embedded
+with isolated styling, and the sub-projects (`aitaProject`, `KittyHub`,
+`javajam`, `kittygpt`) continue to be deployed alongside the build output.

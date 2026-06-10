@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+// Content preserved verbatim from the original ai_finance.html (see site/migrate.mjs)
+import body from '../content/ai_finance-body.html?raw';
+---
+<BaseLayout title="AI Finance — Ryangineer" current="/ai_finance.html" description="Artificial intelligence in finance: notes and resources.">
+  <SiteHeader slot="hero" />
+
+  <blockquote class="quote">
+    "Young man,
+          in mathematics you don't understand things. You just get used to them."
+    <cite>— John Von Neumann</cite>
+  </blockquote>
+  <Fragment set:html={body} />
+</BaseLayout>

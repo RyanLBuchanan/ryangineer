@@ -5,6 +5,7 @@
 
 export const navLinks = [
   { label: 'Home', href: '/' },
+  { label: 'AITA', href: '/aitaProject/public/index.html' },
   { label: 'Algebra', href: '/algebra.html' },
   { label: 'Precalculus', href: '/precalculus.html' },
   { label: 'Mathematicians', href: '/mathematicians.html' },
@@ -18,6 +19,8 @@ export const navLinks = [
   { label: 'OTech', href: '/otech.html' },
   { label: 'Quick Start Finance', href: '/QuickStartFinance.html' },
   { label: 'VR Dev Kids', href: '/virtual_reality.html' },
+  { label: 'WSU', href: '/wsu.html' },
+  { label: 'Data Dashboard', href: '/data_dashboard.html' },
   {
     label: 'Executive Dashboard',
     href: 'https://public.tableau.com/views/RepresentationandReporting-NAM2-D210-Part1-InteractiveDataDashboard/ExecutiveDashboard?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link',

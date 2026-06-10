@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+// Content preserved verbatim from the original about.html (see site/migrate.mjs)
+import body from '../content/about-body.html?raw';
+---
+<BaseLayout title="About — Ryangineer" current="/about.html" description="About Ryan L. Buchanan — data analyst, ML engineer, and educator.">
+  <SiteHeader slot="hero" />
+
+  <Fragment set:html={body} />
+</BaseLayout>
