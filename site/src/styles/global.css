@@ -107,7 +107,6 @@ p { color: var(--text); }
   font-weight: 500;
   letter-spacing: .01em;
 }
-.hero-portrait img,
 .hero-pythagoras img {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -115,12 +114,17 @@ p { color: var(--text); }
   height: auto;
   display: block;
 }
-.hero-portrait figcaption {
-  text-align: center;
-  font-size: .8rem;
-  margin-top: .5rem;
+/* Portrait is a circular avatar, cropped to the face */
+.hero-portrait { margin: 0; }
+.hero-portrait img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 20%;
+  box-shadow: var(--shadow);
+  display: block;
 }
-.hero-portrait figcaption a { color: var(--heading); font-weight: 600; }
 
 @media (max-width: 760px) {
   .hero-grid { grid-template-columns: 1fr; justify-items: center; }
