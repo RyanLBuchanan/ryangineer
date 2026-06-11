@@ -10,7 +10,7 @@ const ext = (link) => (link.external ? { target: '_blank', rel: 'noopener norefe
 <nav class="site-nav" aria-label="Primary">
   <div class="container nav-inner">
     <a class="nav-brand" href="/">Ryangineer</a>
-    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation">☰</button>
+
     <ul class="nav-links" id="nav-links">
       {navLinks.map((link) => (
         link.children ? (
@@ -42,54 +42,90 @@ const ext = (link) => (link.external ? { target: '_blank', rel: 'noopener norefe
         )
       ))}
     </ul>
+
     <div class="nav-actions">
       <a class="nav-cta" href={navCta.href} {...ext(navCta)}>{navCta.label}</a>
       <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌗</button>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span class="nav-toggle-box"><span class="nav-toggle-inner"></span></span>
+      </button>
     </div>
   </div>
 </nav>
+<div class="nav-backdrop" hidden></div>
 
 <script is:inline>
-  // Mobile hamburger toggle
-  const toggle = document.querySelector('.nav-toggle');
-  const links = document.getElementById('nav-links');
-  toggle?.addEventListener('click', () => {
-    const open = links.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', String(open));
-  });
+  (function () {
+    const root = document.documentElement;
+    const body = document.body;
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.getElementById('nav-links');
+    const backdrop = document.querySelector('.nav-backdrop');
+    const triggers = Array.from(document.querySelectorAll('.dropdown-trigger'));
 
-  // Dropdown triggers: click to toggle (works on touch + desktop click;
-  // desktop also opens on hover via CSS). Closing one closes the others.
-  const triggers = Array.from(document.querySelectorAll('.dropdown-trigger'));
-  triggers.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const li = btn.parentElement;
-      const willOpen = !li.classList.contains('open');
+    const closeAllDropdowns = () => {
       triggers.forEach((b) => {
         b.parentElement.classList.remove('open');
         b.setAttribute('aria-expanded', 'false');
       });
-      if (willOpen) {
-        li.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
-  // Click outside closes any open dropdown
-  document.addEventListener('click', () => {
-    triggers.forEach((b) => {
-      b.parentElement.classList.remove('open');
-      b.setAttribute('aria-expanded', 'false');
-    });
-  });
+    };
 
-  // Theme toggle (persists in localStorage)
-  const themeBtn = document.querySelector('.theme-toggle');
-  themeBtn?.addEventListener('click', () => {
-    const root = document.documentElement;
-    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('theme', next); } catch (e) {}
-  });
+    const setMenu = (open) => {
+      links.classList.toggle('open', open);
+      backdrop.toggleAttribute('hidden', !open);
+      toggle.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      body.classList.toggle('nav-open', open);
+      if (!open) closeAllDropdowns();
+    };
+
+    toggle?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setMenu(!links.classList.contains('open'));
+    });
+
+    backdrop?.addEventListener('click', () => setMenu(false));
+
+    // Close the drawer when a real navigation link is tapped.
+    links?.querySelectorAll('a[href]').forEach((a) => {
+      a.addEventListener('click', () => setMenu(false));
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && links.classList.contains('open')) setMenu(false);
+    });
+
+    // Re-entering the desktop layout should reset any mobile state.
+    const mq = window.matchMedia('(min-width: 901px)');
+    const onChange = () => { if (mq.matches) setMenu(false); };
+    mq.addEventListener ? mq.addEventListener('change', onChange) : mq.addListener(onChange);
+
+    // Dropdown / accordion triggers. Click toggles a single open group and
+    // closes the others (desktop also opens on hover via CSS).
+    triggers.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const li = btn.parentElement;
+        const willOpen = !li.classList.contains('open');
+        closeAllDropdowns();
+        if (willOpen) {
+          li.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Click outside the nav closes any open dropdown (desktop affordance).
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.has-dropdown')) closeAllDropdowns();
+    });
+
+    // Theme toggle (persists in localStorage)
+    document.querySelector('.theme-toggle')?.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
 </script>
