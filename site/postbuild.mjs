@@ -28,7 +28,7 @@ const files = [
   'template.html',
 ];
 
-const dirs = ['aitaProject', 'KittyHub', 'javajam', 'kittygpt'];
+const dirs = ['aitaProject', 'KittyHub', 'javajam', 'kittygpt', 'tools'];
 
 for (const f of files) {
   const src = join(root, f);
