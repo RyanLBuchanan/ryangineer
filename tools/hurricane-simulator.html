@@ -191,6 +191,32 @@
     transition: opacity 0.1s;
   }
 
+  #back-link {
+    position: absolute;
+    bottom: 18px;
+    right: 18px;
+    z-index: 10;
+    pointer-events: all;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    padding: 7px 14px;
+    border: 1px solid #a08060;
+    border-radius: 4px;
+    background: rgba(10,14,26,0.7);
+    color: #e8dcc8;
+    text-decoration: none;
+    transition: all 0.2s;
+    backdrop-filter: blur(4px);
+  }
+
+  #back-link:hover {
+    background: rgba(255,100,50,0.2);
+    border-color: #ff6633;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255,100,50,0.4);
+  }
+
   @media (max-width: 600px) {
     #ui { padding: 12px; }
     #controls { max-width: 100%; }
@@ -201,6 +227,7 @@
 
 <canvas id="canvas"></canvas>
 <div id="impact-flash"></div>
+<a id="back-link" href="/">← RYANGINEER</a>
 
 <div id="ui">
   <div id="header">
