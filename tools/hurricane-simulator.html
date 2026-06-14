@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hurricane Simulator — Gulf Coast</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0e1a;
+    color: #e8dcc8;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  #canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+
+  #ui {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  #header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  #title-block h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 5vw, 52px);
+    color: #e8dcc8;
+    letter-spacing: 3px;
+    line-height: 1;
+    text-shadow: 0 0 40px rgba(255,120,50,0.6);
+  }
+
+  #title-block p {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #a08060;
+    margin-top: 4px;
+  }
+
+  #storm-data {
+    text-align: right;
+  }
+
+  .data-row {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(14px, 2.5vw, 22px);
+    letter-spacing: 2px;
+    color: #e8dcc8;
+  }
+
+  .data-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #a08060;
+  }
+
+  #category-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 10vw, 96px);
+    line-height: 1;
+    color: #ff4422;
+    text-shadow: 0 0 60px rgba(255,68,34,0.8);
+    transition: color 0.5s, text-shadow 0.5s;
+  }
+
+  #controls {
+    pointer-events: all;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 340px;
+  }
+
+  .control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .control-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #a08060;
+  }
+
+  input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 3px;
+    background: #2a2e3a;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ff6633;
+    box-shadow: 0 0 10px rgba(255,100,50,0.8);
+    cursor: pointer;
+  }
+
+  #btn-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  button {
+    pointer-events: all;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    padding: 8px 18px;
+    border: 1px solid #a08060;
+    background: rgba(10,14,26,0.7);
+    color: #e8dcc8;
+    cursor: pointer;
+    transition: all 0.2s;
+    backdrop-filter: blur(4px);
+  }
+
+  button:hover {
+    background: rgba(255,100,50,0.2);
+    border-color: #ff6633;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255,100,50,0.4);
+  }
+
+  button.active {
+    background: rgba(255,100,50,0.3);
+    border-color: #ff4422;
+    color: #fff;
+  }
+
+  #storm-name-display {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(16px, 3vw, 28px);
+    letter-spacing: 4px;
+    color: #ff9966;
+    text-shadow: 0 0 20px rgba(255,120,50,0.5);
+    margin-bottom: 2px;
+  }
+
+  #coastline-label {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(168, 128, 96, 0.5);
+    text-align: center;
+    pointer-events: none;
+  }
+
+  #impact-flash {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s;
+  }
+
+  @media (max-width: 600px) {
+    #ui { padding: 12px; }
+    #controls { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+<div id="impact-flash"></div>
+
+<div id="ui">
+  <div id="header">
+    <div id="title-block">
+      <h1>HURRICANE<br>SIMULATOR</h1>
+      <p>Gulf Coast · Orange Beach, AL</p>
+      <div id="storm-name-display">HURRICANE SALLY</div>
+    </div>
+    <div id="storm-data">
+      <div id="category-badge">CAT 2</div>
+      <div class="data-row" id="wind-display">105 MPH</div>
+      <div class="data-label">MAX SUSTAINED WINDS</div>
+      <br>
+      <div class="data-row" id="surge-display">8 FT</div>
+      <div class="data-label">STORM SURGE</div>
+      <br>
+      <div class="data-row" id="pressure-display">965 MB</div>
+      <div class="data-label">PRESSURE</div>
+    </div>
+  </div>
+
+  <div id="coastline-label">ORANGE BEACH · GULF SHORES · GULF OF MEXICO</div>
+
+  <div id="controls">
+    <div class="control-group">
+      <div class="control-label">Storm Intensity</div>
+      <input type="range" id="intensity" min="1" max="5" value="2" step="1">
+    </div>
+    <div class="control-group">
+      <div class="control-label">Wind Field Size</div>
+      <input type="range" id="size" min="0.4" max="1.6" value="1" step="0.1">
+    </div>
+    <div id="btn-row">
+      <button id="btn-sally" class="active">SALLY '20</button>
+      <button id="btn-ivan">IVAN '04</button>
+      <button id="btn-katrina">KATRINA '05</button>
+      <button id="btn-custom">CUSTOM</button>
+      <button id="btn-landfall">⚡ MAKE LANDFALL</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const flash = document.getElementById('impact-flash');
+
+let W, H;
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// Storm configs
+const STORMS = {
+  sally:   { name: 'HURRICANE SALLY',  cat: 2, wind: 105, surge: 8,  pressure: 965, intensity: 2, color: '#ff9944' },
+  ivan:    { name: 'HURRICANE IVAN',   cat: 3, wind: 120, surge: 14, pressure: 946, intensity: 3, color: '#ff5522' },
+  katrina: { name: 'HURRICANE KATRINA',cat: 3, wind: 125, surge: 28, pressure: 918, intensity: 4, color: '#ff2200' },
+  custom:  { name: 'CUSTOM STORM',     cat: 1, wind: 74,  surge: 4,  pressure: 980, intensity: 1, color: '#ffcc44' }
+};
+
+let currentStorm = {...STORMS.sally};
+let intensityVal = 2;
+let sizeVal = 1.0;
+
+// Eye position — starts in Gulf, moves toward coast
+let eyeX, eyeY;
+let making_landfall = false;
+let landfall_progress = 0;
+let post_landfall = false;
+let landfall_timer = 0;
+
+function resetEye() {
+  eyeX = W * 0.5;
+  eyeY = H * 0.75;
+  making_landfall = false;
+  landfall_progress = 0;
+  post_landfall = false;
+  landfall_timer = 0;
+}
+resetEye();
+
+// Particles for spiral bands
+let particles = [];
+const NUM_PARTICLES = 380;
+
+function initParticles() {
+  particles = [];
+  for (let i = 0; i < NUM_PARTICLES; i++) {
+    let angle = Math.random() * Math.PI * 2;
+    let band = Math.floor(Math.random() * 3); // 0=inner,1=mid,2=outer
+    let baseRadius = (band === 0 ? 0.08 : band === 1 ? 0.18 : 0.32) * Math.min(W, H) * sizeVal;
+    let r = baseRadius + (Math.random() - 0.5) * baseRadius * 0.5;
+    particles.push({
+      angle,
+      r,
+      band,
+      speed: (band === 0 ? 0.022 : band === 1 ? 0.015 : 0.009) * (intensityVal / 2.5),
+      drift: 0.2 + Math.random() * 0.8,
+      opacity: 0.15 + Math.random() * 0.55,
+      size: 1 + Math.random() * (band === 0 ? 2.5 : band === 1 ? 1.8 : 1.2),
+      color: band === 0 ? '#aaddff' : band === 1 ? '#88aacc' : '#556688',
+      wobble: Math.random() * Math.PI * 2,
+      wobbleSpeed: 0.01 + Math.random() * 0.02
+    });
+  }
+}
+initParticles();
+
+// Rain streaks
+let rainDrops = [];
+function initRain() {
+  rainDrops = [];
+  for (let i = 0; i < 200; i++) {
+    rainDrops.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      len: 8 + Math.random() * 20,
+      speed: 6 + Math.random() * 10,
+      opacity: 0.05 + Math.random() * 0.2
+    });
+  }
+}
+initRain();
+
+function catFromIntensity(i) {
+  return [1,2,3,4,5][Math.min(i-1,4)];
+}
+function windFromIntensity(i) {
+  return [74,105,120,145,175][Math.min(i-1,4)];
+}
+function surgeFromIntensity(i) {
+  return [4,8,14,20,28][Math.min(i-1,4)];
+}
+function pressureFromIntensity(i) {
+  return [980,965,946,920,895][Math.min(i-1,4)];
+}
+function colorFromIntensity(i) {
+  return ['#ffcc44','#ff9944','#ff5522','#ff2200','#cc00ff'][Math.min(i-1,4)];
+}
+
+function updateDisplay() {
+  const cat = catFromIntensity(intensityVal);
+  document.getElementById('category-badge').textContent = `CAT ${cat}`;
+  document.getElementById('wind-display').textContent = `${currentStorm.wind} MPH`;
+  document.getElementById('surge-display').textContent = `${currentStorm.surge} FT`;
+  document.getElementById('pressure-display').textContent = `${currentStorm.pressure} MB`;
+  document.getElementById('storm-name-display').textContent = currentStorm.name;
+
+  const badge = document.getElementById('category-badge');
+  const colors = ['#ffcc44','#ff9944','#ff5522','#ff2200','#cc00ff'];
+  const shadows = ['rgba(255,200,50,0.8)','rgba(255,120,50,0.8)','rgba(255,80,30,0.8)','rgba(255,20,0,0.8)','rgba(180,0,255,0.8)'];
+  badge.style.color = colors[Math.min(cat-1,4)];
+  badge.style.textShadow = `0 0 60px ${shadows[Math.min(cat-1,4)]}`;
+}
+
+// Draw ocean/land
+function drawBackground() {
+  // Deep ocean gradient
+  let oceanGrad = ctx.createLinearGradient(0, 0, 0, H);
+  oceanGrad.addColorStop(0, '#0a0e1a');
+  oceanGrad.addColorStop(0.65, '#0d1a2a');
+  oceanGrad.addColorStop(0.8, '#0a1520');
+  oceanGrad.addColorStop(1, '#0a0e1a');
+  ctx.fillStyle = oceanGrad;
+  ctx.fillRect(0, 0, W, H);
+
+  // Coastline — sandy strip at bottom ~20% of screen
+  const coastY = H * 0.80;
+  let landGrad = ctx.createLinearGradient(0, coastY, 0, H);
+  landGrad.addColorStop(0, '#c8a86a');
+  landGrad.addColorStop(0.15, '#b89850');
+  landGrad.addColorStop(0.4, '#8a7040');
+  landGrad.addColorStop(1, '#5a4a28');
+  ctx.fillStyle = landGrad;
+  ctx.beginPath();
+  ctx.moveTo(0, coastY + 10);
+  // Slightly wavy coastline
+  for (let x = 0; x <= W; x += 20) {
+    let wave = Math.sin(x * 0.02 + Date.now() * 0.0005) * 4;
+    if (x === 0) ctx.moveTo(x, coastY + wave);
+    else ctx.lineTo(x, coastY + wave);
+  }
+  ctx.lineTo(W, H);
+  ctx.lineTo(0, H);
+  ctx.closePath();
+  ctx.fill();
+
+  // Beach waterline shimmer
+  ctx.strokeStyle = 'rgba(150,200,255,0.15)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let x = 0; x <= W; x += 20) {
+    let wave = Math.sin(x * 0.02 + Date.now() * 0.0005) * 4;
+    if (x === 0) ctx.moveTo(x, coastY + wave);
+    else ctx.lineTo(x, coastY + wave);
+  }
+  ctx.stroke();
+}
+
+// Draw storm surge flood
+function drawSurge() {
+  if (!post_landfall && landfall_progress < 0.5) return;
+  let alpha = post_landfall ? Math.min(landfall_timer / 60, 0.7) : (landfall_progress - 0.5) * 2 * 0.5;
+  let surgeHeight = (currentStorm.surge / 30) * H * 0.25 * alpha;
+  let coastY = H * 0.80;
+
+  let surgeGrad = ctx.createLinearGradient(0, coastY - surgeHeight, 0, coastY);
+  surgeGrad.addColorStop(0, `rgba(30,80,180,0)`);
+  surgeGrad.addColorStop(0.5, `rgba(20,60,160,${alpha * 0.6})`);
+  surgeGrad.addColorStop(1, `rgba(10,40,140,${alpha * 0.8})`);
+  ctx.fillStyle = surgeGrad;
+  ctx.fillRect(0, coastY - surgeHeight, W, surgeHeight + 20);
+
+  // Surge foam line
+  ctx.strokeStyle = `rgba(180,220,255,${alpha * 0.4})`;
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  for (let x = 0; x <= W; x += 15) {
+    let wave = Math.sin(x * 0.03 + Date.now() * 0.003) * 6;
+    if (x === 0) ctx.moveTo(x, coastY - surgeHeight + wave);
+    else ctx.lineTo(x, coastY - surgeHeight + wave);
+  }
+  ctx.stroke();
+}
+
+// Draw spiral rain bands
+function drawBands() {
+  const stormColor = colorFromIntensity(intensityVal);
+  const eyeR = Math.min(W, H) * 0.05 * sizeVal;
+
+  particles.forEach(p => {
+    // Spiral outward motion
+    p.angle += p.speed;
+    p.wobble += p.wobbleSpeed;
+
+    let wobbleR = p.r + Math.sin(p.wobble) * p.r * 0.08;
+    let x = eyeX + Math.cos(p.angle) * wobbleR;
+    let y = eyeY + Math.sin(p.angle) * wobbleR * 0.85;
+
+    // Clip to canvas
+    if (x < -50 || x > W + 50 || y < -50 || y > H + 50) return;
+
+    ctx.save();
+    ctx.globalAlpha = p.opacity * (post_landfall ? Math.max(0.1, 1 - landfall_timer / 200) : 1);
+    ctx.fillStyle = p.color;
+    ctx.shadowBlur = 6;
+    ctx.shadowColor = stormColor;
+    ctx.beginPath();
+    ctx.arc(x, y, p.size, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  });
+}
+
+// Draw the eye wall and eye
+function drawEye() {
+  const stormColor = colorFromIntensity(intensityVal);
+  const eyeR = Math.min(W, H) * 0.055 * sizeVal;
+  const eyeWallR = eyeR * 1.6;
+
+  // Outer glow rings
+  for (let ring = 4; ring >= 1; ring--) {
+    let gradR = eyeWallR * (1 + ring * 0.5);
+    let grad = ctx.createRadialGradient(eyeX, eyeY, eyeWallR * 0.5, eyeX, eyeY, gradR);
+    grad.addColorStop(0, `${stormColor}22`);
+    grad.addColorStop(1, 'transparent');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(eyeX, eyeY, gradR, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Eye wall
+  let wallGrad = ctx.createRadialGradient(eyeX, eyeY, eyeR * 0.7, eyeX, eyeY, eyeWallR);
+  wallGrad.addColorStop(0, `${stormColor}cc`);
+  wallGrad.addColorStop(0.5, `${stormColor}88`);
+  wallGrad.addColorStop(1, `${stormColor}00`);
+  ctx.fillStyle = wallGrad;
+  ctx.beginPath();
+  ctx.arc(eyeX, eyeY, eyeWallR, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Eye (calm center)
+  let eyeGrad = ctx.createRadialGradient(eyeX, eyeY, 0, eyeX, eyeY, eyeR);
+  eyeGrad.addColorStop(0, '#1a2a1a');
+  eyeGrad.addColorStop(0.6, '#0d1a0d');
+  eyeGrad.addColorStop(1, '#051005');
+  ctx.fillStyle = eyeGrad;
+  ctx.beginPath();
+  ctx.arc(eyeX, eyeY, eyeR, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Eye highlight
+  ctx.fillStyle = 'rgba(100,160,100,0.15)';
+  ctx.beginPath();
+  ctx.arc(eyeX - eyeR * 0.2, eyeY - eyeR * 0.3, eyeR * 0.4, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+// Rain
+function drawRain() {
+  const angle = -0.3 + (intensityVal * 0.05);
+  rainDrops.forEach(drop => {
+    drop.y += drop.speed;
+    drop.x += Math.sin(angle) * drop.speed * 0.5;
+    if (drop.y > H) { drop.y = -20; drop.x = Math.random() * W; }
+    if (drop.x > W) drop.x = 0;
+    if (drop.x < 0) drop.x = W;
+
+    ctx.save();
+    ctx.globalAlpha = drop.opacity;
+    ctx.strokeStyle = '#aaccff';
+    ctx.lineWidth = 0.8;
+    ctx.beginPath();
+    ctx.moveTo(drop.x, drop.y);
+    ctx.lineTo(drop.x + Math.sin(angle) * drop.len, drop.y + drop.len);
+    ctx.stroke();
+    ctx.restore();
+  });
+}
+
+// Track line (dotted path from deep Gulf to coast)
+function drawTrack() {
+  if (making_landfall || post_landfall) return;
+  const coastY = H * 0.80;
+  ctx.save();
+  ctx.setLineDash([4, 8]);
+  ctx.strokeStyle = 'rgba(255,150,80,0.25)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(eyeX, eyeY);
+  ctx.lineTo(eyeX, coastY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.restore();
+}
+
+let frame = 0;
+function animate() {
+  requestAnimationFrame(animate);
+  frame++;
+
+  ctx.clearRect(0, 0, W, H);
+  drawBackground();
+  drawSurge();
+  drawRain();
+  drawBands();
+  drawEye();
+  drawTrack();
+
+  // Drift eye slowly in Gulf when idle
+  if (!making_landfall && !post_landfall) {
+    eyeX += Math.sin(frame * 0.008) * 0.3;
+    eyeY += Math.cos(frame * 0.005) * 0.15;
+  }
+
+  // Landfall animation
+  if (making_landfall) {
+    landfall_progress += 0.004;
+    const coastY = H * 0.80;
+    const targetY = H * 0.72;
+    eyeY = H * 0.75 + (targetY - H * 0.75) * landfall_progress;
+
+    if (landfall_progress >= 1) {
+      making_landfall = false;
+      post_landfall = true;
+      // Flash
+      flash.style.opacity = '0.85';
+      setTimeout(() => { flash.style.opacity = '0'; }, 120);
+    }
+  }
+
+  if (post_landfall) {
+    landfall_timer++;
+    // Storm weakens and moves inland slowly
+    eyeY -= 0.3;
+    if (landfall_timer % 2 === 0) {
+      eyeX += (Math.random() - 0.5) * 1.5;
+    }
+    // Slowly reduce particle speeds
+    if (landfall_timer % 30 === 0) {
+      particles.forEach(p => { p.speed *= 0.97; p.opacity *= 0.99; });
+    }
+  }
+}
+
+animate();
+
+// Controls
+document.getElementById('intensity').addEventListener('input', function() {
+  intensityVal = parseInt(this.value);
+  currentStorm.wind = windFromIntensity(intensityVal);
+  currentStorm.surge = surgeFromIntensity(intensityVal);
+  currentStorm.pressure = pressureFromIntensity(intensityVal);
+  updateDisplay();
+  initParticles();
+});
+
+document.getElementById('size').addEventListener('input', function() {
+  sizeVal = parseFloat(this.value);
+  initParticles();
+});
+
+function setStorm(key) {
+  const s = STORMS[key];
+  currentStorm = {...s};
+  intensityVal = s.intensity;
+  document.getElementById('intensity').value = intensityVal;
+  resetEye();
+  initParticles();
+  updateDisplay();
+  ['sally','ivan','katrina','custom'].forEach(k => {
+    document.getElementById('btn-' + k).classList.toggle('active', k === key);
+  });
+}
+
+document.getElementById('btn-sally').addEventListener('click', () => setStorm('sally'));
+document.getElementById('btn-ivan').addEventListener('click', () => setStorm('ivan'));
+document.getElementById('btn-katrina').addEventListener('click', () => setStorm('katrina'));
+document.getElementById('btn-custom').addEventListener('click', () => setStorm('custom'));
+
+document.getElementById('btn-landfall').addEventListener('click', function() {
+  if (post_landfall) {
+    resetEye();
+    initParticles();
+    this.textContent = '⚡ MAKE LANDFALL';
+  } else if (!making_landfall) {
+    making_landfall = true;
+    this.textContent = '🔄 RESET';
+  }
+});
+
+updateDisplay();
+</script>
+</body>
+</html>

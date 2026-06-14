@@ -49,6 +49,12 @@ export const navLinks = [
       { label: 'WSU', href: '/wsu.html' },
     ],
   },
+  {
+    label: 'Tools',
+    children: [
+      { label: 'Hurricane Simulator', href: '/tools/hurricane-simulator.html' },
+    ],
+  },
   { label: 'About', href: '/about.html' },
 ];
 
