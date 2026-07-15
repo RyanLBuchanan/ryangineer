@@ -1,0 +1,14 @@
+---
+const { title, description, href, tags = [], accent } = Astro.props;
+---
+<a class="feature-card" href={href}>
+  {accent && <span class="feature-card__index" aria-hidden="true">{accent}</span>}
+  <h3>{title}</h3>
+  <p>{description}</p>
+  {tags.length > 0 && (
+    <ul class="tag-list" aria-label={`${title} technologies`}>
+      {tags.map((tag) => <li>{tag}</li>)}
+    </ul>
+  )}
+  <span class="card-link">Explore <span aria-hidden="true">→</span></span>
+</a>

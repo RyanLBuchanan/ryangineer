@@ -1,24 +1,66 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SiteHeader from '../components/SiteHeader.astro';
+import HomeHero from '../components/HomeHero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import { featuredProjects, learningTracks } from '../data/highlights.js';
 
-// The full mathematics content (ML algorithms, linear algebra, statistics,
-// calculus, discrete math, number theory, etc.) is preserved verbatim from
-// the original index.html. It is imported as raw HTML so NOT ONE character of
-// the mathematics is lost in the redesign — only the page shell, navigation,
-// <head>, and styling are modernized around it.
 import mathBody from '../content/index-body.html?raw';
 ---
 <BaseLayout
-  title="Ryangineer — Machine Learning Mathematics"
+  title="Ryangineer — Software, Data & Machine Learning Mathematics"
   current="/"
-  description="Ryan L. Buchanan's machine learning mathematics: algorithms, linear algebra, statistics, calculus, discrete math, and number theory.">
-  <SiteHeader slot="hero" />
+  description="Ryan L. Buchanan's professional portfolio for software projects, data analytics, machine learning mathematics, and immersive learning technology.">
+  <HomeHero slot="hero" />
 
-  <blockquote class="quote">
-    "Mathematics requires a small dose, not of genius, but of an imaginative freedom which, in a larger dose, would be insanity."
-    <cite>— Angus K. Rodgers</cite>
-  </blockquote>
+  <section class="intro-band" aria-labelledby="site-intro-title">
+    <div>
+      <p class="eyebrow">Modernized knowledge portfolio</p>
+      <h2 id="site-intro-title">A streamlined front door for technical depth.</h2>
+    </div>
+    <p>
+      The original mathematics archive is still here, but the experience now starts with clearer pathways into Ryan's projects, learning tracks, and professional background.
+    </p>
+  </section>
 
-  <Fragment set:html={mathBody} />
+  <section class="page-section" aria-labelledby="featured-work-title">
+    <SectionHeader
+      id="featured-work-title"
+      eyebrow="Featured work"
+      title="Project pathways with practical outcomes"
+      description="A curated entry point into analytics, finance, machine learning, and standalone application work."
+    />
+    <div class="feature-grid">
+      {featuredProjects.map((project) => <FeatureCard {...project} />)}
+    </div>
+  </section>
+
+  <section class="page-section page-section--tinted" aria-labelledby="learning-title">
+    <SectionHeader
+      id="learning-title"
+      eyebrow="Explore the library"
+      title="Learning tracks for math, data, and immersive education"
+      description="The site can scale as a dynamic system by organizing deep content into reusable cards and guided sections."
+    />
+    <div class="feature-grid feature-grid--tracks">
+      {learningTracks.map((track) => <FeatureCard {...track} />)}
+    </div>
+  </section>
+
+  <section class="page-section math-preview" aria-labelledby="math-preview-title">
+    <SectionHeader
+      id="math-preview-title"
+      eyebrow="Original archive"
+      title="Machine learning mathematics notes"
+      description="The preserved long-form math content remains available below for continuity while the top of the site now offers a more professional landing experience."
+    />
+    <details class="archive-disclosure">
+      <summary>Open the full mathematics archive</summary>
+      <blockquote class="quote">
+        "Mathematics requires a small dose, not of genius, but of an imaginative freedom which, in a larger dose, would be insanity."
+        <cite>— Angus K. Rodgers</cite>
+      </blockquote>
+      <Fragment set:html={mathBody} />
+    </details>
+  </section>
 </BaseLayout>

@@ -1,0 +1,8 @@
+---
+const { eyebrow, title, description, align = 'left', id } = Astro.props;
+---
+<header class={`section-header section-header--${align}`}>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <h2 id={id}>{title}</h2>
+  {description && <p class="section-description">{description}</p>}
+</header>
