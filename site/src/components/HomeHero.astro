@@ -1,0 +1,36 @@
+---
+import { professionalHighlights } from '../data/highlights.js';
+---
+<section class="home-hero">
+  <div class="home-hero__glow" aria-hidden="true"></div>
+  <div class="container home-hero__grid">
+    <div class="home-hero__content">
+      <p class="eyebrow">Portfolio · mathematics · machine learning</p>
+      <h1>Building polished software and learning systems at the intersection of data, math, and immersive technology.</h1>
+      <p class="home-hero__lede">
+        Ryangineer brings Ryan L. Buchanan's portfolio, analytical projects, and machine-learning mathematics into a cleaner, faster, more professional web experience.
+      </p>
+      <div class="hero-actions" aria-label="Primary actions">
+        <a class="button button--primary" href="/data_dashboard.html">View Work</a>
+        <a class="button button--secondary" href="/algebra.html">Explore Math</a>
+      </div>
+    </div>
+    <aside class="hero-panel" aria-label="Professional highlights">
+      <div class="orbital-card">
+        <img src="/assets/bio_image.jpg" alt="Ryan L. Buchanan" width="128" height="128" />
+        <div>
+          <p class="panel-kicker">Ryan L. Buchanan</p>
+          <p>Software developer, data analyst, ML engineer, and educator.</p>
+        </div>
+      </div>
+      <div class="metric-grid">
+        {professionalHighlights.map((item) => (
+          <div class="metric-card">
+            <strong>{item.value}</strong>
+            <span>{item.label}</span>
+          </div>
+        ))}
+      </div>
+    </aside>
+  </div>
+</section>
