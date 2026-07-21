@@ -509,8 +509,9 @@ summary:focus-visible {
 
 .home-hero h1 {
   max-width: 820px;
-  font-size: clamp(2.55rem, 6vw, 5.2rem);
-  letter-spacing: -.055em;
+  font-size: clamp(2.25rem, 4vw, 3.6rem);
+  line-height: 1.08;
+  letter-spacing: -.035em;
   color: var(--heading);
 }
 
