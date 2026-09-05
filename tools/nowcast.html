@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0a0e1a">
+<script>
+  (function () {
+    var stored = null;
+    try { stored = localStorage.getItem('theme'); } catch (e) {}
+    var dark = stored ? stored === 'dark'
+      : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  })();
+</script>
 <meta name="description" content="Nowcast — radar-derived, station-measured weather with explicit data age and model-disagreement confidence.">
 <title>Nowcast — Live Weather</title>
 <link rel="manifest" href="/tools/nowcast.webmanifest">
@@ -14,6 +23,40 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
+    color-scheme: light;
+    --bg: #f4f7fb;
+    --panel: #ffffff;
+    --panel-2: #eef3f9;
+    --line: #d8e2ee;
+    --ink: #16283a;
+    --ink-dim: #55677a;
+    --ink-faint: #78899d;
+    --accent: #c2410c;
+    --btn-bg: rgba(194, 65, 12, 0.08);
+    --btn-bg-hover: rgba(194, 65, 12, 0.18);
+    --cool: #1d6fb8;
+    --good: #0f7a55;
+    --warn: #a16207;
+    --bad: #be2a37;
+    --alert-bad-bg: rgba(190, 42, 55, 0.07);
+    --alert-warn-bg: rgba(161, 98, 7, 0.09);
+    --panel-shadow: 0 1px 2px rgba(13, 43, 74, 0.05), 0 6px 20px rgba(13, 43, 74, 0.06);
+    --title-glow: none;
+
+    /* Forecast-model line colours, tuned per theme for contrast on the ground. */
+    --m1: #c2410c; --m2: #1d6fb8; --m3: #0f7a55; --m4: #6d3fb5; --m5: #a16207;
+    --band: rgba(29, 111, 184, 0.15);
+
+    /* Radar intensity ramp. */
+    --rate-none: #dfe7f0;
+    --rate-light: #93c0e6;
+    --rate-mod: #2b7fb8;
+    --rate-heavy: #d4920f;
+    --rate-intense: #be2a37;
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
     --bg: #0a0e1a;
     --panel: #111726;
     --panel-2: #161d30;
@@ -22,11 +65,25 @@
     --ink-dim: #8f9bb5;
     --ink-faint: #5d6884;
     --accent: #ff6633;
-    --accent-soft: rgba(255, 102, 51, 0.14);
+    --btn-bg: rgba(255, 102, 51, 0.10);
+    --btn-bg-hover: rgba(255, 102, 51, 0.24);
     --cool: #4ea8ff;
     --good: #35d0a5;
     --warn: #ffc247;
     --bad: #ff4d5e;
+    --alert-bad-bg: rgba(255, 77, 94, 0.09);
+    --alert-warn-bg: rgba(255, 194, 71, 0.09);
+    --panel-shadow: none;
+    --title-glow: 0 0 40px rgba(255, 102, 51, 0.45);
+
+    --m1: #ff6633; --m2: #4ea8ff; --m3: #35d0a5; --m4: #c792ea; --m5: #ffc247;
+    --band: rgba(78, 168, 255, 0.13);
+
+    --rate-none: #232c45;
+    --rate-light: #2f6fb0;
+    --rate-mod: #4ea8ff;
+    --rate-heavy: #ffc247;
+    --rate-intense: #ff4d5e;
   }
 
   html { -webkit-text-size-adjust: 100%; }
@@ -75,7 +132,7 @@
     letter-spacing: 4px;
     line-height: 1;
     font-weight: 400;
-    text-shadow: 0 0 40px rgba(255, 102, 51, 0.45);
+    text-shadow: var(--title-glow);
   }
 
   .tagline { margin-top: 3px; }
@@ -89,7 +146,7 @@
     text-transform: uppercase;
     font-weight: 600;
     color: var(--ink);
-    background: rgba(255, 102, 51, 0.1);
+    background: var(--btn-bg);
     border: 1px solid var(--line);
     border-radius: 999px;
     padding: 8px 14px;
@@ -98,7 +155,7 @@
     transition: background .18s, border-color .18s;
     -webkit-tap-highlight-color: transparent;
   }
-  button:hover, .btn:hover { background: rgba(255, 102, 51, 0.24); border-color: var(--accent); }
+  button:hover, .btn:hover { background: var(--btn-bg-hover); border-color: var(--accent); }
   button:disabled { opacity: .45; cursor: default; }
   button.spin { animation: pulse 1s ease-in-out infinite; }
   @keyframes pulse { 50% { opacity: .5; } }
@@ -138,6 +195,7 @@
     border: 1px solid var(--line);
     border-radius: 14px;
     padding: 16px;
+    box-shadow: var(--panel-shadow);
   }
   .panel + .panel, .grid { margin-top: 14px; }
   .panel-head {
@@ -215,13 +273,15 @@
     border-bottom: 1px solid var(--line);
     padding-bottom: 1px;
   }
-  .bar { flex: 1 1 0; min-width: 0; position: relative; border-radius: 2px 2px 0 0; background: var(--panel-2); min-height: 2px; }
+  .bar { flex: 1 1 0; min-width: 0; position: relative; border-radius: 2px 2px 0 0; background: var(--rate-none); min-height: 2px; }
   .bar.future { opacity: .72; }
   .bar.now { outline: 1px solid var(--accent); outline-offset: 1px; }
   .bar-axis { display: flex; justify-content: space-between; margin-top: 6px; }
 
   /* ---------- detail tiles ---------- */
-  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); gap: 10px; }
+  /* 130px is the width at which the longest real label ("CAPE · UNSTABLE") and
+     the longest imperial value ("29.83 inHg") both stay on one line. */
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
   .tile { background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
   .tile-val { font-family: 'Bebas Neue', sans-serif; font-size: 26px; line-height: 1.1; letter-spacing: 1px; }
   .tile-val small { font-size: 13px; color: var(--ink-dim); letter-spacing: 0; }
@@ -229,12 +289,12 @@
   /* ---------- alerts ---------- */
   .alert {
     border: 1px solid var(--bad);
-    background: rgba(255, 77, 94, 0.09);
+    background: var(--alert-bad-bg);
     border-radius: 12px;
     padding: 12px 14px;
     margin-bottom: 10px;
   }
-  .alert.moderate { border-color: var(--warn); background: rgba(255, 194, 71, 0.09); }
+  .alert.moderate { border-color: var(--warn); background: var(--alert-warn-bg); }
   .alert-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1.5px; }
   .alert-body { font-size: 12.5px; color: var(--ink-dim); margin-top: 4px; }
   .alert details { margin-top: 6px; }
@@ -277,6 +337,7 @@
     <div class="label tagline">Measured · Radar-derived · Timestamped</div>
   </div>
   <div class="header-actions">
+    <button id="theme-btn" type="button" title="Theme">Auto</button>
     <button id="unit-btn" type="button" title="Toggle units">°F</button>
     <button id="refresh-btn" type="button" title="Refresh all sources">Refresh</button>
     <a class="btn" href="/">← Ryangineer</a>
@@ -408,11 +469,11 @@ const CFG = {
   timeoutMs: 13000,
   intervals: { obs: 60e3, alerts: 120e3, radar: 120e3, models: 600e3 },
   models: [
-    { id: 'gfs_hrrr',       label: 'HRRR 3 km',   color: '#ff6633' },
-    { id: 'ecmwf_ifs025',   label: 'ECMWF',       color: '#4ea8ff' },
-    { id: 'icon_seamless',  label: 'ICON',        color: '#35d0a5' },
-    { id: 'gem_seamless',   label: 'GEM',         color: '#c792ea' },
-    { id: 'ukmo_seamless',  label: 'UKMO',        color: '#ffc247' },
+    { id: 'gfs_hrrr',       label: 'HRRR 3 km',   color: 'var(--m1)' },
+    { id: 'ecmwf_ifs025',   label: 'ECMWF',       color: 'var(--m2)' },
+    { id: 'icon_seamless',  label: 'ICON',        color: 'var(--m3)' },
+    { id: 'gem_seamless',   label: 'GEM',         color: 'var(--m4)' },
+    { id: 'ukmo_seamless',  label: 'UKMO',        color: 'var(--m5)' },
   ],
 };
 
@@ -782,11 +843,11 @@ function rateLabel(mmh) {
 }
 
 function rateColor(mmh) {
-  if (mmh < RAIN_ON) return '#232c45';
-  if (mmh < 1) return '#2f6fb0';
-  if (mmh < 4) return '#4ea8ff';
-  if (mmh < 16) return '#ffc247';
-  return '#ff4d5e';
+  if (mmh < RAIN_ON) return 'var(--rate-none)';
+  if (mmh < 1) return 'var(--rate-light)';
+  if (mmh < 4) return 'var(--rate-mod)';
+  if (mmh < 16) return 'var(--rate-heavy)';
+  return 'var(--rate-intense)';
 }
 
 /* ============================================================
@@ -1033,7 +1094,7 @@ function renderSpread() {
   const top = cols.map((c, i) => `${X(i).toFixed(1)},${Y(Math.max(...c.vals)).toFixed(1)}`);
   const bot = cols.map((c, i) => `${X(i).toFixed(1)},${Y(Math.min(...c.vals)).toFixed(1)}`).reverse();
 
-  let out = `<polygon points="${top.concat(bot).join(' ')}" fill="rgba(78,168,255,0.13)" stroke="none"/>`;
+  let out = `<polygon points="${top.concat(bot).join(' ')}" style="fill:var(--band)" stroke="none"/>`;
 
   for (const r of runs) {
     const pts = cols.map((c, i) => {
@@ -1043,26 +1104,26 @@ function renderSpread() {
     }).filter(Boolean);
     if (pts.length < 2) continue;
     const color = (CFG.models.find((m) => m.id === r.id) || {}).color || '#888';
-    out += `<polyline points="${pts.join(' ')}" fill="none" stroke="${color}" stroke-width="1.6" ` +
+    out += `<polyline points="${pts.join(' ')}" fill="none" style="stroke:${color}" stroke-width="1.6" ` +
       `stroke-linejoin="round" vector-effect="non-scaling-stroke" opacity="0.92"/>`;
   }
 
   // Hour ticks every 6 columns.
   for (let i = 0; i < cols.length; i += 6) {
-    out += `<line x1="${X(i)}" y1="${padT}" x2="${X(i)}" y2="${H - padB}" stroke="#232c45" stroke-width="1"/>`;
-    out += `<text x="${X(i) + 4}" y="${H - 8}" fill="#5d6884" font-size="11" font-family="Inter,sans-serif">` +
+    out += `<line x1="${X(i)}" y1="${padT}" x2="${X(i)}" y2="${H - padB}" style="stroke:var(--line)" stroke-width="1"/>`;
+    out += `<text x="${X(i) + 4}" y="${H - 8}" style="fill:var(--ink-faint)" font-size="11" font-family="Inter,sans-serif">` +
       `${clockText(new Date(cols[i].t))}</text>`;
   }
-  out += `<text x="2" y="${padT + 10}" fill="#5d6884" font-size="11" font-family="Inter,sans-serif">` +
+  out += `<text x="2" y="${padT + 10}" style="fill:var(--ink-faint)" font-size="11" font-family="Inter,sans-serif">` +
     `${hi.toFixed(0)}${unitTemp()}</text>`;
-  out += `<text x="2" y="${H - padB - 2}" fill="#5d6884" font-size="11" font-family="Inter,sans-serif">` +
+  out += `<text x="2" y="${H - padB - 2}" style="fill:var(--ink-faint)" font-size="11" font-family="Inter,sans-serif">` +
     `${lo.toFixed(0)}${unitTemp()}</text>`;
   svg.innerHTML = out;
 
   $('spread-legend').innerHTML = runs.map((r) => {
     const m = CFG.models.find((x) => x.id === r.id) || { label: r.id, color: '#888' };
     return `<span><i class="swatch" style="background:${m.color}"></i>${esc(m.label)}</span>`;
-  }).join('') + `<span><i class="swatch" style="background:rgba(78,168,255,0.5)"></i>Agreement band</span>`;
+  }).join('') + `<span><i class="swatch" style="background:var(--m2);opacity:.5"></i>Agreement band</span>`;
 
   // Confidence read-out over the next 6 hours.
   const near = cols.slice(0, 7).filter((c) => c.vals.length > 1);
@@ -1238,6 +1299,41 @@ async function scheduler() {
 
 function applyUnitLabel() { $('unit-btn').textContent = S.unit === 'us' ? '°F' : '°C'; }
 
+const THEME_KEY = 'theme';   // shared with the main site's toggle
+const sysDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
+function storedTheme() { try { return localStorage.getItem(THEME_KEY); } catch (_) { return null; } }
+
+function applyTheme() {
+  const stored = storedTheme();
+  const dark = stored ? stored === 'dark' : sysDark();
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', dark ? '#0a0e1a' : '#f4f7fb');
+  const btn = $('theme-btn');
+  btn.textContent = stored === 'dark' ? '☾ Dark' : stored === 'light' ? '☀ Light' : '◐ Auto';
+  btn.title = stored ? `Theme: ${stored} — click to cycle`
+                     : 'Theme: following your system — click to cycle';
+}
+
+$('theme-btn').addEventListener('click', () => {
+  // Auto -> Light -> Dark -> Auto. "Auto" removes the key rather than storing a
+  // third value, so the main site's simpler `stored || system` logic still works.
+  const stored = storedTheme();
+  const next = stored === null ? 'light' : stored === 'light' ? 'dark' : null;
+  try {
+    if (next === null) localStorage.removeItem(THEME_KEY);
+    else localStorage.setItem(THEME_KEY, next);
+  } catch (_) {}
+  applyTheme();
+});
+
+// Track the OS switching itself (sunset, scheduled dark mode) while on Auto.
+window.matchMedia('(prefers-color-scheme: dark)')
+  .addEventListener('change', () => { if (storedTheme() === null) applyTheme(); });
+
+// Another tab — including the main site — changing the theme applies here too.
+window.addEventListener('storage', (e) => { if (e.key === THEME_KEY) applyTheme(); });
+
 $('unit-btn').addEventListener('click', () => {
   S.unit = S.unit === 'us' ? 'metric' : 'us';
   localStorage.setItem('nowcast.unit', S.unit);
@@ -1271,6 +1367,7 @@ setInterval(scheduler, 15000);
 setInterval(tickAges, 10000);
 
 (function boot() {
+  applyTheme();
   applyUnitLabel();
   $('build-note').textContent = 'Built for the Gulf Coast · Ridian Technologies';
 

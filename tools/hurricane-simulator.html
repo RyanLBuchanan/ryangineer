@@ -217,9 +217,31 @@
     box-shadow: 0 0 15px rgba(255,100,50,0.4);
   }
 
+  /* ---- Live NHC feed ---- */
+  #live-block { display: flex; flex-direction: column; gap: 6px; }
+  #live-status { color: #6f7a94; letter-spacing: 2px; }
+  #live-status.on { color: #ff6b5e; }
+  #live-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  #live-row button { position: relative; padding-left: 24px; }
+  #live-row button::before {
+    content: ''; position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+    width: 6px; height: 6px; border-radius: 50%; background: #ff4d5e;
+    box-shadow: 0 0 8px rgba(255,77,94,0.9);
+    animation: live-pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes live-pulse { 50% { opacity: 0.35; } }
+  #live-row .none { font-size: 11px; color: #6f7a94; letter-spacing: 1px; }
+
+  #live-panel { margin-top: 10px; }
+  #live-panel .data-row { font-size: clamp(12px, 2vw, 18px); }
+  #live-fcst { margin-top: 8px; font-size: 10px; letter-spacing: 1.5px; color: #a08060; line-height: 1.6; }
+  #live-fcst b { color: #e8dcc8; font-weight: 400; font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 2px; }
+  #live-fcst .land { color: #ff9966; }
+
   @media (max-width: 600px) {
     #ui { padding: 12px; }
     #controls { max-width: 100%; }
+    #live-fcst { display: none; }   /* forecast table needs room; the badge, wind and distance carry the phone view */
   }
 </style>
 </head>
@@ -246,6 +268,18 @@
       <br>
       <div class="data-row" id="pressure-display">965 MB</div>
       <div class="data-label">PRESSURE</div>
+      <div id="live-panel" hidden>
+        <br>
+        <div class="data-row" id="live-dist">—</div>
+        <div class="data-label">FROM ORANGE BEACH</div>
+        <br>
+        <div class="data-row" id="live-move">—</div>
+        <div class="data-label">MOVEMENT</div>
+        <br>
+        <div class="data-row" id="live-adv">—</div>
+        <div class="data-label">NHC ADVISORY</div>
+        <div id="live-fcst"></div>
+      </div>
     </div>
   </div>
 
@@ -259,6 +293,10 @@
     <div class="control-group">
       <div class="control-label">Wind Field Size</div>
       <input type="range" id="size" min="0.4" max="1.6" value="1" step="0.1">
+    </div>
+    <div id="live-block">
+      <div class="control-label">Live · National Hurricane Center · <span id="live-status">checking…</span></div>
+      <div id="live-row"></div>
     </div>
     <div id="btn-row">
       <button id="btn-sally" class="active">SALLY '20</button>
@@ -373,9 +411,11 @@ function colorFromIntensity(i) {
 
 function updateDisplay() {
   const cat = catFromIntensity(intensityVal);
-  document.getElementById('category-badge').textContent = `CAT ${cat}`;
+  // A live storm carries its own NHC classification (TS, TD, CAT n); presets derive it.
+  document.getElementById('category-badge').textContent = currentStorm.label || `CAT ${cat}`;
   document.getElementById('wind-display').textContent = `${currentStorm.wind} MPH`;
-  document.getElementById('surge-display').textContent = `${currentStorm.surge} FT`;
+  document.getElementById('surge-display').textContent =
+    `${currentStorm.surge} FT` + (currentStorm.live ? ' EST.' : '');
   document.getElementById('pressure-display').textContent = `${currentStorm.pressure} MB`;
   document.getElementById('storm-name-display').textContent = currentStorm.name;
 
@@ -622,6 +662,7 @@ animate();
 // Controls
 document.getElementById('intensity').addEventListener('input', function() {
   intensityVal = parseInt(this.value);
+  if (currentStorm.live) { currentStorm.live = false; currentStorm.label = null; }
   currentStorm.wind = windFromIntensity(intensityVal);
   currentStorm.surge = surgeFromIntensity(intensityVal);
   currentStorm.pressure = pressureFromIntensity(intensityVal);
@@ -637,6 +678,8 @@ document.getElementById('size').addEventListener('input', function() {
 function setStorm(key) {
   const s = STORMS[key];
   currentStorm = {...s};
+  document.getElementById('live-panel').hidden = true;
+  document.querySelectorAll('#live-row button').forEach(b => b.classList.remove('active'));
   intensityVal = s.intensity;
   document.getElementById('intensity').value = intensityVal;
   resetEye();
@@ -664,6 +707,246 @@ document.getElementById('btn-landfall').addEventListener('click', function() {
 });
 
 updateDisplay();
+
+/* ============================================================
+   LIVE STORMS — National Hurricane Center via api.weather.gov
+
+   The NHC Forecast/Advisory (product code TCM) is the authoritative,
+   fixed-format bulletin every other hurricane app is built on: centre
+   position, motion, pressure, max wind, wind radii, and the forecast
+   positions/intensities out to 120 h. api.weather.gov serves it with CORS
+   enabled and no key, so this page can read it directly.
+   ============================================================ */
+
+const HOME = { lat: 30.2697, lon: -87.5867, name: 'ORANGE BEACH' };
+const NWS_PRODUCTS = 'https://api.weather.gov/products/types/TCM';
+const LIVE_WINDOW_H = 7;   // full advisories come every 6 h; anything older is a dead storm
+const LIVE_REFRESH_MS = 10 * 60 * 1000;
+
+let liveStorms = [];
+let liveSelectedId = null;
+
+function saffir(kt) {
+  return kt >= 137 ? 5 : kt >= 113 ? 4 : kt >= 96 ? 3 : kt >= 83 ? 2 : kt >= 64 ? 1 : 0;
+}
+function classLabel(kt) {
+  const c = saffir(kt);
+  return c ? `CAT ${c}` : kt >= 34 ? 'TS' : 'TD';
+}
+const ktToMph = (kt) => Math.round(kt * 1.15078);
+const nmToMi  = (nm) => nm * 1.15078;
+
+function haversineMi(a, b) {
+  const R = 3958.8, rad = Math.PI / 180;
+  const dLat = (b.lat - a.lat) * rad, dLon = (b.lon - a.lon) * rad;
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+function bearingDeg(a, b) {
+  const rad = Math.PI / 180;
+  const y = Math.sin((b.lon - a.lon) * rad) * Math.cos(b.lat * rad);
+  const x = Math.cos(a.lat * rad) * Math.sin(b.lat * rad) -
+            Math.sin(a.lat * rad) * Math.cos(b.lat * rad) * Math.cos((b.lon - a.lon) * rad);
+  return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+}
+function compass16(deg) {
+  const pts = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+  return pts[Math.round(deg / 22.5) % 16];
+}
+
+/** "26/1500Z" relative to an advisory date, with month rollover. */
+function ddhhmmToDate(dd, hhmm, ref) {
+  const d = new Date(Date.UTC(ref.getUTCFullYear(), ref.getUTCMonth(), +dd, +hhmm.slice(0, 2), +hhmm.slice(2)));
+  if (d - ref < -15 * 86400e3) d.setUTCMonth(d.getUTCMonth() + 1);
+  if (d - ref >  15 * 86400e3) d.setUTCMonth(d.getUTCMonth() - 1);
+  return d;
+}
+
+/** Parse one TCM bulletin into a normalised storm. Returns null if it is not one. */
+function parseTCM(text) {
+  const head = text.match(/^(.+?) FORECAST\/ADVISORY NUMBER\s+(\d+)/m);
+  const id = text.match(/\b(AL|EP|CP)\d{6}\b/);
+  const when = text.match(/(\d{4}) UTC \w{3} (\w{3}) (\d{1,2}) (\d{4})/);
+  const pos = text.match(/CENTER LOCATED NEAR\s+([\d.]+)([NS])\s+([\d.]+)([EW]) AT (\d\d)\/(\d{4})Z/);
+  const wind = text.match(/MAX SUSTAINED WINDS\s+(\d+) KT WITH GUSTS\s+(\d+) KT/);
+  if (!head || !id || !when || !pos || !wind) return null;
+
+  const months = { JAN:0,FEB:1,MAR:2,APR:3,MAY:4,JUN:5,JUL:6,AUG:7,SEP:8,OCT:9,NOV:10,DEC:11 };
+  const issued = new Date(Date.UTC(+when[4], months[when[2]], +when[3], +when[1].slice(0, 2), +when[1].slice(2)));
+
+  const pres = text.match(/ESTIMATED MINIMUM CENTRAL PRESSURE\s+(\d+) MB/);
+  const move = text.match(/PRESENT MOVEMENT TOWARD (?:THE )?(.+?) OR\s+(\d+) DEGREES AT\s+(\d+) KT/);
+  const stationary = /PRESENT MOVEMENT\s+STATIONARY/.test(text);
+  const r34 = text.match(/34 KT\.+\s*(\d+)NE\s+(\d+)SE\s+(\d+)SW\s+(\d+)NW/);
+
+  const forecast = [];
+  const re = /(?:FORECAST|OUTLOOK) VALID (\d\d)\/(\d{4})Z\s+([\d.]+)([NS])\s+([\d.]+)([EW])([^\n]*)\n\s*MAX WIND\s+(\d+) KT/g;
+  let m;
+  while ((m = re.exec(text))) {
+    const t = ddhhmmToDate(m[1], m[2], issued);
+    forecast.push({
+      time: t,
+      hours: Math.round((t - issued) / 3600e3),
+      lat: +m[3] * (m[4] === 'S' ? -1 : 1),
+      lon: +m[5] * (m[6] === 'W' ? -1 : 1),
+      inland: /INLAND/.test(m[7]),
+      windKt: +m[8],
+    });
+  }
+
+  return {
+    id: id[0],
+    type: head[1].trim(),                                   // e.g. "HURRICANE HELENE"
+    name: head[1].trim().replace(/^(TROPICAL (?:STORM|DEPRESSION)|HURRICANE|POTENTIAL TROPICAL CYCLONE|POST-TROPICAL CYCLONE|SUBTROPICAL (?:STORM|DEPRESSION)|REMNANTS OF)\s+/, ''),
+    advisory: +head[2],
+    issued,
+    lat: +pos[1] * (pos[2] === 'S' ? -1 : 1),
+    lon: +pos[3] * (pos[4] === 'W' ? -1 : 1),
+    windKt: +wind[1],
+    gustKt: +wind[2],
+    pressureMb: pres ? +pres[1] : null,
+    moveText: stationary ? 'STATIONARY' : move ? move[1] : null,
+    moveDir: move ? +move[2] : null,
+    moveKt: move ? +move[3] : 0,
+    radius34nm: r34 ? (+r34[1] + +r34[2] + +r34[3] + +r34[4]) / 4 : null,
+    forecast,
+  };
+}
+
+async function fetchJSONTimeout(url, ms = 12000) {
+  const ac = new AbortController();
+  const t = setTimeout(() => ac.abort(), ms);
+  try {
+    const r = await fetch(url, { signal: ac.signal, cache: 'no-store' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return await r.json();
+  } finally { clearTimeout(t); }
+}
+
+async function fetchLiveStorms() {
+  const status = document.getElementById('live-status');
+  status.textContent = 'checking…';
+  status.classList.remove('on');
+  try {
+    const list = await fetchJSONTimeout(NWS_PRODUCTS);
+    const cutoff = Date.now() - LIVE_WINDOW_H * 3600e3;
+    const recent = ((list && list['@graph']) || [])
+      .filter((p) => p.issuanceTime && Date.parse(p.issuanceTime) >= cutoff)
+      .slice(0, 12);
+
+    const byId = new Map();
+    for (const p of recent) {
+      let prod;
+      try { prod = await fetchJSONTimeout(p['@id']); } catch (_) { continue; }
+      const storm = prod && prod.productText ? parseTCM(prod.productText) : null;
+      if (!storm) continue;
+      const prev = byId.get(storm.id);
+      if (!prev || storm.issued > prev.issued) byId.set(storm.id, storm);
+    }
+
+    // Atlantic first (the basin that reaches this coast), then by strength.
+    liveStorms = [...byId.values()].sort((a, b) =>
+      (a.id.startsWith('AL') ? 0 : 1) - (b.id.startsWith('AL') ? 0 : 1) || b.windKt - a.windKt);
+
+    status.textContent = liveStorms.length
+      ? `${liveStorms.length} ACTIVE · ${new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`
+      : 'NO ACTIVE STORMS';
+    status.classList.toggle('on', liveStorms.length > 0);
+  } catch (err) {
+    liveStorms = [];
+    status.textContent = 'FEED UNAVAILABLE';
+  }
+  renderLiveButtons();
+  // Keep a selected live storm current after a refresh.
+  const still = liveStorms.find((s) => s.id === liveSelectedId);
+  if (still) setLiveStorm(still, true);
+}
+
+function renderLiveButtons() {
+  const row = document.getElementById('live-row');
+  row.innerHTML = '';
+  if (!liveStorms.length) {
+    const n = document.createElement('span');
+    n.className = 'none';
+    n.textContent = 'Nothing on the board — presets below are historical.';
+    row.appendChild(n);
+    return;
+  }
+  for (const st of liveStorms) {
+    const b = document.createElement('button');
+    b.textContent = `${st.name} · ${classLabel(st.windKt)}`;
+    b.dataset.id = st.id;
+    b.classList.toggle('active', st.id === liveSelectedId);
+    b.addEventListener('click', () => setLiveStorm(st));
+    row.appendChild(b);
+  }
+}
+
+function setLiveStorm(st, silent) {
+  liveSelectedId = st.id;
+  const cat = saffir(st.windKt);
+  const surgeByCat = [1, 4, 8, 14, 20, 28];
+
+  currentStorm = {
+    name: st.type,                       // "HURRICANE HELENE" / "TROPICAL STORM DEBBY"
+    live: true,
+    label: classLabel(st.windKt),
+    cat,
+    wind: ktToMph(st.windKt),
+    surge: surgeByCat[cat],
+    pressure: st.pressureMb || pressureFromIntensity(Math.max(1, cat)),
+    intensity: Math.max(1, cat),
+    color: colorFromIntensity(Math.max(1, cat)),
+  };
+  intensityVal = Math.max(1, cat);
+  document.getElementById('intensity').value = intensityVal;
+
+  // Real wind-field size from the 34-kt radii: ~50 nm reads as a tight storm,
+  // ~250 nm as a sprawling one, mapped onto the slider's range.
+  if (st.radius34nm) {
+    sizeVal = Math.min(1.6, Math.max(0.4, 0.4 + (st.radius34nm - 50) / 200 * 1.2));
+    document.getElementById('size').value = sizeVal.toFixed(1);
+  }
+
+  if (!silent) { resetEye(); initParticles(); }
+  updateDisplay();
+  ['sally','ivan','katrina','custom'].forEach((k) =>
+    document.getElementById('btn-' + k).classList.remove('active'));
+  document.querySelectorAll('#live-row button').forEach((b) =>
+    b.classList.toggle('active', b.dataset.id === st.id));
+
+  // ---- readout ----
+  const here = { lat: st.lat, lon: st.lon };
+  const dist = haversineMi(here, HOME);
+  const brgToHome = bearingDeg(here, HOME);
+  const brgFromHome = bearingDeg(HOME, here);
+  let aimed = '';
+  if (st.moveDir != null && st.moveKt > 0) {
+    const off = Math.abs(((st.moveDir - brgToHome + 540) % 360) - 180);
+    aimed = off <= 30 ? ' · CLOSING' : off >= 150 ? ' · AWAY' : '';
+  }
+  document.getElementById('live-dist').textContent =
+    `${Math.round(dist)} MI ${compass16(brgFromHome)}`;
+  document.getElementById('live-move').textContent =
+    st.moveText === 'STATIONARY' ? 'STATIONARY'
+      : st.moveText ? `${st.moveText} ${Math.round(st.moveKt * 1.15078)} MPH${aimed}` : '—';
+
+  const ageMin = Math.round((Date.now() - st.issued) / 60000);
+  const age = ageMin < 60 ? `${ageMin} MIN AGO` : `${(ageMin / 60).toFixed(1)} H AGO`;
+  document.getElementById('live-adv').textContent = `#${st.advisory} · ${age}`;
+
+  const fc = document.getElementById('live-fcst');
+  fc.innerHTML = st.forecast.slice(0, 6).map((f) =>
+    `+${f.hours}H <b>${ktToMph(f.windKt)} MPH ${classLabel(f.windKt)}</b>` +
+    `${f.inland ? ' <span class="land">INLAND</span>' : ''}` +
+    ` · ${Math.round(haversineMi(f, HOME))} MI`).join('<br>');
+
+  document.getElementById('live-panel').hidden = false;
+}
+
+fetchLiveStorms();
+setInterval(() => { if (!document.hidden) fetchLiveStorms(); }, LIVE_REFRESH_MS);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) fetchLiveStorms(); });
 </script>
 </body>
 </html>
