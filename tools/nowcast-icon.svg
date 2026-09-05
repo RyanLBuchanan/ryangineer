@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Nowcast">
+  <rect width="512" height="512" rx="112" fill="#0a0e1a"/>
+  <!-- radar sweep rings centered on the point being sampled -->
+  <g fill="none" stroke="#ff6633" stroke-linecap="round">
+    <circle cx="256" cy="228" r="52"  stroke-width="14" opacity="0.95"/>
+    <circle cx="256" cy="228" r="104" stroke-width="12" opacity="0.55" stroke-dasharray="150 90"/>
+    <circle cx="256" cy="228" r="156" stroke-width="10" opacity="0.28" stroke-dasharray="130 150"/>
+  </g>
+  <circle cx="256" cy="228" r="17" fill="#ff6633"/>
+  <!-- rain falling from the sampled point -->
+  <g stroke="#4ea8ff" stroke-width="17" stroke-linecap="round">
+    <line x1="176" y1="368" x2="158" y2="424"/>
+    <line x1="256" y1="378" x2="238" y2="434"/>
+    <line x1="336" y1="368" x2="318" y2="424"/>
+  </g>
+</svg>
