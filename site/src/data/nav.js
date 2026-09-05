@@ -52,6 +52,7 @@ export const navLinks = [
   {
     label: 'Tools',
     children: [
+      { label: 'Nowcast (Live Weather)', href: '/tools/nowcast.html' },
       { label: 'Hurricane Simulator', href: '/tools/hurricane-simulator.html' },
     ],
   },

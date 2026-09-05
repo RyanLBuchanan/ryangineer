@@ -1,0 +1,14 @@
+{
+  "name": "Nowcast — Live Weather",
+  "short_name": "Nowcast",
+  "description": "Station-measured, radar-derived weather with explicit data age.",
+  "start_url": "/tools/nowcast.html",
+  "scope": "/tools/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0e1a",
+  "theme_color": "#0a0e1a",
+  "icons": [
+    { "src": "/tools/nowcast-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
