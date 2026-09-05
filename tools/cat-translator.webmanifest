@@ -1,0 +1,12 @@
+{
+  "name": "Dave — Cat Translator",
+  "short_name": "Dave",
+  "description": "Two-way cat translator. Measures meows, translates them, meows back.",
+  "start_url": "/tools/cat-translator.html",
+  "scope": "/tools/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0e1a",
+  "theme_color": "#0a0e1a",
+  "icons": [{ "src": "/tools/cat-translator-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

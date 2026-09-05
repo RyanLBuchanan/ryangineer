@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0e1a">
+<meta name="description" content="A two-way cat translator. Measures your cat's meows (pitch, contour, duration), translates them, and meows back at him with a sentiment-shaped synthesized meow. Runs entirely in the browser.">
+<title>Dave — Cat Translator</title>
+<link rel="manifest" href="/tools/cat-translator.webmanifest">
+<link rel="icon" href="/tools/cat-translator-icon.svg" type="image/svg+xml">
+<script>
+  (function () {
+    var stored = null;
+    try { stored = localStorage.getItem('theme'); } catch (e) {}
+    var dark = stored ? stored === 'dark'
+      : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  })();
+</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    color-scheme: light;
+    --bg: #f4f7fb;
+    --panel: #ffffff;
+    --panel-2: #eef3f9;
+    --line: #d8e2ee;
+    --ink: #16283a;
+    --ink-dim: #55677a;
+    --ink-faint: #78899d;
+    --accent: #c2410c;
+    --btn-bg: rgba(194, 65, 12, 0.08);
+    --btn-bg-hover: rgba(194, 65, 12, 0.18);
+    --cool: #1d6fb8;
+    --good: #0f7a55;
+    --warn: #a16207;
+    --bad: #be2a37;
+    --panel-shadow: 0 1px 2px rgba(13, 43, 74, 0.05), 0 6px 20px rgba(13, 43, 74, 0.06);
+    --title-glow: none;
+    --cat-bubble: #fff3ea;
+    --cat-bubble-line: #f2c7ad;
+    --you-bubble: #eaf2fb;
+    --you-bubble-line: #bcd4ec;
+    --meter-track: #e3eaf2;
+    --big-ring: rgba(194, 65, 12, 0.18);
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --bg: #0a0e1a;
+    --panel: #111726;
+    --panel-2: #161d30;
+    --line: #232c45;
+    --ink: #e8dcc8;
+    --ink-dim: #8f9bb5;
+    --ink-faint: #5d6884;
+    --accent: #ff6633;
+    --btn-bg: rgba(255, 102, 51, 0.10);
+    --btn-bg-hover: rgba(255, 102, 51, 0.24);
+    --cool: #4ea8ff;
+    --good: #35d0a5;
+    --warn: #ffc247;
+    --bad: #ff4d5e;
+    --panel-shadow: none;
+    --title-glow: 0 0 40px rgba(255, 102, 51, 0.45);
+    --cat-bubble: #1d1a26;
+    --cat-bubble-line: #4a3324;
+    --you-bubble: #121d2e;
+    --you-bubble-line: #24385a;
+    --meter-track: #1c2438;
+    --big-ring: rgba(255, 102, 51, 0.25);
+  }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: 16px 16px calc(40px + env(safe-area-inset-bottom));
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  a { color: inherit; }
+
+  .label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+  }
+
+  /* ---------- header ---------- */
+  header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(30px, 6vw, 46px);
+    letter-spacing: 4px;
+    line-height: 1;
+    font-weight: 400;
+    text-shadow: var(--title-glow);
+  }
+  .tagline { margin-top: 3px; }
+  .header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+  button, .btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--btn-bg);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 8px 14px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .18s, border-color .18s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  button:hover, .btn:hover { background: var(--btn-bg-hover); border-color: var(--accent); }
+  button:disabled { opacity: .45; cursor: default; }
+  button.on { border-color: var(--accent); background: var(--btn-bg-hover); }
+
+  /* ---------- panels ---------- */
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: var(--panel-shadow);
+  }
+  .panel + .panel { margin-top: 14px; }
+  .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 4px 14px; flex-wrap: wrap; margin-bottom: 12px; }
+  .panel-head > :last-child { text-align: right; }
+  @media (max-width: 560px) { .panel-head .aside { display: none; } }
+
+  /* ---------- stage: the big button ---------- */
+  .stage { text-align: center; padding: 22px 16px 18px; }
+  .mode-row { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+  .seg button { border: 0; border-radius: 0; background: transparent; }
+  .seg button.on { background: var(--btn-bg-hover); color: var(--accent); }
+
+  .big {
+    width: min(64vw, 232px);
+    height: min(64vw, 232px);
+    border-radius: 50%;
+    border: 2px solid var(--line);
+    background: var(--panel-2);
+    color: var(--ink);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(22px, 5vw, 30px);
+    letter-spacing: 2px;
+    text-transform: none;
+    padding: 0;
+    position: relative;
+    transition: box-shadow .25s, border-color .25s, transform .1s;
+  }
+  .big:active { transform: scale(.98); }
+  .big .sub { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-dim); font-weight: 600; }
+  .big .emoji { font-size: 44px; line-height: 1; }
+  .big.listening { border-color: var(--accent); box-shadow: 0 0 0 var(--ring, 0px) var(--big-ring); }
+  .big.cat-turn { border-color: var(--accent); }
+  .big.you-turn { border-color: var(--cool); }
+  .big.you-turn.listening { box-shadow: 0 0 0 var(--ring, 0px) rgba(78, 168, 255, .22); }
+
+  .prompt { margin-top: 16px; font-size: 14px; color: var(--ink-dim); min-height: 1.5em; }
+  .prompt b { color: var(--ink); font-weight: 600; }
+
+  .live {
+    margin: 14px auto 0;
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-variant-numeric: tabular-nums;
+    font-size: 12px;
+    color: var(--ink-dim);
+  }
+  .live[hidden] { display: none; }
+  .live .val { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; color: var(--ink); }
+  .meter { width: 120px; height: 6px; border-radius: 3px; background: var(--meter-track); overflow: hidden; }
+  .meter > i { display: block; height: 100%; width: 0; background: var(--good); transition: width .08s linear; }
+
+  .stage-actions { margin-top: 14px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+
+  /* ---------- text fallback ---------- */
+  .fallback { display: flex; margin-top: 12px; gap: 8px; }
+  .fallback input {
+    flex: 1; min-width: 0;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
+    color: var(--ink); font-family: 'Inter', sans-serif; font-size: 14px; padding: 8px 12px; outline: none;
+  }
+  .fallback input:focus { border-color: var(--accent); }
+
+  /* ---------- mood ---------- */
+  .moods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .mood { background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+  .mood .bar { height: 6px; border-radius: 3px; background: var(--meter-track); margin-top: 6px; overflow: hidden; }
+  .mood .bar > i { display: block; height: 100%; width: 0; transition: width .4s; }
+  .mood-name { font-size: 12px; font-weight: 600; margin-top: 4px; }
+
+  /* ---------- conversation ---------- */
+  .convo { display: flex; flex-direction: column; gap: 10px; }
+  .bubble {
+    max-width: 92%;
+    border-radius: 14px;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .bubble.cat { align-self: flex-start; background: var(--cat-bubble); border-color: var(--cat-bubble-line); border-bottom-left-radius: 4px; }
+  .bubble.you { align-self: flex-end; background: var(--you-bubble); border-color: var(--you-bubble-line); border-bottom-right-radius: 4px; }
+  .bubble.sys { align-self: center; background: transparent; border: 0; color: var(--ink-faint); font-size: 12px; font-style: italic; text-align: center; }
+  .who { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .who .label { letter-spacing: 2px; }
+  .who .t { font-size: 10px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+  .said { font-size: 12.5px; color: var(--ink-dim); }
+  .said i { font-style: normal; font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px; font-size: 15px; color: var(--ink); }
+  .trans { margin-top: 3px; font-weight: 400; }
+  .bubble.cat .trans { font-size: 15px; }
+  .bubble .tools { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; align-items: center; }
+  .bubble .tools button { padding: 5px 10px; font-size: 10px; }
+  .spark { width: 120px; height: 28px; display: block; }
+  .spark polyline { fill: none; stroke: var(--accent); stroke-width: 1.6; }
+  .spark line { stroke: var(--line); stroke-width: 1; }
+
+  details.sci { margin-top: 8px; }
+  details.sci summary { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-faint); cursor: pointer; font-weight: 600; }
+  .sci-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 6px 10px; margin-top: 8px; font-variant-numeric: tabular-nums; }
+  .sci-grid div { font-size: 11.5px; color: var(--ink-dim); }
+  .sci-grid div b { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; color: var(--ink); font-weight: 400; }
+  .scores { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+  .score { display: grid; grid-template-columns: 74px 1fr auto; gap: 8px; align-items: center; font-size: 11.5px; color: var(--ink-dim); }
+  .score .bar { height: 5px; border-radius: 3px; background: var(--meter-track); overflow: hidden; }
+  .score .bar > i { display: block; height: 100%; background: var(--accent); }
+  .score.win { color: var(--ink); font-weight: 600; }
+  .why { margin-top: 8px; font-size: 11.5px; color: var(--ink-dim); }
+  .why li { margin-left: 16px; }
+
+  /* ---------- settings ---------- */
+  .settings { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+  .settings label { display: flex; flex-direction: column; gap: 4px; }
+  .settings input {
+    background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
+    color: var(--ink); font-family: 'Inter', sans-serif; font-size: 14px; padding: 8px 12px; outline: none;
+  }
+  .settings input:focus { border-color: var(--accent); }
+
+  .note { font-size: 11.5px; color: var(--ink-faint); line-height: 1.65; }
+  .note code { font-family: ui-monospace, monospace; font-size: 11px; color: var(--ink-dim); }
+  .how h3 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; letter-spacing: 2px; font-size: 18px; margin: 14px 0 4px; }
+  .how p, .how li { font-size: 13px; color: var(--ink-dim); }
+  .how li { margin-left: 18px; }
+  .how b { color: var(--ink); font-weight: 600; }
+
+  footer { margin-top: 26px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+  @keyframes pulse { 50% { opacity: .55; } }
+  .pulse { animation: pulse 1.2s ease-in-out infinite; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1 id="title">DAVE</h1>
+    <div class="label tagline">Two-way cat translator · measured, not guessed</div>
+  </div>
+  <div class="header-actions">
+    <button id="theme-btn" type="button" title="Theme">Auto</button>
+    <a class="btn" href="/">← Ryangineer</a>
+  </div>
+</header>
+
+<section class="panel stage">
+  <div class="mode-row">
+    <div class="seg" role="group" aria-label="Turn-taking mode">
+      <button type="button" id="mode-strict" title="App prompts whose turn it is">Strict turns</button>
+      <button type="button" id="mode-loose" title="One button. Cat and human sorted by voice pitch.">Loose · both at once</button>
+    </div>
+  </div>
+
+  <button class="big" id="big" type="button" aria-live="polite">
+    <span class="emoji" id="big-emoji">🐈</span>
+    <span id="big-text">Tap to start</span>
+    <span class="sub" id="big-sub">mic stays on this device</span>
+  </button>
+
+  <div class="prompt" id="prompt">Tap the button. <b>Dave</b> goes first — he usually does.</div>
+
+  <div class="live" id="live" hidden>
+    <span>Level <span class="meter"><i id="lvl"></i></span></span>
+    <span>Pitch <span class="val" id="live-f0">—</span> Hz</span>
+    <span>Hearing <span class="val" id="live-who">silence</span></span>
+  </div>
+
+  <div class="fallback" id="fallback">
+    <input type="text" id="fallback-input" placeholder="Or just type something to him" aria-label="Type what you would say to him">
+    <button type="button" id="fallback-send">Say it</button>
+  </div>
+
+  <div class="stage-actions">
+    <button type="button" id="skip-btn" hidden>He's ignoring me → skip</button>
+    <button type="button" id="fed-btn">I fed him</button>
+    <button type="button" id="clear-btn">Clear chat</button>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <div class="label">How <span id="cat-name-mood">Dave</span> is feeling</div>
+    <div class="label aside">Shifts with what you both say</div>
+  </div>
+  <div class="moods">
+    <div class="mood"><div class="label">Hunger</div><div class="mood-name" id="m-hunger-name">—</div><div class="bar"><i id="m-hunger" style="background:var(--warn)"></i></div></div>
+    <div class="mood"><div class="label">Affection</div><div class="mood-name" id="m-aff-name">—</div><div class="bar"><i id="m-aff" style="background:var(--good)"></i></div></div>
+    <div class="mood"><div class="label">Annoyance</div><div class="mood-name" id="m-ann-name">—</div><div class="bar"><i id="m-ann" style="background:var(--bad)"></i></div></div>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <div class="label">Conversation</div>
+    <div class="label aside">Tap "the science" under any meow</div>
+  </div>
+  <div class="convo" id="convo">
+    <div class="bubble sys">Nothing said yet. He's probably staring at you.</div>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <div class="label">Your cat</div>
+    <div class="label aside">Saved on this device</div>
+  </div>
+  <div class="settings">
+    <label><span class="label">Name</span><input id="s-name" type="text" value="Dave" maxlength="24"></label>
+    <label><span class="label">Pet name</span><input id="s-nick" type="text" value="Buns" maxlength="24"></label>
+    <label><span class="label">Full name (when he's in trouble)</span><input id="s-full" type="text" value="David Buns Buchanan" maxlength="48"></label>
+    <label><span class="label">Your name</span><input id="s-you" type="text" value="Ry" maxlength="24"></label>
+  </div>
+</section>
+
+<section class="panel how">
+  <div class="panel-head">
+    <div class="label">The science, honestly</div>
+  </div>
+  <p><b>Nobody can translate cat.</b> What this page does is measure the meow and infer an intent from acoustic features that published studies found correlate with context. The words are personality — his, and by extension, ours.</p>
+
+  <h3>What it measures</h3>
+  <ul>
+    <li><b>Fundamental frequency (pitch)</b> by normalized autocorrelation on 43 ms windows, with parabolic peak refinement. Adult cat meows sit around 400–800 Hz; a male human voice around 85–180 Hz. That gap is what lets Loose mode tell you two apart.</li>
+    <li><b>Contour</b> — whether the pitch rises or falls from the first third of the meow to the last. Lund University's <i>Meowsic</i> project (Schötz et al.) found rising melodies cluster in friendly, attention-seeking contexts and falling ones in stressed or complaining contexts.</li>
+    <li><b>Duration, loudness, harmonicity and jitter.</b> Long and loud reads as demand; short and clean as greeting; rough and low as complaint. Nicastro &amp; Owren (2003) showed humans can classify meows by context above chance from features like these, so the heuristics aren't nothing — but they aren't a dictionary either.</li>
+    <li><b>What it can't hear:</b> a purr sits around 25 Hz, which is barely one cycle inside a 43 ms window, so purrs register as quiet noise and are ignored. He'll have to purr at you in person.</li>
+  </ul>
+
+  <h3>How it meows back</h3>
+  <p>A sawtooth source at a cat-range pitch runs through three sweeping band-pass "formant" filters that shape the <i>m → ee → ow</i> of a meow. Your sentiment sets the pitch glide, length, roughness and whether he purrs or trills. Cats do react to synthesized meows at natural pitch — mostly by looking for the other cat.</p>
+
+  <h3>Privacy</h3>
+  <p>Audio analysis and meow synthesis run entirely in this tab. Transcription of <i>your</i> voice uses the browser's built-in speech engine (on Chrome that engine sends audio to Google's speech service — no keys, nothing stored by this page). If that engine isn't available you get a text box instead. The conversation lives in this device's local storage only.</p>
+</section>
+
+<footer>
+  <span class="note">Web Audio · Web Speech · zero servers, zero keys. Built for the Gulf Coast · Ridian Technologies.</span>
+</footer>
+
+<script>
+"use strict";
+
+/* ============================================================
+   Dave — a two-way cat translator.
+
+   Three honest parts and one dishonest one:
+     1. Audio feature extraction (pitch, contour, duration, harmonicity) — real.
+     2. Cat-vs-human routing by fundamental frequency — real.
+     3. A formant meow synthesizer that speaks back — real.
+     4. The English. That's a persona engine. It's supposed to be funny.
+   ============================================================ */
+
+const $ = (id) => document.getElementById(id);
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+const isNum = (v) => typeof v === 'number' && Number.isFinite(v);
+const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) =>
+  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+/* ============================================================
+   1. AUDIO ANALYSIS
+   ============================================================ */
+
+/**
+ * Normalized autocorrelation pitch detector.
+ * Returns f0 in Hz, a 0..1 clarity (how periodic the window is) and RMS.
+ * Octave errors are the classic failure: a strongly periodic signal also
+ * correlates at 2x the period. We take the *shortest* lag whose peak is within
+ * 10% of the global best, which biases toward the true fundamental.
+ */
+function detectPitch(buf, sr, minF = 70, maxF = 1500) {
+  const n = buf.length;
+  let mean = 0;
+  for (let i = 0; i < n; i++) mean += buf[i];
+  mean /= n;
+  let energy = 0;
+  for (let i = 0; i < n; i++) { const v = buf[i] - mean; energy += v * v; }
+  const rms = Math.sqrt(energy / n);
+  if (rms < 0.004) return { f0: null, clarity: 0, rms };
+
+  const maxLag = Math.min(Math.floor(sr / minF), n >> 1);
+  const minLag = Math.max(2, Math.floor(sr / maxF));
+  const win = n - maxLag;                     // samples compared per lag
+
+  // Precompute running energies for normalization.
+  const x = new Float32Array(n);
+  for (let i = 0; i < n; i++) x[i] = buf[i] - mean;
+
+  let e0 = 0;
+  for (let i = 0; i < win; i++) e0 += x[i] * x[i];
+
+  const r = new Float32Array(maxLag + 1);
+  for (let lag = minLag; lag <= maxLag; lag++) {
+    let num = 0, e1 = 0;
+    for (let i = 0; i < win; i++) { const b = x[i + lag]; num += x[i] * b; e1 += b * b; }
+    r[lag] = num / (Math.sqrt(e0 * e1) + 1e-12);
+  }
+
+  // Global best among local maxima.
+  let best = 0, bestLag = -1;
+  for (let lag = minLag + 1; lag < maxLag; lag++) {
+    if (r[lag] > r[lag - 1] && r[lag] >= r[lag + 1] && r[lag] > best) { best = r[lag]; bestLag = lag; }
+  }
+  if (bestLag < 0 || best < 0.5) return { f0: null, clarity: Math.max(0, best), rms };
+
+  // Shortest local max within 10% of the best beats the best (octave guard).
+  let chosen = bestLag;
+  for (let lag = minLag + 1; lag < bestLag; lag++) {
+    if (r[lag] > r[lag - 1] && r[lag] >= r[lag + 1] && r[lag] >= best * 0.9) { chosen = lag; break; }
+  }
+
+  // Parabolic interpolation around the chosen peak.
+  const a = r[chosen - 1], b = r[chosen], c = r[chosen + 1];
+  const denom = a - 2 * b + c;
+  const shift = denom === 0 ? 0 : 0.5 * (a - c) / denom;
+  const lag = chosen + clamp(shift, -1, 1);
+  return { f0: sr / lag, clarity: r[chosen], rms };
+}
+
+/** Spectral centroid in Hz from an AnalyserNode's dB spectrum. */
+function centroidFromDb(db, sr, fftSize) {
+  let num = 0, den = 0;
+  const binHz = sr / fftSize;
+  for (let i = 1; i < db.length; i++) {
+    const mag = Math.pow(10, db[i] / 20);
+    num += mag * i * binHz; den += mag;
+  }
+  return den > 0 ? num / den : 0;
+}
+
+/**
+ * Summarize a captured segment (list of frames) into the features the
+ * classifier and the science panel use.
+ */
+function summarize(frames) {
+  const voiced = frames.filter((f) => f.f0 && f.clarity >= 0.6);
+  const dur = frames.length ? (frames[frames.length - 1].t - frames[0].t) : 0;
+  const f0s = voiced.map((f) => f.f0).sort((a, b) => a - b);
+  const median = f0s.length ? f0s[f0s.length >> 1] : null;
+  const third = Math.max(1, Math.floor(voiced.length / 3));
+  const avg = (arr) => arr.reduce((s, v) => s + v, 0) / (arr.length || 1);
+  const start = voiced.length ? avg(voiced.slice(0, third).map((f) => f.f0)) : null;
+  const end = voiced.length ? avg(voiced.slice(-third).map((f) => f.f0)) : null;
+  const peakRms = frames.reduce((m, f) => Math.max(m, f.rms), 0);
+  const clarity = avg(voiced.map((f) => f.clarity));
+  const centroid = avg(frames.filter((f) => f.centroid).map((f) => f.centroid));
+  // Jitter: mean absolute relative change between consecutive voiced f0s.
+  let jit = 0, jn = 0;
+  for (let i = 1; i < voiced.length; i++) {
+    jit += Math.abs(voiced[i].f0 - voiced[i - 1].f0) / voiced[i - 1].f0; jn++;
+  }
+  return {
+    durMs: Math.round(dur * 1000),
+    voicedFrac: frames.length ? voiced.length / frames.length : 0,
+    f0Median: median,
+    f0Min: f0s[0] || null,
+    f0Max: f0s[f0s.length - 1] || null,
+    f0Start: start, f0End: end,
+    slope: start && end ? (end - start) / start : 0,   // relative rise (+) or fall (-)
+    peakDb: peakRms > 0 ? 20 * Math.log10(peakRms) : -100,
+    clarity: isNum(clarity) ? clarity : 0,
+    jitter: jn ? jit / jn : 0,
+    centroid,
+    contour: voiced.map((f) => f.f0),
+  };
+}
+
+/** Who made this sound. Cats live an octave and change above a man's voice. */
+function whoIsIt(feat) {
+  if (!feat.f0Median || feat.voicedFrac < 0.25) return 'noise';
+  if (feat.f0Median > 1250 && feat.clarity > 0.96) return 'whistle';
+  if (feat.f0Median >= 300) return 'cat';
+  return 'human';
+}
+
+/* ============================================================
+   2. MEOW INTENT CLASSIFIER — scored, so the science panel can show its work
+   ============================================================ */
+
+const INTENTS = ['greeting', 'demand', 'question', 'complaint', 'trill', 'yowl', 'purr'];
+
+function classifyMeow(f) {
+  const s = Object.fromEntries(INTENTS.map((k) => [k, 0]));
+  const why = [];
+  const add = (k, pts, reason) => { s[k] += pts; why.push(`${reason} → ${k} +${pts}`); };
+
+  const d = f.durMs, f0 = f.f0Median || 0, slope = f.slope, loud = f.peakDb;
+
+  if (f0 && f0 < 90 && d > 800) { add('purr', 4, `very low pitch (${f0.toFixed(0)} Hz) held ${d} ms`); }
+
+  if (d < 450) { add('greeting', 2, `short (${d} ms)`); add('trill', 1, 'short'); }
+  else if (d < 900) { add('question', 1, `medium length (${d} ms)`); add('demand', 1, 'medium length'); }
+  else if (d < 1600) { add('demand', 2, `long (${d} ms)`); add('complaint', 1, 'long'); }
+  else { add('yowl', 3, `very long (${d} ms)`); add('complaint', 1, 'very long'); }
+
+  if (slope > 0.12) { add('question', 2, `pitch rises ${(slope * 100).toFixed(0)}%`); add('greeting', 1, 'rising'); }
+  else if (slope > 0.04) { add('greeting', 1, `pitch rises slightly`); add('trill', 1, 'rising'); }
+  else if (slope < -0.12) { add('complaint', 2, `pitch falls ${(-slope * 100).toFixed(0)}%`); add('demand', 1, 'falling'); }
+
+  if (f0 > 750) { add('demand', 1, `high pitch (${f0.toFixed(0)} Hz)`); add('trill', 1, 'high'); }
+  else if (f0 && f0 < 450) { add('complaint', 2, `low pitch for a cat (${f0.toFixed(0)} Hz)`); }
+
+  if (loud > -12) { add('demand', 2, `loud (${loud.toFixed(0)} dBFS)`); add('yowl', 1, 'loud'); }
+  else if (loud < -28) { add('greeting', 1, `quiet (${loud.toFixed(0)} dBFS)`); add('purr', 1, 'quiet'); }
+
+  if (f.jitter > 0.06) { add('complaint', 1, `rough (jitter ${(f.jitter * 100).toFixed(1)}%)`); add('yowl', 1, 'rough'); }
+  else if (f.jitter < 0.02 && f.clarity > 0.85) { add('trill', 1, `very clean tone`); add('greeting', 1, 'clean'); }
+
+  if (f.f0Max && f.f0Min && f.f0Max / f.f0Min > 1.6) { add('yowl', 2, `wide pitch range (${f.f0Min.toFixed(0)}–${f.f0Max.toFixed(0)} Hz)`); }
+
+  const ranked = INTENTS.map((k) => [k, s[k]]).sort((a, b) => b[1] - a[1]);
+  return { intent: ranked[0][0], scores: ranked, why };
+}
+
+/* ============================================================
+   3. PERSONA — mood, translations, and how he answers you
+   ============================================================ */
+
+const cat = {
+  name: 'Dave', nick: 'Buns', full: 'David Buns Buchanan', you: 'Ry',
+  hunger: 0.55, aff: 0.5, ann: 0.2,
+  lastFed: Date.now(),
+};
+
+const moodWord = {
+  hunger: (v) => v < 0.25 ? 'fed, briefly' : v < 0.5 ? 'could eat' : v < 0.75 ? 'hungry' : 'STARVING (allegedly)',
+  aff:    (v) => v < 0.25 ? 'tolerating you' : v < 0.5 ? 'neutral' : v < 0.75 ? 'fond of you' : 'lap-adjacent',
+  ann:    (v) => v < 0.25 ? 'serene' : v < 0.5 ? 'mildly put out' : v < 0.75 ? 'irritated' : 'plotting',
+};
+
+/** What Dave meant. Intent from the classifier, flavour from his mood. */
+function translateMeow(intent, f) {
+  const N = cat.name, Y = cat.you;
+  const hungry = cat.hunger > 0.6, annoyed = cat.ann > 0.5, fond = cat.aff > 0.6;
+  const T = {
+    greeting: [
+      `Oh. You're home.`, `${Y}. Acknowledged.`, `There you are. I have notes.`,
+      fond ? `Hi. Hi. Hi. Okay that's enough.` : `I see you. Don't make it weird.`,
+    ],
+    demand: [
+      hungry ? `Food. Now. This is not a request.` : `The bowl is technically not full.`,
+      `${Y}. ${Y}. ${Y}. ${Y}.`, `Whatever you're doing is less important than this.`,
+      `I require the thing. You know the thing.`,
+    ],
+    question: [
+      hungry ? `Is it... dinner time?` : `Is that for me?`,
+      `Are you going to open that door or are we just standing here?`,
+      `Where were you? No, really. Where.`, `Did you hear that? I heard that.`,
+    ],
+    complaint: [
+      annoyed ? `I have been patient. I am no longer patient.` : `The bowl is half empty. I've said this before.`,
+      `The other cat on the screen is looking at me again.`, `Whoever moved my blanket will be dealt with.`,
+      `It's raining and I hold you responsible.`,
+    ],
+    trill: [
+      `Mm. Acceptable.`, fond ? `Prrp. Come here. No, closer.` : `Prrp. You may pet me. Briefly.`,
+      `Oh good, you noticed me.`, `Yes. Yes. Follow me. Faster.`,
+    ],
+    yowl: [
+      `SOMEONE IS AT THE DOOR AND I DO NOT CARE FOR IT.`, `THE NIGHT IS LONG AND I AM AWAKE.`,
+      `I have located the hallway and I am announcing it.`, `The vacuum. I sense the vacuum.`,
+    ],
+    purr: [
+      `...fine. This is fine.`, `Don't stop. I'll know if you stop.`, `I have decided you may stay.`,
+    ],
+  };
+  return pick(T[intent] || T.greeting);
+}
+
+/** Sentiment and intent of what the human said. Small lexicon, big attitude. */
+const LEX = {
+  pos: ['good', 'love', 'sweet', 'handsome', 'cute', 'pretty', 'baby', 'buddy', 'yes', 'okay', 'cuddle', 'pet', 'play', 'toy', 'kitty', 'boy', 'best', 'nice', 'thank', 'thanks'],
+  neg: ['no', 'stop', 'down', 'bad', 'off', 'quit', "don't", 'dont', 'enough', 'naughty', 'hey', 'seriously', 'out'],
+  food: ['food', 'dinner', 'breakfast', 'lunch', 'treat', 'treats', 'tuna', 'chicken', 'snack', 'eat', 'hungry', 'feed', 'fed', 'kibble', 'fish', 'salmon'],
+  q: ['what', 'where', 'why', 'who', 'how', 'do', 'does', 'did', 'are', 'is', 'can', 'will', 'would', 'want', 'wanna'],
+  cmd: ['come', 'sit', 'stop', 'get', 'go', 'move', 'quiet', 'shush', 'hush', 'down', 'off', 'stay', 'leave'],
+};
+
+function readHuman(text) {
+  const t = ' ' + text.toLowerCase().replace(/[^a-z' ]+/g, ' ').replace(/\s+/g, ' ').trim() + ' ';
+  const has = (w) => t.includes(' ' + w + ' ');
+  const count = (list) => list.reduce((n, w) => n + (has(w) ? 1 : 0), 0);
+  const pos = count(LEX.pos), neg = count(LEX.neg), food = count(LEX.food) > 0;
+  const words = t.trim().split(' ');
+  const question = LEX.q.includes(words[0]) || /\?$/.test(text.trim());
+  const command = LEX.cmd.includes(words[0]) || (words.length <= 3 && count(LEX.cmd) > 0);
+  const full = cat.full && t.includes(' ' + cat.full.toLowerCase() + ' ');
+  const nick = cat.nick && has(cat.nick.toLowerCase());
+  const named = has(cat.name.toLowerCase()) || nick || full;
+
+  let kind = 'chat';
+  if (full) kind = 'trouble';
+  else if (food) kind = 'food';
+  else if (neg > pos) kind = 'scold';
+  else if (pos > 0) kind = 'praise';
+  else if (question) kind = 'question';
+  else if (command) kind = 'command';
+
+  return { kind, pos, neg, food, question, command, named, nick, full };
+}
+
+/**
+ * Decide how he responds: a meow recipe (for the synth), the cat-speak text,
+ * and the English. Mood shifts here too.
+ */
+function respond(h) {
+  const N = cat.name, Y = cat.you, nick = cat.nick;
+  let recipe, text;
+
+  const drift = (k, d) => { cat[k] = clamp(cat[k] + d, 0, 1); };
+
+  switch (h.kind) {
+    case 'trouble':
+      drift('ann', 0.35); drift('aff', -0.1);
+      recipe = { f0Start: 520, f0Peak: 480, f0End: 340, dur: 1.15, rough: 0.7, vib: 0.3, syl: 1 };
+      text = pick([`...the full name. Okay. I was going to do that anyway.`,
+        `Whatever it was, the other cat did it.`, `I have never heard that name in my life.`,
+        `Fine. FINE. I'm going. Slowly.`]);
+      break;
+    case 'food':
+      if (cat.hunger > 0.5) {
+        drift('aff', 0.15); drift('ann', -0.2);
+        recipe = { f0Start: 620, f0Peak: 880, f0End: 760, dur: 0.55, rough: 0.1, vib: 0.5, syl: 2 };
+        text = pick([`YES. FINALLY. Move faster.`, `I have been saying this for HOURS.`, `Say it again. Say "dinner" again.`]);
+      } else {
+        recipe = { f0Start: 560, f0Peak: 660, f0End: 600, dur: 0.45, rough: 0.1, vib: 0.2, syl: 1 };
+        text = pick([`I suppose I could eat.`, `I mean, I'm not NOT hungry.`, `Put it down and walk away. I'll consider it.`]);
+      }
+      break;
+    case 'praise':
+      drift('aff', 0.15); drift('ann', -0.1);
+      recipe = cat.aff > 0.7
+        ? { purr: true, dur: 2.4, f0Start: 26, f0Peak: 27, f0End: 25, rough: 0.2, vib: 0, syl: 1 }
+        : { f0Start: 540, f0Peak: 760, f0End: 720, dur: 0.4, rough: 0, vib: 0.4, syl: 1, trill: true };
+      text = pick([`Obviously.`, `Yes. I know. Continue.`, h.nick ? `Only you get to call me ${nick}.` : `Correct. I am.`,
+        `Sure, but where's the treat that usually comes with that sentence?`]);
+      break;
+    case 'scold':
+      drift('ann', 0.25); drift('aff', -0.08);
+      if (Math.random() < 0.4) {
+        recipe = null;
+        text = pick([`${N} has chosen not to respond.`, `${N} heard you. ${N} is looking at the wall.`, `(slow blink. Not the nice kind.)`]);
+      } else {
+        recipe = { f0Start: 460, f0Peak: 440, f0End: 330, dur: 0.85, rough: 0.55, vib: 0.2, syl: 1 };
+        text = pick([`I hear a lot of words and none of them are "treat".`, `Bold of you.`, `Noted. Ignored. Next.`]);
+      }
+      break;
+    case 'question':
+      drift('aff', 0.05);
+      recipe = { f0Start: 500, f0Peak: 560, f0End: 780, dur: 0.6, rough: 0.05, vib: 0.3, syl: 1 };
+      text = pick([`Why are you asking me? You're the one with thumbs.`, `Yes. Wait — what was the question. Yes.`,
+        `The answer is food. The question doesn't matter.`, `Ask me again after I've slept 14 hours.`]);
+      break;
+    case 'command':
+      drift('ann', 0.12);
+      if (Math.random() < 0.6) {
+        recipe = { f0Start: 500, f0Peak: 520, f0End: 500, dur: 0.22, rough: 0.2, vib: 0, syl: 1 };
+        text = pick([`Mrp. (That's a no.)`, `${N} heard you. That's the whole update.`, `I'll think about it. I've thought about it. No.`]);
+      } else {
+        recipe = { f0Start: 480, f0Peak: 520, f0End: 420, dur: 0.7, rough: 0.35, vib: 0.1, syl: 1 };
+        text = pick([`Ugh. Fine.`, `Under protest.`, `Only because I was going to anyway.`]);
+      }
+      break;
+    default:
+      drift('aff', 0.03);
+      recipe = { f0Start: 520, f0Peak: 640, f0End: 560, dur: 0.5, rough: 0.1, vib: 0.3, syl: 1 };
+      text = pick([`Uh huh.`, `Fascinating. Where's the food.`, `I'm listening. I'm not, but keep going.`,
+        `Tell me more. Actually don't.`, h.named ? `You said my name. Go on.` : `Are you talking to me or the phone?`]);
+  }
+  return { recipe, text };
+}
+
+/* ============================================================
+   4. MEOW SYNTHESIZER — a voice for the reply
+   ============================================================ */
+
+let ac = null;
+function audioCtx() {
+  if (!ac) ac = new (window.AudioContext || window.webkitAudioContext)();
+  if (ac.state === 'suspended') ac.resume();
+  return ac;
+}
+
+/**
+ * Render one meow into a context. Works with an OfflineAudioContext too, which
+ * is how the tests check that the synth and the pitch detector agree.
+ *
+ *   sawtooth(F0 glide, vibrato, jitter) → 3 × bandpass formants (m → ee → ow) → envelope
+ *
+ * Cat formant regions sit higher than a human's because the vocal tract is a
+ * fraction of the length: F1 ~ 600–1100 Hz, F2 ~ 1800–3200 Hz.
+ */
+function renderMeow(ctx, r, when = ctx.currentTime, dest = ctx.destination) {
+  if (r.purr) return renderPurr(ctx, r, when, dest);
+  const dur = r.dur;
+  const out = ctx.createGain(); out.gain.value = 0.9; out.connect(dest);
+
+  const src = ctx.createOscillator(); src.type = 'sawtooth';
+  const N = 64, f0 = new Float32Array(N);
+  for (let i = 0; i < N; i++) {
+    const p = i / (N - 1);
+    // start → peak (at 35%) → end, with a little jitter for roughness.
+    const base = p < 0.35 ? r.f0Start + (r.f0Peak - r.f0Start) * (p / 0.35)
+                          : r.f0Peak + (r.f0End - r.f0Peak) * ((p - 0.35) / 0.65);
+    const trill = r.trill ? 1 + 0.06 * Math.sin(p * Math.PI * 2 * 14) : 1;
+    const jit = 1 + (Math.random() - 0.5) * 0.04 * r.rough;
+    f0[i] = Math.max(60, base * trill * jit);
+  }
+  src.frequency.setValueCurveAtTime(f0, when, dur);
+
+  // Vibrato ~6 Hz on detune.
+  const lfo = ctx.createOscillator(); lfo.frequency.value = 6.2;
+  const lfoG = ctx.createGain(); lfoG.gain.value = 25 * (r.vib || 0);
+  lfo.connect(lfoG); lfoG.connect(src.detune);
+
+  // Formant filters with a sweep: m → ee → ow → (close).
+  const stops = [0, 0.14, 0.38, 0.78, 1];
+  const F1 = [420, 520, 900, 700, 480];
+  const F2 = [1500, 2900, 2200, 1300, 1000];
+  const F3 = [3000, 3500, 3100, 2700, 2500];
+  const mix = ctx.createGain(); mix.gain.value = 1;
+  const mk = (freqs, q, g) => {
+    const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = q;
+    const curve = new Float32Array(N);
+    for (let i = 0; i < N; i++) {
+      const p = i / (N - 1);
+      let k = 0; while (k < stops.length - 2 && p > stops[k + 1]) k++;
+      const t = (p - stops[k]) / (stops[k + 1] - stops[k]);
+      curve[i] = freqs[k] + (freqs[k + 1] - freqs[k]) * t;
+    }
+    bp.frequency.setValueCurveAtTime(curve, when, dur);
+    const gg = ctx.createGain(); gg.gain.value = g;
+    src.connect(bp); bp.connect(gg); gg.connect(mix);
+    return bp;
+  };
+  mk(F1, 6, 1.0); mk(F2, 8, 0.55); mk(F3, 10, 0.25);
+
+  // Roughness: fast amplitude modulation, like a growly meow.
+  const amG = ctx.createGain(); amG.gain.value = 1;
+  const am = ctx.createOscillator(); am.frequency.value = 38;
+  const amDepth = ctx.createGain(); amDepth.gain.value = 0.45 * (r.rough || 0);
+  am.connect(amDepth); amDepth.connect(amG.gain);
+  mix.connect(amG);
+
+  // Envelope: soft "m" onset, full body, tapered "w".
+  const env = ctx.createGain();
+  env.gain.setValueAtTime(0.0001, when);
+  env.gain.exponentialRampToValueAtTime(0.35, when + dur * 0.12);
+  env.gain.exponentialRampToValueAtTime(1.0, when + dur * 0.3);
+  env.gain.setValueAtTime(1.0, when + dur * 0.7);
+  env.gain.exponentialRampToValueAtTime(0.0001, when + dur);
+  amG.connect(env); env.connect(out);
+
+  src.start(when); lfo.start(when); am.start(when);
+  src.stop(when + dur + 0.02); lfo.stop(when + dur + 0.02); am.stop(when + dur + 0.02);
+  return when + dur;
+}
+
+function renderPurr(ctx, r, when, dest) {
+  const dur = r.dur;
+  const out = ctx.createGain(); out.gain.value = 0.7; out.connect(dest);
+  const src = ctx.createOscillator(); src.type = 'sawtooth'; src.frequency.value = r.f0Peak || 26;
+  const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 420; lp.Q.value = 0.7;
+  // Breathing: purr strength swells in and out ~0.6 Hz.
+  const breath = ctx.createOscillator(); breath.frequency.value = 0.6;
+  const bg = ctx.createGain(); bg.gain.value = 0.35;
+  const env = ctx.createGain(); env.gain.value = 0.65;
+  breath.connect(bg); bg.connect(env.gain);
+  env.gain.setValueAtTime(0.0001, when);
+  env.gain.linearRampToValueAtTime(0.65, when + 0.3);
+  env.gain.setValueAtTime(0.65, when + dur - 0.4);
+  env.gain.linearRampToValueAtTime(0.0001, when + dur);
+  src.connect(lp); lp.connect(env); env.connect(out);
+  src.start(when); breath.start(when); src.stop(when + dur); breath.stop(when + dur);
+  return when + dur;
+}
+
+/** Play a full reply: one or two meows, spaced like a real cat spaces them. */
+function playRecipe(r) {
+  const ctx = audioCtx();
+  let t = ctx.currentTime + 0.05;
+  const n = r.syl || 1;
+  for (let i = 0; i < n; i++) {
+    const v = i === 0 ? r : { ...r, f0Start: r.f0Start * 1.05, f0Peak: r.f0Peak * 1.08, dur: r.dur * 0.8 };
+    t = renderMeow(ctx, v, t) + 0.16;
+  }
+  return t - ctx.currentTime;
+}
+
+/** Cat-speak spelling of a recipe, so the transcript shows what he "said". */
+function catSpeak(r) {
+  if (!r) return '…';
+  if (r.purr) return 'prrrrrrrrrr' + (r.dur > 2 ? 'rrrrr' : '') + '.';
+  const one = () => {
+    let s = r.rough > 0.4 ? 'Mrr' : r.trill ? 'Prr' : 'M';
+    const long = r.dur > 0.8;
+    s += r.trill ? 'p' : (long ? 'eeeoow' : 'eow');
+    if (r.rough > 0.5) s += 'wrr';
+    return s;
+  };
+  const rising = r.f0End > r.f0Start * 1.15;
+  let out = Array.from({ length: r.syl || 1 }, one).join('-');
+  out += rising ? '?' : r.rough > 0.4 ? '.' : r.dur < 0.3 ? '.' : '!';
+  return out;
+}
+
+/* ============================================================
+   5. LISTENER — mic, VAD, segmenting, routing
+   ============================================================ */
+
+const L = {
+  stream: null, analyser: null, src: null,
+  timeBuf: null, freqBuf: null,
+  running: false, raf: 0, lastFrameAt: 0,
+  floorDb: -60,             // adaptive noise floor
+  seg: null,                // frames of the segment currently being captured
+  silentSince: 0,
+  onSegment: null,
+  lastCatSegmentAt: 0,
+};
+
+async function startMic() {
+  if (L.stream) return true;
+  const ctx = audioCtx();
+  const stream = await navigator.mediaDevices.getUserMedia({
+    audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false },
+  });
+  L.stream = stream;
+  L.src = ctx.createMediaStreamSource(stream);
+  L.analyser = ctx.createAnalyser();
+  L.analyser.fftSize = 2048;
+  L.analyser.smoothingTimeConstant = 0;
+  L.src.connect(L.analyser);
+  L.timeBuf = new Float32Array(L.analyser.fftSize);
+  L.freqBuf = new Float32Array(L.analyser.frequencyBinCount);
+  return true;
+}
+
+function stopMic() {
+  if (L.stream) { L.stream.getTracks().forEach((t) => t.stop()); L.stream = null; }
+  if (L.src) { try { L.src.disconnect(); } catch (_) {} L.src = null; }
+  L.analyser = null;
+}
+
+function listenLoop() {
+  if (!L.running || !L.analyser) return;
+  L.raf = requestAnimationFrame(listenLoop);
+  const now = performance.now();
+  if (now - L.lastFrameAt < 30) return;   // ~33 fps is plenty; saves the phone's battery
+  L.lastFrameAt = now;
+
+  const sr = ac.sampleRate;
+  L.analyser.getFloatTimeDomainData(L.timeBuf);
+  const { f0, clarity, rms } = detectPitch(L.timeBuf, sr);
+  const db = rms > 0 ? 20 * Math.log10(rms) : -100;
+
+  // Noise floor: fast to drop, slow to rise.
+  L.floorDb = db < L.floorDb ? L.floorDb * 0.8 + db * 0.2 : L.floorDb * 0.995 + db * 0.005;
+  const active = db > Math.max(L.floorDb + 12, -48);
+
+  let centroid = 0;
+  if (active) { L.analyser.getFloatFrequencyData(L.freqBuf); centroid = centroidFromDb(L.freqBuf, sr, L.analyser.fftSize); }
+
+  renderLive(db, f0, clarity, active);
+
+  const t = now / 1000;
+  if (active) {
+    if (!L.seg) L.seg = [];
+    L.seg.push({ t, f0: f0 && clarity >= 0.5 ? f0 : null, clarity, rms, centroid });
+    L.silentSince = 0;
+  } else if (L.seg) {
+    if (!L.silentSince) L.silentSince = t;
+    if (t - L.silentSince > 0.22) {                    // hangover: the meow is over
+      const frames = L.seg; L.seg = null; L.silentSince = 0;
+      const dur = frames[frames.length - 1].t - frames[0].t;
+      if (dur >= 0.12 && dur <= 5) L.onSegment && L.onSegment(summarize(frames));
+    }
+  }
+}
+
+function startListening() {
+  if (L.running) return;
+  L.running = true;
+  L.lastFrameAt = 0;
+  listenLoop();
+}
+function stopListening() {
+  L.running = false;
+  cancelAnimationFrame(L.raf);
+  L.seg = null;
+}
+
+function renderLive(db, f0, clarity, active) {
+  const pct = clamp((db + 60) / 60, 0, 1) * 100;
+  $('lvl').style.width = pct.toFixed(0) + '%';
+  $('lvl').style.background = active ? 'var(--accent)' : 'var(--good)';
+  $('live-f0').textContent = f0 && clarity >= 0.5 ? f0.toFixed(0) : '—';
+  let who = 'silence';
+  if (active) {
+    who = !f0 || clarity < 0.5 ? 'noise' : f0 >= 1250 && clarity > 0.96 ? 'a whistle' : f0 >= 300 ? 'a cat' : 'a human';
+  }
+  $('live-who').textContent = who;
+}
+
+/* ============================================================
+   6. SPEECH RECOGNITION (your side)
+   ============================================================ */
+
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+const R = { rec: null, active: false, wantContinuous: false, onFinal: null, lastEndAt: 0, startedAt: 0, failStreak: 0 };
+
+function srSupported() { return !!SR; }
+
+function startSR({ continuous }) {
+  if (!SR) return false;
+  stopSR();
+  const rec = new SR();
+  rec.lang = 'en-US';
+  rec.interimResults = true;
+  rec.continuous = continuous;
+  rec.maxAlternatives = 1;
+  R.wantContinuous = continuous;
+  R.active = true;
+
+  rec.onresult = (e) => {
+    let interim = '', fin = '';
+    for (let i = e.resultIndex; i < e.results.length; i++) {
+      const tr = e.results[i][0].transcript;
+      if (e.results[i].isFinal) fin += tr; else interim += tr;
+    }
+    if (interim) $('prompt').innerHTML = `<b>${esc(cat.you)}:</b> ${esc(interim)}…`;
+    if (fin.trim()) { R.failStreak = 0; R.onFinal && R.onFinal(fin.trim()); }
+  };
+  rec.onerror = (e) => {
+    if (e.error === 'not-allowed' || e.error === 'service-not-allowed') { R.active = false; showFallback(true, 'Mic blocked for speech recognition'); }
+    // 'no-speech' and 'aborted' are routine; the onend handler restarts if needed.
+  };
+  rec.onend = () => {
+    R.lastEndAt = Date.now();
+    // Dying within a moment of starting, three times in a row, means the
+    // engine isn't going to work here. Stop looping and offer the text box.
+    if (R.lastEndAt - R.startedAt < 700) {
+      if (++R.failStreak >= 3) { R.active = false; R.rec = null; showFallback(true, 'Speech recognition keeps failing here'); return; }
+    } else { R.failStreak = 0; }
+    // Chrome on Android ends recognition after a pause; in Loose mode we want
+    // it to stay up, so bring it straight back.
+    if (R.active && R.wantContinuous && R.rec === rec) {
+      R.startedAt = Date.now();
+      try { rec.start(); } catch (_) { setTimeout(() => { if (R.active && R.rec === rec) { R.startedAt = Date.now(); try { rec.start(); } catch (__) {} } }, 300); }
+    } else if (R.active && !R.wantContinuous) {
+      R.active = false; onYourTurnEnded();
+    }
+  };
+  R.rec = rec;
+  R.startedAt = Date.now();
+  try { rec.start(); } catch (_) { R.active = false; return false; }
+  return true;
+}
+
+function stopSR() {
+  if (R.rec) { const r = R.rec; R.rec = null; R.active = false; try { r.onend = null; r.stop(); } catch (_) {} }
+}
+
+function showFallback(show, reason) {
+  // The box is always there; this only sharpens the placeholder when the
+  // speech engine has let us down, and softens it again when it hasn't.
+  $('fallback-input').placeholder = show && reason
+    ? reason + ' — type what you\'d say to him'
+    : 'Or just type something to him';
+  if (show) $('fallback-input').focus({ preventScroll: true });
+}
+
+/* ============================================================
+   7. TURN ENGINE
+   ============================================================ */
+
+const G = {
+  mode: 'strict',       // 'strict' | 'loose'
+  phase: 'idle',        // strict: 'idle' | 'cat' | 'you' | 'reply' ; loose: 'idle' | 'open'
+  history: [],
+  speakingUntil: 0,
+};
+
+function setMode(m) {
+  G.mode = m;
+  $('mode-strict').classList.toggle('on', m === 'strict');
+  $('mode-loose').classList.toggle('on', m === 'loose');
+  try { localStorage.setItem('dave.mode', m); } catch (_) {}
+  if (G.phase !== 'idle') { stopAll(); }
+  renderStage();
+}
+
+function stopAll() {
+  stopListening(); stopSR(); stopMic();
+  G.phase = 'idle';
+  $('live').hidden = true;
+  renderStage();
+}
+
+async function bigTap() {
+  audioCtx();
+  if (G.phase !== 'idle') { stopAll(); return; }
+  try { await startMic(); }
+  catch (err) {
+    addSys(`Couldn't open the microphone (${err && err.name || 'error'}). Check the site permission and try again.`);
+    return;
+  }
+  $('live').hidden = false;
+  if (G.mode === 'strict') beginCatTurn(); else beginLoose();
+}
+
+/* ---- strict mode ---- */
+function beginCatTurn() {
+  G.phase = 'cat';
+  stopSR();
+  L.onSegment = (feat) => {
+    const who = whoIsIt(feat);
+    if (who === 'noise') return;
+    if (who === 'human') { addSys(`That sounded like you, not ${cat.name}. Still his turn — or tap skip.`); return; }
+    if (who === 'whistle') { addSys(`That's a whistle. He is not fooled.`); return; }
+    onCatSaid(feat);
+    beginYourTurn();
+  };
+  startListening();
+  renderStage();
+}
+
+function beginYourTurn() {
+  G.phase = 'you';
+  stopListening();
+  renderStage();
+  if (srSupported()) {
+    R.onFinal = (text) => { onYouSaid(text); };
+    if (!startSR({ continuous: false })) showFallback(true, 'Speech recognition failed to start');
+  } else {
+    showFallback(true, 'Speech recognition unavailable in this browser');
+    $('fallback-input').focus();
+  }
+}
+
+function onYourTurnEnded() {
+  // SR ended without a final result (silence). Stay on your turn, re-arm.
+  if (G.phase === 'you' && G.mode === 'strict') {
+    $('prompt').innerHTML = `Didn't catch that. <b>Your turn, ${esc(cat.you)}</b> — try again, or type below.`;
+    showFallback(true, 'Or type it');
+    if (srSupported() && R.failStreak < 3) startSR({ continuous: false });
+  }
+}
+
+function skipCat() {
+  if (G.mode !== 'strict' || G.phase !== 'cat') return;
+  addSys(`${cat.name} is ignoring you. Your turn anyway.`);
+  cat.ann = clamp(cat.ann + 0.05, 0, 1); renderMood();
+  beginYourTurn();
+}
+
+/* ---- loose mode ---- */
+function beginLoose() {
+  G.phase = 'open';
+  L.onSegment = (feat) => {
+    if (Date.now() < G.speakingUntil) return;     // that was the phone meowing, not him
+    const who = whoIsIt(feat);
+    if (who === 'cat') { L.lastCatSegmentAt = Date.now(); onCatSaid(feat); }
+  };
+  startListening();
+  if (srSupported()) {
+    R.onFinal = (text) => {
+      // A result that lands right on top of a cat segment and is tiny is the
+      // recognizer trying to spell a meow. Drop it.
+      const words = text.split(/\s+/).length;
+      if (Date.now() - L.lastCatSegmentAt < 1500 && words <= 2) return;
+      onYouSaid(text);
+    };
+    if (!startSR({ continuous: true })) showFallback(true, 'Speech recognition failed to start');
+  } else {
+    showFallback(true, 'Speech recognition unavailable in this browser');
+  }
+  renderStage();
+}
+
+/* ---- shared handlers ---- */
+function onCatSaid(feat) {
+  const c = classifyMeow(feat);
+  const text = translateMeow(c.intent, feat);
+  // His own meows move his mood a little too.
+  if (c.intent === 'demand' || c.intent === 'complaint') cat.ann = clamp(cat.ann + 0.08, 0, 1);
+  if (c.intent === 'trill' || c.intent === 'purr') { cat.aff = clamp(cat.aff + 0.08, 0, 1); cat.ann = clamp(cat.ann - 0.05, 0, 1); }
+  if (c.intent === 'demand' && cat.hunger > 0.4) cat.hunger = clamp(cat.hunger + 0.05, 0, 1);
+  addBubble({ who: 'cat', feat, cls: c, text, t: Date.now() });
+  renderMood();
+}
+
+function onYouSaid(text) {
+  const h = readHuman(text);
+  const rep = respond(h);
+  const spoken = catSpeak(rep.recipe);
+  addBubble({ who: 'you', text, h, rep, spoken, t: Date.now() });
+  renderMood();
+
+  if (rep.recipe) {
+    G.phase = G.mode === 'strict' ? 'reply' : G.phase;
+    renderStage();
+    const secs = playRecipe(rep.recipe);
+    G.speakingUntil = Date.now() + secs * 1000 + 250;
+    setTimeout(() => { if (G.mode === 'strict' && G.phase === 'reply') beginCatTurn(); }, secs * 1000 + 300);
+  } else if (G.mode === 'strict') {
+    setTimeout(beginCatTurn, 600);
+  }
+}
+
+/* ============================================================
+   8. RENDER
+   ============================================================ */
+
+function renderStage() {
+  const big = $('big'), e = $('big-emoji'), t = $('big-text'), s = $('big-sub'), p = $('prompt');
+  big.className = 'big';
+  $('skip-btn').hidden = !(G.mode === 'strict' && G.phase === 'cat');
+  if (srSupported() && R.failStreak < 3) showFallback(false);
+  if (G.phase === 'idle') {
+    e.textContent = '🐈'; t.textContent = 'Tap to start'; s.textContent = 'mic stays on this device';
+    p.innerHTML = G.mode === 'strict'
+      ? `Tap the button. <b>${esc(cat.name)}</b> goes first — he usually does.`
+      : `Tap the button. Both of you talk; I'll sort out who's who by pitch.`;
+    $('live').hidden = true;
+    return;
+  }
+  if (G.phase === 'cat') {
+    big.classList.add('cat-turn', 'listening', 'pulse');
+    e.textContent = '🐈'; t.textContent = `${cat.name}'s turn`; s.textContent = 'listening for a meow · tap to stop';
+    p.innerHTML = `Waiting on <b>${esc(cat.name)}</b>. Say nothing. Look at him expectantly.`;
+  } else if (G.phase === 'you') {
+    big.classList.add('you-turn', 'listening', 'pulse');
+    e.textContent = '🎙'; t.textContent = `Your turn, ${cat.you}`; s.textContent = 'speak · tap to stop';
+    p.innerHTML = `<b>Your turn, ${esc(cat.you)}.</b> Talk to him. Use the full name if you must.`;
+  } else if (G.phase === 'reply') {
+    big.classList.add('cat-turn');
+    e.textContent = '🔊'; t.textContent = `${cat.name} is replying`; s.textContent = 'meowing at him';
+    p.innerHTML = `Meowing back. Watch his ears.`;
+  } else if (G.phase === 'open') {
+    big.classList.add('listening', 'pulse');
+    e.textContent = '👂'; t.textContent = 'Listening to both'; s.textContent = 'tap to stop';
+    p.innerHTML = `Open mic. Meows are translated; your voice gets a meow back. He may interrupt — that's expected.`;
+  }
+}
+
+function renderMood() {
+  const set = (id, v, fn) => { $(id).style.width = (v * 100).toFixed(0) + '%'; $(id + '-name').textContent = fn(v); };
+  set('m-hunger', cat.hunger, moodWord.hunger);
+  set('m-aff', cat.aff, moodWord.aff);
+  set('m-ann', cat.ann, moodWord.ann);
+  saveState();
+}
+
+function sparkline(contour) {
+  if (!contour || contour.length < 2) return '';
+  const W = 120, H = 28, lo = Math.min(...contour), hi = Math.max(...contour), span = Math.max(20, hi - lo);
+  const pts = contour.map((v, i) => `${(i / (contour.length - 1) * W).toFixed(1)},${(H - 3 - (v - lo) / span * (H - 6)).toFixed(1)}`);
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}" aria-label="pitch contour"><line x1="0" y1="${H - 1}" x2="${W}" y2="${H - 1}"/><polyline points="${pts.join(' ')}"/></svg>`;
+}
+
+function sciPanel(feat, cls) {
+  const g = feat;
+  const contour = g.slope > 0.04 ? 'rising ↗' : g.slope < -0.04 ? 'falling ↘' : 'flat →';
+  const grid = `
+    <div>Duration<b>${g.durMs} ms</b></div>
+    <div>Pitch (median)<b>${g.f0Median ? g.f0Median.toFixed(0) : '—'} Hz</b></div>
+    <div>Contour<b>${contour}</b></div>
+    <div>Start → end<b>${g.f0Start ? g.f0Start.toFixed(0) : '—'} → ${g.f0End ? g.f0End.toFixed(0) : '—'}</b></div>
+    <div>Range<b>${g.f0Min ? g.f0Min.toFixed(0) : '—'}–${g.f0Max ? g.f0Max.toFixed(0) : '—'} Hz</b></div>
+    <div>Peak level<b>${g.peakDb.toFixed(0)} dBFS</b></div>
+    <div>Harmonicity<b>${(g.clarity * 100).toFixed(0)}%</b></div>
+    <div>Jitter<b>${(g.jitter * 100).toFixed(1)}%</b></div>
+    <div>Brightness<b>${g.centroid ? g.centroid.toFixed(0) : '—'} Hz</b></div>`;
+  const max = Math.max(1, cls.scores[0][1]);
+  const scores = cls.scores.slice(0, 4).map(([k, v], i) =>
+    `<div class="score${i === 0 ? ' win' : ''}"><span>${k}</span><span class="bar"><i style="width:${(v / max * 100).toFixed(0)}%"></i></span><span>${v}</span></div>`).join('');
+  const why = cls.why.map((w) => `<li>${esc(w)}</li>`).join('');
+  return `<details class="sci"><summary>The science</summary>
+    <div class="sci-grid">${grid}</div>
+    <div class="scores">${scores}</div>
+    <ul class="why">${why}</ul></details>`;
+}
+
+function timeStr(t) { return new Date(t).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); }
+
+function bubbleHTML(b) {
+  if (b.who === 'sys') return `<div class="bubble sys">${esc(b.text)}</div>`;
+  if (b.who === 'cat') {
+    return `<div class="bubble cat">
+      <div class="who"><span class="label">${esc(cat.name)}</span><span class="t">${timeStr(b.t)}</span></div>
+      <div class="said">${sparkline(b.feat.contour)}<i>${esc(b.cls.intent)}</i> · ${b.feat.durMs} ms · ${b.feat.f0Median ? b.feat.f0Median.toFixed(0) + ' Hz' : '—'}</div>
+      <div class="trans">"${esc(b.text)}"</div>
+      ${sciPanel(b.feat, b.cls)}
+    </div>`;
+  }
+  const replay = b.rep && b.rep.recipe ? `<button type="button" data-replay="${b.id}">↻ Meow again</button>` : '';
+  return `<div class="bubble you">
+    <div class="who"><span class="label">${esc(cat.you)}</span><span class="t">${timeStr(b.t)}</span></div>
+    <div class="trans">${esc(b.text)}</div>
+    <div class="said" style="margin-top:6px"><i>${esc(cat.name)}:</i> ${esc(b.spoken)} — <span>"${esc(b.rep.text)}"</span></div>
+    <div class="tools">${replay}<span class="label">${esc(b.h.kind)}</span></div>
+  </div>`;
+}
+
+let bubbleSeq = 0;
+function addBubble(b) {
+  b.id = ++bubbleSeq;
+  if (G.history.length === 0) $('convo').innerHTML = '';
+  G.history.push(b);
+  if (G.history.length > 60) G.history.shift();
+  $('convo').insertAdjacentHTML('beforeend', bubbleHTML(b));
+  $('convo').lastElementChild.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  saveState();
+}
+function addSys(text) { addBubble({ who: 'sys', text, t: Date.now() }); }
+
+function renderAll() {
+  $('convo').innerHTML = G.history.length ? G.history.map(bubbleHTML).join('') :
+    `<div class="bubble sys">Nothing said yet. He's probably staring at you.</div>`;
+  renderMood(); renderStage(); renderNames();
+}
+
+function renderNames() {
+  $('title').textContent = cat.name.toUpperCase();
+  document.title = `${cat.name} — Cat Translator`;
+  $('cat-name-mood').textContent = cat.name;
+}
+
+/* ============================================================
+   9. STATE, THEME, BOOT
+   ============================================================ */
+
+function saveState() {
+  try {
+    localStorage.setItem('dave.cat', JSON.stringify({ name: cat.name, nick: cat.nick, full: cat.full, you: cat.you,
+      hunger: cat.hunger, aff: cat.aff, ann: cat.ann, lastFed: cat.lastFed }));
+    localStorage.setItem('dave.history', JSON.stringify(G.history.slice(-40).map((b) =>
+      b.who === 'cat' ? { ...b, feat: { ...b.feat, contour: b.feat.contour.slice(0, 80) } } : b)));
+  } catch (_) {}
+}
+function loadState() {
+  try {
+    const c = JSON.parse(localStorage.getItem('dave.cat') || 'null');
+    if (c) Object.assign(cat, c);
+    const h = JSON.parse(localStorage.getItem('dave.history') || '[]');
+    if (Array.isArray(h)) { G.history = h; bubbleSeq = h.length; }
+    const m = localStorage.getItem('dave.mode');
+    if (m === 'loose' || m === 'strict') G.mode = m;
+  } catch (_) {}
+  // Hunger creeps up with time since he was last fed: full → starving over ~6 h.
+  const hrs = (Date.now() - (cat.lastFed || Date.now())) / 3600e3;
+  cat.hunger = clamp(Math.max(cat.hunger, Math.min(1, hrs / 6)), 0, 1);
+}
+
+const THEME_KEY = 'theme';
+const sysDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
+function storedTheme() { try { return localStorage.getItem(THEME_KEY); } catch (_) { return null; } }
+function applyTheme() {
+  const stored = storedTheme();
+  const dark = stored ? stored === 'dark' : sysDark();
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', dark ? '#0a0e1a' : '#f4f7fb');
+  const btn = $('theme-btn');
+  btn.textContent = stored === 'dark' ? '☾ Dark' : stored === 'light' ? '☀ Light' : '◐ Auto';
+  btn.title = stored ? `Theme: ${stored} — click to cycle` : 'Theme: following your system — click to cycle';
+}
+$('theme-btn').addEventListener('click', () => {
+  const stored = storedTheme();
+  const next = stored === null ? 'light' : stored === 'light' ? 'dark' : null;
+  try { if (next === null) localStorage.removeItem(THEME_KEY); else localStorage.setItem(THEME_KEY, next); } catch (_) {}
+  applyTheme();
+});
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { if (storedTheme() === null) applyTheme(); });
+window.addEventListener('storage', (e) => { if (e.key === THEME_KEY) applyTheme(); });
+
+/* ---- wiring ---- */
+$('big').addEventListener('click', bigTap);
+$('mode-strict').addEventListener('click', () => setMode('strict'));
+$('mode-loose').addEventListener('click', () => setMode('loose'));
+$('skip-btn').addEventListener('click', skipCat);
+$('fed-btn').addEventListener('click', () => {
+  cat.hunger = 0.1; cat.lastFed = Date.now(); cat.aff = clamp(cat.aff + 0.2, 0, 1); cat.ann = clamp(cat.ann - 0.3, 0, 1);
+  addSys(`${cat.name} has been fed. Peace, for approximately eleven minutes.`);
+  renderMood();
+  audioCtx(); playRecipe({ f0Start: 600, f0Peak: 820, f0End: 700, dur: 0.4, rough: 0, vib: 0.4, syl: 2, trill: true });
+});
+$('clear-btn').addEventListener('click', () => { G.history = []; bubbleSeq = 0; renderAll(); });
+$('fallback-send').addEventListener('click', () => {
+  const v = $('fallback-input').value.trim(); if (!v) return;
+  $('fallback-input').value = '';
+  if (G.phase === 'idle') { audioCtx(); }
+  onYouSaid(v);
+});
+$('fallback-input').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('fallback-send').click(); });
+$('convo').addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-replay]'); if (!btn) return;
+  const b = G.history.find((x) => x.id === Number(btn.dataset.replay));
+  if (b && b.rep && b.rep.recipe) { audioCtx(); const s = playRecipe(b.rep.recipe); G.speakingUntil = Date.now() + s * 1000 + 250; }
+});
+for (const [id, key] of [['s-name', 'name'], ['s-nick', 'nick'], ['s-full', 'full'], ['s-you', 'you']]) {
+  $(id).addEventListener('input', () => { cat[key] = $(id).value.trim() || cat[key]; renderNames(); renderStage(); saveState(); });
+}
+document.addEventListener('visibilitychange', () => { if (document.hidden && G.phase !== 'idle') stopAll(); });
+
+(function boot() {
+  applyTheme();
+  loadState();
+  $('s-name').value = cat.name; $('s-nick').value = cat.nick; $('s-full').value = cat.full; $('s-you').value = cat.you;
+  setMode(G.mode);
+  renderAll();
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    addSys('This browser has no microphone API. You can still type to him below.');
+    showFallback(true, 'No microphone API');
+  }
+  if (!srSupported()) showFallback(true, 'Speech recognition unavailable in this browser');
+})();
+
+// Exposed for tests.
+window.__dave = { detectPitch, summarize, whoIsIt, classifyMeow, readHuman, respond, catSpeak, renderMeow, cat };
+</script>
+</body>
+</html>
