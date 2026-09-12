@@ -327,6 +327,56 @@
   footer { margin-top: 26px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; }
 
   .skeleton { color: var(--ink-faint); font-style: italic; font-size: 12.5px; }
+
+  /* Consumer layer: forecast first, evidence second. */
+  main { display: grid; gap: 14px; }
+  .weather-hero { overflow: hidden; position: relative; background: linear-gradient(135deg, var(--panel), var(--panel-2)); }
+  .weather-hero::after { content:""; position:absolute; width:260px; height:260px; right:-100px; top:-130px; border-radius:50%; background:radial-gradient(circle, rgba(29,111,184,.18), transparent 68%); pointer-events:none; }
+  .hero-location { font-size: clamp(20px, 5vw, 30px); line-height:1.1; margin-bottom:14px; }
+  .hero-main { display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:center; }
+  .hero-condition { font-size:clamp(18px, 4vw, 26px); font-weight:600; line-height:1.2; }
+  .hero-summary { font-size:14px; color:var(--ink-dim); margin-top:14px; max-width:700px; }
+  .hero-facts { display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:12px; font-size:13px; font-weight:600; }
+  .provenance { font-size:10px; letter-spacing:.8px; text-transform:uppercase; color:var(--ink-faint); }
+  .section-title { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:2px; line-height:1; }
+  .rain-card { border-left:4px solid var(--cool); }
+  .rain-guidance { margin-top:12px; display:flex; gap:8px; overflow-x:auto; scrollbar-width:thin; }
+  .rain-hour { flex:0 0 76px; background:var(--panel-2); border-radius:9px; padding:8px; text-align:center; font-size:11px; }
+  .rain-hour b { display:block; color:var(--cool); font-size:15px; }
+  .hourly { display:flex; overflow-x:auto; gap:8px; padding:3px 2px 10px; scroll-snap-type:x proximity; scrollbar-color:var(--line) transparent; }
+  .hour { flex:0 0 88px; scroll-snap-align:start; text-align:center; background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:11px 7px; }
+  .hour time, .hour .amount { display:block; color:var(--ink-faint); font-size:10px; }
+  .weather-icon { width:34px; height:34px; display:block; margin:7px auto; color:var(--cool); }
+  .hour-temp { font-family:'Bebas Neue',sans-serif; font-size:25px; }
+  .pop { color:var(--cool); font-size:14px; font-weight:700; }
+  .daily { display:grid; }
+  .day { display:grid; grid-template-columns:minmax(58px,.65fr) 38px minmax(95px,1.5fr) 54px 86px; gap:8px; align-items:center; min-height:58px; border-top:1px solid var(--line); font-size:13px; }
+  .day:first-child { border-top:0; background:var(--panel-2); margin:0 -8px; padding:0 8px; border-radius:9px; }
+  .day .weather-icon { width:28px; height:28px; margin:0; }
+  .day-temp { text-align:right; font-variant-numeric:tabular-nums; }
+  .glance { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+  .glance .tile { min-height:76px; }
+  .radar-view { position:relative; height:230px; overflow:hidden; border-radius:11px; background:#cbd7df; margin-top:12px; }
+  .radar-view img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; image-rendering:auto; }
+  .radar-view .radar-layer { z-index:1; }
+  .radar-marker { position:absolute; left:50%; top:50%; width:16px; height:16px; margin:-8px; border:3px solid white; background:var(--accent); border-radius:50%; box-shadow:0 0 0 2px rgba(0,0,0,.35); }
+  .radar-controls { display:flex; align-items:center; gap:10px; margin-top:9px; }
+  .radar-controls button { min-width:72px; }
+  details.tech > summary { cursor:pointer; list-style:none; min-height:44px; display:flex; align-items:center; justify-content:space-between; }
+  details.tech > summary::after { content:'Show details +'; color:var(--accent); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  details.tech[open] > summary::after { content:'Hide details −'; }
+  button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visible { outline:3px solid var(--cool); outline-offset:3px; }
+  .sr-only { position:absolute!important; width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
+  @media (min-width:720px) { .glance { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+  @media (max-width:480px) {
+    body { padding-left:12px; padding-right:12px; }
+    .hero-main { grid-template-columns:1fr; gap:8px; }
+    .temp { font-size:82px; }
+    .day { grid-template-columns:52px 32px minmax(80px,1fr) 45px 74px; font-size:12px; }
+    .day-desc { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .header-actions .btn { display:none; }
+  }
+  @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; scroll-behavior:auto!important; } }
 </style>
 </head>
 <body>
@@ -356,92 +406,62 @@
   <button type="button" id="geo-btn" title="Use device GPS">GPS</button>
 </div>
 
-<div id="alerts"></div>
+<div id="alerts" aria-live="polite"></div>
 
-<section class="panel">
-  <div class="hero">
-    <div>
-      <div class="label">Measured at the nearest station</div>
-      <div class="temp-row">
-        <div class="temp display" id="hero-temp">—</div>
-        <div class="temp-unit" id="hero-unit">°F</div>
-      </div>
-      <div class="cond" id="hero-cond">—</div>
-      <div class="feels" id="hero-feels"></div>
-      <div class="source-chip" id="hero-src"><span class="dot dead"></span><span>waiting for data</span></div>
+<main>
+  <section class="panel weather-hero" aria-labelledby="current-heading">
+    <div class="provenance">Current weather</div>
+    <h2 class="hero-location display" id="current-heading">Local conditions</h2>
+    <div class="hero-main">
+      <div class="temp-row"><div class="temp" id="hero-temp">—</div><div class="temp-unit" id="hero-unit">°F</div></div>
+      <div><div class="hero-condition" id="hero-cond">Getting your local weather…</div><div class="feels" id="hero-feels"></div><div class="source-chip" id="hero-src"><span class="dot dead"></span><span>Finding the nearest observation station…</span></div></div>
     </div>
-
-    <div>
-      <div class="label">Radar nowcast at your exact coordinates</div>
-      <div class="nowcast-head" id="nc-head" style="margin-top:6px">Reading radar…</div>
-      <div class="nowcast-sub" id="nc-sub">Sampling RainViewer composite tiles at your pixel.</div>
-
-      <div class="strip">
-        <div class="bars" id="radar-bars"></div>
-        <div class="bar-axis">
-          <span class="label" id="axis-left">−2 h</span>
-          <span class="label" style="color:var(--accent)">NOW</span>
-          <span class="label" id="axis-right">+30 m</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="grid">
-  <section class="panel">
-    <div class="panel-head">
-      <div class="label">Station observation</div>
-      <div class="label" id="obs-age">—</div>
-    </div>
-    <div class="tiles" id="obs-tiles"><div class="skeleton">Loading NWS observation…</div></div>
+    <p class="hero-summary" id="today-summary">Building today's forecast…</p>
+    <div class="hero-facts"><span id="hero-hilo">H — · L —</span><span id="hero-pop">Rain chance —</span><span id="hero-wind">Wind —</span></div>
   </section>
 
-  <section class="panel">
-    <div class="panel-head">
-      <div class="label">Next 3 hours · 15-minute resolution</div>
-      <div class="label aside" id="min15-model">—</div>
-    </div>
-    <div class="tiles" id="min15-tiles"><div class="skeleton">Loading high-resolution model…</div></div>
+  <section class="panel rain-card" aria-labelledby="rain-title" aria-live="polite">
+    <div class="panel-head"><h2 class="section-title" id="rain-title">Rain near you</h2><span class="provenance" id="rain-kind">Radar observation</span></div>
+    <div class="nowcast-head" id="nc-head">Reading nearby radar…</div>
+    <div class="nowcast-sub" id="nc-sub">Forecast guidance remains available if radar cannot be read.</div>
+    <div class="rain-guidance" id="rain-guidance" aria-label="Hourly rain probability"></div>
   </section>
-</div>
 
-<section class="panel">
-  <div class="panel-head">
-    <div class="label">Model disagreement · next 18 hours</div>
-    <div class="label aside">Wider band = less certainty</div>
-  </div>
-  <svg class="spread-svg" id="spread" viewBox="0 0 800 190" preserveAspectRatio="none" role="img" aria-label="Temperature forecast envelope across weather models"></svg>
-  <div class="legend" id="spread-legend"></div>
-  <div class="confidence" id="confidence">Loading independent forecast models…</div>
-</section>
+  <section class="panel" aria-labelledby="hourly-title">
+    <div class="panel-head"><h2 class="section-title" id="hourly-title">Hourly forecast</h2><span class="provenance">Next 24 hours · model estimate</span></div>
+    <div class="hourly" id="hourly-list"><span class="skeleton">Preparing the next 24 hours…</span></div>
+  </section>
 
-<section class="panel">
-  <div class="panel-head">
-    <div class="label">Source ledger</div>
-    <div class="label aside">Every number, with its true age</div>
-  </div>
-  <table>
-    <thead>
-      <tr><th>Source</th><th>What it gives</th><th class="num">Fetched</th><th class="num">Data age</th><th class="num">Status</th></tr>
-    </thead>
-    <tbody id="ledger"></tbody>
-  </table>
-  <p class="note" style="margin-top:12px">
-    <b>Why this differs from your phone.</b> A phone widget shows one blended number and hides its age.
-    Here the big temperature is a <em>physical measurement</em> from the nearest ASOS/AWOS station (not a model),
-    the rain timing comes from <em>radar echoes sampled at your pixel</em> (not an hourly forecast), and the
-    confidence band is the live disagreement between five independent forecast models. When they diverge, you see it.
-  </p>
-</section>
+  <section class="panel" aria-labelledby="radar-title">
+    <div class="panel-head"><h2 class="section-title" id="radar-title">Radar</h2><span class="provenance" id="radar-time">RainViewer · loading</span></div>
+    <div class="radar-view" id="radar-view"><img id="radar-base" alt="" aria-hidden="true"><img class="radar-layer" id="radar-map" alt="Radar precipitation near the selected location"><span class="radar-marker" aria-hidden="true"></span></div>
+    <div class="radar-controls"><button id="radar-play" type="button" aria-label="Play radar animation">Play</button><span class="note" id="radar-frame-label">Reading radar frames…</span></div>
+    <div class="strip"><div class="bars" id="radar-bars"></div><div class="bar-axis"><span class="label" id="axis-left">−2 h</span><span class="label" style="color:var(--accent)">NOW</span><span class="label" id="axis-right">+30 m</span></div></div>
+  </section>
 
-<footer>
-  <span class="note">
-    Sources: NWS/NOAA <code>api.weather.gov</code> · Open-Meteo (HRRR, ECMWF, ICON, GEM, UKMO) · RainViewer radar composite.
-    No API keys, no tracking, no server — everything runs in this tab.
-  </span>
-  <span class="note" id="build-note"></span>
-</footer>
+  <section class="panel" aria-labelledby="daily-title"><div class="panel-head"><h2 class="section-title" id="daily-title">7-day forecast</h2><span class="provenance">Open-Meteo aggregate</span></div><div class="daily" id="daily-list"><span class="skeleton">Looking through the week…</span></div></section>
+
+  <section class="panel" aria-labelledby="glance-title"><div class="panel-head"><h2 class="section-title" id="glance-title">Today at a glance</h2></div><div class="glance" id="glance-tiles"><span class="skeleton">Gathering today's details…</span></div></section>
+
+  <section class="panel" aria-labelledby="confidence-title">
+    <div class="panel-head"><h2 class="section-title" id="confidence-title">Forecast confidence</h2><span class="provenance">Independent model comparison</span></div>
+    <div class="confidence" id="confidence">Comparing forecast models…</div>
+    <details class="tech"><summary><span class="label">Model disagreement · next 18 hours</span></summary><p class="note">When independent forecast models agree, confidence increases. When their predictions spread apart, uncertainty is higher.</p><svg class="spread-svg" id="spread" viewBox="0 0 800 190" preserveAspectRatio="none" role="img" aria-label="Temperature forecast envelope across weather models"></svg><div class="legend" id="spread-legend"></div></details>
+  </section>
+
+  <details class="panel tech"><summary><h2 class="section-title">Weather intelligence</h2></summary>
+    <div class="grid">
+      <section><div class="panel-head"><div class="label">Nearest station · measured observation</div><div class="label" id="obs-age">—</div></div><div class="tiles" id="obs-tiles"><div class="skeleton">Finding the nearest observation station…</div></div></section>
+      <section><div class="panel-head"><div class="label">Next 3 hours · 15-minute resolution</div><div class="label aside" id="min15-model">—</div></div><div class="tiles" id="min15-tiles"><div class="skeleton">Loading high-resolution model…</div></div></section>
+    </div>
+  </details>
+
+  <section class="panel" aria-labelledby="sources-title"><div class="panel-head"><h2 class="section-title" id="sources-title">Weather data &amp; sources</h2><div class="label aside">Every source, with its true age</div></div>
+    <div style="overflow-x:auto"><table><thead><tr><th>Source</th><th>What it provides</th><th class="num">Fetched</th><th class="num">Data age</th><th class="num">Status</th></tr></thead><tbody id="ledger"></tbody></table></div>
+    <p class="note" style="margin-top:12px"><b>Why this differs from your phone.</b> The current reading is a <em>physical observation</em> from the nearest ASOS/AWOS station whenever available. Rain timing is a separate <em>radar-derived observation</em> at your pixel. Hourly and daily values are <em>forecast-model guidance</em>, never presented as radar detection. The confidence view exposes disagreement between independent models instead of hiding it in a blend.</p>
+  </section>
+</main>
+<footer><span class="note">NWS/NOAA · Open-Meteo · RainViewer. No API keys, tracking, or server; location is sent only to these weather services.</span><span class="note" id="build-note"></span></footer>
 
 <script>
 "use strict";
@@ -486,6 +506,8 @@ const S = {
   alerts: [],
   radar: null,      // { series: [{t, dbz, mmh, future}], scannedAt }
   minutely: null,
+  radarFrame: 0,
+  radarTimer: null,
   ensemble: null,   // { [modelId]: {time[], temperature_2m[]} }
   sources: {},      // ledger rows
   busy: false,
@@ -532,6 +554,26 @@ function compass(deg) {
   if (!isNum(deg)) return '—';
   const pts = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
   return pts[Math.round(deg / 22.5) % 16];
+}
+
+function weatherLabel(code) {
+  if (code === 0) return 'Clear';
+  if (code <= 2) return 'Partly cloudy';
+  if (code === 3) return 'Cloudy';
+  if ([45,48].includes(code)) return 'Foggy';
+  if ([51,53,55,56,57].includes(code)) return 'Drizzle';
+  if ([61,63,65,66,67,80,81,82].includes(code)) return code >= 80 ? 'Rain showers' : 'Rain';
+  if ([71,73,75,77,85,86].includes(code)) return 'Snow';
+  if (code >= 95) return 'Thunderstorms';
+  return 'Variable conditions';
+}
+
+function weatherIcon(code) {
+  const label = weatherLabel(code), common = `class="weather-icon" viewBox="0 0 48 48" role="img" aria-label="${label}"`;
+  if (code === 0) return `<svg ${common}><circle cx="24" cy="24" r="9" fill="currentColor"/><g stroke="currentColor" stroke-width="2.5"><path d="M24 4v6M24 38v6M4 24h6M38 24h6M10 10l4 4M34 34l4 4M38 10l-4 4M14 34l-4 4"/></g></svg>`;
+  if (code >= 95) return `<svg ${common}><path d="M13 31a9 9 0 0 1 2-17 13 13 0 0 1 25 5 7 7 0 0 1-2 12z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M25 29l-5 9h6l-3 7 10-12h-6l3-4z" fill="currentColor"/></svg>`;
+  const drops = ([51,53,55,56,57,61,63,65,66,67,80,81,82].includes(code)) ? '<path d="M17 34l-2 6M26 34l-2 6M35 34l-2 6" stroke="currentColor" stroke-width="3"/>' : '';
+  return `<svg ${common}><path d="M12 31a8 8 0 0 1 2-16 12 12 0 0 1 23 4 7 7 0 0 1-1 12z" fill="none" stroke="currentColor" stroke-width="3"/>${drops}</svg>`;
 }
 
 function esc(s) {
@@ -790,7 +832,7 @@ async function loadRadar() {
     const missed = frames.length - good.length;
     if (!good.length) throw new Error('0/' + frames.length + ' tiles readable (CORS or tile error)');
 
-    S.radar = { series: good, scannedAt: Date.now(), missed, total: frames.length };
+    S.radar = { series: good, frames, host, scannedAt: Date.now(), missed, total: frames.length };
     renderRadar();
 
     const lastPast = good.filter((s) => !s.future).pop();
@@ -860,15 +902,17 @@ async function loadMinutely() {
     const q = new URLSearchParams({
       latitude: lat.toFixed(4), longitude: lon.toFixed(4),
       minutely_15: 'precipitation,temperature_2m,wind_gusts_10m,cape,weather_code',
-      hourly: 'precipitation_probability',
+      hourly: 'temperature_2m,apparent_temperature,precipitation_probability,precipitation,weather_code,wind_speed_10m,wind_direction_10m,relative_humidity_2m,dew_point_2m,visibility,surface_pressure,uv_index',
+      daily: 'weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset,uv_index_max',
       forecast_minutely_15: '12',
-      forecast_hours: '18',
-      timeformat: 'unixtime', timezone: 'UTC', wind_speed_unit: 'kmh',
+      forecast_hours: '24', forecast_days: '7',
+      timeformat: 'unixtime', timezone: 'auto', wind_speed_unit: 'kmh',
     });
     const d = await fetchJSON('https://api.open-meteo.com/v1/forecast?' + q);
     if (!d || !d.minutely_15) throw new Error('no minutely_15 block');
     S.minutely = d;
     renderMinutely();
+    renderConsumerForecast();
     return { __dataTime: Date.now() };
   });
 }
@@ -912,6 +956,66 @@ async function loadAlerts() {
 /* ============================================================
    RENDERING
    ============================================================ */
+
+function renderConsumerForecast() {
+  const d = S.minutely, h = d && d.hourly, daily = d && d.daily;
+  if (!h || !daily) return;
+  const now = Date.now() / 1000;
+  let start = (h.time || []).findIndex((t) => t >= now - 1800);
+  if (start < 0) start = 0;
+  const at = (key, i = start) => h[key] && h[key][i];
+  const code = at('weather_code');
+
+  $('current-heading').textContent = S.loc.name || 'Local conditions';
+  // Station observations remain authoritative. Model values are only a clearly
+  // labelled fallback, so degraded NWS coverage never produces a blank app.
+  if (!S.obs) {
+    $('hero-temp').textContent = tempStr(at('temperature_2m'));
+    $('hero-unit').textContent = unitTemp();
+    $('hero-cond').textContent = weatherLabel(code);
+    $('hero-feels').textContent = isNum(at('apparent_temperature')) ? `Feels like ${tempStr(at('apparent_temperature'))}${unitTemp()}` : '';
+    $('hero-src').innerHTML = '<span class="dot stale"></span><span>Current conditions estimated from forecast data</span>';
+  }
+  const hi = daily.temperature_2m_max && daily.temperature_2m_max[0];
+  const lo = daily.temperature_2m_min && daily.temperature_2m_min[0];
+  const pop = daily.precipitation_probability_max && daily.precipitation_probability_max[0];
+  $('hero-hilo').textContent = `H ${tempStr(hi)}° · L ${tempStr(lo)}°`;
+  $('hero-pop').textContent = `Rain chance ${isNum(pop) ? Math.round(pop) + '%' : '—'}`;
+  const wind = speedOut(at('wind_speed_10m'));
+  $('hero-wind').textContent = `Wind ${isNum(wind) ? Math.round(wind) + ' ' + unitSpeed() + ' ' + compass(at('wind_direction_10m')) : '—'}`;
+
+  const pops = (h.precipitation_probability || []).slice(start, start + 18);
+  const wet = pops.map((v,i) => ({v,i})).filter(x => isNum(x.v) && x.v >= 50);
+  let summary = `${weatherLabel(daily.weather_code && daily.weather_code[0])} today. High ${tempStr(hi)}°, low ${tempStr(lo)}°.`;
+  if (wet.length) {
+    const first = new Date(h.time[start + wet[0].i] * 1000), last = new Date(h.time[start + wet[wet.length-1].i] * 1000);
+    summary += ` Rain most likely ${clockText(first)}–${clockText(last)}.`;
+  } else if (isNum(pop) && pop < 25) summary += ' Mostly dry conditions expected.';
+  $('today-summary').textContent = summary;
+
+  $('hourly-list').innerHTML = h.time.slice(start, start + 24).map((t,j) => {
+    const i=start+j, p=h.precipitation_probability[i], amount=lenOut(h.precipitation[i]);
+    return `<article class="hour" aria-label="${j ? clockText(new Date(t*1000)) : 'Now'}: ${tempStr(h.temperature_2m[i])} degrees, ${isNum(p)?p:0} percent precipitation">
+      <time datetime="${new Date(t*1000).toISOString()}">${j ? clockText(new Date(t*1000)).replace(':00','') : 'NOW'}</time>${weatherIcon(h.weather_code[i])}<div class="hour-temp">${tempStr(h.temperature_2m[i])}°</div><div class="pop">${isNum(p)?Math.round(p):0}%</div><span class="amount">${isNum(amount)&&amount>0 ? amount.toFixed(2)+(S.unit==='us'?' in':' mm') : '—'}</span></article>`;
+  }).join('');
+
+  $('rain-guidance').innerHTML = h.time.slice(start, start + 5).map((t,j) => `<div class="rain-hour"><span>${j?' '+clockText(new Date(t*1000)):'NOW'}</span><b>${isNum(h.precipitation_probability[start+j])?Math.round(h.precipitation_probability[start+j]):0}%</b><span>forecast</span></div>`).join('');
+
+  $('daily-list').innerHTML = daily.time.slice(0,7).map((t,i) => `<article class="day"><b>${i===0?'TODAY':new Date(t*1000).toLocaleDateString([],{weekday:'short'}).toUpperCase()}</b>${weatherIcon(daily.weather_code[i])}<span class="day-desc">${weatherLabel(daily.weather_code[i])}</span><span class="pop">${isNum(daily.precipitation_probability_max[i])?Math.round(daily.precipitation_probability_max[i]):0}%</span><span class="day-temp">${tempStr(daily.temperature_2m_min[i])}° — <b>${tempStr(daily.temperature_2m_max[i])}°</b></span></article>`).join('');
+
+  const sunrise=daily.sunrise&&daily.sunrise[0], sunset=daily.sunset&&daily.sunset[0];
+  const pressure=at('surface_pressure'), visibility=at('visibility');
+  const vals=[['Sunrise / sunset',`${sunrise?clockText(new Date(sunrise*1000)):'—'} / ${sunset?clockText(new Date(sunset*1000)):'—'}`],['UV index',isNum(daily.uv_index_max&&daily.uv_index_max[0])?daily.uv_index_max[0].toFixed(1):'—'],['Humidity',isNum(at('relative_humidity_2m'))?Math.round(at('relative_humidity_2m'))+'%':'—'],['Dew point',isNum(at('dew_point_2m'))?tempStr(at('dew_point_2m'))+unitTemp():'—'],['Wind',isNum(wind)?Math.round(wind)+' '+unitSpeed()+' '+compass(at('wind_direction_10m')):'—'],['Pressure',isNum(pressure)?(S.unit==='us'?(pressure/33.8639).toFixed(2)+' inHg':Math.round(pressure)+' hPa'):'—'],['Visibility',isNum(visibility)?(S.unit==='us'?(visibility/1609.34).toFixed(1)+' mi':(visibility/1000).toFixed(1)+' km'):'—']];
+  $('glance-tiles').innerHTML=vals.map(([k,v])=>`<div class="tile"><div class="label">${k}</div><div class="tile-val">${v}</div></div>`).join('');
+}
+
+function forecastRainFallback(reason) {
+  if (!S.minutely || !S.minutely.hourly) return;
+  $('rain-kind').textContent = 'Forecast probability · model estimate';
+  $('nc-head').className = 'nowcast-head';
+  $('nc-head').textContent = 'RAIN TIMING UNCERTAIN';
+  $('nc-sub').textContent = `${reason} Hourly forecast probabilities below are guidance, not radar detection.`;
+}
 
 function renderHero() {
   if (!S.obs) return;
@@ -960,6 +1064,7 @@ function renderRadar() {
   if (!S.radar) return;
   const series = S.radar.series;
   const now = Date.now();
+  renderRadarMap();
 
   // Bars
   const peak = Math.max(0.6, ...series.map((s) => s.mmh));
@@ -1006,15 +1111,30 @@ function renderRadar() {
     sub.textContent = `No echoes over your coordinates through ` +
       `${clockText(new Date(now + ev.horizonMin * 60e3))}. Last radar scan ${scanAge}.`;
   } else {
-    head.className = 'nowcast-head';
-    head.textContent = 'RADAR INCONCLUSIVE';
-    sub.textContent = 'Too few radar frames could be read to call rain timing — ' +
-      'treat the forecast panels below as the only guide.';
+    forecastRainFallback('Radar history is incomplete, so an exact start time cannot be determined.');
   }
 
   if (S.radar.missed) {
     sub.textContent += ` (${S.radar.missed} of ${S.radar.total} frames unreadable.)`;
   }
+}
+
+function renderRadarMap() {
+  if (!S.radar || !S.radar.frames.length) return;
+  const i = clamp(S.radarFrame, 0, S.radar.frames.length - 1), f=S.radar.frames[i];
+  const t=tileFor(S.loc.lat,S.loc.lon,CFG.radarZoom);
+  $('radar-base').src=`https://tile.openstreetmap.org/${CFG.radarZoom}/${t.x}/${t.y}.png`;
+  $('radar-map').src=`${S.radar.host}${f.path}/256/${CFG.radarZoom}/${t.x}/${t.y}/2/1_1.png`;
+  $('radar-map').alt=`Radar precipitation at ${S.loc.name}, ${clockText(new Date(f.time*1000))}`;
+  $('radar-frame-label').textContent=`${clockText(new Date(f.time*1000))}${f.future?' · radar nowcast':' · observed radar'}`;
+  $('radar-time').textContent=`RainViewer · ${agoText(Date.now()-f.time*1000)}`;
+}
+
+function toggleRadar() {
+  if (!S.radar) return;
+  if (S.radarTimer) { clearInterval(S.radarTimer); S.radarTimer=null; $('radar-play').textContent='Play'; $('radar-play').setAttribute('aria-label','Play radar animation'); return; }
+  $('radar-play').textContent='Pause'; $('radar-play').setAttribute('aria-label','Pause radar animation');
+  S.radarTimer=setInterval(()=>{ S.radarFrame=(S.radarFrame+1)%S.radar.frames.length; renderRadarMap(); },700);
 }
 
 function renderMinutely() {
@@ -1135,7 +1255,8 @@ function renderSpread() {
       : avg < (S.unit === 'us' ? 5 : 2.8) ? 'Moderate' : 'Low';
     const cls = verdict === 'High' ? 'ok' : verdict === 'Moderate' ? 'warn' : 'bad';
 
-    let line = `<b class="${cls}">${verdict} confidence.</b> ${runs.length} independent models ` +
+    const plain = verdict === 'High' ? 'Models strongly agree.' : verdict === 'Moderate' ? 'Models broadly agree, with some timing or temperature differences.' : 'Forecast models differ substantially.';
+    let line = `<b class="${cls}">${verdict.toUpperCase()} CONFIDENCE</b> ${plain} ${runs.length} independent models ` +
       `disagree by ${avg.toFixed(1)}${unitTemp()} on average over the next 6 hours ` +
       `(worst hour: ${worst.toFixed(1)}${unitTemp()}).`;
 
@@ -1201,6 +1322,7 @@ function renderLocation() {
   $('loc-meta').textContent =
     `${S.loc.lat.toFixed(4)}, ${S.loc.lon.toFixed(4)}` +
     (S.loc.source ? ` · ${S.loc.source}` : '');
+  if ($('current-heading')) $('current-heading').textContent = S.loc.name || 'Local conditions';
 }
 
 /* ============================================================
@@ -1208,6 +1330,7 @@ function renderLocation() {
    ============================================================ */
 
 function setLocation(loc) {
+  if (S.radarTimer) { clearInterval(S.radarTimer); S.radarTimer = null; }
   S.loc = loc;
   localStorage.setItem('nowcast.loc', JSON.stringify(loc));
   S.point = S.obs = S.station = S.radar = S.minutely = S.ensemble = null;
@@ -1267,9 +1390,7 @@ async function refreshAll() {
     }
     await Promise.all([loadObservation(), loadAlerts(), loadRadar(), loadMinutely(), loadEnsemble()]);
     if (!S.radar) {
-      $('nc-head').className = 'nowcast-head';
-      $('nc-head').textContent = 'RADAR UNAVAILABLE';
-      $('nc-sub').textContent = 'The radar composite did not respond — see the source ledger below.';
+      forecastRainFallback('RainViewer is temporarily unavailable.');
     }
     const now = Date.now();
     nextRun.obs = now + CFG.intervals.obs;
@@ -1338,11 +1459,12 @@ $('unit-btn').addEventListener('click', () => {
   S.unit = S.unit === 'us' ? 'metric' : 'us';
   localStorage.setItem('nowcast.unit', S.unit);
   applyUnitLabel();
-  renderHero(); renderObsTiles(); renderRadar(); renderMinutely(); renderSpread(); renderLocation();
+  renderHero(); renderObsTiles(); renderRadar(); renderMinutely(); renderConsumerForecast(); renderSpread(); renderLocation();
 });
 
 $('refresh-btn').addEventListener('click', refreshAll);
 $('geo-btn').addEventListener('click', useGPS);
+$('radar-play').addEventListener('click', toggleRadar);
 
 $('search-form').addEventListener('submit', async (e) => {
   e.preventDefault();
