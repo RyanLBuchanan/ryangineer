@@ -376,6 +376,25 @@
     .day-desc { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .header-actions .btn { display:none; }
   }
+
+  /* Atmospheric presentation: weather first, evidence on demand. */
+  body{padding-top:10px} main{gap:0} header{align-items:center;margin-bottom:8px} h1{font-size:32px}.tagline{display:none}.header-actions{gap:4px}.header-actions button,.header-actions .btn{padding:6px 9px;border:0;background:transparent}
+  .locbar{border:0;box-shadow:none;padding:4px 2px 9px;margin:0;background:transparent}.locbar form{order:3;flex-basis:100%;margin-top:4px}.locname{font-size:16px}
+  .panel{border:0;border-radius:0;box-shadow:none;padding:22px 4px;background:transparent}.panel+.panel,.grid{margin-top:0}main>.panel:not(.weather-hero),main>details.panel{border-top:1px solid var(--line)}
+  .weather-hero{min-height:310px;margin:0 -12px;padding:24px 20px 22px;border-radius:18px!important;color:#fff;background:linear-gradient(145deg,#2878ae,#65a9cf 58%,#a9cbdc);isolation:isolate}
+  .weather-hero[data-weather=clear]{background:linear-gradient(145deg,#1878bd,#55a8db 58%,#b8d9e7)}.weather-hero[data-weather=cloud]{background:linear-gradient(145deg,#526c83,#8ba2b2 58%,#c3d0d6)}.weather-hero[data-weather=rain]{background:linear-gradient(145deg,#29495f,#52778e 58%,#879dab)}.weather-hero[data-weather=storm]{background:linear-gradient(145deg,#222b46,#3c4968 60%,#646f87)}.weather-hero[data-time=night]{background:linear-gradient(150deg,#071b36,#123b62 62%,#315c79)}
+  .weather-hero:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 82% 18%,rgba(255,255,255,.32),transparent 23%),linear-gradient(180deg,transparent 60%,rgba(3,20,37,.15))}.weather-hero:after{width:340px;height:150px;right:-80px;top:auto;bottom:-80px;background:rgba(255,255,255,.09);filter:blur(18px)}
+  .weather-hero .provenance,.weather-hero .feels,.weather-hero .hero-summary{color:rgba(255,255,255,.8)}.weather-hero .hero-location{margin:2px 0 10px;font-family:Inter,sans-serif;font-size:20px;letter-spacing:0;font-weight:600}.hero-main{grid-template-columns:auto 1fr;gap:16px}.temp{font-size:clamp(82px,25vw,118px);text-shadow:0 2px 20px rgba(0,0,0,.1)}.temp-unit{color:rgba(255,255,255,.72)}.hero-visual{width:64px;height:64px;color:#fff;float:right}.hero-visual .weather-icon{width:64px;height:64px;margin:0}.source-chip{background:rgba(0,0,0,.12);border-color:rgba(255,255,255,.16);color:rgba(255,255,255,.82)}.hero-summary{margin-top:12px;font-size:15px}.hero-facts{margin-top:9px}
+  .rain-card{border-left:0}.rain-guidance{gap:3px;overflow:hidden;align-items:end;height:112px;padding-top:8px}.rain-hour{position:relative;flex:1 1 0;min-width:0;height:100%;padding:0 2px;background:transparent;display:flex;flex-direction:column;justify-content:flex-end}.rain-hour:before{content:"";height:var(--rain-height);min-height:3px;width:100%;order:2;border-radius:5px 5px 2px 2px;background:linear-gradient(180deg,#56b7ef,var(--cool));opacity:var(--rain-opacity)}.rain-hour span:first-child{order:1;margin-bottom:auto;white-space:nowrap;color:var(--ink-faint)}.rain-hour b{order:3;margin-top:4px;font-size:12px}.rain-hour span:last-child{display:none}
+  .hourly{gap:0;padding:4px 0 12px;background:linear-gradient(180deg,transparent,var(--panel-2));border-radius:12px}.hour{flex-basis:76px;border:0;border-radius:0;background:transparent;padding:10px 5px;position:relative}.hour+.hour:before{content:"";position:absolute;left:0;top:25%;bottom:15%;border-left:1px solid var(--line);opacity:.55}.hour .weather-icon{width:32px;height:32px}.hour-temp{font-size:27px}.hour .amount{display:none}
+  .daily{gap:0}.day{grid-template-columns:52px 32px minmax(72px,1fr) 42px minmax(100px,1fr);min-height:52px}.day:first-child{margin:0;padding:0 7px}.day-temp{display:grid;grid-template-columns:27px 1fr 27px;align-items:center;gap:5px;text-align:center;color:var(--ink-dim)}.temp-range{height:5px;border-radius:8px;background:var(--panel-2);position:relative}.temp-range i{position:absolute;height:100%;border-radius:8px;background:linear-gradient(90deg,#65aee1,#e8a447)}
+  .glance{gap:1px;background:var(--line);border-radius:12px;overflow:hidden}.glance .tile{border:0;border-radius:0;min-height:72px;background:var(--panel)}.glance .tile-val{font-family:Inter,sans-serif;font-size:18px;font-weight:600;margin-top:7px;letter-spacing:0}
+  .radar-view{height:260px;border-radius:14px;background:#b8c9d0}.radar-tile{position:absolute;width:256px!important;height:256px!important;max-width:none}.radar-layer{position:absolute;inset:0;z-index:1;opacity:.72}.radar-marker{z-index:3}.radar-marker:after{content:'You';position:absolute;top:17px;left:50%;transform:translateX(-50%);padding:2px 6px;border-radius:5px;color:#fff;background:rgba(10,20,30,.75);font:600 10px Inter,sans-serif;white-space:nowrap}
+  details.panel>summary{margin:-10px 0}.confidence-brief{margin-left:auto;color:var(--ink-dim);font-size:12px;text-align:right}details.panel[open]>summary{margin-bottom:16px}#confidence-panel .confidence{margin:0;padding:0;border:0}
+  @media(min-width:900px){main{grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);column-gap:28px;align-items:start}.weather-hero,.rain-card,#hourly-panel{grid-column:1}#radar-panel{grid-column:2;grid-row:1/span 3;border-top:0;padding-top:8px;position:sticky;top:10px}#daily-panel,#glance-panel,#confidence-panel,main>details{grid-column:1/-1}.weather-hero{margin:0}.radar-view{height:430px}}
+  @media(max-width:480px){.weather-hero{margin-left:-12px;margin-right:-12px;border-radius:0 0 20px 20px!important}.header-actions .btn{display:none}.header-actions button{padding:6px;font-size:10px}}
+  :root[data-theme=dark] .hourly{background:linear-gradient(180deg,transparent,rgba(34,50,75,.45))}:root[data-theme=dark] .glance .tile{background:#111a29}:root[data-theme=dark] .radar-view{filter:saturate(.9) brightness(.82)}
+
   @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; scroll-behavior:auto!important; } }
 </style>
 </head>
@@ -414,7 +433,7 @@
     <h2 class="hero-location display" id="current-heading">Local conditions</h2>
     <div class="hero-main">
       <div class="temp-row"><div class="temp" id="hero-temp">—</div><div class="temp-unit" id="hero-unit">°F</div></div>
-      <div><div class="hero-condition" id="hero-cond">Getting your local weather…</div><div class="feels" id="hero-feels"></div><div class="source-chip" id="hero-src"><span class="dot dead"></span><span>Finding the nearest observation station…</span></div></div>
+      <div><div class="hero-visual" id="hero-visual" aria-hidden="true"></div><div class="hero-condition" id="hero-cond">Getting your local weather…</div><div class="feels" id="hero-feels"></div><div class="source-chip" id="hero-src"><span class="dot dead"></span><span>Finding the nearest observation station…</span></div></div>
     </div>
     <p class="hero-summary" id="today-summary">Building today's forecast…</p>
     <div class="hero-facts"><span id="hero-hilo">H — · L —</span><span id="hero-pop">Rain chance —</span><span id="hero-wind">Wind —</span></div>
@@ -427,27 +446,27 @@
     <div class="rain-guidance" id="rain-guidance" aria-label="Hourly rain probability"></div>
   </section>
 
-  <section class="panel" aria-labelledby="hourly-title">
+  <section class="panel" id="hourly-panel" aria-labelledby="hourly-title">
     <div class="panel-head"><h2 class="section-title" id="hourly-title">Hourly forecast</h2><span class="provenance">Next 24 hours · model estimate</span></div>
     <div class="hourly" id="hourly-list"><span class="skeleton">Preparing the next 24 hours…</span></div>
   </section>
 
-  <section class="panel" aria-labelledby="radar-title">
+  <section class="panel" id="radar-panel" aria-labelledby="radar-title">
     <div class="panel-head"><h2 class="section-title" id="radar-title">Radar</h2><span class="provenance" id="radar-time">RainViewer · loading</span></div>
-    <div class="radar-view" id="radar-view"><img id="radar-base" alt="" aria-hidden="true"><img class="radar-layer" id="radar-map" alt="Radar precipitation near the selected location"><span class="radar-marker" aria-hidden="true"></span></div>
+    <div class="radar-view" id="radar-view" role="img" aria-label="Radar precipitation map centered on your location"><div id="radar-base" aria-hidden="true"></div><div class="radar-layer" id="radar-map" aria-hidden="true"></div><span class="radar-marker" aria-hidden="true"></span></div>
     <div class="radar-controls"><button id="radar-play" type="button" aria-label="Play radar animation">Play</button><span class="note" id="radar-frame-label">Reading radar frames…</span></div>
     <div class="strip"><div class="bars" id="radar-bars"></div><div class="bar-axis"><span class="label" id="axis-left">−2 h</span><span class="label" style="color:var(--accent)">NOW</span><span class="label" id="axis-right">+30 m</span></div></div>
   </section>
 
-  <section class="panel" aria-labelledby="daily-title"><div class="panel-head"><h2 class="section-title" id="daily-title">7-day forecast</h2><span class="provenance">Open-Meteo aggregate</span></div><div class="daily" id="daily-list"><span class="skeleton">Looking through the week…</span></div></section>
+  <section class="panel" id="daily-panel" aria-labelledby="daily-title"><div class="panel-head"><h2 class="section-title" id="daily-title">7-day forecast</h2><span class="provenance">Open-Meteo aggregate</span></div><div class="daily" id="daily-list"><span class="skeleton">Looking through the week…</span></div></section>
 
-  <section class="panel" aria-labelledby="glance-title"><div class="panel-head"><h2 class="section-title" id="glance-title">Today at a glance</h2></div><div class="glance" id="glance-tiles"><span class="skeleton">Gathering today's details…</span></div></section>
+  <section class="panel" id="glance-panel" aria-labelledby="glance-title"><div class="panel-head"><h2 class="section-title" id="glance-title">Today at a glance</h2></div><div class="glance" id="glance-tiles"><span class="skeleton">Gathering today's details…</span></div></section>
 
-  <section class="panel" aria-labelledby="confidence-title">
-    <div class="panel-head"><h2 class="section-title" id="confidence-title">Forecast confidence</h2><span class="provenance">Independent model comparison</span></div>
+  <details class="panel" id="confidence-panel"><summary><h2 class="section-title" id="confidence-title">Forecast confidence</h2><span class="confidence-brief" id="confidence-brief">Comparing models…</span></summary><section aria-labelledby="confidence-title">
+    <div class="provenance">Independent model comparison</div>
     <div class="confidence" id="confidence">Comparing forecast models…</div>
     <details class="tech"><summary><span class="label">Model disagreement · next 18 hours</span></summary><p class="note">When independent forecast models agree, confidence increases. When their predictions spread apart, uncertainty is higher.</p><svg class="spread-svg" id="spread" viewBox="0 0 800 190" preserveAspectRatio="none" role="img" aria-label="Temperature forecast envelope across weather models"></svg><div class="legend" id="spread-legend"></div></details>
-  </section>
+  </section></details>
 
   <details class="panel tech"><summary><h2 class="section-title">Weather intelligence</h2></summary>
     <div class="grid">
@@ -456,10 +475,10 @@
     </div>
   </details>
 
-  <section class="panel" aria-labelledby="sources-title"><div class="panel-head"><h2 class="section-title" id="sources-title">Weather data &amp; sources</h2><div class="label aside">Every source, with its true age</div></div>
+  <details class="panel tech" id="sources-panel"><summary><h2 class="section-title" id="sources-title">Data &amp; sources</h2></summary><section aria-labelledby="sources-title"><div class="label aside">Every source, with its true age</div>
     <div style="overflow-x:auto"><table><thead><tr><th>Source</th><th>What it provides</th><th class="num">Fetched</th><th class="num">Data age</th><th class="num">Status</th></tr></thead><tbody id="ledger"></tbody></table></div>
     <p class="note" style="margin-top:12px"><b>Why this differs from your phone.</b> The current reading is a <em>physical observation</em> from the nearest ASOS/AWOS station whenever available. Rain timing is a separate <em>radar-derived observation</em> at your pixel. Hourly and daily values are <em>forecast-model guidance</em>, never presented as radar detection. The confidence view exposes disagreement between independent models instead of hiding it in a blend.</p>
-  </section>
+  </section></details>
 </main>
 <footer><span class="note">NWS/NOAA · Open-Meteo · RainViewer. No API keys, tracking, or server; location is sent only to these weather services.</span><span class="note" id="build-note"></span></footer>
 
@@ -568,12 +587,17 @@ function weatherLabel(code) {
   return 'Variable conditions';
 }
 
-function weatherIcon(code) {
+function weatherIcon(code, night = false) {
   const label = weatherLabel(code), common = `class="weather-icon" viewBox="0 0 48 48" role="img" aria-label="${label}"`;
-  if (code === 0) return `<svg ${common}><circle cx="24" cy="24" r="9" fill="currentColor"/><g stroke="currentColor" stroke-width="2.5"><path d="M24 4v6M24 38v6M4 24h6M38 24h6M10 10l4 4M34 34l4 4M38 10l-4 4M14 34l-4 4"/></g></svg>`;
-  if (code >= 95) return `<svg ${common}><path d="M13 31a9 9 0 0 1 2-17 13 13 0 0 1 25 5 7 7 0 0 1-2 12z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M25 29l-5 9h6l-3 7 10-12h-6l3-4z" fill="currentColor"/></svg>`;
-  const drops = ([51,53,55,56,57,61,63,65,66,67,80,81,82].includes(code)) ? '<path d="M17 34l-2 6M26 34l-2 6M35 34l-2 6" stroke="currentColor" stroke-width="3"/>' : '';
-  return `<svg ${common}><path d="M12 31a8 8 0 0 1 2-16 12 12 0 0 1 23 4 7 7 0 0 1-1 12z" fill="none" stroke="currentColor" stroke-width="3"/>${drops}</svg>`;
+  const cloud = '<path d="M12 33h24a8 8 0 0 0 1-16 13 13 0 0 0-24-3 9.5 9.5 0 0 0-1 19Z" fill="currentColor" opacity=".22"/><path d="M12 33h24a8 8 0 0 0 1-16 13 13 0 0 0-24-3 9.5 9.5 0 0 0-1 19Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>';
+  const celestial = night ? '<path d="M31 7a14 14 0 1 0 10 21A16 16 0 0 1 31 7Z" fill="currentColor"/>' : '<circle cx="19" cy="17" r="8" fill="#f6c453"/><g stroke="#f6c453" stroke-width="2"><path d="M19 3v5M7 7l4 4M3 19h6M29 7l-3 4"/></g>';
+  if (code === 0) return night ? `<svg ${common}><path d="M29 6a17 17 0 1 0 12 25A19 19 0 0 1 29 6Z" fill="currentColor"/><circle cx="12" cy="10" r="1.5" fill="currentColor"/></svg>` : `<svg ${common}><circle cx="24" cy="24" r="9" fill="#f6c453"/><g stroke="currentColor" stroke-width="2.3"><path d="M24 3v7M24 38v7M3 24h7M38 24h7M9 9l5 5M34 34l5 5M39 9l-5 5M14 34l-5 5"/></g></svg>`;
+  if (code <= 2) return `<svg ${common}>${celestial}<g transform="translate(2 6) scale(.86)">${cloud}</g></svg>`;
+  if (code >= 95) return `<svg ${common}>${cloud}<path d="M26 29l-6 10h6l-3 7 11-13h-7l3-4Z" fill="#e5b7ff"/></svg>`;
+  if ([45,48].includes(code)) return `<svg ${common}>${cloud}<g stroke="currentColor" stroke-width="2" opacity=".65"><path d="M8 37h29M13 42h24"/></g></svg>`;
+  if ([71,73,75,77,85,86].includes(code)) return `<svg ${common}>${cloud}<g fill="currentColor"><circle cx="15" cy="40" r="2"/><circle cx="25" cy="38" r="2"/><circle cx="35" cy="41" r="2"/></g></svg>`;
+  const rain=[51,53,55,56,57,61,63,65,66,67,80,81,82].includes(code);
+  return `<svg ${common}>${cloud}${rain?'<g stroke="#62bdf2" stroke-width="3" stroke-linecap="round"><path d="M16 37l-2 6M26 37l-2 6M36 37l-2 6"/></g>':''}</svg>`;
 }
 
 function esc(s) {
@@ -965,6 +989,13 @@ function renderConsumerForecast() {
   if (start < 0) start = 0;
   const at = (key, i = start) => h[key] && h[key][i];
   const code = at('weather_code');
+  const currentTime = h.time[start] * 1000;
+  const sunrise0 = daily.sunrise && daily.sunrise[0] * 1000, sunset0 = daily.sunset && daily.sunset[0] * 1000;
+  const isNight = isNum(sunrise0) && isNum(sunset0) ? (currentTime < sunrise0 || currentTime > sunset0) : (new Date(currentTime).getHours() < 6 || new Date(currentTime).getHours() >= 19);
+  const hero = document.querySelector('.weather-hero');
+  hero.dataset.time = isNight ? 'night' : 'day';
+  hero.dataset.weather = code >= 95 ? 'storm' : ([51,53,55,56,57,61,63,65,66,67,80,81,82].includes(code) ? 'rain' : code >= 2 ? 'cloud' : 'clear');
+  $('hero-visual').innerHTML = weatherIcon(code, isNight);
 
   $('current-heading').textContent = S.loc.name || 'Local conditions';
   // Station observations remain authoritative. Model values are only a clearly
@@ -996,12 +1027,13 @@ function renderConsumerForecast() {
   $('hourly-list').innerHTML = h.time.slice(start, start + 24).map((t,j) => {
     const i=start+j, p=h.precipitation_probability[i], amount=lenOut(h.precipitation[i]);
     return `<article class="hour" aria-label="${j ? clockText(new Date(t*1000)) : 'Now'}: ${tempStr(h.temperature_2m[i])} degrees, ${isNum(p)?p:0} percent precipitation">
-      <time datetime="${new Date(t*1000).toISOString()}">${j ? clockText(new Date(t*1000)).replace(':00','') : 'NOW'}</time>${weatherIcon(h.weather_code[i])}<div class="hour-temp">${tempStr(h.temperature_2m[i])}°</div><div class="pop">${isNum(p)?Math.round(p):0}%</div><span class="amount">${isNum(amount)&&amount>0 ? amount.toFixed(2)+(S.unit==='us'?' in':' mm') : '—'}</span></article>`;
+      <time datetime="${new Date(t*1000).toISOString()}">${j ? clockText(new Date(t*1000)).replace(':00','') : 'NOW'}</time>${weatherIcon(h.weather_code[i], new Date(t*1000).getHours()<6 || new Date(t*1000).getHours()>=19)}<div class="hour-temp">${tempStr(h.temperature_2m[i])}°</div><div class="pop">${isNum(p)?Math.round(p):0}%</div><span class="amount">${isNum(amount)&&amount>0 ? amount.toFixed(2)+(S.unit==='us'?' in':' mm') : '—'}</span></article>`;
   }).join('');
 
-  $('rain-guidance').innerHTML = h.time.slice(start, start + 5).map((t,j) => `<div class="rain-hour"><span>${j?' '+clockText(new Date(t*1000)):'NOW'}</span><b>${isNum(h.precipitation_probability[start+j])?Math.round(h.precipitation_probability[start+j]):0}%</b><span>forecast</span></div>`).join('');
+  $('rain-guidance').innerHTML = h.time.slice(start, start + 7).map((t,j) => { const p=isNum(h.precipitation_probability[start+j])?Math.round(h.precipitation_probability[start+j]):0; return `<div class="rain-hour" style="--rain-height:${Math.max(3,p*.65)}%;--rain-opacity:${(.35+p*.0065).toFixed(2)}"><span>${j?clockText(new Date(t*1000)).replace(':00',''):'NOW'}</span><b>${p}%</b><span>forecast</span></div>`; }).join('');
 
-  $('daily-list').innerHTML = daily.time.slice(0,7).map((t,i) => `<article class="day"><b>${i===0?'TODAY':new Date(t*1000).toLocaleDateString([],{weekday:'short'}).toUpperCase()}</b>${weatherIcon(daily.weather_code[i])}<span class="day-desc">${weatherLabel(daily.weather_code[i])}</span><span class="pop">${isNum(daily.precipitation_probability_max[i])?Math.round(daily.precipitation_probability_max[i]):0}%</span><span class="day-temp">${tempStr(daily.temperature_2m_min[i])}° — <b>${tempStr(daily.temperature_2m_max[i])}°</b></span></article>`).join('');
+  const weekLows=daily.temperature_2m_min.slice(0,7).filter(isNum), weekHighs=daily.temperature_2m_max.slice(0,7).filter(isNum), scaleLo=Math.min(...weekLows), scaleHi=Math.max(...weekHighs), scaleSpan=Math.max(1,scaleHi-scaleLo);
+  $('daily-list').innerHTML = daily.time.slice(0,7).map((t,i) => { const lo=daily.temperature_2m_min[i], hi=daily.temperature_2m_max[i], left=(lo-scaleLo)/scaleSpan*100, width=Math.max(8,(hi-lo)/scaleSpan*100); return `<article class="day"><b>${i===0?'TODAY':new Date(t*1000).toLocaleDateString([],{weekday:'short'}).toUpperCase()}</b>${weatherIcon(daily.weather_code[i])}<span class="day-desc">${weatherLabel(daily.weather_code[i])}</span><span class="pop">${isNum(daily.precipitation_probability_max[i])?Math.round(daily.precipitation_probability_max[i]):0}%</span><span class="day-temp"><span>${tempStr(lo)}°</span><span class="temp-range"><i style="left:${left}%;width:${width}%"></i></span><b>${tempStr(hi)}°</b></span></article>`; }).join('');
 
   const sunrise=daily.sunrise&&daily.sunrise[0], sunset=daily.sunset&&daily.sunset[0];
   const pressure=at('surface_pressure'), visibility=at('visibility');
@@ -1121,11 +1153,17 @@ function renderRadar() {
 
 function renderRadarMap() {
   if (!S.radar || !S.radar.frames.length) return;
-  const i = clamp(S.radarFrame, 0, S.radar.frames.length - 1), f=S.radar.frames[i];
-  const t=tileFor(S.loc.lat,S.loc.lon,CFG.radarZoom);
-  $('radar-base').src=`https://tile.openstreetmap.org/${CFG.radarZoom}/${t.x}/${t.y}.png`;
-  $('radar-map').src=`${S.radar.host}${f.path}/256/${CFG.radarZoom}/${t.x}/${t.y}/2/1_1.png`;
-  $('radar-map').alt=`Radar precipitation at ${S.loc.name}, ${clockText(new Date(f.time*1000))}`;
+  const i=clamp(S.radarFrame,0,S.radar.frames.length-1), f=S.radar.frames[i], t=tileFor(S.loc.lat,S.loc.lon,CFG.radarZoom);
+  const view=$('radar-view'), w=view.clientWidth||360, h=view.clientHeight||260;
+  // A centered 3×3 Web Mercator mosaic avoids stretching one 256px tile and
+  // keeps the location marker geographically correct at every viewport size.
+  const tiles=[];
+  for(let dy=-1;dy<=1;dy++) for(let dx=-1;dx<=1;dx++) {
+    const left=Math.round(w/2-t.px+dx*256), top=Math.round(h/2-t.py+dy*256), x=t.x+dx, y=t.y+dy;
+    tiles.push({left,top,x,y});
+  }
+  const markup=(radar)=>tiles.map(q=>`<img class="radar-tile" style="left:${q.left}px;top:${q.top}px" src="${radar?`${S.radar.host}${f.path}/256/${CFG.radarZoom}/${q.x}/${q.y}/2/1_1.png`:`https://tile.openstreetmap.org/${CFG.radarZoom}/${q.x}/${q.y}.png`}" alt="">`).join('');
+  $('radar-base').innerHTML=markup(false); $('radar-map').innerHTML=markup(true);
   $('radar-frame-label').textContent=`${clockText(new Date(f.time*1000))}${f.future?' · radar nowcast':' · observed radar'}`;
   $('radar-time').textContent=`RainViewer · ${agoText(Date.now()-f.time*1000)}`;
 }
@@ -1273,6 +1311,7 @@ function renderSpread() {
       }
     }
     $('confidence').innerHTML = line;
+    $('confidence-brief').textContent = `${verdict} · ${plain}`;
   }
 }
 
