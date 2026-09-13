@@ -395,35 +395,145 @@
   @media(max-width:480px){.weather-hero{margin-left:-12px;margin-right:-12px;border-radius:0 0 20px 20px!important}.header-actions .btn{display:none}.header-actions button{padding:6px;font-size:10px}}
   :root[data-theme=dark] .hourly{background:linear-gradient(180deg,transparent,rgba(34,50,75,.45))}:root[data-theme=dark] .glance .tile{background:#111a29}:root[data-theme=dark] .radar-view{filter:saturate(.9) brightness(.82)}
 
-  @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; scroll-behavior:auto!important; } }
+  /* Mobile-first world interface. Every direct child is shrinkable; only the
+     hourly rail owns horizontal scrolling. */
+  html, body { width:100%; max-width:100%; overflow-x:clip; }
+  body { padding-top:max(8px,env(safe-area-inset-top)); }
+  main, main > *, .panel, .panel-head, .hero-main, .hero-main > *, .source-chip { min-width:0; max-width:100%; }
+  .app-header { position:relative; min-height:52px; align-items:center; margin:0; }
+  .header-menu { position:relative; margin-left:auto; z-index:20; }
+  .header-menu > summary { width:44px; height:44px; display:grid; place-items:center; list-style:none; cursor:pointer; border-radius:50%; background:var(--btn-bg); }
+  .header-menu > summary::-webkit-details-marker { display:none; }
+  .header-menu svg { width:21px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+  .header-menu .header-actions { position:absolute; right:0; top:50px; width:190px; padding:8px; display:grid; background:var(--panel); border:1px solid var(--line); border-radius:14px; box-shadow:var(--panel-shadow); }
+  .header-menu:not([open]) .header-actions { display:none; }
+  .header-actions button,.header-actions .btn { display:flex!important; align-items:center; justify-content:center; min-height:44px; font-size:12px; }
+  .locbar { display:block; padding:4px 0 10px; }
+  .locbar > summary { display:grid; grid-template-columns:28px minmax(0,1fr) auto; gap:9px; align-items:center; min-height:54px; list-style:none; cursor:pointer; }
+  .locbar > summary::-webkit-details-marker { display:none; }
+  .pin-icon { width:24px; fill:rgba(29,111,184,.13); stroke:var(--cool); stroke-width:1.8; }
+  .locname { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; text-transform:uppercase; letter-spacing:.6px; }
+  .locmeta { font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .gps-lock { color:var(--good); font-weight:700; letter-spacing:1px; }
+  .change-location { min-height:44px; padding:0 4px; display:flex; align-items:center; color:var(--accent); font-size:12px; font-weight:700; text-transform:uppercase; }
+  .location-search { display:grid!important; grid-template-columns:minmax(0,1fr) auto auto; width:100%; margin-top:8px!important; }
+  .coordinates { grid-column:1/-1; color:var(--ink-faint); font:12px ui-monospace,monospace; }
+  .location-search button { min-height:44px; padding-inline:12px; }
+
+  .weather-hero { min-height:0; height:auto; padding:18px 18px 16px; display:grid; grid-template-columns:1fr; }
+  .weather-hero::before { background:radial-gradient(circle at 82% 18%,rgba(255,240,174,.42),transparent 20%),linear-gradient(180deg,transparent 52%,rgba(3,20,37,.2)); }
+  .weather-hero[data-weather=cloud]::before { background:radial-gradient(ellipse at 90% 25%,rgba(255,255,255,.28),transparent 30%),radial-gradient(ellipse at 68% 42%,rgba(230,241,247,.22),transparent 32%); }
+  .weather-hero[data-weather=rain]::before { background:repeating-linear-gradient(105deg,transparent 0 18px,rgba(180,220,240,.12) 19px 20px),linear-gradient(180deg,transparent,rgba(3,20,37,.2)); animation:rainfall 5s linear infinite; }
+  .weather-hero[data-time=night]::before { background:radial-gradient(circle at 83% 17%,rgba(231,239,255,.4) 0 5%,transparent 6%),radial-gradient(circle at 63% 12%,#fff 0 1px,transparent 2px),radial-gradient(circle at 92% 40%,#fff 0 1px,transparent 2px); }
+  @keyframes rainfall { to { background-position:80px 160px,0 0; } }
+  .weather-hero .provenance { font-size:11px; letter-spacing:1.4px; }
+  .weather-hero .hero-location { font-size:18px; margin:0 0 8px; max-width:75%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .hero-main { grid-template-columns:minmax(105px,.75fr) minmax(0,1.25fr); gap:10px; align-items:center; }
+  .temp { font-size:clamp(76px,24vw,108px); line-height:.8; }
+  .temp-unit { font-size:19px; }
+  .hero-visual { width:46px; height:46px; position:absolute; right:17px; top:42px; opacity:.9; }
+  .hero-visual .weather-icon { width:46px; height:46px; filter:drop-shadow(0 3px 8px rgba(0,0,0,.12)); }
+  .hero-condition { font-size:clamp(17px,4.7vw,23px); text-transform:uppercase; letter-spacing:.5px; }
+  .feels { font-size:13px!important; }
+  .source-chip { display:flex; width:max-content; max-width:100%; margin-top:6px; padding:3px 7px; border:0; border-radius:7px; font-size:10px; }
+  .source-chip span:last-child { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .hero-summary { margin-top:8px; font-size:14px; line-height:1.4; overflow-wrap:anywhere; }
+  .hero-facts { display:grid; grid-template-columns:auto auto; gap:4px 14px; margin-top:7px; font-size:12px; }
+  .hero-facts span:last-child { grid-column:1/-1; }
+  .weather-status { margin-top:10px; padding-top:9px; border-top:1px solid rgba(255,255,255,.2); display:flex; align-items:center; gap:9px; }
+  .status-orb { width:10px; height:10px; flex:none; border-radius:50%; background:#bdebcf; box-shadow:0 0 0 5px rgba(189,235,207,.13); }
+  .weather-status b,.weather-status small { display:block; }
+  .weather-status b { font-size:12px; letter-spacing:1px; }
+  .weather-status small { color:rgba(255,255,255,.75); font-size:11px; }
+  .sun-arc { display:grid; grid-template-columns:auto 1fr auto; gap:8px; align-items:end; margin-top:9px; font-size:10px; color:rgba(255,255,255,.78); }
+  .sun-track { height:13px; border-top:1px solid rgba(255,255,255,.45); border-radius:50%; position:relative; }
+  .sun-dot { position:absolute; left:var(--sun-progress); top:-5px; width:9px; height:9px; transform:translateX(-50%); border-radius:50%; background:#ffe17b; box-shadow:0 0 10px rgba(255,225,123,.7); }
+  .weather-status.possible .status-orb { background:#ffe17b; box-shadow:0 0 0 5px rgba(255,225,123,.14); }
+  .weather-status.wet .status-orb { background:#86d4ff; box-shadow:0 0 0 5px rgba(134,212,255,.14); }
+  .weather-status.storm .status-orb { background:#d8c0ff; box-shadow:0 0 0 5px rgba(216,192,255,.14); }
+
+  .panel { padding:20px 2px; }
+  .section-title { font-size:25px; }
+  .panel-head { align-items:center; margin-bottom:10px; }
+  .panel-head .provenance { font-size:10px; max-width:48%; }
+  .rain-card { padding-top:24px; }
+  .rain-guidance { position:relative; height:104px; border-bottom:1px solid var(--line); background:linear-gradient(180deg,transparent,rgba(29,111,184,.05)); }
+  .rain-hour:before { border-radius:7px 7px 0 0; }
+  #hourly-panel { position:relative; }
+  #hourly-panel::after { content:'more →'; position:absolute; right:0; top:60px; bottom:20px; width:46px; display:flex; align-items:flex-end; justify-content:flex-end; padding-bottom:12px; pointer-events:none; color:var(--ink-faint); font-size:10px; background:linear-gradient(90deg,transparent,var(--bg)); }
+  .hourly { width:100%; max-width:100%; overscroll-behavior-x:contain; touch-action:pan-x; scroll-snap-type:x mandatory; scrollbar-width:none; }
+  .hourly::-webkit-scrollbar { display:none; }
+  .hour { flex:0 0 clamp(72px,21.5vw,84px); min-width:0; scroll-snap-align:start; }
+  .hour:first-child { background:rgba(29,111,184,.08); border-radius:10px; }
+  .day { grid-template-columns:48px 30px minmax(0,1fr) 40px minmax(92px,1fr); gap:6px; }
+  .day-desc { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .glance .tile { min-width:0; padding:11px 10px; }
+  .glance .label { font-size:10px; letter-spacing:1.2px; white-space:normal; }
+  .radar-view { height:240px; outline:1px solid rgba(255,255,255,.18); outline-offset:-6px; }
+  .radar-view::after { content:'N'; position:absolute; z-index:4; top:12px; right:12px; color:#fff; font:600 11px Inter,sans-serif; text-shadow:0 1px 3px #000; }
+  .radar-view::before { content:''; position:absolute; z-index:3; width:116px; height:116px; left:50%; top:50%; transform:translate(-50%,-50%); border:1px solid rgba(255,255,255,.5); border-radius:50%; pointer-events:none; }
+  .radar-controls button { min-width:76px; min-height:44px; }
+
+  @media (min-width:600px) {
+    body { padding-inline:22px; }
+    .header-menu { position:static; }
+    .header-menu > summary { display:none; }
+    .header-menu:not([open]) .header-actions,.header-menu .header-actions { position:static; width:auto; padding:0; display:flex; background:transparent; border:0; box-shadow:none; }
+    .header-actions button,.header-actions .btn { min-height:44px; padding-inline:12px; }
+    .weather-hero { padding:24px; border-radius:20px!important; }
+    .hero-facts { display:flex; }
+  }
+  @media (max-width:380px) {
+    body { padding-inline:10px; }
+    h1 { font-size:29px; }
+    .weather-hero { margin-inline:-10px; padding-inline:15px; }
+    .hero-main { grid-template-columns:102px minmax(0,1fr); }
+    .temp { font-size:76px; }
+    .location-search { grid-template-columns:minmax(0,1fr) auto; }
+    .location-search #geo-btn { grid-column:1/-1; }
+    .day { grid-template-columns:44px 28px minmax(0,1fr) 36px 88px; font-size:12px; }
+  }
+  :root[data-theme=dark] #hourly-panel::after { background:linear-gradient(90deg,transparent,var(--bg)); }
+  :root[data-theme=dark] .weather-hero { box-shadow:0 18px 45px rgba(4,13,29,.35); }
+  .weather-hero[data-time=twilight] { background:linear-gradient(150deg,#3d668e,#c47772 60%,#efba83); }
+
+  @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; scroll-behavior:auto!important; } }
 </style>
 </head>
 <body>
 
-<header>
+<header class="app-header">
   <div>
     <h1>NOWCAST</h1>
     <div class="label tagline">Measured · Radar-derived · Timestamped</div>
   </div>
-  <div class="header-actions">
-    <button id="theme-btn" type="button" title="Theme">Auto</button>
-    <button id="unit-btn" type="button" title="Toggle units">°F</button>
-    <button id="refresh-btn" type="button" title="Refresh all sources">Refresh</button>
-    <a class="btn" href="/">← Ryangineer</a>
-  </div>
+  <details class="header-menu">
+    <summary aria-label="Open settings"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.6v-.2h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></svg></summary>
+    <div class="header-actions">
+      <button id="theme-btn" type="button" title="Theme">Auto</button>
+      <button id="unit-btn" type="button" title="Toggle units">°F</button>
+      <button id="refresh-btn" type="button" title="Refresh all sources">Refresh</button>
+      <a class="btn" href="/">← Ryangineer</a>
+    </div>
+  </details>
 </header>
 
-<div class="locbar">
-  <div style="flex:0 0 auto">
+<details class="locbar">
+  <summary>
+    <svg class="pin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+    <div>
     <div class="locname" id="loc-name">Locating…</div>
-    <div class="locmeta" id="loc-meta">—</div>
-  </div>
-  <form id="search-form" autocomplete="off">
+    <div class="locmeta"><span class="gps-lock">GPS LOCK</span> · <span id="loc-meta">—</span></div>
+    </div>
+    <span class="change-location">Change</span>
+  </summary>
+  <form id="search-form" autocomplete="off" class="location-search">
+    <span class="coordinates" id="loc-coordinates">—</span>
     <input type="search" id="search-input" placeholder="City, or 30.246,-87.70" aria-label="Search location">
-    <button type="submit">Go</button>
+    <button type="submit">Search</button>
+    <button type="button" id="geo-btn" title="Use device GPS">Use GPS</button>
   </form>
-  <button type="button" id="geo-btn" title="Use device GPS">GPS</button>
-</div>
+</details>
 
 <div id="alerts" aria-live="polite"></div>
 
@@ -437,6 +547,8 @@
     </div>
     <p class="hero-summary" id="today-summary">Building today's forecast…</p>
     <div class="hero-facts"><span id="hero-hilo">H — · L —</span><span id="hero-pop">Rain chance —</span><span id="hero-wind">Wind —</span></div>
+    <div class="weather-status" id="weather-status"><span class="status-orb"></span><div><b>CHECKING CONDITIONS</b><small>Reading local weather sources</small></div></div>
+    <div class="sun-arc" id="sun-arc" aria-label="Sun progress"></div>
   </section>
 
   <section class="panel rain-card" aria-labelledby="rain-title" aria-live="polite">
@@ -993,7 +1105,8 @@ function renderConsumerForecast() {
   const sunrise0 = daily.sunrise && daily.sunrise[0] * 1000, sunset0 = daily.sunset && daily.sunset[0] * 1000;
   const isNight = isNum(sunrise0) && isNum(sunset0) ? (currentTime < sunrise0 || currentTime > sunset0) : (new Date(currentTime).getHours() < 6 || new Date(currentTime).getHours() >= 19);
   const hero = document.querySelector('.weather-hero');
-  hero.dataset.time = isNight ? 'night' : 'day';
+  const solarEdge = isNum(sunrise0) && isNum(sunset0) && Math.min(Math.abs(currentTime-sunrise0),Math.abs(currentTime-sunset0)) < 75*60e3;
+  hero.dataset.time = isNight ? 'night' : (solarEdge ? 'twilight' : 'day');
   hero.dataset.weather = code >= 95 ? 'storm' : ([51,53,55,56,57,61,63,65,66,67,80,81,82].includes(code) ? 'rain' : code >= 2 ? 'cloud' : 'clear');
   $('hero-visual').innerHTML = weatherIcon(code, isNight);
 
@@ -1023,6 +1136,25 @@ function renderConsumerForecast() {
     summary += ` Rain most likely ${clockText(first)}–${clockText(last)}.`;
   } else if (isNum(pop) && pop < 25) summary += ' Mostly dry conditions expected.';
   $('today-summary').textContent = summary;
+
+  // This is a plain-language interpretation of forecast/radar data, never an
+  // official alert product. Keep the vocabulary deliberately non-hazardous.
+  const nearPops = pops.slice(0, 4).filter(isNum);
+  const nearPeak = nearPops.length ? Math.max(...nearPops) : 0;
+  const stormSoon = (h.weather_code || []).slice(start, start + 6).some(v => v >= 95);
+  const rainingNow = [51,53,55,56,57,61,63,65,66,67,80,81,82].includes(code);
+  let state = ['DRY', 'No rain expected soon', 'dry'];
+  if (stormSoon) state = ['STORMS POSSIBLE', 'Thunderstorms appear in forecast guidance', 'storm'];
+  else if (rainingNow) state = ['RAIN NEARBY', 'Rain is indicated at your location', 'wet'];
+  else if (nearPeak >= 35) state = ['RAIN POSSIBLE', 'Rain chance increases in the next few hours', 'possible'];
+  $('weather-status').className = `weather-status ${state[2]}`;
+  $('weather-status').innerHTML = `<span class="status-orb"></span><div><b>${state[0]}</b><small>${state[1]}</small></div>`;
+
+  if (isNum(sunrise0) && isNum(sunset0)) {
+    const daylightProgress = clamp((currentTime-sunrise0)/(sunset0-sunrise0)*100,0,100);
+    const nextSun = isNight ? (currentTime < sunrise0 ? `Sunrise ${clockText(new Date(sunrise0))}` : 'Sun below horizon') : 'NOW';
+    $('sun-arc').innerHTML = `<span>${clockText(new Date(sunrise0))}</span><span class="sun-track" style="--sun-progress:${daylightProgress}%"><i class="sun-dot"></i></span><span>${clockText(new Date(sunset0))}</span><span></span><b>${nextSun}</b>`;
+  }
 
   $('hourly-list').innerHTML = h.time.slice(start, start + 24).map((t,j) => {
     const i=start+j, p=h.precipitation_probability[i], amount=lenOut(h.precipitation[i]);
@@ -1358,9 +1490,8 @@ function tickAges() {
 function renderLocation() {
   if (!S.loc) return;
   $('loc-name').textContent = S.loc.name || 'Custom coordinates';
-  $('loc-meta').textContent =
-    `${S.loc.lat.toFixed(4)}, ${S.loc.lon.toFixed(4)}` +
-    (S.loc.source ? ` · ${S.loc.source}` : '');
+  $('loc-meta').textContent = S.loc.source || 'Saved location';
+  $('loc-coordinates').textContent = `${S.loc.lat.toFixed(4)}, ${S.loc.lon.toFixed(4)}`;
   if ($('current-heading')) $('current-heading').textContent = S.loc.name || 'Local conditions';
 }
 
