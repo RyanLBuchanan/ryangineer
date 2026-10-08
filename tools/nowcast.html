@@ -391,7 +391,7 @@
   .glance{gap:1px;background:var(--line);border-radius:12px;overflow:hidden}.glance .tile{border:0;border-radius:0;min-height:72px;background:var(--panel)}.glance .tile-val{font-family:Inter,sans-serif;font-size:18px;font-weight:600;margin-top:7px;letter-spacing:0}
   .radar-view{height:260px;border-radius:14px;background:#b8c9d0}.radar-tile{position:absolute;width:256px!important;height:256px!important;max-width:none}.radar-layer{position:absolute;inset:0;z-index:1;opacity:.72}.radar-marker{z-index:3}.radar-marker:after{content:'You';position:absolute;top:17px;left:50%;transform:translateX(-50%);padding:2px 6px;border-radius:5px;color:#fff;background:rgba(10,20,30,.75);font:600 10px Inter,sans-serif;white-space:nowrap}
   details.panel>summary{margin:-10px 0}.confidence-brief{margin-left:auto;color:var(--ink-dim);font-size:12px;text-align:right}details.panel[open]>summary{margin-bottom:16px}#confidence-panel .confidence{margin:0;padding:0;border:0}
-  @media(min-width:900px){main{grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);column-gap:28px;align-items:start}.weather-hero,.rain-card,#hourly-panel{grid-column:1}#radar-panel{grid-column:2;grid-row:1/span 3;border-top:0;padding-top:8px;position:sticky;top:10px}#daily-panel,#glance-panel,#confidence-panel,main>details{grid-column:1/-1}.weather-hero{margin:0}.radar-view{height:430px}}
+  @media(min-width:900px){main{grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);column-gap:28px;align-items:start}.weather-hero,.rain-card,#hourly-panel{grid-column:1}#radar-panel{grid-column:2;grid-row:1/span 3;border-top:0;padding-top:8px;position:static}#daily-panel,#glance-panel,#confidence-panel,#earth-panel,main>details{grid-column:1/-1}.weather-hero{margin:0}.radar-view{height:430px}}
   @media(max-width:480px){.weather-hero{margin-left:-12px;margin-right:-12px;border-radius:0 0 20px 20px!important}.header-actions .btn{display:none}.header-actions button{padding:6px;font-size:10px}}
   :root[data-theme=dark] .hourly{background:linear-gradient(180deg,transparent,rgba(34,50,75,.45))}:root[data-theme=dark] .glance .tile{background:#111a29}:root[data-theme=dark] .radar-view{filter:saturate(.9) brightness(.82)}
 
@@ -498,6 +498,13 @@
   .weather-hero[data-time=twilight] { background:linear-gradient(150deg,#3d668e,#c47772 60%,#efba83); }
 
   @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; scroll-behavior:auto!important; } }
+  #alerts { grid-column:1; }
+  #earth-panel { scroll-margin-top:12px; }
+  .tracker-jump { display:inline-flex;align-items:center;min-height:44px;margin-top:14px;padding:10px 16px;border-radius:999px;background:#fff;color:#163c59;font-size:13px;font-weight:700;text-decoration:none; }
+  .tracker-jump:hover { background:#e4f2ff; }
+  .radar-history input { width:100%;min-height:44px;accent-color:var(--accent);margin-top:8px; }
+  .radar-view img { right:auto;bottom:auto; }
+  #earth-title:focus { outline:3px solid var(--cool);outline-offset:4px; }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -541,10 +548,47 @@
   </form>
 </details>
 
-<div id="alerts" aria-live="polite"></div>
+
+
+
+<main>
+  <section class="panel weather-hero" aria-labelledby="current-heading">
+    <div class="provenance">Current weather</div>
+    <h2 class="hero-location display" id="current-heading">Local conditions</h2>
+    <div class="hero-main">
+      <div class="temp-row"><div class="temp" id="hero-temp">—</div><div class="temp-unit" id="hero-unit">°F</div></div>
+      <div><div class="hero-visual" id="hero-visual" aria-hidden="true"></div><div class="hero-condition" id="hero-cond">Getting your local weather…</div><div class="feels" id="hero-feels"></div><div class="source-chip" id="hero-src"><span class="dot dead"></span><span>Finding the nearest observation station…</span></div></div>
+    </div>
+    <p class="hero-summary" id="today-summary">Building today's forecast…</p>
+    <div class="hero-facts"><span id="hero-hilo">H — · L —</span><span id="hero-pop">Rain chance —</span><span id="hero-wind">Wind —</span></div>
+    <a class="tracker-jump" href="#earth-panel">View hurricane tracker ↓</a>
+    <div class="weather-status" id="weather-status"><span class="status-orb"></span><div><b>CHECKING CONDITIONS</b><small>Reading local weather sources</small></div></div>
+    <div class="sun-arc" id="sun-arc" aria-label="Sun progress"></div>
+  </section>
+
+  <div id="alerts" aria-live="polite"></div>
+
+  <section class="panel rain-card" aria-labelledby="rain-title" aria-live="polite">
+    <div class="panel-head"><h2 class="section-title" id="rain-title">Rain near you</h2><span class="provenance" id="rain-kind">Forecast probability · model estimate</span></div>
+    <div class="nowcast-head" id="nc-head">Reading rain forecast…</div>
+    <div class="nowcast-sub" id="nc-sub">Forecast guidance remains available if radar cannot be read.</div>
+    <div class="rain-guidance" id="rain-guidance" aria-label="Hourly rain probability"></div>
+  </section>
+
+  <section class="panel" id="hourly-panel" aria-labelledby="hourly-title">
+    <div class="panel-head"><h2 class="section-title" id="hourly-title">Hourly forecast</h2><span class="provenance">Next 24 hours · model estimate</span></div>
+    <div class="hourly" id="hourly-list"><span class="skeleton">Preparing the next 24 hours…</span></div>
+  </section>
+
+  <section class="panel" id="radar-panel" aria-labelledby="radar-title">
+    <div class="panel-head"><h2 class="section-title" id="radar-title">Radar</h2><span class="provenance" id="radar-time">RainViewer · loading</span></div>
+    <div class="radar-view" id="radar-view" role="img" aria-label="Radar precipitation map centered on your location"><div id="radar-base" aria-hidden="true"></div><div class="radar-layer" id="radar-map" aria-hidden="true"></div><span class="radar-marker" aria-hidden="true"></span></div>
+    <div class="radar-controls"><button id="radar-play" type="button" aria-label="Play radar animation">Play</button><span class="note" id="radar-frame-label">Reading radar frames…</span></div>
+    <div class="radar-history"><input id="radar-timeline" type="range" min="0" max="0" value="0" aria-label="Local radar history time" disabled><div class="bar-axis"><span class="label" id="axis-left">Recent history</span><span class="label" id="axis-right">Latest</span></div><p class="note">Observed radar history · <a href="https://www.rainviewer.com/" target="_blank" rel="noopener">RainViewer</a></p></div>
+  </section>
 
 <section id="earth-panel" aria-labelledby="earth-title">
-  <div class="panel-head"><h2 class="section-title" id="earth-title">Earth &amp; hurricane tracker</h2><span class="provenance">Orange Beach · Gulf Coast</span></div>
+  <div class="panel-head"><h2 class="section-title" id="earth-title" tabindex="-1">Earth &amp; hurricane tracker</h2><span class="provenance">Orange Beach · Gulf Coast</span></div>
   <p class="earth-intro">Watch the storm move across the Gulf. Drag to explore, zoom in for the coast, or switch to the whole Earth.</p>
   <div class="earth-toolbar" role="group" aria-label="Earth view">
     <button id="earth-flat" type="button" aria-pressed="true" disabled>Satellite map</button>
@@ -578,39 +622,6 @@
   <noscript><p>Enable JavaScript to use the Earth viewer, or open the NOAA live weather map above.</p></noscript>
 </section>
 
-<main>
-  <section class="panel weather-hero" aria-labelledby="current-heading">
-    <div class="provenance">Current weather</div>
-    <h2 class="hero-location display" id="current-heading">Local conditions</h2>
-    <div class="hero-main">
-      <div class="temp-row"><div class="temp" id="hero-temp">—</div><div class="temp-unit" id="hero-unit">°F</div></div>
-      <div><div class="hero-visual" id="hero-visual" aria-hidden="true"></div><div class="hero-condition" id="hero-cond">Getting your local weather…</div><div class="feels" id="hero-feels"></div><div class="source-chip" id="hero-src"><span class="dot dead"></span><span>Finding the nearest observation station…</span></div></div>
-    </div>
-    <p class="hero-summary" id="today-summary">Building today's forecast…</p>
-    <div class="hero-facts"><span id="hero-hilo">H — · L —</span><span id="hero-pop">Rain chance —</span><span id="hero-wind">Wind —</span></div>
-    <div class="weather-status" id="weather-status"><span class="status-orb"></span><div><b>CHECKING CONDITIONS</b><small>Reading local weather sources</small></div></div>
-    <div class="sun-arc" id="sun-arc" aria-label="Sun progress"></div>
-  </section>
-
-  <section class="panel rain-card" aria-labelledby="rain-title" aria-live="polite">
-    <div class="panel-head"><h2 class="section-title" id="rain-title">Rain near you</h2><span class="provenance" id="rain-kind">Radar observation</span></div>
-    <div class="nowcast-head" id="nc-head">Reading nearby radar…</div>
-    <div class="nowcast-sub" id="nc-sub">Forecast guidance remains available if radar cannot be read.</div>
-    <div class="rain-guidance" id="rain-guidance" aria-label="Hourly rain probability"></div>
-  </section>
-
-  <section class="panel" id="hourly-panel" aria-labelledby="hourly-title">
-    <div class="panel-head"><h2 class="section-title" id="hourly-title">Hourly forecast</h2><span class="provenance">Next 24 hours · model estimate</span></div>
-    <div class="hourly" id="hourly-list"><span class="skeleton">Preparing the next 24 hours…</span></div>
-  </section>
-
-  <section class="panel" id="radar-panel" aria-labelledby="radar-title">
-    <div class="panel-head"><h2 class="section-title" id="radar-title">Radar</h2><span class="provenance" id="radar-time">RainViewer · loading</span></div>
-    <div class="radar-view" id="radar-view" role="img" aria-label="Radar precipitation map centered on your location"><div id="radar-base" aria-hidden="true"></div><div class="radar-layer" id="radar-map" aria-hidden="true"></div><span class="radar-marker" aria-hidden="true"></span></div>
-    <div class="radar-controls"><button id="radar-play" type="button" aria-label="Play radar animation">Play</button><span class="note" id="radar-frame-label">Reading radar frames…</span></div>
-    <div class="strip"><div class="bars" id="radar-bars"></div><div class="bar-axis"><span class="label" id="axis-left">−2 h</span><span class="label" style="color:var(--accent)">NOW</span><span class="label" id="axis-right">+30 m</span></div></div>
-  </section>
-
   <section class="panel" id="daily-panel" aria-labelledby="daily-title"><div class="panel-head"><h2 class="section-title" id="daily-title">7-day forecast</h2><span class="provenance">Open-Meteo aggregate</span></div><div class="daily" id="daily-list"><span class="skeleton">Looking through the week…</span></div></section>
 
   <section class="panel" id="glance-panel" aria-labelledby="glance-title"><div class="panel-head"><h2 class="section-title" id="glance-title">Today at a glance</h2></div><div class="glance" id="glance-tiles"><span class="skeleton">Gathering today's details…</span></div></section>
@@ -630,7 +641,7 @@
 
   <details class="panel tech" id="sources-panel"><summary><h2 class="section-title" id="sources-title">Data &amp; sources</h2></summary><section aria-labelledby="sources-title"><div class="label aside">Every source, with its true age</div>
     <div style="overflow-x:auto"><table><thead><tr><th>Source</th><th>What it provides</th><th class="num">Fetched</th><th class="num">Data age</th><th class="num">Status</th></tr></thead><tbody id="ledger"></tbody></table></div>
-    <p class="note" style="margin-top:12px"><b>Why this differs from your phone.</b> The current reading is a <em>physical observation</em> from the nearest ASOS/AWOS station whenever available. Rain timing is a separate <em>radar-derived observation</em> at your pixel. Hourly and daily values are <em>forecast-model guidance</em>, never presented as radar detection. The confidence view exposes disagreement between independent models instead of hiding it in a blend.</p>
+    <p class="note" style="margin-top:12px"><b>Why this differs from your phone.</b> The current reading is a <em>physical observation</em> from the nearest ASOS/AWOS station whenever available. Radar shows recent <em>observed precipitation imagery</em>. Hourly and daily values are <em>forecast-model guidance</em>, never presented as radar detection. The confidence view exposes disagreement between independent models instead of hiding it in a blend.</p>
   </section></details>
 </main>
 <footer><span class="note">NWS/NOAA · NASA GIBS · Open-Meteo · RainViewer. No API keys or app tracking. Weather services receive the requested location or map area; map assets load from unpkg.</span><span class="note" id="build-note"></span></footer>
@@ -650,14 +661,14 @@
    So this app deliberately keeps the three signals SEPARATE and labels
    the age of each:
      - ground truth  -> the nearest NWS station's latest METAR
-     - rain timing   -> radar reflectivity sampled at the user's pixel
+     - radar history -> observed precipitation imagery, separate from forecasts
      - uncertainty   -> spread across five independent forecast models
    ============================================================ */
 
 const CFG = {
   fallback: { lat: 30.2697, lon: -87.5736, name: 'Orange Beach, AL' },
-  radarZoom: 9,          // ~260 m/px at 30°N — finer than the radar's own ~1 km grid
-  radarSampleRadius: 2,  // sample a 5x5 pixel box and take the max, to absorb alignment error
+  radarZoom: 7,          // RainViewer public API maximum native zoom
+  radarMapZoom: 9,       // Overzoom radar tiles to match the detailed street map
   timeoutMs: 13000,
   intervals: { obs: 60e3, alerts: 120e3, radar: 120e3, models: 600e3 },
   models: [
@@ -676,7 +687,7 @@ const S = {
   obs: null,        // latest station observation
   station: null,
   alerts: [],
-  radar: null,      // { series: [{t, dbz, mmh, future}], scannedAt }
+  radar: null,      // { frames: observed RainViewer frames, host, scannedAt }
   minutely: null,
   radarFrame: 0,
   radarTimer: null,
@@ -909,164 +920,37 @@ function tileFor(lat, lon, z) {
   };
 }
 
-const tileCache = new Map(); // url -> Promise<ImageData-ish sample>
-
-/**
- * Load one radar frame tile and read the reflectivity at our pixel.
- *
- * Colour scheme 0 is RainViewer's greyscale "dBZ values" ramp, chosen
- * precisely because luminance is monotonic in reflectivity — so a pixel
- * read is invertible back to an approximate dBZ. smooth=0 keeps the
- * discrete steps intact; snow=0 keeps one ramp instead of two.
- */
-function sampleFrame(host, path, lat, lon) {
-  const z = CFG.radarZoom;
-  const { x, y, px, py } = tileFor(lat, lon, z);
-  const url = `${host}${path}/256/${z}/${x}/${y}/0/0_0.png`;
-
-  if (tileCache.has(url)) return tileCache.get(url);
-
-  const p = new Promise((resolve, reject) => {
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    const timer = setTimeout(() => reject(new Error('tile timeout')), CFG.timeoutMs);
-    img.onload = () => {
-      clearTimeout(timer);
-      try {
-        const cv = document.createElement('canvas');
-        cv.width = cv.height = 256;
-        const ctx = cv.getContext('2d', { willReadFrequently: true });
-        ctx.drawImage(img, 0, 0, 256, 256);
-
-        const r = CFG.radarSampleRadius;
-        const x0 = clamp(px - r, 0, 255), y0 = clamp(py - r, 0, 255);
-        const w = clamp(px + r, 0, 255) - x0 + 1, h = clamp(py + r, 0, 255) - y0 + 1;
-        const d = ctx.getImageData(x0, y0, w, h).data;
-
-        // Take the strongest echo in the neighbourhood: radar geolocation
-        // and our pixel maths each carry a few hundred metres of slop, and
-        // under-calling rain is the costlier error.
-        let best = 0;
-        for (let i = 0; i < d.length; i += 4) {
-          if (d[i + 3] < 40) continue;                       // transparent = no echo
-          const lum = (d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114) / 255;
-          if (lum > best) best = lum;
-        }
-        resolve(best);
-      } catch (err) {
-        reject(err); // tainted canvas => CORS regression upstream
-      }
-    };
-    img.onerror = () => { clearTimeout(timer); reject(new Error('tile load failed')); };
-    img.src = url;
-  });
-
-  tileCache.set(url, p);
-  if (tileCache.size > 240) tileCache.delete(tileCache.keys().next().value);
-  return p;
-}
-
-/** Greyscale luminance -> approximate dBZ -> rain rate (Marshall–Palmer). */
-function lumToDbz(lum) { return lum <= 0 ? null : 5 + lum * 65; }
-function dbzToRate(dbz) { return dbz == null ? 0 : ((10 ** (dbz / 10)) / 200) ** (1 / 1.6); } // mm/h
-
 async function loadRadar() {
-  const { lat, lon } = S.loc;
-  return track('rainviewer', { name: 'RainViewer radar', gives: 'Rain timing at your pixel' }, async () => {
-    const maps = await fetchJSON('https://api.rainviewer.com/public/weather-maps.json');
-    const host = maps.host;
-    const past = (maps.radar && maps.radar.past) || [];
-    const nowcast = (maps.radar && maps.radar.nowcast) || [];
-    if (!host || !past.length) throw new Error('no radar frames published');
-
-    const frames = [
-      ...past.map((f) => ({ ...f, future: false })),
-      ...nowcast.map((f) => ({ ...f, future: true })),
-    ].slice(-22);
-
-    // Bounded concurrency — a phone on LTE opening 22 sockets at once is
-    // slower than four at a time, and rude to a free API.
-    const series = new Array(frames.length);
-    let cursor = 0;
-    async function worker() {
-      while (cursor < frames.length) {
-        const i = cursor++;
-        const f = frames[i];
-        // `read` records whether we actually saw the tile. A tile we could not
-        // fetch and a clear sky both yield zero rain, and conflating them makes
-        // the app announce "DRY" in the middle of a thunderstorm.
-        let lum = null, read = false;
-        try { lum = await sampleFrame(host, f.path, lat, lon); read = true; } catch (_) { read = false; }
-        const dbz = read && lum > 0 ? lumToDbz(lum) : null;
-        series[i] = { t: f.time * 1000, future: f.future, read, dbz, mmh: dbz == null ? 0 : dbzToRate(dbz) };
-      }
+  return track('rainviewer', { name: 'RainViewer radar', gives: 'Recent observed radar imagery' }, async () => {
+    try {
+      const maps = await fetchJSON('https://api.rainviewer.com/public/weather-maps.json');
+      const host = new URL(maps.host);
+      if (host.protocol !== 'https:' || !/(^|\.)rainviewer\.com$/.test(host.hostname)) throw new Error('invalid radar host');
+      const frames = ((maps.radar && maps.radar.past) || [])
+        .filter(f => Number.isFinite(f.time) && /^\/v2\/radar\/[\w-]+$/.test(f.path))
+        .map(f => ({ ...f, future: false })).sort((a,b) => a.time-b.time);
+      if (!frames.length) throw new Error('no observed radar frames published');
+      if (S.radarTimer) clearInterval(S.radarTimer);
+      S.radarTimer = null;
+      S.radar = { frames, host: host.origin, scannedAt: Date.now() };
+      S.radarFrame = frames.length - 1;
+      $('radar-play').textContent = 'Play';
+      $('radar-play').setAttribute('aria-label', 'Play radar animation');
+      $('radar-play').disabled = frames.length < 2;
+      renderRadar();
+      return { __dataTime: frames[frames.length-1].time * 1000 };
+    } catch (error) {
+      if (S.radarTimer) clearInterval(S.radarTimer);
+      S.radarTimer = null; S.radar = null;
+      $('radar-map').replaceChildren();
+      $('radar-play').disabled = true; $('radar-play').textContent = 'Play';
+      $('radar-time').textContent = 'RainViewer · unavailable';
+      $('radar-frame-label').textContent = 'Radar unavailable; use the forecast or hurricane tracker.';
+      $('radar-timeline').disabled = true;
+      forecastRainFallback('Recent radar imagery is unavailable.');
+      throw error;
     }
-    await Promise.all([worker(), worker(), worker(), worker()]);
-
-    // Only frames we genuinely read may inform the forecast. Unreadable frames
-    // are dropped rather than counted as dry.
-    const good = series.filter((s) => s && s.read);
-    const missed = frames.length - good.length;
-    if (!good.length) throw new Error('0/' + frames.length + ' tiles readable (CORS or tile error)');
-
-    S.radar = { series: good, frames, host, scannedAt: Date.now(), missed, total: frames.length };
-    renderRadar();
-
-    const lastPast = good.filter((s) => !s.future).pop();
-    return { __dataTime: lastPast ? lastPast.t : null,
-             note: missed ? missed + '/' + frames.length + ' frames unreadable' : null };
   });
-}
-
-/**
- * Turn the reflectivity series into the one sentence that matters:
- * when does rain start, or when does it stop.
- * Frames are 10 minutes apart, so we interpolate the crossing for
- * minute-level timing rather than rounding to the frame.
- */
-const RAIN_ON = 0.12;  // mm/h — roughly "you can feel it"
-
-function rainEvent(series) {
-  const now = Date.now();
-  const future = series.filter((s) => s.t >= now - 5 * 60e3);
-  // Two frames is a line, not a trend — and calling "dry" off a thin sample is
-  // exactly the failure that matters most.
-  if (future.length < 3) return { kind: 'unknown' };
-
-  const rainingNow = future[0].mmh >= RAIN_ON;
-
-  for (let i = 1; i < future.length; i++) {
-    const a = future[i - 1], b = future[i];
-    const aWet = a.mmh >= RAIN_ON, bWet = b.mmh >= RAIN_ON;
-    if (aWet === bWet) continue;
-
-    // Linear crossing between the two frames.
-    const span = b.t - a.t;
-    const frac = span > 0 ? clamp((RAIN_ON - a.mmh) / (b.mmh - a.mmh || 1), 0, 1) : 0;
-    const at = a.t + span * frac;
-    const mins = (at - now) / 60000;
-    const peak = Math.max(...future.map((s) => s.mmh));
-    return { kind: bWet ? 'starts' : 'ends', mins: Math.max(0, mins), at, peak, rainingNow };
-  }
-
-  const peak = Math.max(...future.map((s) => s.mmh));
-  return { kind: rainingNow ? 'continues' : 'dry', peak, horizonMin: (future[future.length - 1].t - now) / 60000 };
-}
-
-function rateLabel(mmh) {
-  if (mmh < RAIN_ON) return 'none';
-  if (mmh < 1) return 'light';
-  if (mmh < 4) return 'moderate';
-  if (mmh < 16) return 'heavy';
-  return 'intense';
-}
-
-function rateColor(mmh) {
-  if (mmh < RAIN_ON) return 'var(--rate-none)';
-  if (mmh < 1) return 'var(--rate-light)';
-  if (mmh < 4) return 'var(--rate-mod)';
-  if (mmh < 16) return 'var(--rate-heavy)';
-  return 'var(--rate-intense)';
 }
 
 /* ============================================================
@@ -1215,7 +1099,6 @@ function renderConsumerForecast() {
 }
 
 function forecastRainFallback(reason) {
-  if (!S.minutely || !S.minutely.hourly) return;
   $('rain-kind').textContent = 'Forecast probability · model estimate';
   $('nc-head').className = 'nowcast-head';
   $('nc-head').textContent = 'RAIN TIMING UNCERTAIN';
@@ -1266,86 +1149,60 @@ function renderObsTiles() {
 }
 
 function renderRadar() {
-  if (!S.radar) return;
-  const series = S.radar.series;
-  const now = Date.now();
+  if (!S.radar || !S.radar.frames.length) return;
+  const frames = S.radar.frames;
+  $('radar-timeline').max = String(frames.length - 1);
+  $('radar-timeline').disabled = frames.length < 2;
+  $('axis-left').textContent = clockText(new Date(frames[0].time * 1000));
+  $('axis-right').textContent = clockText(new Date(frames[frames.length-1].time * 1000)) + ' · latest';
   renderRadarMap();
-
-  // Bars
-  const peak = Math.max(0.6, ...series.map((s) => s.mmh));
-  const nowIdx = series.reduce((best, s, i) =>
-    Math.abs(s.t - now) < Math.abs(series[best].t - now) ? i : best, 0);
-
-  $('radar-bars').innerHTML = series.map((s, i) => {
-    // sqrt scale: rain rate is heavily skewed, and a drizzle that is about
-    // to reach you still needs to be visible next to a downpour.
-    const h = s.mmh <= 0 ? 2 : clamp(Math.sqrt(s.mmh / peak) * 100, 6, 100);
-    const cls = 'bar' + (s.future ? ' future' : '') + (i === nowIdx ? ' now' : '');
-    const title = `${clockText(new Date(s.t))} · ${rateLabel(s.mmh)}` +
-      (s.mmh >= RAIN_ON ? ` · ${lenOut(s.mmh).toFixed(2)} ${unitRate()}` : '') +
-      (s.future ? ' (nowcast)' : '');
-    return `<div class="${cls}" style="height:${h}%;background:${rateColor(s.mmh)}" title="${esc(title)}"></div>`;
-  }).join('');
-
-  const first = series[0], last = series[series.length - 1];
-  $('axis-left').textContent = clockText(new Date(first.t));
-  $('axis-right').textContent = clockText(new Date(last.t)) + ' (nowcast)';
-
-  // Headline
-  const ev = rainEvent(series);
-  const head = $('nc-head'), sub = $('nc-sub');
-  const lastPast = series.filter((s) => !s.future).pop();
-  const scanAge = lastPast ? agoText(now - lastPast.t) : '—';
-
-  if (ev.kind === 'starts') {
-    head.className = 'nowcast-head rain';
-    head.textContent = `RAIN ${inText(ev.mins).toUpperCase()}`;
-    sub.textContent = `Echo reaches you around ${clockText(new Date(ev.at))}. ` +
-      `Peak intensity in view: ${rateLabel(ev.peak)} (${lenOut(ev.peak).toFixed(2)} ${unitRate()}). Last radar scan ${scanAge}.`;
-  } else if (ev.kind === 'ends') {
-    head.className = 'nowcast-head rain';
-    head.textContent = `RAIN ENDS ${inText(ev.mins).toUpperCase()}`;
-    sub.textContent = `Clearing around ${clockText(new Date(ev.at))}. Last radar scan ${scanAge}.`;
-  } else if (ev.kind === 'continues') {
-    head.className = 'nowcast-head rain';
-    head.textContent = `RAINING — ${rateLabel(ev.peak).toUpperCase()}`;
-    sub.textContent = `No break in the next ${Math.round(ev.horizonMin)} minutes of radar nowcast. Last scan ${scanAge}.`;
-  } else if (ev.kind === 'dry') {
-    head.className = 'nowcast-head dry';
-    head.textContent = `DRY FOR ${Math.round(ev.horizonMin)} MIN`;
-    sub.textContent = `No echoes over your coordinates through ` +
-      `${clockText(new Date(now + ev.horizonMin * 60e3))}. Last radar scan ${scanAge}.`;
-  } else {
-    forecastRainFallback('Radar history is incomplete, so an exact start time cannot be determined.');
-  }
-
-  if (S.radar.missed) {
-    sub.textContent += ` (${S.radar.missed} of ${S.radar.total} frames unreadable.)`;
-  }
+  forecastRainFallback('Radar shows recent observed precipitation; it does not provide future rain timing.');
 }
 
 function renderRadarMap() {
   if (!S.radar || !S.radar.frames.length) return;
-  const i=clamp(S.radarFrame,0,S.radar.frames.length-1), f=S.radar.frames[i], t=tileFor(S.loc.lat,S.loc.lon,CFG.radarZoom);
-  const view=$('radar-view'), w=view.clientWidth||360, h=view.clientHeight||260;
-  // A centered 3×3 Web Mercator mosaic avoids stretching one 256px tile and
-  // keeps the location marker geographically correct at every viewport size.
-  const tiles=[];
-  for(let dy=-1;dy<=1;dy++) for(let dx=-1;dx<=1;dx++) {
-    const left=Math.round(w/2-t.px+dx*256), top=Math.round(h/2-t.py+dy*256), x=t.x+dx, y=t.y+dy;
-    tiles.push({left,top,x,y});
+  const frame = S.radar.frames[clamp(S.radarFrame, 0, S.radar.frames.length-1)];
+  const view = $('radar-view'), w = view.clientWidth || 360, h = view.clientHeight || 260;
+  const displayZoom = CFG.radarMapZoom;
+  const token = (S.radarRenderToken || 0) + 1; S.radarRenderToken = token;
+  function mosaic(zoom, scale, radar) {
+    const tile = tileFor(S.loc.lat, S.loc.lon, zoom), size = 256 * scale;
+    const cols = Math.ceil(w / size / 2) + 1, rows = Math.ceil(h / size / 2) + 1;
+    const container = document.createDocumentFragment();
+    for (let dy=-rows; dy<=rows; dy++) for (let dx=-cols; dx<=cols; dx++) {
+      const x = (tile.x + dx + 2 ** zoom) % 2 ** zoom, y = tile.y + dy;
+      if (y < 0 || y >= 2 ** zoom) continue;
+      const left = Math.round(w/2-tile.px*scale+dx*size), top = Math.round(h/2-tile.py*scale+dy*size);
+      if (left >= w || top >= h || left + size <= 0 || top + size <= 0) continue;
+      const img = document.createElement('img'); img.alt = ''; img.className = 'radar-tile';
+      img.style.cssText = `left:${left}px;top:${top}px;width:${size}px!important;height:${size}px!important`;
+      if (radar) img.onerror = () => { if (S.radarRenderToken === token) $('radar-frame-label').textContent = 'Some radar tiles could not load. Try Refresh in settings.'; };
+      img.src = radar ? `${S.radar.host}${frame.path}/256/${zoom}/${x}/${y}/2/1_1.png` : `https://tile.openstreetmap.org/${zoom}/${x}/${y}.png`;
+      container.append(img);
+    }
+    return container;
   }
-  const markup=(radar)=>tiles.map(q=>`<img class="radar-tile" style="left:${q.left}px;top:${q.top}px" src="${radar?`${S.radar.host}${f.path}/256/${CFG.radarZoom}/${q.x}/${q.y}/2/1_1.png`:`https://tile.openstreetmap.org/${CFG.radarZoom}/${q.x}/${q.y}.png`}" alt="">`).join('');
-  $('radar-base').innerHTML=markup(false); $('radar-map').innerHTML=markup(true);
-  $('radar-frame-label').textContent=`${clockText(new Date(f.time*1000))}${f.future?' · radar nowcast':' · observed radar'}`;
-  $('radar-time').textContent=`RainViewer · ${agoText(Date.now()-f.time*1000)}`;
+  // Keep detailed streets at z9; stretch native z7 weather tiles by 4x.
+  // This changes display size, never the API zoom or geographic alignment.
+  if (!S.radarBaseLocation || S.radarBaseLocation !== `${S.loc.lat},${S.loc.lon},${w},${h}`) {
+    $('radar-base').replaceChildren(mosaic(displayZoom, 1, false));
+    S.radarBaseLocation = `${S.loc.lat},${S.loc.lon},${w},${h}`;
+  }
+  $('radar-map').replaceChildren(mosaic(CFG.radarZoom, 2 ** (displayZoom-CFG.radarZoom), true));
+  $('radar-frame-label').textContent = `${clockText(new Date(frame.time*1000))} · observed radar`;
+  const latest = S.radar.frames[S.radar.frames.length-1];
+  $('radar-time').textContent = `RainViewer · latest frame ${agoText(Date.now()-latest.time*1000)}`;
+  $('radar-timeline').value = String(S.radarFrame);
+  $('radar-timeline').setAttribute('aria-valuetext', $('radar-frame-label').textContent);
 }
 
 function toggleRadar() {
   if (!S.radar) return;
   if (S.radarTimer) { clearInterval(S.radarTimer); S.radarTimer=null; $('radar-play').textContent='Play'; $('radar-play').setAttribute('aria-label','Play radar animation'); return; }
+  if (S.radarFrame === S.radar.frames.length-1) S.radarFrame = 0;
+  renderRadarMap();
   $('radar-play').textContent='Pause'; $('radar-play').setAttribute('aria-label','Pause radar animation');
-  S.radarTimer=setInterval(()=>{ S.radarFrame=(S.radarFrame+1)%S.radar.frames.length; renderRadarMap(); },700);
+  S.radarTimer=setInterval(()=>{ S.radarFrame=(S.radarFrame+1)%S.radar.frames.length; renderRadarMap(); },1000);
 }
 
 function renderMinutely() {
@@ -1546,7 +1403,7 @@ function setLocation(loc) {
   localStorage.setItem('nowcast.loc', JSON.stringify(loc));
   S.point = S.obs = S.station = S.radar = S.minutely = S.ensemble = null;
   S.alerts = [];
-  tileCache.clear();
+  S.radarBaseLocation = null;
   renderLocation();
   refreshAll();
 }
@@ -1674,8 +1531,15 @@ $('unit-btn').addEventListener('click', () => {
 });
 
 $('refresh-btn').addEventListener('click', refreshAll);
+document.querySelector('.tracker-jump').addEventListener('click', () => { requestAnimationFrame(() => $('earth-title').focus({ preventScroll:true })); });
 $('geo-btn').addEventListener('click', useGPS);
 $('radar-play').addEventListener('click', toggleRadar);
+$('radar-timeline').addEventListener('input', (event) => {
+  if (S.radarTimer) toggleRadar();
+  S.radarFrame = Number(event.target.value); renderRadarMap();
+});
+window.addEventListener('resize', () => { if (S.radar) renderRadarMap(); });
+document.addEventListener('visibilitychange', () => { if (document.hidden && S.radarTimer) toggleRadar(); });
 
 $('search-form').addEventListener('submit', async (e) => {
   e.preventDefault();
