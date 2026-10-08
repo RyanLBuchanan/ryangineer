@@ -1,0 +1,28 @@
+#earth-panel { margin: 12px 0 22px; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); overflow: hidden; }
+#earth-panel .panel-head { margin-bottom: 8px; }
+.earth-intro { color: var(--ink-dim); font-size: 13px; margin-bottom: 14px; }
+.earth-toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.earth-toolbar button, .earth-playback button { min-height: 44px; letter-spacing: .5px; }
+.earth-toolbar button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+.earth-toolbar label { display: flex; align-items: center; gap: 7px; color: var(--ink-dim); font-size: 12px; }
+.earth-toolbar select { max-width: 100%; min-height: 44px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 9px; background: var(--panel-2); color: var(--ink); font: inherit; font-size: 13px; }
+#earth-map { height: clamp(380px, 57vh, 620px); width: 100%; border-radius: 12px; background: #081526; }
+#earth-map:focus-visible { outline: 3px solid var(--cool); outline-offset: 3px; }
+.earth-home { border: 3px solid #fff; border-radius: 50%; width: 16px; height: 16px; background: #ff6633; box-shadow: 0 0 0 3px #071b3680; }
+.earth-playback { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.earth-playback input { flex: 1 1 160px; min-height: 44px; accent-color: var(--accent); }
+#earth-frame { flex-basis: 100%; font-size: 13px; font-weight: 600; }
+.earth-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 12px; color: var(--ink-dim); margin: 12px 0 8px; }
+.earth-key { display: inline-block; width: 20px; margin-right: 5px; vertical-align: middle; border-top: 3px solid #46d6ea; }
+.earth-key.forecast { border-top-color: #ffc247; border-top-style: dashed; }
+.earth-key.cone { height: 12px; border: 1px solid #ffc247; background: #ffc24740; }
+#earth-source-status, #earth-storm-status { margin-top: 7px; font-size: 12px; color: var(--ink-dim); }
+#earth-storm-status { color: var(--ink); }
+.earth-links { margin-top: 10px; font-size: 12px; display: flex; gap: 16px; flex-wrap: wrap; }
+.earth-links a { color: var(--cool); text-decoration: underline; }
+#earth-panel:fullscreen, #earth-panel.earth-expanded { background: var(--bg); padding: 18px; overflow-y: auto; }
+#earth-panel:fullscreen #earth-map, #earth-panel.earth-expanded #earth-map { height: 65vh; }
+#earth-panel.earth-expanded { position: fixed; inset: 0; z-index: 1000; margin: 0; border-radius: 0; }
+#earth-panel .maplibregl-popup-content { background: #fff; color: #16283a; font-size: 12px; }
+#earth-panel .maplibregl-ctrl-attrib a { color: #16283a; }
+@media (max-width: 560px) { #earth-panel { padding: 12px; } #earth-map { height: 420px; } .earth-toolbar label { flex-wrap: wrap; } #earth-storm { max-width: 230px; } }
