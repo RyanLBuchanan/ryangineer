@@ -269,7 +269,8 @@ async function start() {
     setInterval(() => { if (!document.hidden) refresh(); }, 300000);
     for (const button of $('earth-panel').querySelectorAll('button')) button.disabled = false;
     await refresh();
-  } catch (_) {
+  } catch (error) {
+    console.warn('Nowcast Earth initialization failed:', error);
     $('earth-source-status').textContent = 'The interactive Earth view could not load. Your local forecast still works; use the NOAA live map below.';
     for (const control of $('earth-panel').querySelectorAll('button,select,input')) control.disabled = true;
   }
