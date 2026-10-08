@@ -499,6 +499,19 @@
 
   @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; scroll-behavior:auto!important; } }
   #alerts { grid-column:1; }
+
+  .alert-drawer{margin:0 0 12px;border:1px solid var(--warn);border-radius:14px;background:var(--alert-warn-bg);overflow:hidden}
+  .alert-drawer.has-warning{border-color:var(--bad);background:var(--alert-bad-bg)}
+  .alert-drawer>summary{display:grid;grid-template-columns:1fr auto;gap:5px 12px;padding:12px 14px;list-style:none;cursor:pointer;min-height:44px}
+  .alert-drawer>summary::-webkit-details-marker{display:none}
+  .alert-drawer>summary:focus-visible{outline:2px solid var(--accent);outline-offset:-3px}
+  .alert-drawer>summary strong{font-size:15px}
+  .alert-overview{grid-column:1/-1;grid-row:2;font-size:13px;line-height:1.5;color:var(--ink-dim)}
+  .alert-toggle{grid-column:2;grid-row:1;font-size:12px;align-self:center;white-space:nowrap}
+  .alert-hide,.alert-drawer[open] .alert-show{display:none}
+  .alert-drawer[open] .alert-hide{display:inline}
+  .alert-list{padding:0 12px 12px}.alert-list .alert{margin:8px 0 0}
+
   #earth-panel { scroll-margin-top:12px; }
   .tracker-jump { display:inline-flex;align-items:center;min-height:44px;margin-top:14px;padding:10px 16px;border-radius:999px;background:#fff;color:#163c59;font-size:13px;font-weight:700;text-decoration:none; }
   .tracker-jump:hover { background:#e4f2ff; }
@@ -1385,18 +1398,35 @@ function renderSpread() {
 
 function renderAlerts() {
   const box = $('alerts');
+  const drawerOpen = !!box.querySelector('#alert-drawer')?.open;
+  const expanded = new Set(Array.from(box.querySelectorAll('[data-alert-key][open]'), el => el.dataset.alertKey));
   if (!S.alerts.length) { box.innerHTML = ''; return; }
-  box.innerHTML = S.alerts.map((a) => {
-    const severe = /extreme|severe/i.test(a.severity || '');
+  const priority = a => /warning/i.test(a.event || '') ? 0 : /watch/i.test(a.event || '') ? 1 : 2;
+  const alerts = [...S.alerts].sort((a,b) => priority(a)-priority(b));
+  const names = [...new Set(alerts.map(a => a.event || 'Weather alert'))];
+  const overview = names.slice(0,3).join(' · ') + (names.length > 3 ? ' · +' + (names.length-3) + ' more' : '');
+  const severe = alerts.some(a => /extreme|severe/i.test(a.severity || '') || /warning/i.test(a.event || ''));
+  box.innerHTML = `<details id="alert-drawer" class="alert-drawer${severe ? ' has-warning' : ''}"${drawerOpen ? ' open' : ''}>
+    <summary><strong>${alerts.length} weather alert${alerts.length === 1 ? '' : 's'}</strong>
+      <span class="alert-overview">${esc(overview)}</span>
+      <span class="alert-toggle"><span class="alert-show">View details ↓</span><span class="alert-hide">Close details ↑</span></span>
+    </summary><div class="alert-list">` + alerts.map((a) => {
+    const severe = /extreme|severe/i.test(a.severity || '') || /warning/i.test(a.event || '');
     const exp = a.expires ? ` · until ${clockText(new Date(a.expires))}` : '';
+    const key = a.id || [a.event,a.sent,a.expires].join('|');
     return `<div class="alert${severe ? '' : ' moderate'}">
       <div class="alert-title">${esc(a.event || 'Alert')}</div>
       <div class="alert-body">${esc(a.headline || '')}${esc(exp)}</div>
-      ${a.description ? `<details><summary>Full text</summary><pre>${esc(a.description)}${
+      ${a.description || a.instruction ? `<details data-alert-key="${esc(key)}"${expanded.has(key) ? ' open' : ''}><summary>Full text</summary><pre>${esc(a.description || '')}${
         a.instruction ? '\n\n' + esc(a.instruction) : ''}</pre></details>` : ''}
     </div>`;
-  }).join('');
+  }).join('') + '</div></details>';
 }
+
+document.addEventListener('nowcast-open-alerts', () => {
+  const drawer = $('alert-drawer');
+  if (drawer) { drawer.open = true; drawer.querySelector('summary').focus(); }
+});
 
 function renderLedger() {
   const order = ['nws-point', 'nws-obs', 'nws-alerts', 'rainviewer', 'om-hires',
