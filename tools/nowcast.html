@@ -512,6 +512,21 @@
 <script defer src="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.js"></script>
 <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script type="module" src="/tools/nowcast-earth.mjs"></script>
+<script type="module" src="/tools/nowcast-family.mjs"></script>
+<style>
+  .family-controls{margin:0 0 16px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .family-buttons{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .family-buttons select{max-width:100%;min-height:44px;padding:8px;border-radius:10px;background:var(--panel);color:var(--ink);border:1px solid var(--line)}
+  .family-controls .note{margin:8px 0 0;font-size:12px}
+  #family-save-form{margin-top:12px}#family-save-form input{max-width:100%;padding:12px}
+  #family-share-link{width:100%;margin-top:8px;padding:10px}
+  #family-summary{grid-column:1}#family-title{font-size:24px}
+  #family-alerts p{margin:8px 0}#family-alerts[data-alert="true"]{border-left:3px solid var(--accent);padding-left:12px}
+  .family-period h3{font-size:15px;margin:16px 0 4px}.family-period p{margin:4px 0;color:var(--ink-dim)}
+  .family-period summary{cursor:pointer;font-size:13px;margin-top:6px}.family-period details p{font-size:14px}
+  #family-forecast>strong{display:block;margin-top:14px}#family-forecast-source{margin-top:14px}
+  [hidden]{display:none!important}
+</style>
 </head>
 <body>
 
@@ -548,9 +563,6 @@
   </form>
 </details>
 
-
-
-
 <main>
   <section class="panel weather-hero" aria-labelledby="current-heading">
     <div class="provenance">Current weather</div>
@@ -567,6 +579,29 @@
   </section>
 
   <div id="alerts" aria-live="polite"></div>
+
+  <section class="panel" id="family-summary" aria-labelledby="family-title">
+    <h2 class="section-title" id="family-title">What matters here</h2>
+    <div class="family-controls">
+      <div class="family-buttons">
+        <label for="family-places">Saved places</label><select id="family-places"><option>No saved places yet</option></select>
+        <button id="family-save-toggle" type="button" disabled>Save this place</button>
+        <button id="family-share" type="button" disabled>Share this place</button>
+        <button id="family-remove" type="button" disabled>Remove saved</button>
+      </div>
+      <form id="family-save-form" hidden>
+        <label for="family-label">Name this place</label> <input id="family-label" required maxlength="40" placeholder="Home, Mom, Beach house">
+        <button type="submit">Save</button><button id="family-save-cancel" type="button">Cancel</button>
+      </form>
+      <input id="family-share-link" aria-label="Location link to copy" readonly hidden>
+      <p class="note">Saved places stay on this device. Shared links include the selected map coordinates.</p>
+      <p class="note" id="family-status" role="status"></p>
+    </div>
+    <div id="family-alerts"><p>Checking local watches and warnings…</p></div>
+    <div id="family-forecast"></div>
+    <p class="note" id="family-forecast-source">Reading the official local forecast…</p>
+    <a href="https://www.weather.gov/" target="_blank" rel="noopener">National Weather Service</a>
+  </section>
 
   <section class="panel rain-card" aria-labelledby="rain-title" aria-live="polite">
     <div class="panel-head"><h2 class="section-title" id="rain-title">Rain near you</h2><span class="provenance" id="rain-kind">Forecast probability · model estimate</span></div>
@@ -812,6 +847,7 @@ async function track(key, meta, fn) {
     return null;
   } finally {
     renderLedger();
+    sendFamilyState();
   }
 }
 
@@ -827,6 +863,8 @@ async function loadPoint() {
     if (!p) throw new Error('no properties');
     return {
       stationsUrl: p.observationStations,
+      forecastUrl: p.forecast,
+      gridUrl: p.forecastGridData,
       timeZone: p.timeZone,
       city: p.relativeLocation && p.relativeLocation.properties
         ? `${p.relativeLocation.properties.city}, ${p.relativeLocation.properties.state}`
@@ -1391,18 +1429,29 @@ function renderLocation() {
   $('loc-meta').textContent = S.loc.source || 'Saved location';
   $('loc-coordinates').textContent = `${S.loc.lat.toFixed(4)}, ${S.loc.lon.toFixed(4)}`;
   if ($('current-heading')) $('current-heading').textContent = S.loc.name || 'Local conditions';
+  sendFamilyState();
 }
+
+function sendFamilyState() {
+  if (!S.loc) return;
+  document.dispatchEvent(new CustomEvent('nowcast-state', { detail: { loc:{...S.loc}, point:S.point ? {...S.point}:null, alerts:S.alerts || [], alertState:S.sources['nws-alerts']?.state, pointState:S.sources['nws-point']?.state } }));
+}
+document.addEventListener('nowcast-family-ready', sendFamilyState);
+document.addEventListener('nowcast-family-location', event => setLocation(event.detail));
 
 /* ============================================================
    LOCATION
    ============================================================ */
 
 function setLocation(loc) {
+  if (!loc || !Number.isFinite(loc.lat) || !Number.isFinite(loc.lon) || Math.abs(loc.lat)>90 || Math.abs(loc.lon)>180) return;
+  if (S.busy) { S.pendingLoc = loc; $('loc-meta').textContent = 'switching location…'; return; }
   if (S.radarTimer) { clearInterval(S.radarTimer); S.radarTimer = null; }
   S.loc = loc;
-  localStorage.setItem('nowcast.loc', JSON.stringify(loc));
+  try { localStorage.setItem('nowcast.loc', JSON.stringify(loc)); } catch (_) {}
   S.point = S.obs = S.station = S.radar = S.minutely = S.ensemble = null;
   S.alerts = [];
+  S.sources = {};
   S.radarBaseLocation = null;
   renderLocation();
   refreshAll();
@@ -1452,6 +1501,7 @@ async function refreshAll() {
   $('refresh-btn').classList.add('spin');
   try {
     S.point = await loadPoint();
+    sendFamilyState();
     if (S.point && S.point.city && S.loc.name === 'Current location') {
       S.loc.name = S.point.city;
       renderLocation();
@@ -1468,6 +1518,7 @@ async function refreshAll() {
   } finally {
     S.busy = false;
     $('refresh-btn').classList.remove('spin');
+    if (S.pendingLoc) { const next = S.pendingLoc; S.pendingLoc = null; queueMicrotask(() => setLocation(next)); }
   }
 }
 
@@ -1479,7 +1530,11 @@ async function scheduler() {
   if (now >= nextRun.alerts){ nextRun.alerts = now + CFG.intervals.alerts; jobs.push(loadAlerts()); }
   if (now >= nextRun.radar) { nextRun.radar = now + CFG.intervals.radar;   jobs.push(loadRadar()); }
   if (now >= nextRun.models){ nextRun.models = now + CFG.intervals.models; jobs.push(loadMinutely(), loadEnsemble()); }
-  if (jobs.length) await Promise.all(jobs);
+  if (jobs.length) {
+    S.busy = true;
+    try { await Promise.all(jobs); }
+    finally { S.busy = false; if (S.pendingLoc) { const next = S.pendingLoc; S.pendingLoc = null; queueMicrotask(() => setLocation(next)); } }
+  }
 }
 
 /* ============================================================
@@ -1563,23 +1618,26 @@ document.addEventListener('visibilitychange', () => {
 setInterval(scheduler, 15000);
 setInterval(tickAges, 10000);
 
-(function boot() {
+(async function boot() {
   applyTheme();
   applyUnitLabel();
   $('build-note').textContent = 'Built for the Gulf Coast · Ridian Technologies';
 
   let start = null;
   try { start = JSON.parse(localStorage.getItem('nowcast.loc') || 'null'); } catch (_) {}
-  if (!start || !isNum(start.lat)) start = { ...CFG.fallback, source: 'default' };
+  const { sharedPlace, validPlace } = await import('/tools/nowcast-family.mjs');
+  const shared = sharedPlace(location.href);
+  if (shared) start = shared;
+  if (!validPlace(start)) start = { ...CFG.fallback, source: 'default' };
 
   S.loc = start;
   renderLocation();
   refreshAll();
 
   // Silently upgrade to GPS if it was already granted — no prompt on load.
-  if (navigator.permissions && navigator.permissions.query) {
+  if (!shared && navigator.permissions && navigator.permissions.query) {
     navigator.permissions.query({ name: 'geolocation' })
-      .then((p) => { if (p.state === 'granted') useGPS(); })
+      .then((p) => { if (p.state === 'granted' && S.loc === start && !S.pendingLoc) useGPS(); })
       .catch(() => {});
   }
 })();
