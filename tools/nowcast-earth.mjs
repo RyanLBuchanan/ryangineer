@@ -29,7 +29,12 @@ export function forecastTime(properties) {
   return candidates.sort((a, b) => Math.abs(a - reference) - Math.abs(b - reference))[0];
 }
 
-export function stormKey(feature) { return String(feature.properties?.idp_subset || feature.properties?.stormname || ''); }
+export function stormKey(feature) {
+  const p = feature.properties || {};
+  // NHC points have idp_subset; lines/cones use differently cased idp_source.
+  const id = p.idp_subset || /^([a-z]{2}\d{6})/i.exec(String(p.idp_source || ''))?.[1];
+  return String(id || p.stormname || '').toLowerCase();
+}
 export function selectStorm(features, key) { return { type: 'FeatureCollection', features: features.filter(f => stormKey(f) === key) }; }
 
 export function stormOptions(features) {

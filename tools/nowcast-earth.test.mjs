@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { domainFrames, forecastTime, forecastFrames, stormOptions, selectStorm } from './nowcast-earth.mjs';
+import { domainFrames, forecastTime, forecastFrames, stormOptions, selectStorm, stormKey } from './nowcast-earth.mjs';
 
 test('satellite timeline uses published scans, skips gaps and never invents future imagery', () => {
   const now = Date.parse('2026-10-08T00:20:00Z');
@@ -23,4 +23,14 @@ test('storm selection prefers the nearby Atlantic storm and keeps storms separat
   assert.equal(selectStorm(features, 'al1').features.length, 2);
   assert.deepEqual(forecastFrames(features, 'al1').map(f => f.feature.properties.tau), [0,24]);
   assert.deepEqual(forecastFrames(features, 'none'), []);
+});
+
+test('real NHC points, cones and historical track share a normalized storm ID', () => {
+  const features = [
+    { properties: { idp_subset: 'al092026', stormname: 'Hurricane Isaias' } },
+    { properties: { idp_source: 'al092026-006A_5day_pgn', stormname: 'Isaias' } },
+    { properties: { idp_source: 'AL092026_lin' } },
+  ];
+  assert.deepEqual(features.map(stormKey), ['al092026','al092026','al092026']);
+  assert.equal(selectStorm(features, 'al092026').features.length, 3);
 });
