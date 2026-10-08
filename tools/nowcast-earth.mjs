@@ -155,7 +155,9 @@ async function start() {
   }
   async function loadSatellite() {
     try {
-      const start = new Date(Date.now() - 4 * 3600000).toISOString().replace('.000Z', 'Z');
+      // Midnight preserves GOES ten-minute scan alignment; arbitrary seconds
+      // in a lower bound can otherwise produce tile times that do not exist.
+      const start = new Date(Date.now() - 4 * 3600000).toISOString().slice(0, 10);
       const xml = await request(`${GIBS}/1.0.0/${SATELLITE}/default/GoogleMapsCompatible_Level7/all/${start}.xml`, true);
       const doc = new DOMParser().parseFromString(xml, 'application/xml');
       const frames = domainFrames([...doc.getElementsByTagName('Domain')].map(el => el.textContent));
@@ -207,11 +209,23 @@ async function start() {
     $('earth-globe').setAttribute('aria-pressed', String(globe)); $('earth-flat').setAttribute('aria-pressed', String(!globe));
   }
   try {
-    if (!window.maplibregl) throw new Error('Map library unavailable');
-    const map = state.map = new window.maplibregl.Map({ container: 'earth-map', center: HOME, zoom: 4.4, maxZoom: 9, renderWorldCopies: false,
-      style: { version: 8, sources: { earth: { type: 'raster', tiles: [`${GIBS}/BlueMarble_ShadedRelief_Bathymetry/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpeg`], tileSize: 256, maxzoom: 8, attribution: 'NASA Blue Marble (static surface imagery)' } }, layers: [{ id: 'earth-surface', type: 'raster', source: 'earth' }] } });
-    map.addControl(new window.maplibregl.NavigationControl(), 'top-right');
-    new window.maplibregl.Marker({ element: Object.assign(document.createElement('div'), { className: 'earth-home' }) }).setLngLat(HOME).setPopup(new window.maplibregl.Popup().setText('Orange Beach, Alabama')).addTo(map);
+    let map;
+    try {
+      if (!window.maplibregl) throw new Error('Map library unavailable');
+      map = new window.maplibregl.Map({ container: 'earth-map', center: HOME, zoom: 4.4, maxZoom: 9, renderWorldCopies: false,
+        style: { version: 8, sources: { earth: { type: 'raster', tiles: [`${GIBS}/BlueMarble_ShadedRelief_Bathymetry/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpeg`], tileSize: 256, maxzoom: 8, attribution: 'NASA Blue Marble (static surface imagery)' } }, layers: [{ id: 'earth-surface', type: 'raster', source: 'earth' }] } });
+    } catch (_) {
+      const { flatMap } = await import('./nowcast-earth-flat.mjs');
+      map = flatMap($('earth-map'), HOME, 4.4);
+      state.health.renderer = '3D graphics unavailable in this browser; satellite map is active';
+    }
+    state.map = map;
+    if (map.flat) {
+      window.L.marker([HOME[1], HOME[0]], { icon: window.L.divIcon({ className: 'earth-home', iconSize: [16,16] }) }).bindPopup('Orange Beach, Alabama').addTo(map.leaflet);
+    } else {
+      map.addControl(new window.maplibregl.NavigationControl(), 'top-right');
+      new window.maplibregl.Marker({ element: Object.assign(document.createElement('div'), { className: 'earth-home' }) }).setLngLat(HOME).setPopup(new window.maplibregl.Popup().setText('Orange Beach, Alabama')).addTo(map);
+    }
     await new Promise((resolve, reject) => { const timer = setTimeout(() => reject(new Error('Map load timed out')), 20000); map.once('load', () => { clearTimeout(timer); resolve(); }); });
     for (const id of ['cone','past','track','points','selected','current']) map.addSource(`earth-${id}`, { type: 'geojson', data: empty() });
     map.addLayer({ id: 'earth-cone-fill', type: 'fill', source: 'earth-cone', paint: { 'fill-color': '#ffc247', 'fill-opacity': .18 } });
@@ -224,7 +238,9 @@ async function start() {
     map.on('click', 'earth-points-dot', event => {
       const f = event.features?.[0]; if (!f) return;
       const time = forecastTime(f.properties);
-      new window.maplibregl.Popup().setLngLat(f.geometry.coordinates).setText(`${f.properties.stormname} · ${time ? clock(time) : f.properties.datelbl} · ${Math.round(+f.properties.maxwind * 1.15078)} mph · ${+f.properties.tau === 0 ? 'Advisory position' : 'Forecast'}`).addTo(map);
+      const text = `${f.properties.stormname} · ${time ? clock(time) : f.properties.datelbl} · ${Math.round(+f.properties.maxwind * 1.15078)} mph · ${+f.properties.tau === 0 ? 'Advisory position' : 'Forecast'}`;
+      if (map.flat) window.L.popup().setLatLng([f.geometry.coordinates[1], f.geometry.coordinates[0]]).setContent(Object.assign(document.createElement('span'), { textContent: text })).openOn(map.leaflet);
+      else new window.maplibregl.Popup().setLngLat(f.geometry.coordinates).setText(text).addTo(map);
     });
     map.on('error', event => {
       if (event.sourceId?.startsWith('earth-image-')) {
@@ -238,7 +254,8 @@ async function start() {
     $('earth-fit').onclick = () => {
       const features = state.nhc.points?.features || [], coords = selectStorm(features, state.key).features.map(f => f.geometry.coordinates);
       if (!coords.length) return;
-      const bounds = new window.maplibregl.LngLatBounds(HOME, HOME); coords.forEach(c => bounds.extend(c)); map.fitBounds(bounds, { padding: 60, maxZoom: 5 });
+      if (map.flat) map.leaflet.fitBounds(window.L.latLngBounds([HOME, ...coords].map(c => [c[1], c[0]])), { padding: [60,60], maxZoom: 5 });
+      else { const bounds = new window.maplibregl.LngLatBounds(HOME, HOME); coords.forEach(c => bounds.extend(c)); map.fitBounds(bounds, { padding: 60, maxZoom: 5 }); }
     };
     $('earth-observed').onclick = () => { state.mode = 'observed'; chooseFrames(); };
     $('earth-forecast').onclick = () => { state.mode = 'forecast'; chooseFrames(); };
@@ -268,6 +285,7 @@ async function start() {
     window.addEventListener('pagehide', stop);
     setInterval(() => { if (!document.hidden) refresh(); }, 300000);
     for (const button of $('earth-panel').querySelectorAll('button')) button.disabled = false;
+    if (map.flat) { $('earth-globe').disabled = true; $('earth-globe').title = '3D globe requires WebGL graphics support'; }
     await refresh();
   } catch (error) {
     console.warn('Nowcast Earth initialization failed:', error);
