@@ -1453,6 +1453,21 @@ function setLocation(loc) {
   S.alerts = [];
   S.sources = {};
   S.radarBaseLocation = null;
+  $('hero-temp').textContent = '—';
+  $('hero-cond').textContent = 'Getting local weather…';
+  $('hero-feels').textContent = '';
+  $('hero-src').textContent = 'Reading sources for this location…';
+  $('hero-visual').replaceChildren();
+  $('today-summary').textContent = 'Building today’s forecast…';
+  for (const id of ['hero-hilo','hero-pop','hero-wind']) $(id).textContent = '—';
+  for (const id of ['alerts','hourly-list','daily-list','glance-tiles','rain-guidance','radar-base','radar-map','sun-arc']) $(id).replaceChildren();
+  $('weather-status').className = 'weather-status';
+  $('weather-status').textContent = 'Checking conditions for this location…';
+  $('radar-time').textContent = 'RainViewer · loading';
+  $('radar-frame-label').textContent = 'Reading radar frames…';
+  $('radar-play').disabled = $('radar-timeline').disabled = true;
+  $('nc-head').textContent = 'Reading rain forecast…';
+  $('nc-sub').textContent = 'Reading sources for this location…';
   renderLocation();
   refreshAll();
 }

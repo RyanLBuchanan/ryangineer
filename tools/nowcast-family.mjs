@@ -94,7 +94,7 @@ function start() {
     $('family-alerts').replaceChildren();
     if (snapshot.alertState === 'ok') {
       const relevant = alerts.filter(a => /warning|watch/i.test(a.event || ''));
-      line($('family-alerts'), relevant.length ? relevant.map(a => a.event).join(' · ') : 'No active watches or warnings returned for this location.');
+      line($('family-alerts'), relevant.length ? [...new Set(relevant.map(a => a.event))].join(' · ') : 'No active watches or warnings returned for this location.');
       if (relevant.length) { const a = document.createElement('a'); a.href = '#alerts'; a.textContent = 'Read official alert details ↓'; $('family-alerts').append(a); }
       $('family-alerts').dataset.alert = String(relevant.length > 0);
     } else { line($('family-alerts'), snapshot.alertState === 'error' ? 'Alert service unavailable. Warning status could not be checked.' : 'Checking local watches and warnings…'); $('family-alerts').dataset.alert = 'false'; }

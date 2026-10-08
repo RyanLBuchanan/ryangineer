@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import vm from 'node:vm';
 import { sharedPlace, shareLink, cleanSaved, upcomingPeriods, peakGust } from './nowcast-family.mjs';
 
 test('shared links validate both coordinates and round-trip a selected place', () => {
@@ -29,4 +31,17 @@ test('peak gust uses overlapping forecast hours and known units; missing data st
   assert.equal(Math.round(peakGust(grid,now)),20);
   assert.equal(peakGust(null,now),null);
   grid.properties.windGust.uom='unknown';assert.equal(peakGust(grid,now),null);
+});
+test('location switches queue during refresh and clear old weather before loading a new place', () => {
+  const html=readFileSync(new URL('./nowcast.html',import.meta.url),'utf8');
+  const source=html.match(/function setLocation\([^]*?\n\}/)[0];
+  const nodes=new Map(), node=id=>{if(!nodes.has(id))nodes.set(id,{textContent:'old',replaceChildren(){this.cleared=true;}});return nodes.get(id);};
+  const old={lat:30,lon:-87}, next={lat:40,lon:-111};
+  const S={loc:old,busy:true,obs:{temp:25},sources:{old:{state:'ok'}}};
+  const sandbox={S,$:node,localStorage:{setItem(){}},clearInterval(){},renderLocation(){},refreshAll(){sandbox.refreshed=true;}};
+  vm.createContext(sandbox);vm.runInContext(source,sandbox);sandbox.setLocation(next);
+  assert.equal(S.loc,old);assert.equal(S.pendingLoc,next);assert.equal(sandbox.refreshed,undefined);
+  S.busy=false;sandbox.setLocation(next);
+  assert.equal(S.loc,next);assert.equal(S.obs,null);assert.equal(node('hero-temp').textContent,'—');
+  assert.equal(node('alerts').cleared,true);assert.equal(node('radar-map').cleared,true);assert.equal(sandbox.refreshed,true);
 });
