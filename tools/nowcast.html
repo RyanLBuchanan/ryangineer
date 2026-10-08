@@ -499,6 +499,10 @@
 
   @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; scroll-behavior:auto!important; } }
 </style>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.css">
+<link rel="stylesheet" href="/tools/nowcast-earth.css">
+<script defer src="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.js"></script>
+<script type="module" src="/tools/nowcast-earth.mjs"></script>
 </head>
 <body>
 
@@ -536,6 +540,41 @@
 </details>
 
 <div id="alerts" aria-live="polite"></div>
+
+<section id="earth-panel" aria-labelledby="earth-title">
+  <div class="panel-head"><h2 class="section-title" id="earth-title">Earth &amp; hurricane tracker</h2><span class="provenance">Orange Beach · Gulf Coast</span></div>
+  <p class="earth-intro">Watch the storm move across the Gulf. Drag to explore, zoom in for the coast, or switch to the whole Earth.</p>
+  <div class="earth-toolbar" role="group" aria-label="Earth view">
+    <button id="earth-flat" type="button" aria-pressed="true" disabled>Satellite map</button>
+    <button id="earth-globe" type="button" aria-pressed="false" disabled>3D globe</button>
+    <button id="earth-home" type="button" disabled>Orange Beach</button>
+    <button id="earth-fit" type="button" disabled>Show storm</button>
+    <button id="earth-fullscreen" type="button" disabled>Fullscreen</button>
+  </div>
+  <div class="earth-toolbar">
+    <label>Storm <select id="earth-storm" disabled><option>Loading active storms…</option></select></label>
+    <label>Weather layer <select id="earth-layer"><option value="satellite">Satellite clouds (GOES-East)</option><option value="radar">Rain radar</option></select></label>
+    <button id="earth-refresh" type="button" disabled>Refresh layers</button>
+  </div>
+  <div id="earth-map" role="region" aria-label="Interactive Earth weather map centered on Orange Beach" tabindex="0"></div>
+  <div class="earth-toolbar" role="group" aria-label="Animation timeline mode">
+    <button id="earth-observed" type="button" aria-pressed="true" disabled>Recent imagery</button>
+    <button id="earth-forecast" type="button" aria-pressed="false" disabled>Forecast track</button>
+  </div>
+  <div class="earth-playback">
+    <button id="earth-play" type="button" aria-label="Play Earth animation" aria-pressed="false" disabled>Play</button>
+    <input id="earth-timeline" type="range" min="0" max="0" value="0" step="1" aria-label="Earth animation time" disabled>
+    <button id="earth-latest" type="button" disabled>Reset time</button>
+    <output id="earth-frame" for="earth-timeline">Loading recent weather imagery…</output>
+  </div>
+  <div class="earth-legend"><span><i class="earth-key"></i>Observed storm track</span><span><i class="earth-key forecast"></i>Forecast track</span><span><i class="earth-key cone"></i>Forecast cone</span><span>White dot: advisory position · Orange dot: Orange Beach</span></div>
+  <p id="earth-context" class="note">Recent imagery is observed. Forecast positions come from the latest NHC advisory.</p>
+  <p class="note">The cone describes uncertainty in the storm center, not the full area of impacts. The Earth surface is static NASA imagery; satellite clouds and radar carry their own observation times. Radar coverage is limited over open water.</p>
+  <p id="earth-storm-status" aria-live="polite">Reading the latest NHC advisory…</p>
+  <p id="earth-source-status" role="status">Loading Earth view…</p>
+  <div class="earth-links"><a href="https://www.nhc.noaa.gov/" target="_blank" rel="noopener">National Hurricane Center</a><a href="https://nowcoast.noaa.gov/" target="_blank" rel="noopener">NOAA live weather map</a></div>
+  <noscript><p>Enable JavaScript to use the Earth viewer, or open the NOAA live weather map above.</p></noscript>
+</section>
 
 <main>
   <section class="panel weather-hero" aria-labelledby="current-heading">
@@ -592,7 +631,7 @@
     <p class="note" style="margin-top:12px"><b>Why this differs from your phone.</b> The current reading is a <em>physical observation</em> from the nearest ASOS/AWOS station whenever available. Rain timing is a separate <em>radar-derived observation</em> at your pixel. Hourly and daily values are <em>forecast-model guidance</em>, never presented as radar detection. The confidence view exposes disagreement between independent models instead of hiding it in a blend.</p>
   </section></details>
 </main>
-<footer><span class="note">NWS/NOAA · Open-Meteo · RainViewer. No API keys, tracking, or server; location is sent only to these weather services.</span><span class="note" id="build-note"></span></footer>
+<footer><span class="note">NWS/NOAA · NASA GIBS · Open-Meteo · RainViewer. No API keys or app tracking. Weather services receive the requested location or map area; map assets load from unpkg.</span><span class="note" id="build-note"></span></footer>
 
 <script>
 "use strict";
@@ -614,7 +653,7 @@
    ============================================================ */
 
 const CFG = {
-  fallback: { lat: 30.2460, lon: -87.7008, name: 'Gulf Shores, AL' },
+  fallback: { lat: 30.2697, lon: -87.5736, name: 'Orange Beach, AL' },
   radarZoom: 9,          // ~260 m/px at 30°N — finer than the radar's own ~1 km grid
   radarSampleRadius: 2,  // sample a 5x5 pixel box and take the max, to absorb alignment error
   timeoutMs: 13000,
