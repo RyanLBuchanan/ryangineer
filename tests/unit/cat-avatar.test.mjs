@@ -13,7 +13,7 @@ test('cat replies are contextual guesses and medical concerns stop the jokes',()
  assert.match(catReply('My cat cannot pee'),/veterinar/);
  assert.doesNotMatch(catReply('My cat cannot pee'),/Meow|Purr/);
 });
-test('cat setup never uses Nowcast credentials or creates a paid session for briefing',async()=>{
+test('cat readiness requires the shared voice and never creates a paid session for briefing',async()=>{
  let calls=0;const handler=createHandler({env:{NOWCAST_LIVEAVATAR_API_KEY:'secret',NOWCAST_LIVEAVATAR_ID:'human'},mintSession:()=>{calls++;}});
  const response=await handler(request({action:'briefing'})),data=await response.json();
  assert.equal(data.cat.liveAvailable,false);assert.equal(data.cat.briefing,CAT_OPENING);assert.equal(calls,0);
@@ -25,8 +25,8 @@ test('cat endpoint rejects hostile origins, malformed actions and oversized bodi
  assert.equal((await handler(request({action:'other'}))).status,400);
  assert.equal((await handler(request({action:'start',x:'x'.repeat(1100)}))).status,413);
 });
-test('dedicated cat configuration mints bounded FULL sessions with the cat context',async()=>{
- const calls=[],env={CAT_LIVEAVATAR_API_KEY:'cat-key',CAT_LIVEAVATAR_ID:'cat-avatar',CAT_LIVEAVATAR_VOICE_ID:'cat-voice'};
+test('shared Nowcast configuration mints bounded FULL sessions with the separate cat context',async()=>{
+ const calls=[],env={NOWCAST_LIVEAVATAR_API_KEY:'cat-key',NOWCAST_LIVEAVATAR_ID:'cat-avatar',NOWCAST_LIVEAVATAR_VOICE_ID:'cat-voice'};
  const fetcher=async(url,options)=>{
   const path=new URL(url).pathname,body=options.body?JSON.parse(options.body):null;calls.push({path,body});
   const data=path==='/v1/contexts'?(body?{id:'cat-context'}:{results:[]}):{session_token:'temporary',session_id:'s'};
@@ -39,7 +39,7 @@ test('dedicated cat configuration mints bounded FULL sessions with the cat conte
  assert.equal(token.avatar_id,'cat-avatar');assert.equal(token.avatar_persona.voice_id,'cat-voice');assert.equal(token.mode,'FULL');assert.deepEqual(Object.keys(token.dynamic_variables),['briefing']);
 });
 test('cat starts are capped and disabled live video cannot mint a session',async()=>{
- const env={CAT_LIVEAVATAR_API_KEY:'key',CAT_LIVEAVATAR_ID:'cat',CAT_LIVEAVATAR_VOICE_ID:'voice'};
+ const env={NOWCAST_LIVEAVATAR_API_KEY:'key',NOWCAST_LIVEAVATAR_ID:'cat',NOWCAST_LIVEAVATAR_VOICE_ID:'voice'};
  let calls=0;const mintSession=async()=>{calls++;return{sessionToken:'temporary',durationSeconds:120};};
  const handler=createHandler({env,mintSession});
  for(let i=0;i<5;i++)assert.equal((await handler(request({action:'start'}))).status,200);
@@ -49,11 +49,11 @@ test('cat starts are capped and disabled live video cannot mint a session',async
 });
 test('existing weather context cannot configure Dave',async()=>{
  const fetcher=async()=>new Response(JSON.stringify({data:{prompt:'weather instructions',opening_text:'${briefing}'}}));
- await assert.rejects(liveAvatarService(fetcher)({variables:{}},{CAT_LIVEAVATAR_API_KEY:'key',CAT_LIVEAVATAR_ID:'cat',CAT_LIVEAVATAR_VOICE_ID:'voice',CAT_LIVEAVATAR_CONTEXT_ID:'weather-context'}),/versioned cat prompt/);
+ await assert.rejects(liveAvatarService(fetcher)({variables:{}},{NOWCAST_LIVEAVATAR_API_KEY:'key',NOWCAST_LIVEAVATAR_ID:'cat',NOWCAST_LIVEAVATAR_VOICE_ID:'voice',CAT_LIVEAVATAR_CONTEXT_ID:'weather-context'}),/versioned cat prompt/);
 });
 
-test('Dave shares the current Nowcast voice without sharing the weather avatar',async()=>{
- const env={CAT_LIVEAVATAR_API_KEY:'cat-key',CAT_LIVEAVATAR_ID:'cat-avatar',NOWCAST_LIVEAVATAR_VOICE_ID:'ryan-current',CAT_LIVEAVATAR_VOICE_ID:'old-cat-voice'};
+test('Buns uses the current Nowcast avatar and voice with a separate cat context',async()=>{
+ const env={NOWCAST_LIVEAVATAR_API_KEY:'cat-key',NOWCAST_LIVEAVATAR_ID:'cat-avatar',NOWCAST_LIVEAVATAR_VOICE_ID:'ryan-current',CAT_LIVEAVATAR_VOICE_ID:'old-cat-voice'};
  let token;
  const fetcher=async(url,options)=>{
   const path=new URL(url).pathname,body=options.body?JSON.parse(options.body):null;
@@ -66,18 +66,49 @@ test('Dave shares the current Nowcast voice without sharing the weather avatar',
  assert.equal(data.cat.liveAvailable,true);
 });
 
-test('the paw stays visible and can stop active, connecting, or dictating sessions',()=>{
+test('the paw stays visible and can stop active or connecting sessions',()=>{
  const source=readFileSync(new URL('../../tools/cat-avatar/presenter.mjs',import.meta.url),'utf8');
- const nodes=new Map(),$=id=>{if(!nodes.has(id))nodes.set(id,{hidden:false,disabled:false,textContent:'',attributes:{},setAttribute(k,v){this.attributes[k]=v;}});return nodes.get(id);};
- const context={$ ,active:false,busy:false,session:null,recognition:null,muted:false};
- vm.createContext(context);vm.runInContext(source.slice(source.indexOf('function ui()'),source.indexOf('function meow()')),context);
- for(const state of [{active:false,busy:false,recognition:null},{active:true,busy:false,recognition:null},{active:false,busy:true,recognition:null},{active:false,busy:false,recognition:{}}]){
+ const nodes=new Map(),$=id=>{if(!nodes.has(id))nodes.set(id,{hidden:false,disabled:false,textContent:'',attributes:{},classList:{toggle(){}},setAttribute(k,v){this.attributes[k]=v;}});return nodes.get(id);};
+ const context={$ ,active:false,busy:false,session:null,muted:false,speaking:false};
+ vm.createContext(context);vm.runInContext(source.slice(source.indexOf('function ui()'),source.indexOf('async function request(')),context);
+ for(const state of [{active:false,busy:false,recognition:null},{active:true,busy:false,recognition:null},{active:false,busy:true,recognition:null}]){
   Object.assign(context,state);context.ui();assert.equal($('start').hidden,false);assert.equal($('start').disabled,false);
-  assert.equal($('start').attributes['aria-pressed'],String(Boolean(state.active||state.busy||state.recognition)));
+  assert.equal($('start').attributes['aria-pressed'],String(Boolean(state.active||state.busy)));
  }
- let starts=0,stops=0;context.localStart=()=>starts++;context.end=()=>stops++;
+ let starts=0,stops=0;context.start=()=>starts++;context.end=()=>stops++;
  vm.runInContext(source.match(/\$\('start'\)\.onclick=\(\)=>\{[^]*?\};/)[0],context);
  Object.assign(context,{active:false,busy:false,recognition:null});$('start').onclick();
  context.active=true;$('start').onclick();context.active=false;context.busy=true;$('start').onclick();
  assert.equal(starts,1);assert.equal(stops,2);
+});
+
+test('the client has no browser voice fallback and uses provider speech to animate the mouth',()=>{
+ const js=readFileSync(new URL('../../tools/cat-avatar/presenter.mjs',import.meta.url),'utf8');
+ assert.doesNotMatch(js,/speechSynthesis|SpeechRecognition|catReply/);
+ assert.match(js,/avatar\.speak_started/);assert.match(js,/avatar\.speak_ended/);
+ assert.match(js,/voiceChat\.state!=='ACTIVE'/);
+ const html=readFileSync(new URL('../../tools/cat-avatar/presenter.html',import.meta.url),'utf8');
+ assert.equal(html.indexOf('class="cat-dock"')<html.indexOf('</section>'),true);
+ assert.match(html,/class="voice-transport"/);
+});
+
+test('provider speech animates the cat and failed microphone capture still allows live typed replies',async()=>{
+ const source=readFileSync(new URL('../../tools/cat-avatar/presenter.mjs',import.meta.url),'utf8');
+ const nodes=new Map(),$=id=>{if(!nodes.has(id))nodes.set(id,{hidden:false,value:'',play:()=>Promise.resolve()});return nodes.get(id);};
+ let provider;
+ class FakeSession{
+  constructor(token,options){this.options=options;this.events={};this.voiceChat={state:'INACTIVE',isMuted:true};provider=this;}
+  on(name,callback){this.events[name]=callback;}async start(){}async stop(){}interrupt(){}message(text){this.lastMessage=text;}
+ }
+ const logs=[],context={$ ,session:null,candidate:null,controller:null,epoch:0,busy:false,active:false,expiry:null,muted:true,speaking:false,parentOrigin:null,AbortController,
+ testSdk:{LiveAvatarSession:FakeSession},request:async()=>({sessionToken:'temporary',durationSeconds:120}),ui(){},status(){},transcript:(role,text)=>logs.push({role,text}),setTimeout:()=>1,clearTimeout(){},end(){}};
+ vm.createContext(context);
+ const startSource=source.slice(source.indexOf('async function start('),source.indexOf('async function ask(')).replace('import(SDK)','Promise.resolve(testSdk)');
+ vm.runInContext(startSource,context);await context.start();
+ assert.equal(provider.options.voiceChat.defaultMuted,false);assert.equal(context.muted,true);assert.equal(context.session,provider);
+ provider.events['avatar.speak_started']();assert.equal(context.speaking,true);
+ provider.events['avatar.speak_ended']();assert.equal(context.speaking,false);
+ provider.events['avatar.transcription']({text:'Meow!'});assert.equal(logs[0].text,'Meow!');
+ vm.runInContext(source.slice(source.indexOf('async function ask('),source.indexOf("$('start').onclick")),context);
+ await context.ask('Hello Buns');assert.equal(provider.lastMessage,'Hello Buns');
 });

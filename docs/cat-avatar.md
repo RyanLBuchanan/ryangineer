@@ -1,13 +1,8 @@
-# Dave's talking cat surface
-Routes: /cat-translator and /tools/cat-translator.html. The conversation iframe is /tools/cat-avatar/presenter.html. Existing meow analysis, saved personalization, photos and translator tools remain below it.
-Animated Dave works immediately with contextual scripted replies, synthesized meows and browser speech synthesis. Typed replies remain usable without audio or microphone access. Dictation is opt-in and uses the browser's speech service. This is a playful companion, not literal meow translation.
-The optional LiveAvatar FULL session uses the same SDK and bounded token/session lifecycle as Nowcast, but an independent endpoint and versioned cat prompt. Neither weather credentials nor Ridian configuration select a cat avatar.
-## Live video configuration
-Set in the Ryangineer Netlify environment, then redeploy:
-- CAT_LIVEAVATAR_API_KEY: your LiveAvatar API key (may be the same account key, explicitly configured here).
-- CAT_LIVEAVATAR_ID: a provider-supported cat avatar ID. A picture alone is not a LiveAvatar ID.
-- NOWCAST_LIVEAVATAR_VOICE_ID: Dave shares Ryan's current Nowcast voice. This takes precedence. CAT_LIVEAVATAR_VOICE_ID is an optional fallback only when the Nowcast voice is absent.
-- CAT_LIVEAVATAR_CONTEXT_ID: optional. When absent, the endpoint finds or creates Ryangineer Dave Cat Companion v1. Explicit contexts must exactly match the prompt in netlify/functions/_lib/cat-brain.mjs and use the opening_text placeholder ${briefing}.
-- CAT_AVATAR_ENABLED=off: disables live video while animated Dave remains available.
-No configuration values are placed in browser files. Native microphone/voice/video needs a real device check. LiveAvatar support for the desired cat must be confirmed in the provider account; this release does not create a provider avatar or assume animal support.
-Sessions end after 120 seconds, on navigation, when the page is hidden, or when the original translator starts. Starting the cat surface stops the original translator to avoid competing microphones.
+# Buns with Ryan's Nowcast voice
+Routes: /cat-translator and /tools/cat-translator.html.
+The paw connects a FULL LiveAvatar session using NOWCAST_LIVEAVATAR_API_KEY, NOWCAST_LIVEAVATAR_ID and NOWCAST_LIVEAVATAR_VOICE_ID exactly as Nowcast does. CAT_* key, avatar and voice overrides are not used. No browser speech synthesis, browser dictation or scripted spoken fallback is used.
+The provider's video carries the audio in a one-pixel transparent transport element. The visible tuxedo cat remains on screen, with mouth animation driven by avatar.speak_started and avatar.speak_ended. This is an animated cat powered by the existing human avatar session, not a new provider cat video.
+The brain remains separate: Ryangineer Dave Cat Companion v1. CAT_LIVEAVATAR_CONTEXT_ID is optional; if absent, find or create the versioned cat context. Never use NOWCAST_LIVEAVATAR_CONTEXT_ID for Buns. CAT_AVATAR_ENABLED=off pauses Buns only.
+Typed questions can connect a muted session; the first question is preserved for the user to send after the greeting. The microphone control can start/retry/unmute the provider microphone. A denied or unavailable microphone does not disable typing, and UI reports actual SDK microphone state.
+The session expires after two minutes and stops on backgrounding, navigation, paw stop or original-translator start. Starting Buns stops the original translator.
+Provider speech/microphone needs a real device check. Browser testing must distinguish token provisioning, media connection, microphone capture and actual spoken reply. Do not report a successful conversation based solely on a token.
