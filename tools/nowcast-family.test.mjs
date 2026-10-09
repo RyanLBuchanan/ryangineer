@@ -2,7 +2,46 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
-import { sharedPlace, shareLink, cleanSaved, upcomingPeriods, peakGust } from './nowcast-family.mjs';
+import { validPlace, sharedPlace, shareLink, cleanSaved, upcomingPeriods, peakGust } from './nowcast-family.mjs';
+
+function sharing(navigator, current = {lat:41.223,lon:-111.9738,name:'Ogden, Utah'}) {
+  const nodes = new Map(), $ = id => {
+    if (!nodes.has(id)) nodes.set(id, {hidden:true,textContent:'',focus(){this.focused=true;},select(){this.selected=true;}});
+    return nodes.get(id);
+  };
+  const source = readFileSync(new URL('./nowcast-family.mjs',import.meta.url),'utf8');
+  const handler = source.slice(source.indexOf("  $('family-share').onclick"),source.indexOf("  window.addEventListener('storage'"));
+  const context = { $,navigator,current,validPlace,shareLink,location:{href:'https://www.ryangineer.com/tools/nowcast.html?lat=30&lon=-87&place=Old#alerts'} };
+  vm.runInNewContext(handler,context);
+  return { click:()=>$('family-share').onclick(),$ };
+}
+test('native share sends the viewed place and the recipient opens that same location', async () => {
+  let payload;
+  const ui = sharing({share:async value=>{payload=value;}});
+  await ui.click();
+  assert.equal(payload.title,'Nowcast — Ogden, Utah');
+  assert.deepEqual(sharedPlace(payload.url),{lat:41.223,lon:-111.974,name:'Ogden, Utah',source:'shared link'});
+  assert.equal(ui.$('family-share-link').hidden,true);
+});
+test('canceling native sharing does not copy a link or show an error', async () => {
+  let copied=false;
+  const ui = sharing({share:async()=>{throw {name:'AbortError'};},clipboard:{writeText:async()=>{copied=true;}}});
+  await ui.click(); assert.equal(copied,false); assert.equal(ui.$('share-status').textContent,'');
+});
+test('unavailable or failed native share falls back to copying the selected location', async () => {
+  for (const share of [undefined,async()=>{throw {name:'NotAllowedError'};}]) {
+    let copied;
+    const ui = sharing({share,clipboard:{writeText:async url=>{copied=url;}}});
+    await ui.click(); assert.equal(sharedPlace(copied).name,'Ogden, Utah');
+    assert.match(ui.$('share-status').textContent,/copied/);
+  }
+});
+test('clipboard failure exposes and selects a copyable location link', async () => {
+  const ui = sharing({clipboard:{writeText:async()=>{throw Error('blocked');}}});
+  await ui.click(); const input=ui.$('family-share-link');
+  assert.equal(input.hidden,false); assert.equal(input.focused,true); assert.equal(input.selected,true);
+  assert.equal(sharedPlace(input.value).name,'Ogden, Utah');
+});
 
 test('shared links validate both coordinates and round-trip a selected place', () => {
   const place = {lat:30.2697,lon:-87.5736,name:'Orange Beach, AL',label:'Private nickname'};
