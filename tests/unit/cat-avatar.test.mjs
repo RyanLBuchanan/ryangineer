@@ -91,3 +91,24 @@ test('the client has no browser voice fallback and uses provider speech to anima
  assert.equal(html.indexOf('class="cat-dock"')<html.indexOf('</section>'),true);
  assert.match(html,/class="voice-transport"/);
 });
+
+test('provider speech animates the cat and failed microphone capture still allows live typed replies',async()=>{
+ const source=readFileSync(new URL('../../tools/cat-avatar/presenter.mjs',import.meta.url),'utf8');
+ const nodes=new Map(),$=id=>{if(!nodes.has(id))nodes.set(id,{hidden:false,value:'',play:()=>Promise.resolve()});return nodes.get(id);};
+ let provider;
+ class FakeSession{
+  constructor(token,options){this.options=options;this.events={};this.voiceChat={state:'INACTIVE',isMuted:true};provider=this;}
+  on(name,callback){this.events[name]=callback;}async start(){}async stop(){}interrupt(){}message(text){this.lastMessage=text;}
+ }
+ const logs=[],context={$ ,session:null,candidate:null,controller:null,epoch:0,busy:false,active:false,expiry:null,muted:true,speaking:false,parentOrigin:null,AbortController,
+ testSdk:{LiveAvatarSession:FakeSession},request:async()=>({sessionToken:'temporary',durationSeconds:120}),ui(){},status(){},transcript:(role,text)=>logs.push({role,text}),setTimeout:()=>1,clearTimeout(){},end(){}};
+ vm.createContext(context);
+ const startSource=source.slice(source.indexOf('async function start('),source.indexOf('async function ask(')).replace('import(SDK)','Promise.resolve(testSdk)');
+ vm.runInContext(startSource,context);await context.start();
+ assert.equal(provider.options.voiceChat.defaultMuted,false);assert.equal(context.muted,true);assert.equal(context.session,provider);
+ provider.events['avatar.speak_started']();assert.equal(context.speaking,true);
+ provider.events['avatar.speak_ended']();assert.equal(context.speaking,false);
+ provider.events['avatar.transcription']({text:'Meow!'});assert.equal(logs[0].text,'Meow!');
+ vm.runInContext(source.slice(source.indexOf('async function ask('),source.indexOf("$('start').onclick")),context);
+ await context.ask('Hello Buns');assert.equal(provider.lastMessage,'Hello Buns');
+});

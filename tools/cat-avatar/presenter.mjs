@@ -26,7 +26,7 @@ async function end(message='Buns is taking a catnap. Boop to start again.'){
 async function start({textOnly=false,question=''}={}){
  if(active||busy)return;
  if(parentOrigin)window.parent.postMessage({type:'cat-avatar-active'},parentOrigin);
- busy=true;const generation=++epoch;controller=new AbortController();ui();status('Connecting…');
+ busy=true;const generation=++epoch;controller=new AbortController();expiry=setTimeout(()=>void end('Connection timed out. Boop to retry, or type a question.'),30000);ui();status('Connecting…');
  let next;
  try{
  const [data,sdk]=await Promise.all([request(controller.signal),import(SDK)]);
@@ -44,7 +44,7 @@ async function start({textOnly=false,question=''}={}){
  session=next;candidate=null;active=true;busy=false;
  muted=next.voiceChat.state!=='ACTIVE'||next.voiceChat.isMuted;ui();
  status(muted?'Connected · microphone off. Type or tap Microphone on.':'Listening. Speak, then pause.');
- expiry=setTimeout(()=>void end(),data.durationSeconds*1000);
+ clearTimeout(expiry);expiry=setTimeout(()=>void end(),data.durationSeconds*1000);
  if(question){$('question').value=question;status('Connected. Tap Ask Buns to send your question after the greeting.');}
  }catch(error){
  if(generation!==epoch)return;
