@@ -5,8 +5,19 @@ let session=null,candidate=null,controller=null,epoch=0,busy=false,active=false,
 const parentOrigin=(()=>{try{return new URL(document.referrer).origin===location.origin?location.origin:null;}catch{return null;}})();
 function status(text,error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
 function transcript(role,text){const p=document.createElement('p'),label=document.createElement('strong');label.textContent=role==='user'?'You':'Dave';p.className=role;p.append(label,document.createTextNode(String(text).slice(0,3000)));$('transcript').append(p);while($('transcript').children.length>40)$('transcript').firstChild.remove();$('transcript').scrollTop=$('transcript').scrollHeight;}
-function animate(talking){$('portrait').classList.toggle('talking',talking);}
-function ui(){$('start').hidden=active;$('end').hidden=!active&&!busy;$('mute').hidden=!session;$('live').disabled=busy||active;$('start').disabled=busy;$('mode').textContent=session?'LiveAvatar cat':'Animated Dave';$('avatar-video').hidden=!session;$('portrait').hidden=Boolean(session);$('connection').textContent=busy?'Connecting…':active?'Dave is listening':'Ready for mischief';}
+function animate(talking){$('portrait').classList.toggle('talking',talking);$('connection').textContent=talking?'Dave is speaking…':recognition?'Listening to you…':active?'Ready for a question':'Ready for mischief';}
+function ui(){
+ const running=Boolean(active||busy||recognition);
+ $('start').hidden=false;$('start').disabled=false;
+ $('start').setAttribute('aria-pressed',String(running));
+ $('start').setAttribute('aria-label',running?'Boop to stop Dave':'Boop to start Dave');
+ $('boop-label').textContent=running?'Boop to stop':'Boop to start';
+ $('boop-hint').textContent=busy?'Connecting. Boop again to cancel.':session?(muted?'Microphone muted. Type a question or unmute.':'Microphone on. Boop to end the conversation.'):'Tap the paw. Tap again to stop.';
+ $('mute').hidden=!session;$('live').disabled=running;
+ $('mode').textContent=session?'LiveAvatar cat':'Animated Dave';
+ $('avatar-video').hidden=!session;$('portrait').hidden=Boolean(session);
+ $('connection').textContent=busy?'Connecting…':session?(muted?'Microphone muted':'Microphone on'):recognition?'Listening to you…':active?'Ready for a question':'Ready for mischief';
+}
 function meow(){
  try{
  audio ||= new (window.AudioContext||window.webkitAudioContext)();void audio.resume();
@@ -38,7 +49,7 @@ function localStart(){
  if(busy||active)return;
  if(parentOrigin)window.parent.postMessage({type:'cat-avatar-active'},parentOrigin);
  epoch++;active=true;ui();$('conversation').open=true;transcript('assistant',greeting);speak(greeting);
- status('Animated Dave is ready. Type a question below, or use Dictate a question.');expiry=setTimeout(()=>void end(),120000);
+ status('Animated Dave is ready. Type a question below, or tap Ask by voice.');expiry=setTimeout(()=>void end(),120000);
 }
 async function liveStart(){
  if(active||busy)return;
@@ -54,7 +65,7 @@ async function liveStart(){
  next.on('session.disconnected',()=>{if(generation===epoch)void end('Live video ended. Animated Dave is still ready.');});
  await next.start();if(generation!==epoch){await next.stop().catch(()=>{});return;}
  session=next;candidate=null;active=true;busy=false;ui();$('conversation').open=true;status('Live cat connected. Your microphone is on; mute it to type.');expiry=setTimeout(()=>void end(),data.durationSeconds*1000);
- }catch(error){if(generation!==epoch)return;const old=candidate;candidate=null;busy=false;ui();if(old)await old.stop().catch(()=>{});status(error.message+' You can still tap Talk to Dave.',true);}
+ }catch(error){if(generation!==epoch)return;const old=candidate;candidate=null;busy=false;ui();if(old)await old.stop().catch(()=>{});status(error.message+' You can still boop the paw.',true);}
 }
 function ask(question){
  if(busy)return;const text=String(question).trim().slice(0,600);if(!text)return;
@@ -63,20 +74,20 @@ function ask(question){
  else{if(!active){if(parentOrigin)window.parent.postMessage({type:'cat-avatar-active'},parentOrigin);epoch++;active=true;ui();expiry=setTimeout(()=>void end(),120000);}transcript('user',text);const reply=catReply(text);transcript('assistant',reply);speak(reply);status('Animated Dave replied. Ask another question.');}
  $('question').value='';
 }
-$('start').onclick=localStart;$('live').onclick=liveStart;$('end').onclick=()=>void end();
+$('start').onclick=()=>{if(active||busy||recognition)void end();else localStart();};$('live').onclick=liveStart;
 $('read').onclick=()=>{$('conversation').open=true;$('question').focus();};
 $('ask').onsubmit=event=>{event.preventDefault();ask($('question').value);};
 document.querySelectorAll('[data-question]').forEach(button=>button.onclick=()=>ask(button.dataset.question));
-$('mute').onclick=async()=>{if(!session)return;try{if(muted)await session.voiceChat.unmute();else await session.voiceChat.mute();muted=!muted;$('mute').textContent=muted?'Unmute microphone':'Mute microphone';}catch{status('Could not change microphone. End and restart the session.',true);}};
+$('mute').onclick=async()=>{if(!session)return;try{if(muted)await session.voiceChat.unmute();else await session.voiceChat.mute();muted=!muted;$('mute').textContent=muted?'Unmute microphone':'Mute microphone';ui();}catch{status('Could not change microphone. End and restart the session.',true);}};
 $('sound').onclick=()=>{$('avatar-video').play().then(()=>{$('sound').hidden=true;}).catch(()=>status('Sound is blocked by this browser.',true));};
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-if(SR){const button=document.createElement('button');button.type='button';button.textContent='Dictate a question';document.querySelector('.controls').append(button);button.onclick=()=>{
+if(SR){const button=$('dictate');button.hidden=false;button.onclick=()=>{
  if(session||busy){status('Use the live microphone or type below.');return;}
  window.speechSynthesis?.cancel();animate(false);recognition?.abort();const generation=epoch;const next=new SR();recognition=next;next.lang='en-US';next.continuous=false;
  next.onresult=event=>{if(generation===epoch)ask(event.results[0][0].transcript);};
  next.onerror=()=>{if(generation===epoch)status('Dictation unavailable. Type your question below.');};
- next.onend=()=>{if(recognition===next)recognition=null;};
- try{next.start();status('Listening for one question…');}catch{status('Dictation unavailable. Type below.');}
+ next.onend=()=>{if(recognition===next){recognition=null;ui();}};
+ try{next.start();ui();status('Listening for one question…');}catch{recognition=null;ui();status('Dictation unavailable. Type below.');}
 };}
 void request('briefing').then(data=>{$('live').hidden=!data.cat.liveAvailable;$('setup').textContent=data.cat.liveAvailable?'Live cat video is available, or enjoy Animated Dave.':'Animated Dave is ready. Live video is waiting for a dedicated cat avatar configuration.';}).catch(()=>{$('setup').textContent='Animated Dave is ready. Live video availability could not be checked.';});
 window.addEventListener('pagehide',()=>void end());

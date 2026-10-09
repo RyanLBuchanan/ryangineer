@@ -30,7 +30,7 @@ export function createHandler({mintSession=liveAvatarService(),env=process.env}=
       try{while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>1024){await reader.cancel();return json(413,{message:'Request too large.'});}text+=decoder.decode(value,{stream:true});}text+=decoder.decode();}finally{reader.releaseLock();}
       let input;try{input=JSON.parse(text);}catch{return json(400,{message:'Choose briefing or start.'});}
       if(!input || !['briefing','start'].includes(input.action))return json(400,{message:'Choose briefing or start.'});
-      const liveAvailable=Boolean(env.CAT_LIVEAVATAR_API_KEY?.trim() && env.CAT_LIVEAVATAR_ID?.trim() && env.CAT_LIVEAVATAR_VOICE_ID?.trim() && !/^(0|false|off)$/i.test(env.CAT_AVATAR_ENABLED||''));
+      const liveAvailable=Boolean(env.CAT_LIVEAVATAR_API_KEY?.trim() && env.CAT_LIVEAVATAR_ID?.trim() && (env.NOWCAST_LIVEAVATAR_VOICE_ID?.trim() || env.CAT_LIVEAVATAR_VOICE_ID?.trim()) && !/^(0|false|off)$/i.test(env.CAT_AVATAR_ENABLED||''));
       const cat={briefing:CAT_OPENING,liveAvailable};
       if(input.action==='briefing')return json(200,{cat});
       if(!liveAvailable)return json(503,{message:'Live cat video needs its dedicated avatar configuration. Animated Dave and typed replies are ready.'});

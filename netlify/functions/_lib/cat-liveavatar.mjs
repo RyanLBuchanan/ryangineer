@@ -19,7 +19,7 @@ export function liveAvatarService(fetcher = fetch) {
     throw new WeatherError('LiveAvatar has too many configuration pages. Set the explicit cat IDs.');
   }
   async function configure(key,env) {
-    const voiceId=env.CAT_LIVEAVATAR_VOICE_ID?.trim();
+    const voiceId=env.NOWCAST_LIVEAVATAR_VOICE_ID?.trim() || env.CAT_LIVEAVATAR_VOICE_ID?.trim();
     if(!voiceId)throw new WeatherError('The cat avatar voice is not configured for this deployment yet.',503);
     let contextId=env.CAT_LIVEAVATAR_CONTEXT_ID?.trim();
     if(contextId) {
