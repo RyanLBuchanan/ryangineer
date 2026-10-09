@@ -38,7 +38,7 @@ test('location switches queue during refresh and clear old weather before loadin
   const nodes=new Map(), node=id=>{if(!nodes.has(id))nodes.set(id,{textContent:'old',replaceChildren(){this.cleared=true;}});return nodes.get(id);};
   const old={lat:30,lon:-87}, next={lat:40,lon:-111};
   const S={loc:old,busy:true,obs:{temp:25},sources:{old:{state:'ok'}}};
-  const sandbox={S,$:node,localStorage:{setItem(){}},clearInterval(){},renderLocation(){},refreshAll(){sandbox.refreshed=true;}};
+  const sandbox={S,locationIntent:0,$:node,localStorage:{setItem(){}},clearInterval(){},renderLocation(){},refreshAll(){sandbox.refreshed=true;}};
   vm.createContext(sandbox);vm.runInContext(source,sandbox);sandbox.setLocation(next);
   assert.equal(S.loc,old);assert.equal(S.pendingLoc,next);assert.equal(sandbox.refreshed,undefined);
   S.busy=false;sandbox.setLocation(next);

@@ -44,6 +44,7 @@ function start() {
     const first = document.createElement('option'); first.value = ''; first.textContent = saved.length ? 'Choose a saved place' : 'No saved places yet'; select.append(first);
     saved.forEach(p => { const option = document.createElement('option'); option.value = p.id; option.textContent = p.label; select.append(option); });
     $('family-remove').disabled = true;
+    document.dispatchEvent(new Event('nowcast-saved-places'));
   }
   function persist() {
     try { localStorage.setItem(key, JSON.stringify(saved)); return true; }
