@@ -14,6 +14,12 @@
     <video id="avatar-video" autoplay playsinline aria-label="AI weather presenter" hidden></video>
     <div class="stage-shade"></div>
     <div class="stage-top"><span class="badge" id="connection">Ready when you are</span><span class="badge">AI presenter</span></div>
+    <div class="controls avatar-controls" role="group" aria-label="Weather presenter controls">
+    <button id="start" type="button" class="primary">Start weather briefing</button>
+    <button id="mute" type="button" hidden>Mute microphone</button>
+    <button id="end" type="button" hidden>End conversation</button>
+    <button id="read" type="button" class="quiet">Read briefing</button>
+  </div>
     <button class="sound" id="sound" type="button" hidden>Enable sound</button>
   </section>
   <div class="briefing-content">
@@ -22,12 +28,6 @@
     <button id="forecast" class="quiet" type="button">View local weather ↓</button>
   </header>
     <div class="briefing-intro"><span class="voice">Ryan’s briefing voice · Powered by LiveAvatar</span><h2 id="stage-title">A forecast you can talk to.</h2><p id="stage-copy">A quick local briefing. Then, let’s plan around the weather.</p></div>
-  <div class="controls">
-    <button id="start" type="button" class="primary">Start weather briefing</button>
-    <button id="mute" type="button" hidden>Mute microphone</button>
-    <button id="end" type="button" hidden>End conversation</button>
-    <button id="read" type="button" class="quiet">Read briefing</button>
-  </div>
   <p id="status" class="status" role="status" aria-live="polite">Start a briefing, then ask about your plans.</p>
   <div class="ideas" aria-label="Conversation starters">
     <button type="button" data-question="When is a good window for a walk today?">A walk outside</button>
