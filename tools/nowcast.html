@@ -1536,7 +1536,7 @@ function locationOptions() {
   option('gps','Use my current location');
   locationMatches.forEach((place,index)=>option('match:'+index,place.name));
   let saved=[];try{saved=JSON.parse(localStorage.getItem('nowcast.savedPlaces') || '[]');}catch{}
-  if(Array.isArray(saved))saved.slice(0,12).forEach((place,index)=>{if(place && Number.isFinite(place.lat) && Number.isFinite(place.lon))option('saved:'+index,place.label+' · '+formatPlaceName(place.name));});
+  if(Array.isArray(saved))saved.slice(0,12).forEach((place,index)=>{if(place && Number.isFinite(place.lat) && Number.isFinite(place.lon))option('saved:'+index,place.label===formatPlaceName(place.name) ? place.label : place.label+' · '+formatPlaceName(place.name));});
 }
 function useGPS() {
   const intent=++locationIntent;
