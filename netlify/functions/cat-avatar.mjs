@@ -30,16 +30,16 @@ export function createHandler({mintSession=liveAvatarService(),env=process.env}=
       try{while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>1024){await reader.cancel();return json(413,{message:'Request too large.'});}text+=decoder.decode(value,{stream:true});}text+=decoder.decode();}finally{reader.releaseLock();}
       let input;try{input=JSON.parse(text);}catch{return json(400,{message:'Choose briefing or start.'});}
       if(!input || !['briefing','start'].includes(input.action))return json(400,{message:'Choose briefing or start.'});
-      const liveAvailable=Boolean(env.CAT_LIVEAVATAR_API_KEY?.trim() && env.CAT_LIVEAVATAR_ID?.trim() && (env.NOWCAST_LIVEAVATAR_VOICE_ID?.trim() || env.CAT_LIVEAVATAR_VOICE_ID?.trim()) && !/^(0|false|off)$/i.test(env.CAT_AVATAR_ENABLED||''));
+      const liveAvailable=Boolean(env.NOWCAST_LIVEAVATAR_API_KEY?.trim() && env.NOWCAST_LIVEAVATAR_ID?.trim() && env.NOWCAST_LIVEAVATAR_VOICE_ID?.trim() && !/^(0|false|off)$/i.test(env.CAT_AVATAR_ENABLED||''));
       const cat={briefing:CAT_OPENING,liveAvailable};
       if(input.action==='briefing')return json(200,{cat});
-      if(!liveAvailable)return json(503,{message:'Live cat video needs its dedicated avatar configuration. Animated Dave and typed replies are ready.'});
+      if(!liveAvailable)return json(503,{message:'Buns needs the same LiveAvatar key, avatar and voice configuration as Nowcast. No substitute voice will be used.'});
       const now=Date.now();starts=starts.filter(t=>now-t<3600000);
       if(starts.length>=25 || starts.filter(t=>now-t<60000).length>=5)return json(429,{message:'Dave needs a catnap. Try again shortly.'});
       starts.push(now);
       const session=await mintSession({variables:{briefing:CAT_OPENING}},env);
       return json(200,{...session,cat});
-    }catch(error){return json(error instanceof CatError?error.status:502,{message:error instanceof CatError?error.message:'Live cat video is unavailable. Animated Dave is still ready.'});}
+    }catch(error){return json(error instanceof CatError?error.status:502,{message:error instanceof CatError?error.message:'Buns’s LiveAvatar voice is unavailable. Please try again; no substitute voice will be used.'});}
   };
 }
 export default createHandler();

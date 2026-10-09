@@ -19,7 +19,7 @@ export function liveAvatarService(fetcher = fetch) {
     throw new WeatherError('LiveAvatar has too many configuration pages. Set the explicit cat IDs.');
   }
   async function configure(key,env) {
-    const voiceId=env.NOWCAST_LIVEAVATAR_VOICE_ID?.trim() || env.CAT_LIVEAVATAR_VOICE_ID?.trim();
+    const voiceId=env.NOWCAST_LIVEAVATAR_VOICE_ID?.trim();
     if(!voiceId)throw new WeatherError('The cat avatar voice is not configured for this deployment yet.',503);
     let contextId=env.CAT_LIVEAVATAR_CONTEXT_ID?.trim();
     if(contextId) {
@@ -43,12 +43,12 @@ export function liveAvatarService(fetcher = fetch) {
     return {voiceId,contextId};
   }
   return async function createSession(snapshot,env) {
-    const key=env.CAT_LIVEAVATAR_API_KEY?.trim();
-    if(!key || !env.CAT_LIVEAVATAR_ID?.trim())throw new WeatherError('The cat avatar is not configured for this deployment yet.',503);
+    const key=env.NOWCAST_LIVEAVATAR_API_KEY?.trim();
+    if(!key || !env.NOWCAST_LIVEAVATAR_ID?.trim())throw new WeatherError('The cat avatar is not configured for this deployment yet.',503);
     if(!setup) setup=configure(key,env).catch(error=>{setup=null;throw error;});
     const {voiceId,contextId}=await setup;
     const data=await call(key,'/sessions/token',{
-      mode:'FULL',avatar_id:env.CAT_LIVEAVATAR_ID.trim(),
+      mode:'FULL',avatar_id:env.NOWCAST_LIVEAVATAR_ID.trim(),
       max_session_duration:120,video_settings:{quality:'high',encoding:'H264'},
       avatar_persona:{voice_id:voiceId,context_id:contextId,language:'en'},
       dynamic_variables:snapshot.variables
