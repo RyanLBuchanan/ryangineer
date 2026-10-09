@@ -18,7 +18,7 @@ if(typeof document!=='undefined') {
   document.addEventListener('nowcast-state',event=>{
     const loc=event.detail?.loc;if(!loc)return;place={lat:loc.lat,lon:loc.lon,name:loc.name};
     const alerts=event.detail.alerts || [],badge=document.getElementById('presenter-alert');
-    badge.hidden=!alerts.length;badge.textContent=alerts.length ? `${alerts.length} official alerts · ${[...new Set(alerts.map(a=>a.event))].slice(0,2).join(' · ')} · View details` : '';
+    badge.hidden=!alerts.length;badge.textContent=alerts.length ? `${alerts.length} official alert${alerts.length===1 ? '' : 's'} · ${[...new Set(alerts.map(a=>a.event))].slice(0,2).join(' · ')} · View details` : '';
     if(!frame.getAttribute('src'))frame.src=presenterUrl(place,origin);
     else if(ready)send('nowcast-presenter-location');
   });
