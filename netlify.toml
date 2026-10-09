@@ -5,6 +5,10 @@
 [build]
   command = "cd site && npm ci && npm run build && node postbuild.mjs"
   publish = "site/dist"
+  functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "22"
+
+[functions]
+  node_bundler = "esbuild"

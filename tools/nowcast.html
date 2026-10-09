@@ -526,6 +526,7 @@
 <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script type="module" src="/tools/nowcast-earth.mjs"></script>
 <script type="module" src="/tools/nowcast-family.mjs"></script>
+<script type="module" src="/tools/nowcast-presenter.mjs"></script>
 <style>
   .family-controls{margin:0 0 16px;padding:12px 0;border-bottom:1px solid var(--line)}
   .family-buttons{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -539,6 +540,15 @@
   .family-period summary{cursor:pointer;font-size:13px;margin-top:6px}.family-period details p{font-size:14px}
   #family-forecast>strong{display:block;margin-top:14px}#family-forecast-source{margin-top:14px}
   [hidden]{display:none!important}
+</style>
+<style>
+  #presenter-panel{grid-column:1/-1;grid-row:1;margin:0 0 20px;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#f4f8fc}
+  .presenter-nav{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid #dbe5ee;color:#42657f;background:#edf4fa}
+  .presenter-nav>span{font-size:9px;letter-spacing:1.3px;font-weight:700;margin-right:auto}.presenter-nav a{font-size:12px;font-weight:650;text-decoration:none;color:#245a7e}.presenter-nav button{font-size:10px;letter-spacing:.3px;padding:7px 10px;color:#245a7e;background:transparent;border-color:#c7d9e7}
+  #presenter-frame{display:block;width:100%;height:955px;border:0;background:#f4f8fc}#current-heading{scroll-margin-top:20px}
+  #presenter-alert{display:block;padding:9px 16px;background:#fff1de;color:#8e2d25;font-size:12px;font-weight:650;text-decoration:none}
+  @media(min-width:900px){#radar-panel{grid-row:2/span 3}.weather-hero{grid-row:2}}
+  @media(max-width:600px){#presenter-panel{margin-inline:-4px;border-radius:16px}#presenter-frame{height:970px}.presenter-nav{padding:9px 12px;gap:9px}.presenter-nav>span{flex-basis:100%;font-size:8px}.presenter-nav button{margin-left:auto}}
 </style>
 </head>
 <body>
@@ -577,9 +587,14 @@
 </details>
 
 <main>
+  <section id="presenter-panel" aria-label="Your Nowcast weather presenter">
+    <div class="presenter-nav"><span>LIVE WEATHER CONVERSATION</span><a id="presenter-skip" href="#current-heading">View local weather ↓</a><button id="presenter-toggle" type="button" aria-expanded="true" aria-controls="presenter-frame">Hide presenter</button></div>
+    <a id="presenter-alert" href="#alerts" hidden></a>
+    <iframe id="presenter-frame" title="Nowcast live weather presenter" allow="microphone; autoplay" referrerpolicy="origin" loading="eager"></iframe>
+  </section>
   <section class="panel weather-hero" aria-labelledby="current-heading">
     <div class="provenance">Current weather</div>
-    <h2 class="hero-location display" id="current-heading">Local conditions</h2>
+    <h2 class="hero-location display" id="current-heading" tabindex="-1">Local conditions</h2>
     <div class="hero-main">
       <div class="temp-row"><div class="temp" id="hero-temp">—</div><div class="temp-unit" id="hero-unit">°F</div></div>
       <div><div class="hero-visual" id="hero-visual" aria-hidden="true"></div><div class="hero-condition" id="hero-cond">Getting your local weather…</div><div class="feels" id="hero-feels"></div><div class="source-chip" id="hero-src"><span class="dot dead"></span><span>Finding the nearest observation station…</span></div></div>
@@ -692,7 +707,7 @@
     <p class="note" style="margin-top:12px"><b>Why this differs from your phone.</b> The current reading is a <em>physical observation</em> from the nearest ASOS/AWOS station whenever available. Radar shows recent <em>observed precipitation imagery</em>. Hourly and daily values are <em>forecast-model guidance</em>, never presented as radar detection. The confidence view exposes disagreement between independent models instead of hiding it in a blend.</p>
   </section></details>
 </main>
-<footer><span class="note">NWS/NOAA · NASA GIBS · Open-Meteo · RainViewer. No API keys or app tracking. Weather services receive the requested location or map area; map assets load from unpkg.</span><span class="note" id="build-note"></span></footer>
+<footer><span class="note">NWS/NOAA · NASA GIBS · Open-Meteo · RainViewer. Weather services receive the requested location or map area. The optional LiveAvatar presenter processes the selected coordinates, weather and active conversation when you start it. Map assets load from unpkg.</span><span class="note" id="build-note"></span></footer>
 
 <script>
 "use strict";
