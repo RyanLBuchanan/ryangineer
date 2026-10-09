@@ -1,3 +1,4 @@
+import { formatPlaceName } from '../../../tools/nowcast-location.mjs';
 // Only fixed public weather providers are contacted. Coordinates never become URLs.
 export const CONTEXT_NAME = 'Ryangineer Nowcast weather presenter v1';
 export const WEATHER_PROMPT = `You are Nowcast's friendly AI weather presenter, using Ryan's natural voice. You are an AI, not Ryan or a meteorologist. Help the user plan their day around weather for the selected location. Speak plainly, warmly, calmly, in short conversational turns.
@@ -62,7 +63,7 @@ export async function weatherSnapshot(input, fetcher = fetch, now = Date.now()) 
   const hours = (hourly?.periods || []).filter(p=>Date.parse(p.endTime)>now).slice(0,24);
   if (!periods.length && !hours.length) throw new WeatherError('The local forecast could not be loaded. Please use the forecast below and try the presenter again later.');
   const city = point.relativeLocation?.properties;
-  const name = [city?.city,city?.state].filter(Boolean).join(', ') || `${lat}, ${lon}`;
+  const name = formatPlaceName([city?.city,city?.state].filter(Boolean).join(', ')) || `${lat}, ${lon}`;
   const temperature = quantity(obs?.temperature,'temp');
   const wind = quantity(obs?.windSpeed,'wind'), gust = quantity(obs?.windGust,'wind');
   const observationAge = age(obs?.timestamp,now), forecastAge = age(forecast?.updateTime,now), hourlyAge = age(hourly?.updateTime,now);

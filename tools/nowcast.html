@@ -518,6 +518,7 @@
   .radar-history input { width:100%;min-height:44px;accent-color:var(--accent);margin-top:8px; }
   .radar-view img { right:auto;bottom:auto; }
   #earth-title:focus { outline:3px solid var(--cool);outline-offset:4px; }
+.location-options{display:flex;align-items:center;gap:12px;padding:8px 0 12px;flex-wrap:wrap}.location-options label{font-size:12px;color:var(--ink-muted)}.location-options select{min-height:44px;max-width:100%;flex:1;min-width:180px;border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--panel);color:var(--ink);font:inherit}#location-notice{padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--panel);line-height:1.5}.location-search #geo-btn{white-space:nowrap}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -569,25 +570,27 @@
   </details>
 </header>
 
-<details class="locbar">
+<details class="locbar" open>
   <summary>
     <svg class="pin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
     <div>
     <div class="locname" id="loc-name">Locating…</div>
-    <div class="locmeta"><span class="gps-lock">GPS LOCK</span> · <span id="loc-meta">—</span></div>
+    <div class="locmeta"><span class="gps-lock" id="loc-kind">LOCATION</span> · <span id="loc-meta" role="status" aria-live="polite">Allow location access or search for a city</span></div>
     </div>
     <span class="change-location">Change</span>
   </summary>
   <form id="search-form" autocomplete="off" class="location-search">
     <span class="coordinates" id="loc-coordinates">—</span>
-    <input type="search" id="search-input" placeholder="City, or 30.246,-87.70" aria-label="Search location">
+    <input type="search" id="search-input" placeholder="City and state, e.g. Ogden, Utah" aria-label="Search location">
     <button type="submit">Search</button>
-    <button type="button" id="geo-btn" title="Use device GPS">Use GPS</button>
+    <button type="button" id="geo-btn" title="Find my location with permission">Use my location</button>
   </form>
+  <div class="location-options"><label for="location-choice">Choose a location</label><select id="location-choice"><option value="">Search for a city or use my location</option></select></div>
 </details>
 
 <main>
-  <section id="presenter-panel" aria-label="Your Nowcast weather presenter">
+  <p id="location-notice" role="status">Allow location access for a briefing where you are, or search for a city above.</p>
+  <section id="presenter-panel" aria-label="Your Nowcast weather presenter" hidden>
     <div class="presenter-nav"><span>LIVE WEATHER CONVERSATION</span><a id="presenter-skip" href="#current-heading">View local weather ↓</a><button id="presenter-toggle" type="button" aria-expanded="true" aria-controls="presenter-frame">Hide presenter</button></div>
     <a id="presenter-alert" href="#alerts" hidden></a>
     <iframe id="presenter-frame" title="Nowcast live weather presenter" allow="microphone; autoplay" referrerpolicy="origin" loading="eager"></iframe>
@@ -729,7 +732,6 @@
    ============================================================ */
 
 const CFG = {
-  fallback: { lat: 30.2697, lon: -87.5736, name: 'Orange Beach, AL' },
   radarZoom: 7,          // RainViewer public API maximum native zoom
   radarMapZoom: 9,       // Overzoom radar tiles to match the detailed street map
   timeoutMs: 13000,
@@ -1468,9 +1470,18 @@ function tickAges() {
   });
 }
 
+let formatPlaceName = name => String(name || '');
+let searchPlaces;
+let locationIntent = 0;
+let locationMatches = [];
+
 function renderLocation() {
   if (!S.loc) return;
+  S.loc.name = formatPlaceName(S.loc.name);
   $('loc-name').textContent = S.loc.name || 'Custom coordinates';
+  $('loc-kind').textContent = /^GPS/.test(S.loc.source || '') ? 'GPS' : 'LOCATION';
+  $('presenter-panel').hidden = false;
+  $('location-notice').hidden = true;
   $('loc-meta').textContent = S.loc.source || 'Saved location';
   $('loc-coordinates').textContent = `${S.loc.lat.toFixed(4)}, ${S.loc.lon.toFixed(4)}`;
   if ($('current-heading')) $('current-heading').textContent = S.loc.name || 'Local conditions';
@@ -1490,6 +1501,7 @@ document.addEventListener('nowcast-family-location', event => setLocation(event.
 
 function setLocation(loc) {
   if (!loc || !Number.isFinite(loc.lat) || !Number.isFinite(loc.lon) || Math.abs(loc.lat)>90 || Math.abs(loc.lon)>180) return;
+  locationIntent++;
   if (S.busy) { S.pendingLoc = loc; $('loc-meta').textContent = 'switching location…'; return; }
   if (S.radarTimer) { clearInterval(S.radarTimer); S.radarTimer = null; }
   S.loc = loc;
@@ -1517,36 +1529,24 @@ function setLocation(loc) {
   refreshAll();
 }
 
-async function geocode(text) {
-  const coord = text.match(/^\s*(-?\d+(?:\.\d+)?)\s*[, ]\s*(-?\d+(?:\.\d+)?)\s*$/);
-  if (coord) {
-    const lat = parseFloat(coord[1]), lon = parseFloat(coord[2]);
-    if (Math.abs(lat) <= 90 && Math.abs(lon) <= 180) {
-      return { lat, lon, name: `${lat.toFixed(3)}, ${lon.toFixed(3)}`, source: 'manual' };
-    }
-  }
-  const q = new URLSearchParams({ name: text, count: '1', language: 'en', format: 'json' });
-  const d = await fetchJSON('https://geocoding-api.open-meteo.com/v1/search?' + q);
-  const r = d && d.results && d.results[0];
-  if (!r) throw new Error('not found');
-  return {
-    lat: r.latitude, lon: r.longitude,
-    name: [r.name, r.admin1, r.country_code].filter(Boolean).join(', '),
-    source: 'search',
-  };
+function locationOptions() {
+  const select=$('location-choice');select.replaceChildren();
+  const option=(value,label)=>{const item=document.createElement('option');item.value=value;item.textContent=label;select.append(item);};
+  option('',locationMatches.length ? 'Choose a matching city' : (S.loc?.name || 'Choose a location'));
+  option('gps','Use my current location');
+  locationMatches.forEach((place,index)=>option('match:'+index,place.name));
+  let saved=[];try{saved=JSON.parse(localStorage.getItem('nowcast.savedPlaces') || '[]');}catch{}
+  if(Array.isArray(saved))saved.slice(0,12).forEach((place,index)=>{if(place && Number.isFinite(place.lat) && Number.isFinite(place.lon))option('saved:'+index,place.label+' · '+formatPlaceName(place.name));});
 }
-
 function useGPS() {
-  if (!navigator.geolocation) { alert('This browser has no geolocation.'); return; }
-  $('loc-meta').textContent = 'requesting GPS…';
+  const intent=++locationIntent;
+  const unavailable=message=>{if(intent!==locationIntent)return;$('loc-meta').textContent=message;document.querySelector('.locbar').open=true;};
+  if(!navigator.geolocation){unavailable('Location is unavailable in this browser. Search for a city instead.');return;}
+  $('loc-meta').textContent='Finding your location — allow access if asked…';
   navigator.geolocation.getCurrentPosition(
-    (pos) => setLocation({
-      lat: pos.coords.latitude, lon: pos.coords.longitude,
-      name: 'Current location',
-      source: `GPS ±${Math.round(pos.coords.accuracy)} m`,
-    }),
-    (err) => { $('loc-meta').textContent = 'GPS denied — ' + err.message; },
-    { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 });
+    pos=>{if(intent!==locationIntent)return;setLocation({lat:pos.coords.latitude,lon:pos.coords.longitude,name:'Current location',source:`GPS ±${Math.round(pos.coords.accuracy)} m`});},
+    err=>unavailable(err.code===1 ? 'Location access was declined. Search for a city or choose a saved place.' : 'Could not find your location. Try again or search for a city.'),
+    {enableHighAccuracy:true,timeout:12000,maximumAge:60000});
 }
 
 /* ============================================================
@@ -1563,8 +1563,10 @@ async function refreshAll() {
     S.point = await loadPoint();
     sendFamilyState();
     if (S.point && S.point.city && S.loc.name === 'Current location') {
-      S.loc.name = S.point.city;
+      S.loc.name = formatPlaceName(S.point.city);
+      try { localStorage.setItem('nowcast.loc', JSON.stringify(S.loc)); } catch (_) {}
       renderLocation();
+      locationOptions();
     }
     await Promise.all([loadObservation(), loadAlerts(), loadRadar(), loadMinutely(), loadEnsemble()]);
     if (!S.radar) {
@@ -1656,19 +1658,25 @@ $('radar-timeline').addEventListener('input', (event) => {
 window.addEventListener('resize', () => { if (S.radar) renderRadarMap(); });
 document.addEventListener('visibilitychange', () => { if (document.hidden && S.radarTimer) toggleRadar(); });
 
-$('search-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const text = $('search-input').value.trim();
-  if (!text) return;
-  $('loc-meta').textContent = 'searching…';
-  try {
-    setLocation(await geocode(text));
-    $('search-input').value = '';
-    $('search-input').blur();
-  } catch (_) {
-    $('loc-meta').textContent = 'no match for that place';
-  }
+$('search-form').addEventListener('submit',async event=>{
+  event.preventDefault();const text=$('search-input').value.trim();if(!text || !searchPlaces)return;
+  const intent=++locationIntent;$('loc-meta').textContent='Searching cities…';
+  try{
+    const matches=await searchPlaces(text,fetchJSON);if(intent!==locationIntent)return;
+    locationMatches=matches;locationOptions();
+    if(!matches.length){$('loc-meta').textContent='No matching city. Try a city and full state name.';return;}
+    if(matches.length===1){setLocation(matches[0]);locationOptions();}
+    else{$('loc-meta').textContent='Choose the matching city from the list.';$('location-choice').focus();}
+  }catch(_){if(intent===locationIntent)$('loc-meta').textContent='City search is unavailable. Try again or use my location.';}
 });
+$('location-choice').addEventListener('change',event=>{
+  const value=event.target.value;
+  if(value==='gps'){useGPS();return;}
+  if(value.startsWith('match:')){const place=locationMatches[Number(value.slice(6))];if(place){setLocation(place);locationMatches=[];locationOptions();}return;}
+  if(value.startsWith('saved:')){try{const saved=JSON.parse(localStorage.getItem('nowcast.savedPlaces') || '[]'),place=saved[Number(value.slice(6))];if(place){setLocation({...place,source:'saved place'});locationOptions();}}catch{}}
+});
+document.addEventListener('nowcast-saved-places',locationOptions);
+window.addEventListener('storage',event=>{if(event.key==='nowcast.savedPlaces')locationOptions();});
 
 document.addEventListener('visibilitychange', () => {
   // Coming back to a stale tab should show fresh numbers, not last hour's.
@@ -1683,23 +1691,17 @@ setInterval(tickAges, 10000);
   applyUnitLabel();
   $('build-note').textContent = 'Built for the Gulf Coast · Ridian Technologies';
 
-  let start = null;
-  try { start = JSON.parse(localStorage.getItem('nowcast.loc') || 'null'); } catch (_) {}
-  const { sharedPlace, validPlace } = await import('/tools/nowcast-family.mjs');
-  const shared = sharedPlace(location.href);
-  if (shared) start = shared;
-  if (!validPlace(start)) start = { ...CFG.fallback, source: 'default' };
-
-  S.loc = start;
-  renderLocation();
-  refreshAll();
-
-  // Silently upgrade to GPS if it was already granted — no prompt on load.
-  if (!shared && navigator.permissions && navigator.permissions.query) {
-    navigator.permissions.query({ name: 'geolocation' })
-      .then((p) => { if (p.state === 'granted' && S.loc === start && !S.pendingLoc) useGPS(); })
-      .catch(() => {});
-  }
+  const names=await import('/tools/nowcast-location.mjs');
+  formatPlaceName=names.formatPlaceName;searchPlaces=names.searchPlaces;
+  let start=null;
+  try{start=JSON.parse(localStorage.getItem('nowcast.loc') || 'null');}catch(_){}
+  const {sharedPlace,validPlace}=await import('/tools/nowcast-family.mjs');
+  const shared=sharedPlace(location.href);
+  if(shared)start=shared;
+  if(validPlace(start)){S.loc=start;renderLocation();refreshAll();}
+  else{$('loc-name').textContent='Choose your location';$('current-heading').textContent='Choose a location for local weather';$('hero-cond').textContent='Your local forecast';$('hero-src').textContent='Use my location or search for a city above.';}
+  locationOptions();
+  if(!shared)useGPS();
 })();
 </script>
 </body>
