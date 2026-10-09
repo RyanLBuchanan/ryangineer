@@ -1,3 +1,5 @@
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHandler} from '../../netlify/functions/cat-avatar.mjs';
@@ -48,4 +50,34 @@ test('cat starts are capped and disabled live video cannot mint a session',async
 test('existing weather context cannot configure Dave',async()=>{
  const fetcher=async()=>new Response(JSON.stringify({data:{prompt:'weather instructions',opening_text:'${briefing}'}}));
  await assert.rejects(liveAvatarService(fetcher)({variables:{}},{CAT_LIVEAVATAR_API_KEY:'key',CAT_LIVEAVATAR_ID:'cat',CAT_LIVEAVATAR_VOICE_ID:'voice',CAT_LIVEAVATAR_CONTEXT_ID:'weather-context'}),/versioned cat prompt/);
+});
+
+test('Dave shares the current Nowcast voice without sharing the weather avatar',async()=>{
+ const env={CAT_LIVEAVATAR_API_KEY:'cat-key',CAT_LIVEAVATAR_ID:'cat-avatar',NOWCAST_LIVEAVATAR_VOICE_ID:'ryan-current',CAT_LIVEAVATAR_VOICE_ID:'old-cat-voice'};
+ let token;
+ const fetcher=async(url,options)=>{
+  const path=new URL(url).pathname,body=options.body?JSON.parse(options.body):null;
+  if(path==='/v1/sessions/token')token=body;
+  return new Response(JSON.stringify({data:path==='/v1/contexts'?(body?{id:'cat-context'}:{results:[]}):{session_token:'temporary'}}));
+ };
+ await liveAvatarService(fetcher)({variables:{briefing:CAT_OPENING}},env);
+ assert.equal(token.avatar_persona.voice_id,'ryan-current');assert.equal(token.avatar_id,'cat-avatar');
+ const data=await (await createHandler({env})(request({action:'briefing'}))).json();
+ assert.equal(data.cat.liveAvailable,true);
+});
+
+test('the paw stays visible and can stop active, connecting, or dictating sessions',()=>{
+ const source=readFileSync(new URL('../../tools/cat-avatar/presenter.mjs',import.meta.url),'utf8');
+ const nodes=new Map(),$=id=>{if(!nodes.has(id))nodes.set(id,{hidden:false,disabled:false,textContent:'',attributes:{},setAttribute(k,v){this.attributes[k]=v;}});return nodes.get(id);};
+ const context={$ ,active:false,busy:false,session:null,recognition:null,muted:false};
+ vm.createContext(context);vm.runInContext(source.slice(source.indexOf('function ui()'),source.indexOf('function meow()')),context);
+ for(const state of [{active:false,busy:false,recognition:null},{active:true,busy:false,recognition:null},{active:false,busy:true,recognition:null},{active:false,busy:false,recognition:{}}]){
+  Object.assign(context,state);context.ui();assert.equal($('start').hidden,false);assert.equal($('start').disabled,false);
+  assert.equal($('start').attributes['aria-pressed'],String(Boolean(state.active||state.busy||state.recognition)));
+ }
+ let starts=0,stops=0;context.localStart=()=>starts++;context.end=()=>stops++;
+ vm.runInContext(source.match(/\$\('start'\)\.onclick=\(\)=>\{[^]*?\};/)[0],context);
+ Object.assign(context,{active:false,busy:false,recognition:null});$('start').onclick();
+ context.active=true;$('start').onclick();context.active=false;context.busy=true;$('start').onclick();
+ assert.equal(starts,1);assert.equal(stops,2);
 });

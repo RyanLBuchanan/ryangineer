@@ -6,7 +6,7 @@ The optional LiveAvatar FULL session uses the same SDK and bounded token/session
 Set in the Ryangineer Netlify environment, then redeploy:
 - CAT_LIVEAVATAR_API_KEY: your LiveAvatar API key (may be the same account key, explicitly configured here).
 - CAT_LIVEAVATAR_ID: a provider-supported cat avatar ID. A picture alone is not a LiveAvatar ID.
-- CAT_LIVEAVATAR_VOICE_ID: the voice chosen for Dave.
+- NOWCAST_LIVEAVATAR_VOICE_ID: Dave shares Ryan's current Nowcast voice. This takes precedence. CAT_LIVEAVATAR_VOICE_ID is an optional fallback only when the Nowcast voice is absent.
 - CAT_LIVEAVATAR_CONTEXT_ID: optional. When absent, the endpoint finds or creates Ryangineer Dave Cat Companion v1. Explicit contexts must exactly match the prompt in netlify/functions/_lib/cat-brain.mjs and use the opening_text placeholder ${briefing}.
 - CAT_AVATAR_ENABLED=off: disables live video while animated Dave remains available.
 No configuration values are placed in browser files. Native microphone/voice/video needs a real device check. LiveAvatar support for the desired cat must be confirmed in the provider account; this release does not create a provider avatar or assume animal support.
