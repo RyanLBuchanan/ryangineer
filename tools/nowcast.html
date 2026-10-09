@@ -1665,7 +1665,7 @@ $('search-form').addEventListener('submit',async event=>{
     const matches=await searchPlaces(text,fetchJSON);if(intent!==locationIntent)return;
     locationMatches=matches;locationOptions();
     if(!matches.length){$('loc-meta').textContent='No matching city. Try a city and full state name.';return;}
-    if(matches.length===1){setLocation(matches[0]);locationOptions();}
+    if(matches.length===1){locationMatches=[];setLocation(matches[0]);locationOptions();}
     else{$('loc-meta').textContent='Choose the matching city from the list.';$('location-choice').focus();}
   }catch(_){if(intent===locationIntent)$('loc-meta').textContent='City search is unavailable. Try again or use my location.';}
 });
@@ -1697,6 +1697,7 @@ setInterval(tickAges, 10000);
   try{start=JSON.parse(localStorage.getItem('nowcast.loc') || 'null');}catch(_){}
   const {sharedPlace,validPlace}=await import('/tools/nowcast-family.mjs');
   const shared=sharedPlace(location.href);
+  if(start?.source==='default')start=null;
   if(shared)start=shared;
   if(validPlace(start)){S.loc=start;renderLocation();refreshAll();}
   else{$('loc-name').textContent='Choose your location';$('current-heading').textContent='Choose a location for local weather';$('hero-cond').textContent='Your local forecast';$('hero-src').textContent='Use my location or search for a city above.';}
