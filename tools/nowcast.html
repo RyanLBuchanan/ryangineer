@@ -535,6 +535,13 @@
   .family-controls .note{margin:8px 0 0;font-size:12px}
   #family-save-form{margin-top:12px}#family-save-form input{max-width:100%;padding:12px}
   #family-share-link{width:100%;margin-top:8px;padding:10px}
+  .location-share{margin:0 0 18px;display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap}
+  .location-share button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 16px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
+  .location-share button:disabled{opacity:.5;cursor:default}
+  .location-share svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  #share-status{margin:0;color:var(--ink-dim);font-size:13px}
+  #share-status:empty{display:none}
+  .location-share input{flex-basis:100%;min-width:0;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font:inherit}
   #family-summary{grid-column:1}#family-title{font-size:24px}
   #family-alerts p{margin:8px 0}#family-alerts[data-alert="true"]{border-left:3px solid var(--accent);padding-left:12px}
   .family-period h3{font-size:15px;margin:16px 0 4px}.family-period p{margin:4px 0;color:var(--ink-dim)}
@@ -587,6 +594,11 @@
   </form>
   <div class="location-options"><label for="location-choice">Choose a location</label><select id="location-choice"><option value="">Search for a city or use my location</option></select></div>
 </details>
+<div class="location-share">
+  <button id="family-share" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M5 13v7h14v-7"/></svg>Share this location</button>
+  <p id="share-status" role="status" aria-live="polite"></p>
+  <input id="family-share-link" aria-label="Location link to copy" readonly hidden>
+</div>
 
 <main>
   <p id="location-notice" role="status">Allow location access for a briefing where you are, or search for a city above.</p>
@@ -617,14 +629,13 @@
       <div class="family-buttons">
         <label for="family-places">Saved places</label><select id="family-places"><option>No saved places yet</option></select>
         <button id="family-save-toggle" type="button" disabled>Save this place</button>
-        <button id="family-share" type="button" disabled>Share this place</button>
+        
         <button id="family-remove" type="button" disabled>Remove saved</button>
       </div>
       <form id="family-save-form" hidden>
         <label for="family-label">Name this place</label> <input id="family-label" required maxlength="40" placeholder="Home, Mom, Beach house">
         <button type="submit">Save</button><button id="family-save-cancel" type="button">Cancel</button>
       </form>
-      <input id="family-share-link" aria-label="Location link to copy" readonly hidden>
       <p class="note">Saved places stay on this device. Shared links include the selected map coordinates.</p>
       <p class="note" id="family-status" role="status"></p>
     </div>

@@ -121,13 +121,24 @@ function start() {
   $('family-places').onchange = event => { const place = saved.find(p => p.id === event.target.value); $('family-remove').disabled = !place; if (place) { document.dispatchEvent(new CustomEvent('nowcast-family-location', { detail:{ lat:place.lat,lon:place.lon,name:place.name,source:'saved place' } })); say(`Opening ${place.label}…`); } };
   $('family-remove').onclick = () => { const id = $('family-places').value, place = saved.find(p => p.id === id); if (!place) return; const previous = saved; saved = saved.filter(p => p.id !== id); if (!persist()) { saved = previous; return; } options(); say(`${place.label} removed from saved places.`); };
   $('family-share').onclick = async () => {
-    if (!validPlace(current)) return; const url = shareLink(location.href, current);
+    if (!validPlace(current)) return;
+    const url = shareLink(location.href, current);
     const payload = { title:`Nowcast — ${current.name || 'Local weather'}`,text:`Weather and storm information for ${current.name || 'this location'}`,url };
+    const status = text => { $('share-status').textContent = text; };
+    const manualCopy = () => {
+      const input = $('family-share-link'); input.hidden = false; input.value = url; input.focus(); input.select();
+      status('Copy this location link and paste it into a message.');
+    };
+    $('family-share-link').hidden = true; status('');
     try {
-      if (navigator.share) { await navigator.share(payload); say('Share menu opened.'); }
-      else if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(url); say('Location link copied. Paste it into a text or email.'); }
-      else { $('family-share-link').hidden = false; $('family-share-link').value = url; $('family-share-link').select(); say('Copy the location link below.'); }
-    } catch (error) { if (error.name !== 'AbortError') { $('family-share-link').hidden = false; $('family-share-link').value = url; $('family-share-link').select(); say('Copy the location link below.'); } }
+      if (navigator.share) { await navigator.share(payload); status('Location shared.'); return; }
+    } catch (error) {
+      if (error.name === 'AbortError') return;
+    }
+    try {
+      if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(url); status('Location link copied. Paste it into a text or email.'); }
+      else manualCopy();
+    } catch (_) { manualCopy(); }
   };
   window.addEventListener('storage', event => { if (event.key === key) { try { saved = cleanSaved(JSON.parse(event.newValue || '[]')); options(); } catch (_) {} } });
   options(); document.dispatchEvent(new CustomEvent('nowcast-family-ready'));
