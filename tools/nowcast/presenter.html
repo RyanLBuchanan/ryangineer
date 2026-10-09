@@ -8,18 +8,20 @@
 </head>
 <body>
 <main class="presenter">
-  <header class="heading">
-    <div><span class="eyebrow">NOWCAST / YOUR WEATHER PRESENTER</span><h1>Weather for your day.</h1><p id="place">Orange Beach, Alabama</p></div>
-    <button id="forecast" class="quiet" type="button">View local weather ↓</button>
-  </header>
+  <div class="briefing-layout">
   <section class="stage" aria-label="Live weather presenter">
     <img class="portrait" src="/tools/nowcast/ryan-avatar.webp" alt="Ryan avatar preview" id="portrait">
     <video id="avatar-video" autoplay playsinline aria-label="AI weather presenter" hidden></video>
     <div class="stage-shade"></div>
     <div class="stage-top"><span class="badge" id="connection">Ready when you are</span><span class="badge">AI presenter</span></div>
-    <div class="stage-bottom"><span class="voice">Ryan Natural voice · Powered by LiveAvatar</span><h2 id="stage-title">A forecast you can talk to.</h2><p id="stage-copy">A quick local briefing. Then, let’s plan around the weather.</p></div>
     <button class="sound" id="sound" type="button" hidden>Enable sound</button>
   </section>
+  <div class="briefing-content">
+  <header class="heading">
+    <div><span class="eyebrow">NOWCAST / YOUR WEATHER PRESENTER</span><h1>Weather for your day.</h1><p id="place">Orange Beach, Alabama</p></div>
+    <button id="forecast" class="quiet" type="button">View local weather ↓</button>
+  </header>
+    <div class="briefing-intro"><span class="voice">Ryan’s briefing voice · Powered by LiveAvatar</span><h2 id="stage-title">A forecast you can talk to.</h2><p id="stage-copy">A quick local briefing. Then, let’s plan around the weather.</p></div>
   <div class="controls">
     <button id="start" type="button" class="primary">Start weather briefing</button>
     <button id="mute" type="button" hidden>Mute microphone</button>
@@ -38,6 +40,8 @@
     <p class="small">Questions are answered in the live avatar session. Start a briefing to chat.</p>
   </details>
   <details id="source-details"><summary>Weather sources &amp; update time</summary><p id="source-time">Fresh official weather is fetched when you start or read a briefing.</p><p id="source-warning"></p><div id="source-links"></div></details>
+  </div>
+  </div>
   <p class="privacy">Starting enables LiveAvatar audio and may ask for microphone access. The selected coordinates and weather snapshot are sent to LiveAvatar; spoken or typed questions are processed by LiveAvatar. Nowcast does not save a conversation database. Sessions end after two minutes; start again for fresh weather.</p>
 </main>
 <script type="module" src="/tools/nowcast/presenter.mjs"></script>
