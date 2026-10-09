@@ -32,3 +32,24 @@ test('pause silences playback and microphone, resumes prior mic state, and prese
  ctx.muted=true;calls.length=0;await handlers.pause();await handlers.pause();assert.deepEqual(calls,['mute','pause','play']);assert.equal(ctx.muted,true);
  current.voiceChat.mute=async()=>{throw Error('failed');};await handlers.pause();assert.equal(ctx.paused,false);assert.equal(ctx.controlBusy,false);
 });
+
+
+function startHarness({blocked=false,stalled=false}={}){
+ const source=readFileSync(new URL('./nowcast/presenter.mjs',import.meta.url),'utf8'),events={},nodes=new Map(),timers=new Map(),messages=[],calls=[];
+ const $=id=>{if(!nodes.has(id))nodes.set(id,{hidden:id==='avatar-video',play:async()=>{calls.push('play');if(blocked)throw Error('autoplay blocked');}});return nodes.get(id);};
+ let release;
+ class FakeSession{constructor(token,options){calls.push({token,options});this.voiceChat={stop(){}};}on(name,fn){events[name]=fn;}attach(){calls.push('attach');}async start(){events['session.stream_ready']();assert.equal($('avatar-video').hidden,false);assert.equal($('portrait').hidden,true);if(stalled)await new Promise(resolve=>{release=resolve;});}async stop(){calls.push('stop');}}
+ const ctx={$ ,SDK:'test',loadedSDK:{LiveAvatarSession:FakeSession},session:null,busy:false,epoch:0,controller:null,connectionTimer:null,startingSession:null,expiry:null,queuedQuestion:'',AbortController,
+ request:async action=>{assert.equal(action,'start');return {sessionToken:'token',durationSeconds:120,weather:{briefing:'The same local briefing'}};},displayWeather(){},transcript(){},ui(){},notify(){},status(message){messages.push(message);},setTimeout(fn,ms){timers.set(ms,fn);return ms;},clearTimeout(id){timers.delete(id);},async end(message){ctx.epoch++;ctx.busy=false;ctx.session=null;messages.push(message);}};
+ vm.createContext(ctx);vm.runInContext(source.slice(source.indexOf('async function start()'),source.indexOf("$('start').addEventListener")).replace('import(SDK)','Promise.resolve(loadedSDK)'),ctx);
+ return {ctx,$,timers,messages,calls,release:()=>release()};
+}
+test('start reveals early media and preserves the existing unmuted provider session',async()=>{
+ const h=startHarness();await h.ctx.start();assert.deepEqual(JSON.parse(JSON.stringify(h.calls[0])),{token:'token',options:{voiceChat:{defaultMuted:false}}});assert.ok(h.calls.includes('play'));assert.equal(h.timers.has(30000),false);assert.ok(h.ctx.session);assert.match(h.messages.at(-1),/local weather briefing/);
+});
+test('blocked autoplay exposes Enable sound without hiding the connected briefing',async()=>{
+ const h=startHarness({blocked:true});await h.ctx.start();assert.equal(h.$('sound').hidden,false);assert.match(h.messages.at(-1),/Enable sound/);assert.ok(h.ctx.session);
+});
+test('stalled connection exposes retry and disposes of a late session',async()=>{
+ const h=startHarness({stalled:true}),pending=h.ctx.start();await new Promise(resolve=>setImmediate(resolve));assert.equal(h.timers.has(30000),true);await h.timers.get(30000)();assert.match(h.messages.at(-1),/timed out/);h.release();await pending;assert.equal(h.ctx.session,null);assert.ok(h.calls.includes('stop'));
+});
