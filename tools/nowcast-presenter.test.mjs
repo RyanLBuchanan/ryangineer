@@ -10,10 +10,25 @@ test('surface, assets, function and configuration have no Ridian runtime depende
 
 test('avatar controls offer cancellation while connecting and microphone/end controls when active',()=>{
  const source=readFileSync(new URL('./nowcast/presenter.mjs',import.meta.url),'utf8');
- const nodes=new Map(),$=id=>{if(!nodes.has(id))nodes.set(id,{hidden:false,disabled:false,textContent:''});return nodes.get(id);};
- const context={$ ,busy:false,document:{querySelector:()=>({classList:{toggle(){}}})}};
- vm.createContext(context);vm.runInContext(source.slice(source.indexOf('function ui('),source.indexOf('function transcript(')),context);
+ const nodes=new Map(),$=id=>{if(!nodes.has(id))nodes.set(id,{hidden:false,disabled:false,textContent:'',setAttribute(name,value){this[name]=value;}});return nodes.get(id);};
+ const context={$ ,busy:false,paused:false,muted:false,controlBusy:false,document:{querySelector:()=>({classList:{toggle(){}}})}};
+ vm.createContext(context);vm.runInContext(source.slice(source.indexOf('const icons='),source.indexOf('function transcript(')),context);
  context.ui(false);assert.equal($('start').hidden,false);assert.equal($('read').hidden,false);assert.equal($('end').hidden,true);
- context.busy=true;context.ui(false);assert.equal($('start').disabled,true);assert.equal($('end').hidden,false);assert.match($('end').textContent,/Cancel/);
- context.busy=false;context.ui(true);assert.equal($('mute').hidden,false);assert.equal($('end').hidden,false);assert.equal($('start').hidden,true);
+ context.busy=true;context.ui(false);assert.equal($('start').disabled,true);assert.equal($('end').hidden,false);assert.match($('end')['aria-label'],/Cancel/);
+ context.busy=false;context.ui(true);assert.equal($('mute').hidden,false);assert.equal($('end').hidden,false);assert.equal($('start').hidden,true);assert.equal($('pause').hidden,false);
+ context.paused=true;context.muted=true;context.ui(true);assert.equal($('pause')['aria-label'],'Resume live presenter');assert.equal($('mute')['aria-label'],'Unmute microphone');assert.equal($('mute').disabled,true);
+});
+
+
+
+test('pause silences playback and microphone, resumes prior mic state, and preserves state on failure',async()=>{
+ const source=readFileSync(new URL('./nowcast/presenter.mjs',import.meta.url),'utf8'),handlers={},calls=[];
+ const nodes=new Map(),$=id=>{if(!nodes.has(id))nodes.set(id,{addEventListener(type,fn){handlers[id]=fn;},pause(){calls.push('pause');},async play(){calls.push('play');}});return nodes.get(id);};
+ const current={voiceChat:{async mute(){calls.push('mute');},async unmute(){calls.push('unmute');}}};
+ const ctx={$ ,session:current,epoch:1,controlBusy:false,paused:false,muted:false,restoreMic:false,ui(){},status(){}};
+ vm.createContext(ctx);vm.runInContext(source.slice(source.indexOf("$('mute').addEventListener"),source.indexOf("$('sound').addEventListener")),ctx);
+ await handlers.pause();assert.deepEqual(calls,['mute','pause']);assert.equal(ctx.paused,true);assert.equal(ctx.muted,true);
+ await handlers.pause();assert.deepEqual(calls,['mute','pause','play','unmute']);assert.equal(ctx.paused,false);assert.equal(ctx.muted,false);
+ ctx.muted=true;calls.length=0;await handlers.pause();await handlers.pause();assert.deepEqual(calls,['mute','pause','play']);assert.equal(ctx.muted,true);
+ current.voiceChat.mute=async()=>{throw Error('failed');};await handlers.pause();assert.equal(ctx.paused,false);assert.equal(ctx.controlBusy,false);
 });
