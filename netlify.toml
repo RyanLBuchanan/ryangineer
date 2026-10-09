@@ -12,3 +12,13 @@
 
 [functions]
   node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/cat-translator"
+  to = "/tools/cat-translator.html"
+  status = 200
+
+[[redirects]]
+  from = "/cat-translator/"
+  to = "/tools/cat-translator.html"
+  status = 200
