@@ -1,0 +1,40 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Talk to Dave · Cat Translator</title><link rel="stylesheet" href="/tools/cat-avatar/presenter.css"></head><body><main class="presenter"><div class="briefing-layout">
+<section class="stage" aria-label="Dave the talking cat"><svg class="portrait avatar idle" id="portrait" viewBox="0 0 200 200" aria-label="Dave, a tuxedo cat">
+    <!-- ears -->
+    <g class="ear l"><path d="M42 84 L38 22 L92 62 Z" fill="var(--tux-black)" stroke="var(--line)" stroke-width="4" stroke-linejoin="round"/><path d="M50 74 L48 40 L80 62 Z" fill="var(--pink)"/></g>
+    <g class="ear r"><path d="M158 84 L162 22 L108 62 Z" fill="var(--tux-black)" stroke="var(--line)" stroke-width="4" stroke-linejoin="round"/><path d="M150 74 L152 40 L120 62 Z" fill="var(--pink)"/></g>
+    <!-- head -->
+    <ellipse cx="100" cy="112" rx="72" ry="64" fill="var(--tux-black)" stroke="var(--line)" stroke-width="4"/>
+    <!-- tuxedo white: muzzle blaze + bib -->
+    <path d="M62 128 C66 96 134 96 138 128 C142 160 120 176 100 178 C80 176 58 160 62 128 Z" fill="var(--tux-white)"/>
+    <path d="M86 84 C92 74 108 74 114 84 L108 112 L92 112 Z" fill="var(--tux-white)"/>
+    <!-- blush -->
+    <g class="blush"><ellipse cx="62" cy="128" rx="10" ry="6" fill="var(--pink)" opacity=".55"/><ellipse cx="138" cy="128" rx="10" ry="6" fill="var(--pink)" opacity=".55"/></g>
+    <!-- eyes -->
+    <g class="eye l"><ellipse cx="76" cy="106" rx="13" ry="15" fill="var(--eye)" stroke="var(--line)" stroke-width="3"/><ellipse cx="77" cy="107" rx="4.5" ry="11" fill="#1a1a2e"/><circle cx="72" cy="100" r="3" fill="#fff"/></g>
+    <g class="eye r"><ellipse cx="124" cy="106" rx="13" ry="15" fill="var(--eye)" stroke="var(--line)" stroke-width="3"/><ellipse cx="125" cy="107" rx="4.5" ry="11" fill="#1a1a2e"/><circle cx="120" cy="100" r="3" fill="#fff"/></g>
+    <!-- grumpy brows -->
+    <g class="brow" stroke="var(--line)" stroke-width="5" stroke-linecap="round"><path d="M60 86 L88 94"/><path d="M140 86 L112 94"/></g>
+    <!-- nose + mouth -->
+    <path d="M93 124 L107 124 L100 132 Z" fill="var(--pink)" stroke="var(--line)" stroke-width="2.5" stroke-linejoin="round"/>
+    <g class="mouth" fill="none" stroke="var(--line)" stroke-width="3" stroke-linecap="round"><path d="M100 132 C100 140 92 142 88 138"/><path d="M100 132 C100 140 108 142 112 138"/></g>
+    <g class="mouth-open"><ellipse cx="100" cy="144" rx="11" ry="9" fill="#1a1a2e" stroke="var(--line)" stroke-width="3"/><ellipse cx="100" cy="149" rx="6" ry="4" fill="var(--pink)"/></g>
+    <!-- ear floof -->
+    <g stroke="var(--tux-white)" stroke-width="2.5" stroke-linecap="round" opacity=".85"><path d="M46 66 L30 52"/><path d="M50 72 L32 66"/><path d="M154 66 L170 52"/><path d="M150 72 L168 66"/></g>
+    <!-- whiskers: the signature feature -->
+    <g stroke="var(--tux-white)" stroke-width="2.5" stroke-linecap="round" opacity=".95">
+      <path d="M62 124 L6 108"/><path d="M62 132 L2 130"/><path d="M62 140 L8 152"/><path d="M64 146 L20 168"/>
+      <path d="M138 124 L194 108"/><path d="M138 132 L198 130"/><path d="M138 140 L192 152"/><path d="M136 146 L180 168"/>
+    </g>
+    <g stroke="var(--line)" stroke-width="1.2" stroke-linecap="round" opacity=".7">
+      <path d="M62 124 L6 108"/><path d="M62 132 L2 130"/><path d="M62 140 L8 152"/><path d="M138 124 L194 108"/><path d="M138 132 L198 130"/><path d="M138 140 L192 152"/>
+    </g>
+  </svg><video id="avatar-video" autoplay playsinline hidden aria-label="Live cat avatar"></video><div class="stage-top"><span class="badge" id="connection">Ready for mischief</span><span class="badge" id="mode">Animated Dave</span></div><button id="sound" class="sound" hidden>Enable sound</button></section>
+<div class="briefing-content"><header class="heading"><div><span class="eyebrow">DAVE / CHIEF MEOW OFFICER</span><h1>Finally. A human who listens.</h1><p id="place">Buns to his friends. David Buns Buchanan when he's in trouble.</p></div></header>
+<div class="briefing-intro"><span class="voice">A little sass. A lot of whiskers.</span><h2>What's your cat trying to tell you?</h2><p>Ask Dave about meows, mysterious behavior, or his very demanding schedule.</p></div>
+<div class="controls"><button id="start" class="primary">Talk to Dave</button><button id="read" class="quiet">Type a question</button><button id="live" class="quiet" hidden>Start live video</button><button id="mute" hidden>Mute microphone</button><button id="end" hidden>End conversation</button></div>
+<p id="status" class="status" role="status" aria-live="polite">Meow meow. Your audience with Dave awaits.</p>
+<div class="ideas" aria-label="Conversation starters"><button data-question="Why are you yelling?">Why are you yelling?</button><button data-question="Why did you knock that over?">The gravity incident</button><button data-question="Do you actually love me?">Do you love me?</button></div>
+<details id="conversation"><summary>Read or type a question</summary><div id="transcript" role="log" aria-label="Conversation transcript"></div><form id="ask"><label class="sr-only" for="question">Your question for Dave</label><input id="question" maxlength="600" placeholder="Dave, explain yourself…" autocomplete="off"><button type="submit">Ask Dave</button></form><p class="small">Animated Dave uses playful scripted replies. Live video uses the separate cat AI persona when configured.</p></details>
+<p id="setup" class="small">Checking live video availability…</p>
+</div></div><p class="privacy">Dave's words are playful guesses, not literal translations or veterinary advice. Animated mode stays in this tab; optional dictation uses your browser's speech service. Live video sends your spoken or typed questions to LiveAvatar after you start it. Conversations are not saved by this surface. Sessions end after two minutes.</p></main><script type="module" src="/tools/cat-avatar/presenter.mjs"></script></body></html>
