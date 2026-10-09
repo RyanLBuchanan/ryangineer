@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+  <title>Your weather, in conversation · Nowcast</title>
+  <link rel="stylesheet" href="/tools/nowcast/presenter.css">
+</head>
+<body>
+<main class="presenter">
+  <header class="heading">
+    <div><span class="eyebrow">NOWCAST / YOUR WEATHER PRESENTER</span><h1>Weather for your day.</h1><p id="place">Orange Beach, Alabama</p></div>
+    <button id="forecast" class="quiet" type="button">View local weather ↓</button>
+  </header>
+  <section class="stage" aria-label="Live weather presenter">
+    <img class="portrait" src="/tools/nowcast/ryan-avatar.webp" alt="Ryan avatar preview" id="portrait">
+    <video id="avatar-video" autoplay playsinline aria-label="AI weather presenter" hidden></video>
+    <div class="stage-shade"></div>
+    <div class="stage-top"><span class="badge" id="connection">Ready when you are</span><span class="badge">AI presenter</span></div>
+    <div class="stage-bottom"><span class="voice">Ryan Natural voice · Powered by LiveAvatar</span><h2 id="stage-title">A forecast you can talk to.</h2><p id="stage-copy">A quick local briefing. Then, let’s plan around the weather.</p></div>
+    <button class="sound" id="sound" type="button" hidden>Enable sound</button>
+  </section>
+  <div class="controls">
+    <button id="start" type="button" class="primary">Start weather briefing</button>
+    <button id="mute" type="button" hidden>Mute microphone</button>
+    <button id="end" type="button" hidden>End conversation</button>
+    <button id="read" type="button" class="quiet">Read briefing</button>
+  </div>
+  <p id="status" class="status" role="status" aria-live="polite">Start a briefing, then ask about your plans.</p>
+  <div class="ideas" aria-label="Conversation starters">
+    <button type="button" data-question="When is a good window for a walk today?">A walk outside</button>
+    <button type="button" data-question="Help me decide whether to plan an outdoor gathering today. What do you need to know?">Outdoor plans</button>
+    <button type="button" data-question="What weather concerns should I check before going to the beach today?">A beach day</button>
+  </div>
+  <details id="conversation"><summary>Read or type a question</summary>
+    <div id="transcript" role="log" aria-label="Conversation transcript"></div>
+    <form id="ask"><label class="sr-only" for="question">Your weather question</label><input id="question" placeholder="What are you planning today?" maxlength="600" autocomplete="off"><button type="submit" id="send">Ask</button></form>
+    <p class="small">Questions are answered in the live avatar session. Start a briefing to chat.</p>
+  </details>
+  <details id="source-details"><summary>Weather sources &amp; update time</summary><p id="source-time">Fresh official weather is fetched when you start or read a briefing.</p><p id="source-warning"></p><div id="source-links"></div></details>
+  <p class="privacy">Starting enables LiveAvatar audio and may ask for microphone access. The selected coordinates and weather snapshot are sent to LiveAvatar; spoken or typed questions are processed by LiveAvatar. Nowcast does not save a conversation database. Sessions end after two minutes; start again for fresh weather.</p>
+</main>
+<script type="module" src="/tools/nowcast/presenter.mjs"></script>
+</body></html>

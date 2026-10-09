@@ -1,6 +1,6 @@
-export const PRESENTER_ORIGIN = 'https://ridiantechnologies.com';
+export const PRESENTER_ORIGIN = 'https://www.ryangineer.com';
 export function presenterUrl(loc,origin=PRESENTER_ORIGIN) {
-  const url=new URL('/nowcast/presenter.html',origin);
+  const url=new URL('/tools/nowcast/presenter.html',origin);
   if(loc && Number.isFinite(loc.lat) && Number.isFinite(loc.lon)) {
     url.searchParams.set('lat',loc.lat.toFixed(4));url.searchParams.set('lon',loc.lon.toFixed(4));url.searchParams.set('place',String(loc.name || 'Selected location').slice(0,100));
   }
@@ -8,10 +8,7 @@ export function presenterUrl(loc,origin=PRESENTER_ORIGIN) {
 }
 if(typeof document!=='undefined') {
   const frame=document.getElementById('presenter-frame'),toggle=document.getElementById('presenter-toggle');
-  let place=null,ready=false,origin=PRESENTER_ORIGIN;
-  // Restricted to this Ridian deployment's previews for paired-PR testing.
-  const preview=new URL(location.href).searchParams.get('presenterPreview');
-  if(preview){try{const url=new URL(preview);if(url.protocol==='https:' && /^deploy-preview-\d+--ridian-technologies\.netlify\.app$/.test(url.hostname))origin=url.origin;}catch{}}
+  let place=null,ready=false,origin=location.origin;
   const send=(type)=>{if(frame.contentWindow)frame.contentWindow.postMessage({type,loc:place},origin);};
   const stop=()=>send('nowcast-presenter-stop');
   const focusForecast=()=>{stop();document.getElementById('current-heading').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});document.getElementById('current-heading').focus({preventScroll:true});};
