@@ -20,7 +20,7 @@ if(typeof document!=='undefined') {
     else if(ready)send('nowcast-presenter-location');
   });
   frame.addEventListener('load',()=>{ready=true;if(place)send('nowcast-presenter-location');});
-  window.addEventListener('message',event=>{if(event.source!==frame.contentWindow || event.origin!==origin)return;if(event.data?.type==='nowcast-presenter-height' && Number.isFinite(event.data.height)){frame.style.height=Math.max(500,Math.min(1800,event.data.height))+'px';}if(event.data?.type==='nowcast-presenter-ready'){ready=true;if(place)send('nowcast-presenter-location');}if(event.data?.type==='nowcast-presenter-forecast')focusForecast();});
+  window.addEventListener('message',event=>{if(event.source!==frame.contentWindow || event.origin!==origin)return;if(event.data?.type==='nowcast-presenter-height' && Number.isFinite(event.data.height)){frame.style.height=Math.max(240,Math.min(1800,event.data.height))+'px';}if(event.data?.type==='nowcast-presenter-ready'){ready=true;if(place)send('nowcast-presenter-location');}if(event.data?.type==='nowcast-presenter-forecast')focusForecast();});
   document.getElementById('presenter-alert').addEventListener('click',()=>{stop();document.dispatchEvent(new Event('nowcast-open-alerts'));});
   document.getElementById('presenter-skip').addEventListener('click',event=>{event.preventDefault();focusForecast();});
   toggle.addEventListener('click',()=>{const hide=!frame.hidden;if(hide)stop();frame.hidden=hide;toggle.textContent=hide?'Show presenter':'Hide presenter';toggle.setAttribute('aria-expanded',String(!hide));});
