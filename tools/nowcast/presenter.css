@@ -3,3 +3,44 @@
 .portrait{object-fit:contain;object-position:center;background:transparent}.stage-shade{position:absolute;inset:0;background:linear-gradient(180deg,#0a1e3545,transparent 25%);pointer-events:none}.stage-top{position:absolute;inset:17px 18px auto;display:flex;justify-content:space-between;gap:10px}.badge{padding:6px 10px;border-radius:50px;background:#0a1e357d;color:#f2f9ff;font-size:10px;font-weight:650;backdrop-filter:blur(8px)}.briefing-intro{margin:0 0 18px}.briefing-intro h2{font-size:22px;line-height:1.2;letter-spacing:-.5px;margin:7px 0}.briefing-intro p{color:#60758a;font-size:14px;line-height:1.45;margin:0;max-width:560px}.voice{font-size:10px;font-weight:600;color:#55809b}.stage.active .stage-shade{background:linear-gradient(180deg,#0a1e3540,transparent 25%)}.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:17px}.primary{color:#fff;background:#166896;border-color:#166896;box-shadow:0 5px 14px #16689620}.primary:hover{background:#0e547c}.status{font-size:13px;color:#5c7487;line-height:1.5;margin:12px 0}.status.error{color:#a13428}.ideas{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 19px}.ideas button{background:#e9f2f8;border-color:#e9f2f8;font-size:12px;padding:8px 12px}details{border-top:1px solid #dbe5ee;padding:12px 0}summary{cursor:pointer;font-size:13px;font-weight:650;color:#345c76;padding:3px 0}details p,.small{font-size:12px;color:#62798d;line-height:1.5}#transcript{max-height:220px;overflow-y:auto;margin-top:8px}#transcript p{margin:9px 0;padding:9px 12px;border-radius:10px;background:#fff;font-size:13px;color:#254459;white-space:pre-wrap;overflow-wrap:anywhere}#transcript p.user{background:#deedf7}#transcript strong{font-size:10px;text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:5px;color:#55809b}#ask{display:flex;gap:6px;margin-top:10px}#question{width:100%;min-width:0;border:1px solid #cbd9e7;border-radius:13px;padding:11px;color:#172c43;background:#fff;font-size:14px}.privacy{font-size:10px;line-height:1.55;color:#7a8b9a;margin:20px 0 0;padding-top:14px;border-top:1px solid #dbe5ee}.sound{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}#source-links{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}#source-links a{color:#186590;font-size:12px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}@media(max-width:760px){.briefing-layout{grid-template-columns:1fr;gap:22px}.stage{max-width:380px;justify-self:center}.presenter{padding:15px 12px}.heading{align-items:flex-start;gap:8px;margin-bottom:13px}.heading button{font-size:11px;padding:8px 9px;max-width:110px;flex-shrink:0}h1{font-size:28px}.eyebrow{font-size:8px;letter-spacing:1.2px}.stage{border-radius:17px}.portrait{object-position:center}.controls .primary{flex:1 1 auto}.controls button{font-size:12px}.stage-top{inset:13px 12px auto}.badge{font-size:9px}.privacy{font-size:10px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 
 .avatar-controls{position:absolute;z-index:4;left:0;right:0;bottom:16px;margin:0;display:flex;justify-content:center;gap:12px;padding:0;border:0;background:none;box-shadow:none;pointer-events:none}.avatar-controls button{pointer-events:auto;flex:0 0 52px!important;width:52px;height:52px;min-height:52px;padding:14px;border-radius:50%;border:1px solid #ffffff70;background:#173851e6;color:#fff;box-shadow:0 3px 12px #07162455;backdrop-filter:blur(6px)}.avatar-controls svg{display:block;width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.avatar-controls .primary{background:#fff;color:#124969;border-color:#fff}.avatar-controls button:hover{background:#315d7a}.avatar-controls .primary:hover{background:#e4f2fc}.avatar-controls button:focus-visible{outline:3px solid #ffc366;outline-offset:4px}.avatar-controls #end{background:#bd352f;color:#fff;border-color:#ffffff70}.avatar-controls #end:hover{background:#a42621}.avatar-controls button[aria-pressed="true"]{background:#fff;color:#173851}.avatar-controls button:disabled{opacity:.55}.stage-shade{background:linear-gradient(180deg,#0a1e3545,transparent 25%,transparent 65%,#0a1e3540)}.sound{z-index:5}@media(max-width:760px){.avatar-controls{bottom:14px;gap:12px}}
+
+/* Compact companion to the current-conditions card. Keep the square stage,
+   live-video crop and floating control behavior exactly as before. */
+.presenter{padding:24px;max-width:1100px}
+.briefing-layout{grid-template-columns:minmax(0,.95fr) minmax(0,1fr);gap:24px}
+.stage{border-radius:16px;align-self:start;box-shadow:none}
+.heading{display:block;margin-bottom:16px}
+.eyebrow{font-size:10px;letter-spacing:.6px}
+h1{font-size:27px;line-height:1.15;letter-spacing:-.8px;margin:8px 0}
+#place{font-size:13px;line-height:1.5}
+.heading #forecast{margin-top:12px;padding:0;border:0;border-radius:4px;color:#246a8b;font-size:12px;min-height:32px;text-decoration:underline;text-underline-offset:4px;max-width:none}
+.briefing-intro{margin-bottom:12px}
+.briefing-intro h2{font-size:17px;margin:9px 0 6px;letter-spacing:-.2px}
+.briefing-intro p{font-size:13px;line-height:1.6}
+.voice{font-size:10px;line-height:1.5}
+.status{font-size:12px;margin:12px 0;line-height:1.6}
+#read{min-height:44px;font-size:12px;border-radius:10px;padding:10px 14px;background:#fff}
+.ideas{gap:6px;margin:12px 0 16px}
+.ideas button{min-height:40px;padding:8px 10px;border-radius:10px;font-size:11px}
+details{padding:10px 0}
+summary{min-height:32px;display:flex;align-items:center;gap:6px;font-size:12px}
+summary::before{content:'+';font-size:16px;font-weight:400}
+details[open]>summary::before{content:'−'}
+.privacy{font-size:10px;line-height:1.6;margin-top:18px;padding-top:14px;color:#60758a}
+@media(min-width:641px) and (max-width:760px){
+  .briefing-layout{grid-template-columns:minmax(0,.9fr) minmax(0,1fr);gap:20px}
+  .presenter{padding:20px}
+  .stage{max-width:none}
+  h1{font-size:24px}
+}
+@media(max-width:640px){
+  .presenter{padding:16px}
+  .briefing-layout{grid-template-columns:1fr;gap:20px}
+  .stage{max-width:340px}
+  .heading{margin-bottom:12px}
+  h1{font-size:25px}
+  .briefing-intro h2{font-size:17px}
+  .ideas button{min-height:44px;font-size:12px}
+  .privacy{font-size:10px}
+}
+

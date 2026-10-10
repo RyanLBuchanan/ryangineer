@@ -558,13 +558,14 @@
   @media(min-width:900px){#radar-panel{grid-row:2/span 3}.weather-hero{grid-row:2}}
   @media(max-width:600px){#presenter-panel{margin-inline:-4px;border-radius:16px}#presenter-frame{height:940px}.presenter-nav{padding:9px 12px;gap:9px}.presenter-nav>span{flex-basis:100%;font-size:8px}.presenter-nav button{margin-left:auto}}
 </style>
+<link rel="stylesheet" href="/tools/nowcast-app.css">
 </head>
 <body>
 
 <header class="app-header">
   <div>
     <h1>NOWCAST</h1>
-    <div class="label tagline">Measured · Radar-derived · Timestamped</div>
+    <div class="label tagline">Your weather. Your day.</div>
   </div>
   <details class="header-menu">
     <summary aria-label="Open settings"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.6v-.2h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></svg></summary>
@@ -577,7 +578,8 @@
   </details>
 </header>
 
-<details class="locbar" open>
+<div class="location-toolbar">
+<details class="locbar">
   <summary>
     <svg class="pin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
     <div>
@@ -593,15 +595,33 @@
     <button type="button" id="geo-btn" title="Find my location with permission">Use my location</button>
   </form>
   <div class="location-options"><label for="location-choice">Choose a location</label><select id="location-choice"><option value="">Search for a city or use my location</option></select></div>
+    <div class="family-controls">
+      <div class="family-buttons">
+        <label for="family-places">Saved places</label><select id="family-places"><option>No saved places yet</option></select>
+        <button id="family-save-toggle" type="button" disabled>Save this place</button>
+        <button id="family-remove" type="button" disabled>Remove saved</button>
+      </div>
+      <form id="family-save-form" hidden>
+        <label for="family-label">Name this place</label> <input id="family-label" required maxlength="40" placeholder="Home, Mom, Beach house">
+        <button type="submit">Save</button><button id="family-save-cancel" type="button">Cancel</button>
+      </form>
+      <p class="note">Saved places stay on this device. Shared links include the selected map coordinates.</p>
+      <p class="note" id="family-status" role="status"></p>
+    </div>
 </details>
 <div class="location-share">
   <button id="family-share" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M5 13v7h14v-7"/></svg>Share this location</button>
   <p id="share-status" role="status" aria-live="polite"></p>
   <input id="family-share-link" aria-label="Location link to copy" readonly hidden>
 </div>
+</div>
+<nav class="section-nav" aria-label="Weather sections">
+  <a href="#overview">Today</a><a href="#hourly-panel">Hourly</a><a href="#daily-panel">This week</a><a href="#radar-panel">Radar</a><a href="#earth-panel">Storm tracker</a>
+</nav>
 
 <main>
   <p id="location-notice" role="status">Allow location access for a briefing where you are, or search for a city above.</p>
+  <div class="briefing-overview" id="overview">
   <section id="presenter-panel" aria-label="Your Nowcast weather presenter" hidden>
     <div class="presenter-nav"><span>LIVE WEATHER CONVERSATION</span><a id="presenter-skip" href="#current-heading">View local weather ↓</a><button id="presenter-toggle" type="button" aria-expanded="true" aria-controls="presenter-frame">Hide presenter</button></div>
     <a id="presenter-alert" href="#alerts" hidden></a>
@@ -620,28 +640,23 @@
     <div class="weather-status" id="weather-status"><span class="status-orb"></span><div><b>CHECKING CONDITIONS</b><small>Reading local weather sources</small></div></div>
     <div class="sun-arc" id="sun-arc" aria-label="Sun progress"></div>
   </section>
+  </div>
 
   <div id="alerts" aria-live="polite"></div>
 
   <section class="panel" id="family-summary" aria-labelledby="family-title">
     <h2 class="section-title" id="family-title">What matters here</h2>
-    <div class="family-controls">
-      <div class="family-buttons">
-        <label for="family-places">Saved places</label><select id="family-places"><option>No saved places yet</option></select>
-        <button id="family-save-toggle" type="button" disabled>Save this place</button>
-        <button id="family-remove" type="button" disabled>Remove saved</button>
-      </div>
-      <form id="family-save-form" hidden>
-        <label for="family-label">Name this place</label> <input id="family-label" required maxlength="40" placeholder="Home, Mom, Beach house">
-        <button type="submit">Save</button><button id="family-save-cancel" type="button">Cancel</button>
-      </form>
-      <p class="note">Saved places stay on this device. Shared links include the selected map coordinates.</p>
-      <p class="note" id="family-status" role="status"></p>
-    </div>
     <div id="family-alerts"><p>Checking local watches and warnings…</p></div>
     <div id="family-forecast"></div>
     <p class="note" id="family-forecast-source">Reading the official local forecast…</p>
     <a href="https://www.weather.gov/" target="_blank" rel="noopener">National Weather Service</a>
+  </section>
+
+  <section class="panel" id="radar-panel" aria-labelledby="radar-title">
+    <div class="panel-head"><h2 class="section-title" id="radar-title">Radar</h2><span class="provenance" id="radar-time">RainViewer · loading</span></div>
+    <div class="radar-view" id="radar-view" role="img" aria-label="Radar precipitation map centered on your location"><div id="radar-base" aria-hidden="true"></div><div class="radar-layer" id="radar-map" aria-hidden="true"></div><span class="radar-marker" aria-hidden="true"></span></div>
+    <div class="radar-controls"><button id="radar-play" type="button" aria-label="Play radar animation">Play</button><span class="note" id="radar-frame-label">Reading radar frames…</span></div>
+    <div class="radar-history"><input id="radar-timeline" type="range" min="0" max="0" value="0" aria-label="Local radar history time" disabled><div class="bar-axis"><span class="label" id="axis-left">Recent history</span><span class="label" id="axis-right">Latest</span></div><p class="note">Observed radar history · <a href="https://www.rainviewer.com/" target="_blank" rel="noopener">RainViewer</a></p></div>
   </section>
 
   <section class="panel rain-card" aria-labelledby="rain-title" aria-live="polite">
@@ -656,12 +671,9 @@
     <div class="hourly" id="hourly-list"><span class="skeleton">Preparing the next 24 hours…</span></div>
   </section>
 
-  <section class="panel" id="radar-panel" aria-labelledby="radar-title">
-    <div class="panel-head"><h2 class="section-title" id="radar-title">Radar</h2><span class="provenance" id="radar-time">RainViewer · loading</span></div>
-    <div class="radar-view" id="radar-view" role="img" aria-label="Radar precipitation map centered on your location"><div id="radar-base" aria-hidden="true"></div><div class="radar-layer" id="radar-map" aria-hidden="true"></div><span class="radar-marker" aria-hidden="true"></span></div>
-    <div class="radar-controls"><button id="radar-play" type="button" aria-label="Play radar animation">Play</button><span class="note" id="radar-frame-label">Reading radar frames…</span></div>
-    <div class="radar-history"><input id="radar-timeline" type="range" min="0" max="0" value="0" aria-label="Local radar history time" disabled><div class="bar-axis"><span class="label" id="axis-left">Recent history</span><span class="label" id="axis-right">Latest</span></div><p class="note">Observed radar history · <a href="https://www.rainviewer.com/" target="_blank" rel="noopener">RainViewer</a></p></div>
-  </section>
+  <section class="panel" id="daily-panel" aria-labelledby="daily-title"><div class="panel-head"><h2 class="section-title" id="daily-title">7-day forecast</h2><span class="provenance">Open-Meteo aggregate</span></div><div class="daily" id="daily-list"><span class="skeleton">Looking through the week…</span></div></section>
+
+  <section class="panel" id="glance-panel" aria-labelledby="glance-title"><div class="panel-head"><h2 class="section-title" id="glance-title">Today at a glance</h2></div><div class="glance" id="glance-tiles"><span class="skeleton">Gathering today's details…</span></div></section>
 
 <section id="earth-panel" aria-labelledby="earth-title">
   <div class="panel-head"><h2 class="section-title" id="earth-title" tabindex="-1">Earth &amp; hurricane tracker</h2><span class="provenance">Orange Beach · Gulf Coast</span></div>
@@ -697,10 +709,6 @@
   <div class="earth-links"><a href="https://www.nhc.noaa.gov/" target="_blank" rel="noopener">National Hurricane Center</a><a href="https://nowcoast.noaa.gov/" target="_blank" rel="noopener">NOAA live weather map</a></div>
   <noscript><p>Enable JavaScript to use the Earth viewer, or open the NOAA live weather map above.</p></noscript>
 </section>
-
-  <section class="panel" id="daily-panel" aria-labelledby="daily-title"><div class="panel-head"><h2 class="section-title" id="daily-title">7-day forecast</h2><span class="provenance">Open-Meteo aggregate</span></div><div class="daily" id="daily-list"><span class="skeleton">Looking through the week…</span></div></section>
-
-  <section class="panel" id="glance-panel" aria-labelledby="glance-title"><div class="panel-head"><h2 class="section-title" id="glance-title">Today at a glance</h2></div><div class="glance" id="glance-tiles"><span class="skeleton">Gathering today's details…</span></div></section>
 
   <details class="panel" id="confidence-panel"><summary><h2 class="section-title" id="confidence-title">Forecast confidence</h2><span class="confidence-brief" id="confidence-brief">Comparing models…</span></summary><section aria-labelledby="confidence-title">
     <div class="provenance">Independent model comparison</div>
@@ -1717,3 +1725,4 @@ setInterval(tickAges, 10000);
 </script>
 </body>
 </html>
+
