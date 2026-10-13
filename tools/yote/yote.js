@@ -13,6 +13,9 @@ let voiceController = null;
 let audioUrl = null;
 let voiceEpoch = 0;
 let micPermissionError = false;
+let dictatedText = '';
+let silenceTimer = null;
+let dictationId = 0;
 function status(message) { $('status').textContent = message; }
 function add(role, message) {
   const item = document.createElement('div');
@@ -72,10 +75,32 @@ function micState(active) {
   $('mic-label').textContent = active ? 'Stop listening' : 'Speak to Yotee';
 }
 function stopListening() {
+  clearTimeout(silenceTimer);
+  silenceTimer = null;
   const active = listening;
   listening = null;
   micState(false);
   if (active) try { active.stop(); } catch {}
+}
+function finishDictation(submit = true) {
+  const text = dictatedText.trim();
+  stopListening();
+  if (text && submit) {
+    dictatedText = '';
+    $('question').value = '';
+    void ask(text);
+  } else if (text) {
+    $('question').value = text;
+    status('Your words are in the question field. Press Send when ready.');
+  } else {
+    status('No speech captured. Try again or type your question.');
+  }
+}
+function queueDictationSubmission() {
+  clearTimeout(silenceTimer);
+  silenceTimer = setTimeout(() => {
+    if (listening && dictatedText.trim()) finishDictation(true);
+  }, 2300);
 }
 async function ask(question) {
   const q = String(question || '').trim().slice(0, 800);
@@ -127,37 +152,61 @@ if (!Recognizer) {
   status('Voice input is unavailable in this browser. Type a question to chat.');
 } else {
   $('mic').addEventListener('click', () => {
-    if (listening) { stopListening(); status('Listening stopped.'); return; }
+    if (listening) { finishDictation(true); return; }
     if (busy) return;
     stopSpeech();
     const recognition = new Recognizer();
+    const sessionId = ++dictationId;
+    dictatedText = '';
     listening = recognition;
     recognition.lang = 'en-US';
-    recognition.interimResults = false;
+    recognition.continuous = true;
+    recognition.interimResults = true;
     recognition.maxAlternatives = 1;
     recognition.onresult = event => {
-      if (listening !== recognition) return;
-      const transcript = event.results?.[0]?.[0]?.transcript || '';
-      stopListening();
-      if (transcript) void ask(transcript);
-      else status('I did not catch that. Try again or type your question.');
+      if (listening !== recognition || sessionId !== dictationId) return;
+      const finalPieces = [];
+      const interimPieces = [];
+      for (let i = 0; i < event.results.length; i++) {
+        const result = event.results[i];
+        const fragment = String(result?.[0]?.transcript || '').trim();
+        if (!fragment) continue;
+        (result.isFinal ? finalPieces : interimPieces).push(fragment);
+      }
+      dictatedText = finalPieces.join(' ').trim().slice(0,800);
+      const preview = [dictatedText, ...interimPieces].filter(Boolean).join(' ').trim().slice(0,800);
+      $('question').value = preview;
+      status(preview ? 'Listening… ' + preview : 'Listening… speak naturally.');
+      if (preview) {
+        clearTimeout(silenceTimer);
+        // Restart the silence window even when the browser reports only partial words.
+        silenceTimer = setTimeout(() => {
+          if (listening === recognition) {
+            dictatedText = preview;
+            finishDictation(true);
+          }
+        },2300);
+      }
     };
     recognition.onerror = event => {
       if (listening !== recognition) return;
       if (event.error === 'not-allowed' || event.error === 'service-not-allowed') micPermissionError = true;
-      stopListening();
-      status('Microphone: ' + event.error + '. You can still type your question.');
+      const captured = $('question').value.trim();
+      dictatedText = captured;
+      finishDictation(false);
+      if (!captured) status('Microphone: ' + event.error + '. You can still type your question.');
     };
     recognition.onend = () => {
-      if (listening === recognition) {
-        listening = null; micState(false);
-        if (!micPermissionError) status('Listening ended. Try again or type a question.');
-      }
+      if (listening !== recognition) return;
+      // A browser may terminate recognition early. Preserve rather than prematurely
+      // submitting a one-word result; user can continue dictating or press Send.
+      dictatedText = $('question').value.trim();
+      finishDictation(false);
     };
     try {
       recognition.start();
       micState(true);
-      status('Listening… ask Yotee your question.');
+      status('Listening… speak your whole question, then pause.');
       micPermissionError = false;
     } catch {
       stopListening();
