@@ -16,3 +16,9 @@
 .scene.talking .mouth-animation{opacity:1;animation:yotee-jaw .29s steps(2,end) infinite alternate}
 @keyframes yotee-jaw{from{transform:translateY(0) scaleY(1)}to{transform:translateY(5px) scaleY(1.025)}}
 @media(prefers-reduced-motion:reduce){.scene.talking .mouth-animation{animation:none;opacity:0}}
+
+/* Lucide-style controls, with text labels retained for accessibility. */
+.compose button,.actions button{display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
+.compose button svg,.actions button svg{width:17px;height:17px;flex:none}
+.actions button{min-height:44px}
+@media(max-width:390px){.actions{display:grid;grid-template-columns:1fr}.actions button{justify-content:center}}
