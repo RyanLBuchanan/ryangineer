@@ -10,13 +10,16 @@ export async function handler(request,env=process.env,fetcher=fetch){
  for(const url of [env.URL,env.DEPLOY_URL,env.DEPLOY_PRIME_URL]){try{if(url&&new URL(url).protocol==='https:')allowed.add(new URL(url).origin)}catch{}}
  if(env.CONTEXT==='dev'){allowed.add('http://localhost:8888');allowed.add('http://127.0.0.1:8888')}
  if(!origin||!allowed.has(origin))return send(403,{message:'Open this prototype through Ryangineer.'});
- const length=Number(request.headers.get('content-length'));if(length>4096)return send(413,{message:'Request too long.'});
- let raw='';try{raw=await request.text();if(raw.length>4096)return send(413,{message:'Request too long.'})}catch{return send(400,{message:'Invalid request.'})}
+ const length=Number(request.headers.get('content-length'));if(length>12000)return send(413,{message:'Request too long.'});
+ let raw='';try{raw=await request.text();if(raw.length>12000)return send(413,{message:'Request too long.'})}catch{return send(400,{message:'Invalid request.'})}
  let body;try{body=JSON.parse(raw)}catch{return send(400,{message:'Invalid JSON.'})}
  if(typeof body?.question!=='string'||!body.question.trim()||body.question.length>800)return send(400,{message:'Enter a question of up to 800 characters.'});
+ const history=Array.isArray(body.history)?body.history:[];
+ if(history.length>10||history.some(item=>!item||!['user','assistant'].includes(item.role)||typeof item.content!=='string'||item.content.length>1200))return send(400,{message:'Invalid conversation history.'});
+ const turns=[...history.map(item=>({role:item.role,content:item.content})),{role:'user',content:body.question.trim()}];
  if(!env.YOTEE_OPENAI_API_KEY?.trim())return send(503,{message:'Live AI is not configured yet. Set YOTEE_OPENAI_API_KEY in Netlify.'});
  try{
- const result=await fetcher('https://api.openai.com/v1/responses',{method:'POST',headers:{'authorization':'Bearer '+env.YOTEE_OPENAI_API_KEY.trim(),'content-type':'application/json'},body:JSON.stringify({model:env.YOTEE_OPENAI_MODEL||'gpt-4.1-mini',instructions,input:body.question,max_output_tokens:220,store:false}),redirect:'error',signal:AbortSignal.timeout(15000)});
+ const result=await fetcher('https://api.openai.com/v1/responses',{method:'POST',headers:{'authorization':'Bearer '+env.YOTEE_OPENAI_API_KEY.trim(),'content-type':'application/json'},body:JSON.stringify({model:env.YOTEE_OPENAI_MODEL||'gpt-4.1-mini',instructions,input:turns,max_output_tokens:240,store:false}),redirect:'error',signal:AbortSignal.timeout(15000)});
  if(!result.ok)return send(502,{message:'The AI service is currently unavailable.'});
  const data=await result.json();const answer=(data.output||[]).flatMap(o=>o.content||[]).filter(c=>c.type==='output_text').map(c=>c.text).join('\n').trim();
  if(!answer)return send(502,{message:'The AI service returned no reply.'});
