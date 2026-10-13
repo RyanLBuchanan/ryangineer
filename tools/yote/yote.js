@@ -2,12 +2,16 @@
 const $ = id => document.getElementById(id);
 const welcome = "Hello! I'm Yotee, your AI campus companion at Coastal Alabama Community College! Whether you're finding your way around college, exploring campus resources, or just looking for some encouragement, I'm here to help. What can we tackle together?";
 const Recognizer = window.SpeechRecognition || window.webkitSpeechRecognition;
-const canSpeak = 'speechSynthesis' in window;
 const history = [];
+const voicePlayer = new Audio();
+voicePlayer.preload = 'none';
 let listening = null;
 let utterance = null;
 let busy = false;
 let requestController = null;
+let voiceController = null;
+let audioUrl = null;
+let voiceEpoch = 0;
 let micPermissionError = false;
 function status(message) { $('status').textContent = message; }
 function add(role, message) {
@@ -19,24 +23,53 @@ function add(role, message) {
 }
 function talking(value) { $('scene').classList.toggle('talking', value); }
 function stopSpeech() {
-  if (canSpeak) window.speechSynthesis.cancel();
-  utterance = null;
+  voiceEpoch++;
+  voiceController?.abort();
+  voiceController = null;
+  voicePlayer.pause();
+  voicePlayer.removeAttribute('src');
+  voicePlayer.load();
+  if (audioUrl) URL.revokeObjectURL(audioUrl);
+  audioUrl = null;
   talking(false);
 }
-function say(message) {
+async function say(message) {
   stopSpeech();
-  if (!canSpeak) { status('Voice playback is not supported here. Replies remain visible as text.'); return; }
-  const line = new SpeechSynthesisUtterance(message);
-  line.lang = 'en-US'; line.rate = 1.02; line.pitch = 1.07;
-  utterance = line;
-  line.onstart = () => { if (utterance === line) talking(true); };
-  line.onend = () => { if (utterance === line) { utterance = null; talking(false); status('Ready for your next question.'); } };
-  line.onerror = () => { if (utterance === line) { utterance = null; talking(false); status('Speech playback stopped; the written answer is available.'); } };
-  window.speechSynthesis.speak(line);
+  const epoch = voiceEpoch;
+  voiceController = new AbortController();
+  status('Preparing Yotee’s voice…');
+  try {
+    const response = await fetch('/.netlify/functions/yotee-speech', {
+      method: 'POST',
+      headers: {'content-type':'application/json'},
+      body: JSON.stringify({text:message.slice(0,1100)}),
+      signal:voiceController.signal
+    });
+    if (!response.ok) {
+      const result = await response.json().catch(() => ({}));
+      throw Error(result.message || 'OpenAI voice is unavailable.');
+    }
+    const blob = await response.blob();
+    if (epoch !== voiceEpoch) return;
+    audioUrl = URL.createObjectURL(blob);
+    voicePlayer.src = audioUrl;
+    voicePlayer.onplaying = () => { if (epoch === voiceEpoch) { talking(true); status('Yotee is speaking…'); } };
+    voicePlayer.onended = () => { if (epoch === voiceEpoch) { stopSpeech(); status('Ready for your next question.'); } };
+    voicePlayer.onerror = () => { if (epoch === voiceEpoch) { stopSpeech(); status('Audio playback failed; the text is still available.'); } };
+    await voicePlayer.play();
+  } catch (error) {
+    if (epoch !== voiceEpoch || error.name === 'AbortError') return;
+    stopSpeech();
+    status(error.message === 'Yotee’s OpenAI voice is not configured.' ?
+      'OpenAI voice needs a server API key in Netlify. Written messages remain available.' :
+      'Voice playback unavailable: ' + error.message);
+  } finally {
+    if (epoch === voiceEpoch) voiceController = null;
+  }
 }
 function micState(active) {
   $('mic').setAttribute('aria-pressed', String(active));
-  $('mic').textContent = active ? '■ Stop listening' : '🎙 Speak to Yotee';
+  $('mic-label').textContent = active ? 'Stop listening' : 'Speak to Yotee';
 }
 function stopListening() {
   const active = listening;
@@ -70,8 +103,7 @@ async function ask(question) {
     history.push({ role: 'user', content: q }, { role: 'assistant', content: answer });
     if (history.length > 10) history.splice(0, history.length - 10);
     add('yotee', answer);
-    say(answer);
-    status('Yotee is answering…');
+    void say(answer);
   } catch (error) {
     if (error.name === 'AbortError') status('Request cancelled.');
     else {
@@ -87,7 +119,7 @@ async function ask(question) {
 }
 $('form').addEventListener('submit', event => { event.preventDefault(); void ask($('question').value); });
 $('stop').addEventListener('click', () => { stopListening(); stopSpeech(); requestController?.abort(); status('Stopped.'); });
-$('greet').addEventListener('click', () => { stopListening(); say(welcome); });
+$('greet').addEventListener('click', () => { stopListening(); void say(welcome); });
 add('yotee', welcome);
 if (!Recognizer) {
   $('mic').disabled = true;
