@@ -20,3 +20,13 @@ No official college data or linked student records are connected. Do not enter F
 5. Verify small-screen layout, keyboard access and reduced-motion behavior.
 
 This is an independent demo, not an approved CACC deployment. Current character artwork is an original placeholder derived from the user's creative direction, not official mascot art. Replace only after marketing/college authorization. Browser speech recognition may use third-party browser speech services; do not use with sensitive data. The character's mouth moves when speech starts; this is not phoneme lip sync.
+
+## Phase 4: OpenAI voice and interface consistency
+
+- The existing original cartoon is also used as the page's JPEG favicon and Apple touch icon; tiny browser tab renderings may crop the jersey.
+- Voice is produced by a standalone `/.netlify/functions/yotee-speech` endpoint using OpenAI `gpt-4o-mini-tts`, `onyx` voice, MP3 playback, and audio-event driven mouth animation.
+- The server-only `YOTEE_OPENAI_API_KEY` is **shared by this voice endpoint and the Yotee chat endpoint**. No second key is needed. A ChatGPT subscription alone does not include API credits; an API key with active billing is required.
+- Buttons use consistent outlined SVG iconography (microphone, stop-square, play, send) and retain accessible text labels.
+- This is OpenAI TTS, **not** low-latency OpenAI Realtime. Microphone transcription still depends on browser SpeechRecognition and remains push-to-talk.
+- AI-generated spoken audio should be disclosed to users in the app. Avoid putting private student or employee information into the prototype.
+- Run `node --test tests/unit/yotee-speech.test.mjs tests/unit/yotee-chat.test.mjs`. Verify actual audio on production/preview browsers after server configuration. No browser speech synthesis fallback is presented as if it were OpenAI voice.
