@@ -9,3 +9,10 @@
 .scene.talking .talking-indicator span:nth-child(2){animation-delay:.12s}.scene.talking .talking-indicator span:nth-child(3){animation-delay:.24s}.scene.talking .talking-indicator span:nth-child(4){animation-delay:.06s}.scene.talking .talking-indicator span:nth-child(5){animation-delay:.18s}
 @keyframes yotee-bars{from{height:4px}to{height:19px}}@keyframes yotee-breathe{50%{transform:translateY(4px) scale(1.006)}}
 @media(prefers-reduced-motion:reduce){.yotee-original,.scene.talking .talking-indicator span{animation:none}}
+
+/* Animate only the lower muzzle using a masked copy of the original uploaded
+   image; preserve the character's actual likeness instead of redrawing it. */
+.mouth-animation{position:absolute;inset:0;background-image:url('/tools/yote/yote-original.jpg');background-size:100% 100%;background-repeat:no-repeat;clip-path:polygon(25% 47%,60% 46%,72% 53%,64% 65%,42% 70%,25% 58%);transform-origin:48% 48%;pointer-events:none;opacity:0}
+.scene.talking .mouth-animation{opacity:1;animation:yotee-jaw .29s steps(2,end) infinite alternate}
+@keyframes yotee-jaw{from{transform:translateY(0) scaleY(1)}to{transform:translateY(5px) scaleY(1.025)}}
+@media(prefers-reduced-motion:reduce){.scene.talking .mouth-animation{animation:none;opacity:0}}
