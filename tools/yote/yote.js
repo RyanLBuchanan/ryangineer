@@ -64,7 +64,7 @@ async function ask(question) {
       signal: requestController.signal
     });
     const payload = await response.json().catch(() => ({}));
-    if (!response.ok) throw Error(payload.message || 'Yotee could not connect to the AI service.');
+    if (!response.ok) { const error = new Error(payload.message || 'Yotee could not connect to the AI service.'); error.status = response.status; throw error; }
     const answer = String(payload.answer || '').trim().slice(0, 1800);
     if (!answer) throw Error('The AI service returned an empty reply.');
     history.push({ role: 'user', content: q }, { role: 'assistant', content: answer });
@@ -75,7 +75,7 @@ async function ask(question) {
   } catch (error) {
     if (error.name === 'AbortError') status('Request cancelled.');
     else {
-      add('yotee', 'I cannot reach my conversation service right now. The live AI connection may still need configuration. You can try again in a moment.');
+      add('yotee', error.status === 503 ? 'My AI conversation service has not been connected yet. My welcome voice and animation are still available using Hear welcome.' : 'I cannot reach my AI conversation service right now. Please try again shortly.');
       status(error.message || 'Connection unavailable.');
     }
   } finally {
