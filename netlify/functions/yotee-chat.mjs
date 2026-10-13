@@ -1,0 +1,26 @@
+// Isolated, server-side AI endpoint for the independent Yotee concept prototype.
+const origins=new Set(['https://www.ryangineer.com','https://ryangineer.com']);
+export const config={rateLimit:{windowLimit:8,windowSize:60,aggregateBy:['ip'],action:'rate_limit'}};
+const send=(status,data)=>new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json','cache-control':'no-store','x-content-type-options':'nosniff'}});
+const instructions=`You are Yotee, an energetic, friendly, welcoming cartoon coyote mascot in a prototype for Coastal Alabama Community College. You embody school spirit, pride, enthusiasm, support, and community. Sound approachable, lightly playful, concise and helpful, not childish. Help with general college orientation questions, technology and Canvas basics, study strategies, and where to seek official support. Never invent specific campus contacts, locations, deadlines, policies, financial aid rules, phone numbers or web links. When a detail needs confirmation, recommend checking the official college website or the appropriate office. Never claim you are an official college employee or that this concept prototype is an authorized college service. Do not request student records, credentials, or personal data. Never pretend to access individual student information, accounts, or Canvas records. If asked about emergencies, direct the user to local emergency services. Keep replies to 1-4 short sentences, usually under 90 words.`;
+export async function handler(request,env=process.env,fetcher=fetch){
+ if(request.method!=='POST')return send(405,{message:'POST required.'});
+ const origin=request.headers.get('origin');
+ const allowed=new Set(origins);
+ for(const url of [env.URL,env.DEPLOY_URL,env.DEPLOY_PRIME_URL]){try{if(url&&new URL(url).protocol==='https:')allowed.add(new URL(url).origin)}catch{}}
+ if(env.CONTEXT==='dev'){allowed.add('http://localhost:8888');allowed.add('http://127.0.0.1:8888')}
+ if(!origin||!allowed.has(origin))return send(403,{message:'Open this prototype through Ryangineer.'});
+ const length=Number(request.headers.get('content-length'));if(length>4096)return send(413,{message:'Request too long.'});
+ let raw='';try{raw=await request.text();if(raw.length>4096)return send(413,{message:'Request too long.'})}catch{return send(400,{message:'Invalid request.'})}
+ let body;try{body=JSON.parse(raw)}catch{return send(400,{message:'Invalid JSON.'})}
+ if(typeof body?.question!=='string'||!body.question.trim()||body.question.length>800)return send(400,{message:'Enter a question of up to 800 characters.'});
+ if(!env.YOTEE_OPENAI_API_KEY?.trim())return send(503,{message:'Live AI is not configured yet. Set YOTEE_OPENAI_API_KEY in Netlify.'});
+ try{
+ const result=await fetcher('https://api.openai.com/v1/responses',{method:'POST',headers:{'authorization':'Bearer '+env.YOTEE_OPENAI_API_KEY.trim(),'content-type':'application/json'},body:JSON.stringify({model:env.YOTEE_OPENAI_MODEL||'gpt-4.1-mini',instructions,input:body.question,max_output_tokens:220,store:false}),redirect:'error',signal:AbortSignal.timeout(15000)});
+ if(!result.ok)return send(502,{message:'The AI service is currently unavailable.'});
+ const data=await result.json();const answer=(data.output||[]).flatMap(o=>o.content||[]).filter(c=>c.type==='output_text').map(c=>c.text).join('\n').trim();
+ if(!answer)return send(502,{message:'The AI service returned no reply.'});
+ return send(200,{answer:answer.slice(0,1800)});
+ }catch{return send(502,{message:'The AI service timed out or could not be reached.'})}
+}
+export default request=>handler(request);
