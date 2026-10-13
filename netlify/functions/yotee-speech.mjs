@@ -21,7 +21,7 @@ export async function handler(request,env=process.env,fetcher=fetch){
  try{
   const upstream=await fetcher('https://api.openai.com/v1/audio/speech',{
    method:'POST',headers:{authorization:'Bearer '+key,'content-type':'application/json'},
-   body:JSON.stringify({model:'gpt-4o-mini-tts',voice:'onyx',input:speech.trim(),instructions:'Speak as an upbeat, reassuring male college mascot. Natural American English, clear articulation, friendly confidence, and an approachable conversational pace.',response_format:'mp3'}),
+   body:JSON.stringify({model:'gpt-4o-mini-tts',voice:'echo',input:speech.trim(),instructions:'Speak as a friendly, warm, youthful adult male campus guide. Conversational American English, naturally expressive and reassuring, with a relaxed smile in the voice. Use a moderate pace, gentle enthusiasm, clear articulation, and natural changes in intonation. Never sound like an announcer, salesperson, or robotic narrator.',response_format:'mp3'}),
    signal:AbortSignal.timeout(20000),redirect:'error'
   });
   if(!upstream.ok)return json(502,'OpenAI voice service unavailable.');
