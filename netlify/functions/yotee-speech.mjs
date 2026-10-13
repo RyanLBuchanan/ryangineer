@@ -1,0 +1,33 @@
+// Dedicated server-side speech generation for Yotee. Never expose provider keys to browsers.
+const origins=new Set(['https://www.ryangineer.com','https://ryangineer.com']);
+export const config={rateLimit:{windowLimit:8,windowSize:60,aggregateBy:['ip'],action:'rate_limit'}};
+const json=(status,message)=>new Response(JSON.stringify({message}),{status,headers:{'content-type':'application/json','cache-control':'no-store','x-content-type-options':'nosniff'}});
+export async function handler(request,env=process.env,fetcher=fetch){
+ if(request.method!=='POST')return json(405,'POST required.');
+ const origin=request.headers.get('origin'),allowed=new Set(origins);
+ for(const value of [env.URL,env.DEPLOY_URL,env.DEPLOY_PRIME_URL]){
+  try{if(value&&new URL(value).protocol==='https:')allowed.add(new URL(value).origin)}catch{}
+ }
+ if(env.CONTEXT==='dev'){allowed.add('http://localhost:8888');allowed.add('http://127.0.0.1:8888')}
+ if(!origin||!allowed.has(origin))return json(403,'Open Yotee through Ryangineer.');
+ if(Number(request.headers.get('content-length'))>2400)return json(413,'Request too large.');
+ let raw;
+ try{raw=await request.text();if(new TextEncoder().encode(raw).length>2400)return json(413,'Request too large.')}catch{return json(400,'Invalid request.')}
+ let data;try{data=JSON.parse(raw)}catch{return json(400,'Invalid JSON.')}
+ const speech=data?.text;
+ if(typeof speech!=='string'||!speech.trim()||speech.length>1100)return json(400,'Speech must contain 1–1100 characters.');
+ const key=env.YOTEE_OPENAI_API_KEY?.trim();
+ if(!key)return json(503,'Yotee’s OpenAI voice is not configured.');
+ try{
+  const upstream=await fetcher('https://api.openai.com/v1/audio/speech',{
+   method:'POST',headers:{authorization:'Bearer '+key,'content-type':'application/json'},
+   body:JSON.stringify({model:'gpt-4o-mini-tts',voice:'onyx',input:speech.trim(),instructions:'Speak as an upbeat, reassuring male college mascot. Natural American English, clear articulation, friendly confidence, and an approachable conversational pace.',response_format:'mp3'}),
+   signal:AbortSignal.timeout(20000),redirect:'error'
+  });
+  if(!upstream.ok)return json(502,'OpenAI voice service unavailable.');
+  const data=await upstream.arrayBuffer();
+  if(!data.byteLength||data.byteLength>4500000)return json(502,'Invalid voice response.');
+  return new Response(data,{status:200,headers:{'content-type':'audio/mpeg','cache-control':'private, no-store','x-content-type-options':'nosniff'}});
+ }catch{return json(502,'The voice service could not be reached.');}
+}
+export default request=>handler(request);
