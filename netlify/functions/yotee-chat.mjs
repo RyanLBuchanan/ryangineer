@@ -20,10 +20,14 @@ export async function handler(request,env=process.env,fetcher=fetch){
  if(!env.YOTEE_OPENAI_API_KEY?.trim())return send(503,{message:'Live AI is not configured yet. Set YOTEE_OPENAI_API_KEY in Netlify.'});
  try{
  const result=await fetcher('https://api.openai.com/v1/responses',{method:'POST',headers:{'authorization':'Bearer '+env.YOTEE_OPENAI_API_KEY.trim(),'content-type':'application/json'},body:JSON.stringify({model:env.YOTEE_OPENAI_MODEL||'gpt-4.1-mini',instructions,input:turns,max_output_tokens:240,store:false}),redirect:'error',signal:AbortSignal.timeout(15000)});
- if(!result.ok)return send(502,{message:'The AI service is currently unavailable.'});
+ if(!result.ok){
+  const classification=result.status===401?'invalid_api_key':result.status===403?'permission_denied':result.status===429?'rate_or_quota_limit':result.status===400?'invalid_request':result.status>=500?'provider_error':'unknown_provider_error';
+  console.error('[yotee-chat] OpenAI rejected request',{httpStatus:result.status,classification});
+  return send(502,{message:result.status===401?'OpenAI rejected Yotee’s API key (401). Check the configured secret.':result.status===403?'OpenAI denied this key access (403). Check project permissions.':result.status===429?'OpenAI returned 429: quota, spending limit, or rate limit.':result.status===400?'OpenAI rejected the chat request (400).':`OpenAI chat returned HTTP ${result.status}.`,upstreamStatus:result.status});
+ }
  const data=await result.json();const answer=(data.output||[]).flatMap(o=>o.content||[]).filter(c=>c.type==='output_text').map(c=>c.text).join('\n').trim();
  if(!answer)return send(502,{message:'The AI service returned no reply.'});
  return send(200,{answer:answer.slice(0,1800)});
- }catch{return send(502,{message:'The AI service timed out or could not be reached.'})}
+ }catch(error){console.error('[yotee-chat] transport error',{type:error?.name==='TimeoutError'?'timeout':'network_or_runtime'});return send(502,{message:'OpenAI chat request timed out or encountered a connection error.'})}
 }
 export default request=>handler(request);
