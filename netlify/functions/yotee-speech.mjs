@@ -24,10 +24,15 @@ export async function handler(request,env=process.env,fetcher=fetch){
    body:JSON.stringify({model:'gpt-4o-mini-tts',voice:'echo',input:speech.trim(),instructions:'Speak as a friendly, warm, youthful adult male campus guide. Conversational American English, naturally expressive and reassuring, with a relaxed smile in the voice. Use a moderate pace, gentle enthusiasm, clear articulation, and natural changes in intonation. Never sound like an announcer, salesperson, or robotic narrator.',response_format:'mp3'}),
    signal:AbortSignal.timeout(20000),redirect:'error'
   });
-  if(!upstream.ok)return json(502,'OpenAI voice service unavailable.');
+  if(!upstream.ok){
+   const classification=upstream.status===401?'invalid_api_key':upstream.status===403?'permission_denied':upstream.status===429?'rate_or_quota_limit':upstream.status===400?'invalid_request':upstream.status>=500?'provider_error':'unknown_provider_error';
+   console.error('[yotee-speech] OpenAI rejected request',{httpStatus:upstream.status,classification});
+   const message=upstream.status===401?'OpenAI rejected Yotee’s API key (401). Check the configured secret.':upstream.status===403?'OpenAI denied this key access (403). Check project permissions.':upstream.status===429?'OpenAI returned 429: quota, spending limit, or rate limit.':upstream.status===400?'OpenAI rejected the voice request (400).':`OpenAI voice returned HTTP ${upstream.status}.`;
+   return json(502,message);
+  }
   const data=await upstream.arrayBuffer();
   if(!data.byteLength||data.byteLength>4500000)return json(502,'Invalid voice response.');
   return new Response(data,{status:200,headers:{'content-type':'audio/mpeg','cache-control':'private, no-store','x-content-type-options':'nosniff'}});
- }catch{return json(502,'The voice service could not be reached.');}
+ }catch(error){console.error('[yotee-speech] transport error',{type:error?.name==='TimeoutError'?'timeout':'network_or_runtime'});return json(502,'OpenAI voice request timed out or encountered a connection error.');}
 }
 export default request=>handler(request);
