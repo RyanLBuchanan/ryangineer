@@ -22,3 +22,10 @@
   from = "/cat-translator/"
   to = "/tools/cat-translator.html"
   status = 200
+
+# Keep historical Yotee bookmarks working while publishing the correctly spelled route.
+[[redirects]]
+  from = "/tools/yote/"
+  to = "/tools/yotee/"
+  status = 301
+  force = true
