@@ -54,6 +54,7 @@ export const navLinks = [
     children: [
       { label: 'Nowcast (Live Weather)', href: '/tools/nowcast.html' },
       { label: 'Yotee (Animated Campus Assistant)', href: '/tools/yotee/' },
+      { label: 'CTL Virtual Support Assistant', href: '/tools/ryan-ai/' },
       { label: 'Cat Translator (Dave)', href: '/tools/cat-translator.html' },
       { label: 'Hurricane Simulator', href: '/tools/hurricane-simulator.html' },
     ],
