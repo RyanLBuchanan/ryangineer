@@ -24,7 +24,8 @@ function add(role, message) {
   $('messages').append(item);
   $('messages').scrollTop = $('messages').scrollHeight;
 }
-function talking(value) { $('scene').classList.toggle('talking', value); }
+function mood(value) { $('scene').dataset.mood = value; }
+function talking(value) { $('scene').classList.toggle('talking', value); mood(value ? 'speaking' : 'idle'); }
 function stopSpeech() {
   voiceEpoch++;
   voiceController?.abort();
@@ -40,6 +41,7 @@ async function say(message) {
   stopSpeech();
   const epoch = voiceEpoch;
   voiceController = new AbortController();
+  mood('thinking');
   status('Preparing Yotee’s voice…');
   try {
     const response = await fetch('/.netlify/functions/yotee-speech', {
@@ -75,6 +77,7 @@ function micState(active) {
   $('mic-label').textContent = active ? 'Stop listening' : 'Speak to Yotee';
 }
 function stopListening() {
+  if (!busy) mood('idle');
   clearTimeout(silenceTimer);
   silenceTimer = null;
   const active = listening;
@@ -113,6 +116,7 @@ async function ask(question) {
   $('send').disabled = true;
   $('mic').disabled = true;
   requestController = new AbortController();
+  mood('thinking');
   status('Yotee is thinking…');
   try {
     const response = await fetch('/.netlify/functions/yotee-chat', {
@@ -155,6 +159,7 @@ if (!Recognizer) {
     if (listening) { finishDictation(true); return; }
     if (busy) return;
     stopSpeech();
+    mood('listening');
     const recognition = new Recognizer();
     const sessionId = ++dictationId;
     dictatedText = '';
@@ -206,6 +211,7 @@ if (!Recognizer) {
     try {
       recognition.start();
       micState(true);
+      mood('listening');
       status('Listening… speak your whole question, then pause.');
       micPermissionError = false;
     } catch {
