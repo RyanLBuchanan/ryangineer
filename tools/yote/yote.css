@@ -40,3 +40,21 @@
 .privacy p{margin:8px 0;max-width:75ch}
 @media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:20px}.intro h1{font-size:clamp(42px,10vw,58px)}.art{max-width:380px;position:static}.messages{height:clamp(320px,46vh,480px)}}
 @media(max-width:520px){.hero{gap:16px}.art .scene{max-width:290px}.chat{padding:11px}.bubble{max-width:96%}.chat-heading{flex-wrap:wrap}.messages{height:clamp(315px,47vh,450px)}}
+
+/* Expressive but restrained motion, using the exact original cartoon artwork. */
+.scene{isolation:isolate}
+.yotee-figure{width:100%;height:100%;position:relative;transform-origin:50% 78%;animation:yotee-idle-motion 5.2s ease-in-out infinite;will-change:transform}
+.yotee-figure .yotee-original{animation:none}
+.yotee-figure .mouth-animation{z-index:1;transform-origin:49% 54%;clip-path:polygon(24% 47%,63% 45%,71% 52%,65% 62%,47% 68%,28% 59%)}
+.scene.talking .yotee-figure{animation:yotee-speaking-motion 1.35s ease-in-out infinite}
+.scene.talking .mouth-animation{opacity:1;animation:yotee-mouth-open .24s ease-in-out infinite alternate}
+.scene[data-mood="listening"] .yotee-figure{animation:yotee-attentive 2.4s ease-in-out infinite}
+.scene[data-mood="thinking"] .yotee-figure{animation:yotee-thinking 1.65s ease-in-out infinite}
+.scene[data-mood="thinking"]{box-shadow:0 12px 45px #8c1d3230, inset 0 0 0 3px #8c1d3220}
+.scene[data-mood="listening"]{box-shadow:0 12px 45px #8c1d3224, inset 0 0 0 3px #8c1d3230}
+@keyframes yotee-idle-motion{0%,100%{transform:translateY(0) rotate(0deg) scale(1)}35%{transform:translateY(3px) rotate(-.6deg) scale(1.005)}70%{transform:translateY(-2px) rotate(.55deg) scale(1.003)}}
+@keyframes yotee-speaking-motion{0%,100%{transform:translateY(0) rotate(-.7deg)}50%{transform:translateY(-6px) rotate(.85deg)}}
+@keyframes yotee-attentive{0%,100%{transform:rotate(-1.5deg) translateY(1px)}50%{transform:rotate(1deg) translateY(-4px)}}
+@keyframes yotee-thinking{0%,100%{transform:rotate(-1deg) translateY(0)}50%{transform:rotate(2deg) translateY(4px)}}
+@keyframes yotee-mouth-open{0%{transform:translateY(0) scaleY(1);opacity:.85}100%{transform:translateY(8px) scaleY(1.055);opacity:1}}
+@media(prefers-reduced-motion:reduce){.yotee-figure,.scene.talking .yotee-figure,.scene[data-mood="listening"] .yotee-figure,.scene[data-mood="thinking"] .yotee-figure,.scene.talking .mouth-animation{animation:none!important;transform:none!important}.scene.talking .mouth-animation{opacity:0}}
