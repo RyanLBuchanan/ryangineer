@@ -1,0 +1,33 @@
+name: Yotee regression tests
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'netlify/functions/yotee-*'
+      - 'netlify/functions/_lib/yotee-*'
+      - 'tests/unit/yotee-*'
+      - '.github/workflows/yotee-regression.yml'
+  pull_request:
+    paths:
+      - 'netlify/functions/yotee-*'
+      - 'netlify/functions/_lib/yotee-*'
+      - 'tests/unit/yotee-*'
+      - '.github/workflows/yotee-regression.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check netlify/functions/yotee-chat.mjs
+          node --check netlify/functions/yotee-speech.mjs
+          node --check tools/yote/yote.js
+      - name: Run Yotee unit and deep regression suite
+        run: node --test tests/unit/yotee-*.test.mjs
