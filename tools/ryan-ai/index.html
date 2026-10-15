@@ -12,33 +12,38 @@
 header{max-width:1200px;margin:auto;padding:24px clamp(20px,4vw,48px);display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid #eadbdc}
 a{color:#8f2233}a:focus-visible{outline:3px solid #bc8090;outline-offset:4px}.back{font-weight:700;text-decoration:none}
 .pill{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:#796269}
-main{max-width:1200px;margin:auto;padding:clamp(36px,7vw,82px) clamp(20px,4vw,48px)}
+main{max-width:1320px;margin:auto;padding:clamp(25px,4vw,52px) clamp(20px,4vw,48px)}
 .eyebrow{font-weight:800;letter-spacing:.16em;font-size:12px;color:#8f2233;margin-bottom:12px;text-transform:uppercase}
-h1{font-size:clamp(50px,7vw,92px);line-height:1.02;letter-spacing:-.055em;margin:0 0 22px}
+h1{font-size:clamp(40px,4.7vw,68px);line-height:1.04;letter-spacing:-.055em;margin:0 0 17px}
 h1 span{color:#8f2233}
 .lead{font-size:clamp(18px,2.1vw,23px);line-height:1.5;max-width:680px;color:#614c50}
-.layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:clamp(24px,4vw,54px);align-items:start}
-.panel{background:white;border:1px solid #eadbdc;box-shadow:0 18px 48px #8f223311;border-radius:24px;padding:25px}
+.layout{display:grid;grid-template-columns:minmax(350px,.94fr) minmax(420px,1.06fr);gap:clamp(24px,4vw,48px);align-items:start}
+.avatar-column{min-width:0}
+.agent-frame{width:100%;height:clamp(430px,65vh,700px);min-height:430px;background:#fff;border:1px solid #eadbdc;border-radius:26px;overflow:hidden;box-shadow:0 18px 48px #8f223311}
+.agent-frame>div{width:100%;height:100%}
+.agent-note{font-size:12px;color:#79666a;line-height:1.6;margin-top:12px}
+.support-column{min-width:0}
+.panel{background:white;border:1px solid #eadbdc;box-shadow:0 18px 48px #8f223311;border-radius:20px;padding:19px;margin-top:22px}
 .panel h2{font-size:20px;margin:0 0 14px}.panel p,.panel li{font-size:15px;line-height:1.65;color:#655459}.panel ul{padding-left:21px}
 .notice{font-size:13px;color:#79666a;line-height:1.65;max-width:650px}
 details{border-top:1px solid #eadbdc;margin-top:22px;padding-top:15px;font-size:13px;color:#79666a}
 summary{cursor:pointer;font-weight:700;color:#8f2233}
 .cta{margin-top:26px;font-weight:700;color:#8f2233}
-@media(max-width:780px){.layout{grid-template-columns:1fr}header{flex-wrap:wrap}.panel{padding:20px}main{padding-top:36px}}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.agent-frame{height:min(67vh,580px);min-height:380px}header{flex-wrap:wrap}.panel{padding:20px}main{padding-top:28px}}
 </style>
 </head>
 <body>
 <header><a class="back" href="/">← Ryangineer</a><span class="pill">INDEPENDENT CTL PROTOTYPE · NOT AN OFFICIAL COLLEGE SERVICE</span></header>
 <main>
 <div class="layout">
-<section aria-labelledby="page-title">
+<section class="avatar-column" aria-label="Live CTL support avatar"><div class="agent-frame"><div id="ctl-avatar" aria-label="D-ID conversational CTL support avatar"></div></div><p class="agent-note">Speak with the interactive avatar, or use the text controls inside the panel. D-ID may request microphone permission.</p></section>
+<section class="support-column" aria-labelledby="page-title">
 <div class="eyebrow">FACULTY SUPPORT · CANVAS · INSTRUCTIONAL DESIGN</div>
 <h1 id="page-title">CTL Virtual Support Assistant<span>.</span></h1>
 <p class="lead">A conversational guide for everyday teaching and learning support—Canvas troubleshooting, course design, accessibility, and practical faculty development.</p>
-<p class="cta">To begin, open the conversation window and allow microphone access if you want to speak. You can ask a question about teaching or Canvas.</p>
+<p class="cta">Your interactive CTL assistant is on the left. Start a conversation using the controls in the avatar panel.</p>
 <p class="notice">Independent proof of concept developed by Ryan Buchanan. Not an official Coastal Alabama Community College service or a live CTL staff member. Responses may be inaccurate. Do not submit student records, passwords, or other sensitive information.</p>
 <details><summary>Privacy, scope & limitations</summary><p>The conversational avatar is provided by D-ID and its providers, who may process audio, prompts, and conversation data under their policies. Guidance is general and may not reflect current Coastal procedures. Confirm institutional policies, course-specific decisions, accessibility accommodations, and account issues through authorized college channels. This prototype is separate from Yotee and NowCast.</p></details>
-</section>
 <aside class="panel" aria-label="Conversation guide">
 <h2>What can I help with?</h2>
 <p>Ask about common CTL and faculty-support tasks:</p>
@@ -49,18 +54,19 @@ summary{cursor:pointer;font-weight:700;color:#8f2233}
 </ul>
 <p>For account-specific or college-policy questions, contact the appropriate Coastal support office. If the avatar fails to open, permit D-ID scripts and verify that <strong>www.ryangineer.com</strong> remains on the D-ID agent's allowed-domain list.</p>
 </aside>
+</section>
 </div>
 </main>
 <script type="module"
  src="https://agent.d-id.com/v2/index.js"
- data-mode="fabio"
+ data-mode="full"
+ data-target-id="ctl-avatar"
  data-client-key="ck_4lEAAxEb3Tyxy3SP2UE6q"
  data-agent-id="v2_agt_i45LKDLf"
  data-name="did-agent"
  data-monitor="true"
  data-light-mode="false"
  data-orientation="horizontal"
- data-position="right"
  data-open-mode="expanded"></script>
 </body>
 </html>
