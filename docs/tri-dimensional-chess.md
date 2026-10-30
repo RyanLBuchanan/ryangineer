@@ -1,6 +1,6 @@
 # Tri-Dimensional Chess — Ryangineer house rules (v1)
 
-This is a **Star Trek-inspired variant**, not the official tournament rule set. The first release deliberately uses fixed attack boards. The game is local, two-player, no accounts.
+This is a **Star Trek-inspired variant**, not the official tournament rule set. The first release deliberately uses fixed attack boards. The game supports local human-vs-computer and two-player play, without accounts or network AI calls.
 
 ## Board
 Three 4×4 main platforms at vertical levels z=0,1,2, plus four 2×2 attack platforms, for 64 distinct squares. Main levels use x,y=0..3. Attack boards extend beyond the corners at z=0 or z=2. Every square has a unique (x,y,z) coordinate.
@@ -21,5 +21,8 @@ Sliding paths must traverse unoccupied intermediate coordinates. Squares absent 
 ## Turns and game end
 White moves first. Captures replace the target. Moves leaving your king in check are illegal. Kings cannot be captured. No legal moves in check means checkmate; no legal moves without check means stalemate. No castling, en passant, draw claims, or repetition tracking in v1. Undo restores previous board and turn.
 
+## Computer opponent
+The computer plays Black; the human plays White. Easy selects random legal moves. Medium and Hard use material-based minimax with alpha-beta pruning at different depths. The computer obeys the same move and king-safety rules. Undo in computer mode returns to the human's previous turn when possible. Difficulty is a relative label, not a chess rating. Computer calculations run in the browser, and Hard can be slower on older phones.
+
 ## Known limitations
-Stationary attack platforms, simplified setup, no computer opponent or remote multiplayer. 3D geometry uses CSS transforms rather than a WebGL scene. Do not describe this as an official Star Trek chess rules implementation.
+Stationary attack platforms, simplified setup, no remote multiplayer. 3D geometry uses CSS transforms rather than a WebGL scene. Do not describe this as an official Star Trek chess rules implementation.
