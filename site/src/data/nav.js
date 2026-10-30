@@ -56,6 +56,7 @@ export const navLinks = [
       { label: 'Yotee (Animated Campus Assistant)', href: '/tools/yotee/' },
       { label: 'CTL Virtual Support Assistant', href: '/tools/ryan-ai/' },
       { label: 'Cat Translator (Dave)', href: '/tools/cat-translator.html' },
+      { label: 'Tri-Dimensional Chess', href: '/tools/tri-dimensional-chess.html' },
       { label: 'Hurricane Simulator', href: '/tools/hurricane-simulator.html' },
     ],
   },
