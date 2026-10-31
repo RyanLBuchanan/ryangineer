@@ -79,4 +79,33 @@ el('undo').onclick=()=>{clearTimeout(aiTimer);thinking=false;if(history.length){
 el('restart').onclick=()=>{if(confirm('Start a new game?')){clearTimeout(aiTimer);thinking=false;state=start();history=[];selected=null;draw();}};
 el('mode').onchange=e=>{clearTimeout(aiTimer);thinking=false;mode=e.target.value;state=start();history=[];selected=null;draw();};
 el('difficulty').onchange=e=>{difficulty=e.target.value;};
-el('left').onclick=()=>{angle-=30;draw();};el('right').onclick=()=>{angle+=30;draw();};el('tilt').onclick=()=>{tilt=tilt===57?32:tilt===32?75:57;draw();};el('resetView').onclick=()=>{angle=-30;tilt=57;scale=90;el('zoom').value=90;draw();};el('zoom').oninput=e=>{scale=Number(e.target.value);draw();};draw();
+// Pointer gestures control the optional 3D camera without obstructing square taps.
+const stage=el('stage'), pointers=new Map();
+let gestureMoved=false, lastPinch=null;
+stage.addEventListener('pointerdown',e=>{
+ if(view!=='3d')return;
+ pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+ gestureMoved=false;
+ lastPinch=null;
+ stage.setPointerCapture(e.pointerId);
+});
+stage.addEventListener('pointermove',e=>{
+ if(view!=='3d'||!pointers.has(e.pointerId))return;
+ const previous=pointers.get(e.pointerId);
+ pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+ if(pointers.size===2){
+  const [a,b]=[...pointers.values()];
+  const distance=Math.hypot(a.x-b.x,a.y-b.y);
+  if(lastPinch!==null){scale=Math.max(50,Math.min(170,scale+(distance-lastPinch)*.24));}
+  lastPinch=distance;gestureMoved=true;draw();return;
+ }
+ const dx=e.clientX-previous.x,dy=e.clientY-previous.y;
+ if(Math.abs(dx)+Math.abs(dy)>1){angle+=dx*.48;tilt=Math.max(10,Math.min(85,tilt+dy*.35));gestureMoved=true;draw();}
+});
+function releasePointer(e){pointers.delete(e.pointerId);lastPinch=null;if(!pointers.size){stage.classList.remove('dragging');}}
+stage.addEventListener('pointerup',releasePointer);
+stage.addEventListener('pointercancel',releasePointer);
+stage.addEventListener('pointermove',()=>{stage.classList.toggle('dragging',view==='3d'&&pointers.size>0);});
+stage.addEventListener('click',e=>{if(view==='3d'&&gestureMoved){e.preventDefault();e.stopPropagation();gestureMoved=false;}},true);
+stage.addEventListener('wheel',e=>{if(view!=='3d')return;e.preventDefault();scale=Math.max(50,Math.min(170,scale-e.deltaY*.1));draw();},{passive:false});
+el('resetView').onclick=()=>{angle=-30;tilt=57;scale=90;el('zoom').value=90;draw();};el('zoom').oninput=e=>{scale=Number(e.target.value);draw();};draw();
