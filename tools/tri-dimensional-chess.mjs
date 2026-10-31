@@ -48,8 +48,29 @@ thinking=false;commitMove(choice); }
 function queueComputer(){clearTimeout(aiTimer);if(mode==='computer'&&state.turn==='b'&&legal(state.b,'b').length){thinking=true;draw();aiTimer=setTimeout(computerMove,180);}}
 function commitMove(m){const from=coords.get(m.from),to=coords.get(m.to),piece=state.b[m.from],capture=!!state.b[m.to];history.push(structuredClone(state));state={b:moveBoard(state.b,from,to),turn:state.turn==='w'?'b':'w',moves:[...state.moves,piece.toUpperCase()+' '+m.from+' → '+m.to+(capture?' ×':'')],last:m.to};selected=null;draw();if(mode==='computer'&&state.turn==='b')queueComputer();}
 const el=id=>document.getElementById(id),universe=el('universe');
+let fitOffsetX=0,fitOffsetY=0;
+function fitBoard(){
+ const stage=universe.parentElement, margin=18;
+ const requested=scale/90;
+ // Measure projected planes at a neutral scale, then fit their complete silhouette.
+ universe.style.transform='rotateX('+tilt+'deg) rotateZ('+angle+'deg) scale(1)';
+ const boxes=[...universe.querySelectorAll('.plane')].map(n=>n.getBoundingClientRect());
+ if(!boxes.length)return;
+ const minX=Math.min(...boxes.map(b=>b.left)),maxX=Math.max(...boxes.map(b=>b.right));
+ const minY=Math.min(...boxes.map(b=>b.top)),maxY=Math.max(...boxes.map(b=>b.bottom));
+ const bounds=stage.getBoundingClientRect();
+ const factor=Math.min(1,(bounds.width-margin*2)/Math.max(1,maxX-minX),(bounds.height-margin*2)/Math.max(1,maxY-minY));
+ const fitted=Math.max(.12,Math.min(requested,factor));
+ // Translation is applied in viewport coordinates, after the board rotation.
+ const centerX=(minX+maxX)/2,centerY=(minY+maxY)/2;
+ fitOffsetX=(bounds.left+bounds.width/2-centerX)*fitted;
+ fitOffsetY=(bounds.top+bounds.height/2-centerY)*fitted;
+ universe.style.transform='translate('+fitOffsetX+'px,'+fitOffsetY+'px) rotateX('+tilt+'deg) rotateZ('+angle+'deg) scale('+fitted+')';
+}
+window.addEventListener('resize',()=>fitBoard());
 function draw(){universe.replaceChildren();universe.style.transform='rotateX('+tilt+'deg) rotateZ('+angle+'deg) scale('+(scale/90)+')';const options=legal(state.b,state.turn);const destinations=selected?new Set(options.filter(m=>m.from===selected).map(m=>m.to)):new Set();
 for(const p of planes){const node=document.createElement('div');node.className='plane';node.style.setProperty('--size',p.size);node.style.setProperty('--width',(p.size===4?252:126)+'px');node.style.setProperty('--x',((p.size===4?0:p.x+1)*63)+'px');node.style.setProperty('--y',((p.size===4?0:p.y+1)*63)+'px');node.style.setProperty('--z',(p.z*150)+'px');const title=document.createElement('small');title.textContent=p.id;node.append(title);for(let row=p.size-1;row>=0;row--)for(let col=0;col<p.size;col++){const x=(p.size===4?0:p.x)+col,y=(p.size===4?0:p.y)+row,k=key(x,y,p.z),piece=state.b[k];const btn=document.createElement('button');btn.type='button';btn.className='square '+((x+y)%2?'dark ':'')+(piece?(color(piece)==='w'?'white':'black'):'')+(selected===k?' selected':'')+(destinations.has(k)?' target':'');btn.textContent=glyph[piece]||'';btn.setAttribute('aria-label',p.id+' square '+x+','+y+(piece?' '+(color(piece)==='w'?'White ':'Black ')+piece.toUpperCase():''));btn.addEventListener('click',()=>choose(k));node.append(btn);}universe.append(node);}
+fitBoard();
 const optionsNow=legal(state.b,state.turn),check=inCheck(state.b,state.turn);el('status').textContent=thinking?'Computer thinking…':!optionsNow.length?(check?'Checkmate — '+(state.turn==='w'?'Black':'White')+' wins.':'Stalemate — draw.'):(state.turn==='w'?'White':'Black')+' to move'+(check?' — Check!':'');
 el('history').textContent=state.moves.length?state.moves.map((m,i)=>(i+1)+'. '+m).join(' · '):'No moves yet.';el('undo').disabled=!history.length;}
 function choose(k){if(thinking||(mode==='computer'&&state.turn==='b'))return;const options=legal(state.b,state.turn);if(!options.length)return;if(selected){const move=options.find(m=>m.from===selected&&m.to===k);if(move){commitMove(move);return;}}selected=color(state.b[k])===state.turn?k:null;draw();}
