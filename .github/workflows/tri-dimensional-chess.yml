@@ -1,0 +1,33 @@
+name: Tri-Dimensional Chess checks
+on:
+  push:
+    branches: [feat/tri-dimensional-chess]
+  pull_request:
+    paths:
+      - 'tools/tri-dimensional-chess*'
+      - 'site/src/data/nav.js'
+      - 'docs/tri-dimensional-chess.md'
+      - '.github/workflows/tri-dimensional-chess.yml'
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - name: Check game JavaScript syntax
+        run: node --check tools/tri-dimensional-chess.mjs
+      - name: Install site dependencies
+        run: npm ci
+        working-directory: site
+      - name: Build site
+        run: npm run build && node postbuild.mjs
+        working-directory: site
+      - name: Check built game and navigation
+        run: |
+          test -s site/dist/tools/tri-dimensional-chess.html
+          test -s site/dist/tools/tri-dimensional-chess.mjs
+          grep -q 'Tri-Dimensional Chess' site/dist/index.html
